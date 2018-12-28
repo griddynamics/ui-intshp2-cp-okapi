@@ -1,0 +1,94 @@
+@import '../../../../sass/variables';
+@import '../../../../sass/fonts';
+@import '../../../../sass/reset';
+
+hr {
+  margin: 0 auto;
+  border-top: 1px solid $border-color;
+}
+
+.small-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 16px;
+  a {
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.header-left-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.main-container {
+  padding: 0 $content-padding;
+  background-color: $white-color;
+}
+
+.mail {
+  margin-right: 15px;
+  color: $black-color;
+  font-size: 12px;
+  img {
+    margin-right: 9px;
+  }
+}
+
+.pnone-number {
+  color: $black-color;
+  font-size: 12px;
+  img {
+    margin-right: 9px;
+  }
+}
+
+.social-media {
+  a {
+  color: $black-color;
+  font-size: 14px;
+  margin-left: 20px;
+  }
+}
+
+.logo {
+  margin-right: 80px;
+}
+
+.header-right-bar {
+  padding-top: 13px;
+  display: flex;
+  position: relative;
+  i {
+    font-size: 20px;
+    padding-left: 33px;
+    &:hover, &:active {
+      color: $primary-color;
+    }
+  }
+}
+
+.cart {
+  position: relative;
+}
+
+.cart-items {
+  margin: 0 auto;
+  position: absolute;
+  bottom: 26px;
+  left: 35px;
+  border-radius: 50%;
+  background: $black-color;
+  width: 18px;
+  height: 18px;
+  color: $white-color;
+  font-size: 12px;
+  text-align: center;
+  display: none;
+}

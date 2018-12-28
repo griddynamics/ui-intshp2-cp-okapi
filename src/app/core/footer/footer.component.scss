@@ -1,0 +1,8 @@
+@import '../../../sass/variables';
+
+:host {
+  height: 250px;
+  background: grey;
+  display: block;
+  padding: 0 $content-padding;
+}

@@ -1,0 +1,18 @@
+@font-face {
+  font-family: HarmoniaSansProCyr-bold;
+  src: url("/assets/fonts/HarmoniaSansProCyr-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: HarmoniaSansProCyr-italic;
+  src: url("/assets/fonts/HarmoniaSansProCyr-Italic.otf") format("opentype");
+}
+
+@font-face {
+  font-family: HarmoniaSansProCyr-regular;
+  src: url("/assets/fonts/HarmoniaSansProCyr-Regular.otf") format("opentype");
+}
+
+$mainFontBold: HarmoniaSansProCyr-bold;
+$mainFontItalic: HarmoniaSansProCyr-italic;
+$mainFontRegular: HarmoniaSansProCyr-regular;
