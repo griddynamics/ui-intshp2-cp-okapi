@@ -1,0 +1,11 @@
+@import '../../../../scss/mixins';
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+
+:host {
+  height: 250px;
+  background: grey;
+  display: block;
+  padding: 0 $content-padding;
+}

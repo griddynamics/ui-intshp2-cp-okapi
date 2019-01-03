@@ -13,6 +13,10 @@
   src: url("/assets/fonts/HarmoniaSansProCyr-Regular.otf") format("opentype");
 }
 
-$mainFontBold: HarmoniaSansProCyr-bold;
-$mainFontItalic: HarmoniaSansProCyr-italic;
-$mainFontRegular: HarmoniaSansProCyr-regular;
+$main-font-bold: HarmoniaSansProCyr-bold;
+$main-font-italic: HarmoniaSansProCyr-italic;
+$main-font-regular: HarmoniaSansProCyr-regular;
+
+$font-size-small: 12px;
+$font-size-regular: 14px;
+$font-size-large: 20px;

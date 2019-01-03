@@ -1,10 +1,18 @@
-@import '../../../../sass/variables';
-@import '../../../../sass/fonts';
-@import '../../../../sass/reset';
+@import '../../../../../scss/mixins';
+@import '../../../../../scss/variables';
+@import '../../../../../scss/fonts';
+@import '../../../../../scss/reset';
 
 hr {
   margin: 0 auto;
-  border-top: 1px solid $border-color;
+  border-top: $main-border;
+}
+
+i, a {
+  &:hover, &:active {
+  color: $primary-color;
+  cursor: pointer;
+  }
 }
 
 .small-header {
@@ -13,19 +21,12 @@ hr {
   justify-content: space-between;
   padding-top: 20px;
   padding-bottom: 16px;
-  a {
-    &:hover {
-      color: $primary-color;
-    }
-  }
 }
 
 .header-left-bar {
   display: flex;
   flex-direction: row;
 }
-
-
 
 .main-container {
   padding: 0 $content-padding;
@@ -35,7 +36,8 @@ hr {
 .mail {
   margin-right: 15px;
   color: $black-color;
-  font-size: 12px;
+  font-size: $font-size-small;
+
   img {
     margin-right: 9px;
   }
@@ -43,7 +45,8 @@ hr {
 
 .pnone-number {
   color: $black-color;
-  font-size: 12px;
+  font-size: $font-size-small;
+
   img {
     margin-right: 9px;
   }
@@ -52,7 +55,7 @@ hr {
 .social-media {
   a {
   color: $black-color;
-  font-size: 14px;
+  font-size: $font-size-regular;
   margin-left: 20px;
   }
 }
@@ -65,12 +68,10 @@ hr {
   padding-top: 13px;
   display: flex;
   position: relative;
+
   i {
-    font-size: 20px;
+    font-size: $font-size-large;
     padding-left: 33px;
-    &:hover, &:active {
-      color: $primary-color;
-    }
   }
 }
 
@@ -88,7 +89,39 @@ hr {
   width: 18px;
   height: 18px;
   color: $white-color;
-  font-size: 12px;
+  font-size: $font-size-small;
   text-align: center;
   display: none;
+}
+
+@include tablet {
+  .small-header {
+    flex-wrap: wrap;
+  }
+
+  .header-left-bar {
+    flex-direction: column;
+  }
+}
+
+@include mobile {
+  .header-left-bar {
+    width: 100%;
+    align-items: center;
+
+    .mail {
+      margin-right: 0;
+    }
+  }
+
+  .social-media {
+    width: 100%;
+    text-align: center;
+
+    a {
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
 }

@@ -3,20 +3,19 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 const MODULES = [
   CommonModule,
   HttpClientModule,
   FormsModule,
   NgbModule,
+  RouterModule
 ];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    NgbModule,
-  ],
+  imports: [...MODULES],
   exports: [...MODULES],
 
 })
