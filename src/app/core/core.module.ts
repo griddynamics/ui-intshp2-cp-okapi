@@ -7,6 +7,7 @@ import { HeaderContactsComponent } from './components/header/header-contacts/hea
 import { HeaderNavComponent } from './components/header/header-nav/header-nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 
+
 @NgModule({
   declarations: [
     HeaderComponent,

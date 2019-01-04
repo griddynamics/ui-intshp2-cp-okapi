@@ -56,6 +56,14 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.test.ts"
+                }
+              ]
             }
           }
         },
@@ -65,8 +73,11 @@
             "browserTarget": "Capstone-Angular-Project:build"
           },
           "configurations": {
-            "production": {
+            "prod": {
               "browserTarget": "Capstone-Angular-Project:build:production"
+            },
+            "test": {
+              "browserTarget": "Capstone-Angular-Project:build:test"
             }
           }
         },

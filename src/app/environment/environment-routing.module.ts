@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EnvironmentComponent } from './environment.component';
 
 const routes: Routes = [
-  {path: '', component: EnvironmentComponent}
+  {path: '', component: EnvironmentComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
