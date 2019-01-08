@@ -1,0 +1,65 @@
+@import '../../../scss/variables';
+@import '../../../scss/fonts';
+@import '../../../scss/reset';
+@import '../../../scss/mixins';
+
+:host
+
+.main-container {
+  padding: 0 $content-padding;
+  background-color: $bg-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fas {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.slider_container_main {
+  width: 100%;
+  overflow: hidden;
+}
+
+.all_slides {
+  display: flex;
+  transition: 0.8s;
+  justify-content: space-between;
+}
+
+.item {
+  margin-right: 10px;
+}
+
+.space {
+  display: flex;
+  justify-content: space-between;
+}
+
+@include tablet {
+  .fas {
+    display: none;
+  }
+
+  .slider_container_main {
+    overflow-x: auto;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: none;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: none;
+  }
+}

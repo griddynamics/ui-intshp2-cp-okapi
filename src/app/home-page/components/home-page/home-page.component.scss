@@ -1,0 +1,21 @@
+img {
+  width: 25%;
+}
+
+
+@media screen and (max-width: 1024px) {
+  img {
+    width: 33.33333%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  img {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 425px) {
+  img {
+    width: 100%;
+  }
+}

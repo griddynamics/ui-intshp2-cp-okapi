@@ -6,6 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  itemArr = ['../../../assets/img/jacket.png','../../../assets/img/jacket2.png',
+    '../../../assets/img/jacket4.png', '../../../assets/img/jacket4.png',
+    '../../../assets/img/jacket.png', '../../../assets/img/jacket2.png',
+    '../../../assets/img/jacket4.png', '../../../assets/img/jacket4.png',
+    '../../../assets/img/jacket4.png', '../../../assets/img/jacket4.png',
+    '../../../assets/img/jacket4.png', '../../../assets/img/jacket4.png',
+    '../../../assets/img/jacket4.png', '../../../assets/img/jacket4.png',
+    '../../../assets/img/jacket4.png', '../../../assets/img/jacket4.png',
+    '../../../assets/img/jacket4.png', '../../../assets/img/jacket4.png',
+    '../../../assets/img/jacket.png', '../../../assets/img/jacket2.png',
+    '../../../assets/img/jacket.png', '../../../assets/img/jacket2.png',
+    '../../../assets/img/jacket4.png', '../../../assets/img/jacket4.png',
+    '../../../assets/img/jacket4.png', '../../../assets/img/jacket4.png'];
 
   constructor() { }
 
