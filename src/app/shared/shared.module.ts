@@ -10,14 +10,13 @@ const MODULES = [
   HttpClientModule,
   FormsModule,
   NgbModule,
-  RouterModule
+  RouterModule,
 ];
 
 @NgModule({
   declarations: [],
   imports: [...MODULES],
   exports: [...MODULES],
-
 })
 export class SharedModule {
   static forRoot() {
