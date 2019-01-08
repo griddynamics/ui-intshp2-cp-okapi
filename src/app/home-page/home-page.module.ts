@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HomePageRoutingModule } from './home-page-routing.module';
 import { HomePageComponent } from './components/home-page';
-import { CarouselComponent } from '../shared/carousel/carousel.component';
+import { CarouselComponent } from '../shared/components/carousel/carousel.component';
+
 
 @NgModule({
   declarations: [HomePageComponent, CarouselComponent],

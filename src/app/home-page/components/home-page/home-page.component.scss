@@ -1,20 +1,22 @@
+@import '../../../../scss/mixins';
+
 img {
   width: 25%;
 }
 
 
-@media screen and (max-width: 1024px) {
+@include laptop {
   img {
     width: 33.33333%;
   }
 }
 
-@media screen and (max-width: 768px) {
+@include tablet {
   img {
     width: 50%;
   }
 }
-@media screen and (max-width: 425px) {
+@include mobile {
   img {
     width: 100%;
   }
