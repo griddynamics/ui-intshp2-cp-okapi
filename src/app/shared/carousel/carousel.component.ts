@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { ViewChild, ElementRef } from '@angular/core';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent implements OnInit, AfterContentInit {
 
   @ViewChild('allSlidesContainer') allSlides: ElementRef;
 
@@ -24,14 +24,14 @@ export class CarouselComponent implements OnInit {
   }
 
   nextSlide() {
-    let sliderLengthCheck = (-this.childrenLength / 4 + 1) * 100;
-    if( sliderLengthCheck < this.currTranslate) {
+    const sliderLengthCheck = (-this.childrenLength / 4 + 1) * 100;
+    if (sliderLengthCheck < this.currTranslate) {
       this.currTranslate -= 100;
       this.allSlides.nativeElement.style.transform = `translate(${this.currTranslate}%)`;
     }
   }
   prevSlide() {
-    if(this.currTranslate) {
+    if (this.currTranslate) {
       this.currTranslate += 100;
       this.allSlides.nativeElement.style.transform = `translate(${this.currTranslate}%)`;
     }
