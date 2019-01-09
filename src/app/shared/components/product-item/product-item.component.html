@@ -1,0 +1,63 @@
+<ng-container *ngIf="initShow; else short">
+  <div *ngIf="showFull" class="product-item" [ngClass]="{'out-of-stock': !product.availability.length}" (mouseover)="!product.availability.length ?hoverStateOut() : hoverStateIn()">
+    <div class="preview-img-full">
+      <img [src]="getRightImg()" alt="red jacket">
+    </div>
+    <a routerLink="/products/{{product.id}"><h2>{{product.title}}</h2></a>
+    <p class=" price">{{product.price}}</p>
+  </div>
+  <div routerLink="/products/{{product.id}" *ngIf="hoverFull" class="product-item hover" (mouseleave)="hoverStateOut()">
+    <ng-template #previewImg>
+      <div class="preview-img">
+        <img [src]="getRightColorImg()" alt={{product.title}}>
+      </div>
+    </ng-template>
+    <div class="preview-img">
+      <img [src]="defaultImg ? getRightImg() : getRightColorImg()" alt={{product.title}}>
+    </div>
+    <h2>{{product.title}}</h2>
+    <p class="sizes" [ngClass]="{'invisible': !product.sizes.length}">sizes : 
+      <span *ngFor="let size of product.sizes">{{size}} <span>-</span></span></p>
+    <div class="colors" (mouseleave)="setDefaultImg()">
+      <div class="color" *ngFor="let color of product.swatches" [style.background-color]="color.color" (mouseover)="setColor(color)"></div>
+    </div>
+    <hr>
+    <div class="icons">
+      <a href="#"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product.addedToCart}"></i></a>
+      <a href="#"><i class="to-wish-list" [ngClass]="{ 'added-to-wishlist': product.addedToWishList}"></i></a>
+    </div>
+  </div>
+</ng-container>
+<ng-template #short>
+  <div *ngIf="showShort" class="product-item-short" [ngClass]="{'out-of-stock': !product.availability.length}" (mouseover)="!product.availability.length ?hoverStateOut() : hoverStateIn()">
+    <div class="preview-img-short">
+      <img [src]="getRightImg()" alt={{product.title}}>
+    </div>
+    <hr>
+    <div>
+      <a routerLink="/products/{{product.id}"><h2>{{product.title}}</h2></a>
+      <div class="item-details">
+        <div class="stars">
+          <i class="fas fa-star rating"></i>
+          <i class="fas fa-star rating"></i>
+          <i class="fas fa-star rating"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p class="price">{{product.price}}</p>
+      </div>
+    </div>
+  </div>
+  <div routerLink="/products/{{product.id}" *ngIf="hoverShort" class="product-item-short hover" (mouseleave)="hoverStateOut()">
+    <div class="preview-img-short">
+      <img [src]="getRightImg()" alt={{product.title}}>
+    </div>
+    <hr>
+    <div>
+      <h2>{{product.title}}</h2>
+      <div class="item-details">
+        <a href="#"><p class="cart" style="z-index:100;position:relative;" [ngClass]="{ 'added': product.addedToCart}"><span><i class="fas fa-cart-plus"></i></span> add
+          to cart</p></a>
+      </div>
+    </div>
+  </div>
+</ng-template>
