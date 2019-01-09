@@ -1,5 +1,7 @@
 <div class="main-container">
-    <input [ngClass]="{'active-search': isSearchOpen, 'unactive-search': !isSearchOpen}" placeholder="Search"/>
+    <div class="input-container">
+      <input [ngClass]="{'active-search': isSearchOpen, 'unactive-search': !isSearchOpen}" placeholder="Search"/>
+    </div>
     <section class="big-header">
       <div class="burger">
           <button class="burger-button" (click)="showMenu = !showMenu"><i class="fas fa-bars"></i></button>

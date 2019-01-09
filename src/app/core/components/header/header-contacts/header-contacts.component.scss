@@ -21,6 +21,8 @@ i, a {
   justify-content: space-between;
   padding-top: 20px;
   padding-bottom: 16px;
+  max-width: $main-container-width;
+  margin: 0 auto;
 }
 
 .header-left-bar {
@@ -107,7 +109,10 @@ i, a {
 @include mobile {
   .header-left-bar {
     width: 100%;
-    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
 
     .mail {
       margin-right: 0;
@@ -115,8 +120,10 @@ i, a {
   }
 
   .social-media {
+    display: flex;
     width: 100%;
     text-align: center;
+    justify-content: space-evenly;
 
     a {
       &:first-child {

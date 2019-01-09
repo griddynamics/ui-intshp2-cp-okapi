@@ -15,6 +15,11 @@ input {
   padding: 0 3px;
 }
 
+.input-container {
+  max-width: $main-container-width;
+  margin: 0 auto;
+}
+
 i, a {
   &:hover, &:active {
   color: $primary-color;
@@ -37,6 +42,8 @@ i, a {
   justify-content: space-between;
   padding-top: 40px;
   padding-bottom: 42px;
+  max-width: $main-container-width;
+  margin: 0 auto;
 
   nav {
     padding-top: $standart-bottom-padding;
@@ -113,7 +120,7 @@ i, a {
     flex-wrap: wrap;
     text-align: center;
   }
-  
+
   .logo {
     width: 100%;
     margin-right: 0;
@@ -159,7 +166,7 @@ i, a {
   .header-nav-bar {
     display: none;
   }
-  
+
   .logo {
     width: 40%;
     margin-right: 0;
@@ -202,11 +209,15 @@ i, a {
     }
   }
 
+  .fa-bars {
+    font-size: 30px;
+  }
+
   .logo {
     display: flex;
     padding-bottom: $standart-bottom-padding;
     width: 100%;
-    
+
     a {
       margin: 0 auto;
     }
