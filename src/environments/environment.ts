@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   baseURL: 'http://localhost:4200',
+};
+
+export const referenceLinks = {
   americanExpURL: 'https://www.americanexpress.com/',
   payPalURL: 'https://www.paypal.com/ua/home',
   visaURL: 'https://www.visa.com.ua/',

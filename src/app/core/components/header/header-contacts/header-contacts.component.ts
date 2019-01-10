@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../../../environments/environment';
+import { referenceLinks } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-header-contacts',
@@ -8,10 +8,10 @@ import { environment } from '../../../../../environments/environment';
 })
 export class HeaderContactsComponent implements OnInit {
 
-  public facebookURL: String = environment.facebookURL;
-  public twitterURL: String = environment.twitterURL;
-  public googlePlusURL: String = environment.googlePlusURL;
-  public linkedinURL: String = environment.linkedinURL;
+  public facebookURL: String = referenceLinks.facebookURL;
+  public twitterURL: String = referenceLinks.twitterURL;
+  public googlePlusURL: String = referenceLinks.googlePlusURL;
+  public linkedinURL: String = referenceLinks.linkedinURL;
 
   constructor() { }
 

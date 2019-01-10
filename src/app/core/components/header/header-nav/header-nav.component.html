@@ -6,8 +6,7 @@
       <div class="burger">
           <button class="burger-button" (click)="showMenu = !showMenu"><i class="fas fa-bars"></i></button>
       </div>
-      <div class="logo">
-        <a routerLink="/"><img src="assets/img/logo.png" alt="shopy logo"></a>
+      <div routerLink="/" class="logo">
       </div>
       <div class="main-nav">
         <nav class="header-nav-bar hidden-menu" [ngClass]="{'active-menu': showMenu}">

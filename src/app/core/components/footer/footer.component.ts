@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../../environments/environment';
+import { referenceLinks } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -7,11 +7,11 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  public americanExpURL: String = environment.americanExpURL;
-  public payPalURL: String = environment.payPalURL;
-  public visaURL: String = environment.visaURL;
-  public masterCardURL: String = environment.masterCardURL;
-  public amazonURL: String = environment.amazonURL;
+  public americanExpURL: String = referenceLinks.americanExpURL;
+  public payPalURL: String = referenceLinks.payPalURL;
+  public visaURL: String = referenceLinks.visaURL;
+  public masterCardURL: String = referenceLinks.masterCardURL;
+  public amazonURL: String = referenceLinks.amazonURL;
 
   constructor() { }
 

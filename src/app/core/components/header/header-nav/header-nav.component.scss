@@ -65,6 +65,10 @@ i, a {
 
 .logo {
   margin-right: 80px;
+  background: url("../../../../../assets/img/logo.png") no-repeat;
+  height: 40px;
+  width: 118px;
+  cursor: pointer;
 }
 
 .header-right-bar {
@@ -125,6 +129,7 @@ i, a {
     width: 100%;
     margin-right: 0;
     margin-bottom: 25px;
+    background-position: center;
   }
 }
 
@@ -211,6 +216,7 @@ i, a {
 
   .fa-bars {
     font-size: 30px;
+    margin-top: 30px;
   }
 
   .logo {

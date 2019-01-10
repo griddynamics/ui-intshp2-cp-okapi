@@ -20,8 +20,15 @@
   &-logo {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 50%;
     margin-right: 6px;
+
+    .logo {
+      background: url("../../../../assets/img/logo.png") no-repeat;
+      height: 40px;
+      width: 118px;
+      cursor: pointer;
+    }
 
     p {
       color: $black-color;
@@ -156,19 +163,23 @@
 @include laptop {
   .footer-container {
     flex-wrap: wrap;
+    padding: 22px 0px;
 
     &-logo {
-      margin-top: 20px;
       flex-direction: row;
       width: 100%;
       justify-content: center;
-      align-items: baseline;
+      align-items: center;
       margin-right: 0;
       order: 1;
+      margin-top: 30px;
 
-      img {
-        width:60%;
-        margin-right: 20px;
+      div {
+        margin-right: 60px;
+      }
+
+      p {
+        margin-top: 0;
       }
     }
 
@@ -191,13 +202,18 @@
     &-payment {
       width: 27%;
     }
-
   }
 }
 
 @include tablet {
   .footer-container {
     padding: 44px 0px;
+
+    &-logo {
+      div {
+        margin-right: 20px;
+      }
+    }
 
     &-nav {
       width: 100%;
