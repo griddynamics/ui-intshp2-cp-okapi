@@ -3,8 +3,6 @@
 @import '../../../../scss/reset';
 @import '../../../../scss/mixins';
 
-:host
-
 .main-container {
   padding: 0 $content-padding;
   background-color: $bg-color;
@@ -18,12 +16,12 @@
   cursor: pointer;
 }
 
-.slider_container_main {
+.slider-container-main {
   width: 100%;
   overflow: hidden;
 }
 
-.all_slides {
+.slides-container {
   display: flex;
   transition: 0.8s;
   justify-content: space-between;
@@ -33,17 +31,12 @@
   margin-right: 10px;
 }
 
-.space {
-  display: flex;
-  justify-content: space-between;
-}
-
 @include tablet {
   .fas {
     display: none;
   }
 
-  .slider_container_main {
+  .slider-container-main {
     overflow-x: auto;
   }
 

@@ -1,13 +1,13 @@
 <div class="main-container">
-  <div class="arrow_left" (click)="prevSlide()" #leftButton>
+  <div class="arrow-left" (click)="prevSlide()" #leftButton>
     <i class="fas fa-angle-left"></i>
   </div>
-  <div class="slider_container_main">
-    <div class="all_slides" #allSlidesContainer>
+  <div class="slider-container-main">
+    <div class="slides-container" #slidesContainer>
       <ng-content></ng-content>
     </div>
  </div>
-  <div class="arrow_right" (click)="nextSlide()" >
+  <div class="arrow-right" (click)="nextSlide()" >
     <i class="fas fa-angle-right"></i>
   </div>
 </div>

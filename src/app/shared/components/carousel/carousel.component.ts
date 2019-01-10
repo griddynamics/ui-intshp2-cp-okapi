@@ -7,33 +7,34 @@ import { ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit, AfterContentInit {
+  private currTranslate = 0;
+  private childrenLength: number;
 
-  @ViewChild('allSlidesContainer') allSlides: ElementRef;
+  @ViewChild('slidesContainer') slidesContainer: ElementRef;
 
-
-  constructor() { }
-
-  currTranslate = 0;
-  childrenLength;
-
-  ngAfterContentInit() {
-    this.childrenLength = this.allSlides.nativeElement.children.length;
-  }
-  ngOnInit() {
-    this.allSlides.nativeElement.style.transform = `translate(${0}%)`;
+  ngOnInit(): void {
+    this.slidesContainer.nativeElement.style.transform = `translate(${0}%)`;
   }
 
-  nextSlide() {
-    const sliderLengthCheck = (-this.childrenLength / 4 + 1) * 100;
+  ngAfterContentInit(): void {
+    this.childrenLength = this.slidesContainer.nativeElement.children.length;
+  }
+
+  private slidesMover(direction: number): void {
+    this.currTranslate += direction;
+    this.slidesContainer.nativeElement.style.transform = `translate(${this.currTranslate}%)`;
+  }
+
+  public nextSlide(): void {
+    const sliderLengthCheck: number = (-this.childrenLength / 4 + 1) * 100;
     if (sliderLengthCheck < this.currTranslate) {
-      this.currTranslate -= 100;
-      this.allSlides.nativeElement.style.transform = `translate(${this.currTranslate}%)`;
+      this.slidesMover(-100);
     }
   }
-  prevSlide() {
+
+  public prevSlide(): void {
     if (this.currTranslate) {
-      this.currTranslate += 100;
-      this.allSlides.nativeElement.style.transform = `translate(${this.currTranslate}%)`;
+      this.slidesMover(100);
     }
   }
 }
