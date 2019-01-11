@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-advertising-area',
@@ -7,14 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdvertisingAreaComponent implements OnInit {
 
-  contentHeight: number;
-  contentWidth: number;
+  @Input() contentHeight: number;
+  @Input() contentWidth: number;
   content: string;
-  preloadedPaddingBottom;
+  placeholderRatio = this.contentHeight / this.contentWidth * 100;
 
   constructor() {}
 
-  ngOnInit() {
-      this.preloadedPaddingBottom = this.contentHeight / this.contentWidth * 100;
-  }
+  ngOnInit() {}
 }
