@@ -21,7 +21,7 @@ enum SLIDE_DIRECTION {
 })
 
 export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('allSlides') allSlides: ElementRef;
+  @ViewChild('slidesHolder') slidesHolder: ElementRef;
   @ViewChild('next') next: ElementRef;
   @ViewChild('back') back: ElementRef;
 
@@ -55,7 +55,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.slidesLength = this.responseImgs.length;
     this.totalSlidesSize = this.slidesLength * 100;
-    this.allSlides.nativeElement.style.width = this.totalSlidesSize + '%';
+    this.slidesHolder.nativeElement.style.width = this.totalSlidesSize + '%';
     this.translateStep = 100 / this.slidesLength;
     this.currentTranslatePosition = 0;
     this.intervalStart = setInterval(() => {
@@ -74,8 +74,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
         callback: () => this.moveSlide(SLIDE_DIRECTION.LEFT)
       }
     ]);
-    this.firstItem = this.allSlides.nativeElement.querySelectorAll('.slide-item')[0];
-    this.lastItem = this.allSlides.nativeElement.querySelectorAll('.slide-item')[this.slidesLength - 1];
+    this.firstItem = this.slidesHolder.nativeElement.querySelectorAll('.slide-item')[0];
+    this.lastItem = this.slidesHolder.nativeElement.querySelectorAll('.slide-item')[this.slidesLength - 1];
   }
 
   ngOnDestroy(): void {
@@ -84,7 +84,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private moveSlide(direction: SLIDE_DIRECTION): void {
-    this.allSlides.nativeElement.style.transition = '';
+    this.slidesHolder.nativeElement.style.transition = '';
     // default values, that matches LEFT direction to reduce code
     let counter = 0;
     let translatePostion = this.translateStep;
@@ -129,12 +129,12 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private moveContainerAndItem(itemToMove: HTMLElement, direction): void {
-    this.translateItem(this.allSlides, this.currentTranslatePosition);
+    this.translateItem(this.slidesHolder, this.currentTranslatePosition);
     this.translateItem(itemToMove, direction);
   }
 
   private moveToEdgeSlideWithoutRewind(): void {
-    this.allSlides.nativeElement.style.transition = 'none';
+    this.slidesHolder.nativeElement.style.transition = 'none';
     let itemToMove;
     let containerMoveDirection = 0;
     let itemMoveDirection = 0;
@@ -149,11 +149,11 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
       itemMoveDirection = 0;
     }
 
-    this.translateItem(this.allSlides, containerMoveDirection);
+    this.translateItem(this.slidesHolder, containerMoveDirection);
     this.translateItem(itemToMove, itemMoveDirection);
     this.currentTranslatePosition = changeTranslatePosition;
 
-    this.allSlides.nativeElement.removeEventListener(
+    this.slidesHolder.nativeElement.removeEventListener(
       'transitionend',
       this.moveToEdgeSlideWithoutRewind
     );
@@ -162,7 +162,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   private handleLastAndFirstMoves(changeSlidesPos, itemToMove, positionToMove, counterAction): void {
     this.currentTranslatePosition = changeSlidesPos;
     this.moveContainerAndItem(itemToMove, positionToMove);
-    this.allSlides.nativeElement.addEventListener(
+    this.slidesHolder.nativeElement.addEventListener(
       'transitionend',
       this.moveToEdgeSlideWithoutRewind
     );
@@ -171,16 +171,16 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private commonSlidesMove(translatePostion, counterAction): void {
     this.currentTranslatePosition += translatePostion;
-    this.translateItem(this.allSlides, this.currentTranslatePosition);
+    this.translateItem(this.slidesHolder, this.currentTranslatePosition);
     counterAction === 'inc' ? this.counter++ : this.counter--;
   }
 
   public bulletHandler(i: number): void {
-    this.allSlides.nativeElement.style.transition = '';
+    this.slidesHolder.nativeElement.style.transition = '';
     this.counter = i;
     this.selected = this.counter;
     this.currentTranslatePosition = i * -this.translateStep;
-    this.translateItem(this.allSlides, this.currentTranslatePosition);
+    this.translateItem(this.slidesHolder, this.currentTranslatePosition);
   }
 
   public stopSlideshow(): void {
