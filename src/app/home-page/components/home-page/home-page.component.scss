@@ -3,13 +3,7 @@
 @import '../../../../scss/fonts';
 @import '../../../../scss/reset';
 
-// :host {
-//   display: flex;
-//   justify-content: space-between;
-//   padding: 0 $content-padding;
-// }
-
-div {
+.template {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
