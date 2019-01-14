@@ -1,7 +1,7 @@
-@import '/../../scss/variables';
-@import '/../../scss/fonts';
-@import '/../../scss/reset';
-@import '/../../scss/mixins';
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+@import '../../../../scss/mixins';
 
 .main-container {
     padding: 0 $content-padding;
@@ -55,7 +55,7 @@ input.ng-valid {
 
 input {
     border-radius: 3px;
-    background: url(../../assets/img/mail-icon.png) no-repeat scroll 7px 7px;
+    background: url(../../../../assets/img/mail-icon.png) no-repeat scroll 7px 7px;
     padding-left:30px;
     outline: none;
 }

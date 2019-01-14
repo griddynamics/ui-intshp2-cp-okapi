@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DataService } from '../core/services/data.service';
+import { DataService } from 'src/app/core/services/data.service';
+
 
 
 @Component({
@@ -24,7 +25,6 @@ export class JoinUsComponent implements OnInit {
   onSubmit() {
     this.dataService.create('', this.singupForm.value).subscribe();
       this.msg = 'Congratulations! You are with us!';
-      console.log(this.singupForm.value);
       this.edited = false;
   }
 }

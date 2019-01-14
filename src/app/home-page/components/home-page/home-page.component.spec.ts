@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { HomePageComponent } from './home-page.component';
+import { JoinUsComponent } from '../join-us/join-us.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -8,7 +12,8 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePageComponent ]
+      imports: [ HttpClientTestingModule, ReactiveFormsModule ],
+      declarations: [ HomePageComponent, JoinUsComponent ]
     })
     .compileComponents();
   }));
