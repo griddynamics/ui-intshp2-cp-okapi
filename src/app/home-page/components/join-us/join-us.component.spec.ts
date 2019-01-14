@@ -3,10 +3,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { JoinUsComponent } from './join-us.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('JoinUsComponent', () => {
   let component: JoinUsComponent;
   let fixture: ComponentFixture<JoinUsComponent>;
+  let debugEl: DebugElement;
+  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,10 +23,35 @@ describe('JoinUsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(JoinUsComponent);
     component = fixture.componentInstance;
+    debugEl = fixture.debugElement.query(By.css('form'));
+    el = debugEl.nativeElement;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should set submitted to true', () => {
+    component.onSubmit();
+    expect(component.submitted).toBeTruthy();
+  });
+
+  it('should call the onSubmit method', () => {
+    component.onSubmit();
+    spyOn(component, 'onSubmit');
+    el = fixture.debugElement.query(By.css('button')).nativeElement;
+    el.click();
+    expect(component.onSubmit).toHaveBeenCalledTimes(0);
+  });
+
+  it('form should be invalid', () => {
+    component.singupForm.controls['email'].setValue('');
+    expect(component.singupForm.valid).toBeFalsy();
+  });
+
+  it('form should be valid', () => {
+    component.singupForm.controls['email'].setValue('asd@asd.com');
+    expect(component.singupForm.valid).toBeTruthy();
   });
 });
