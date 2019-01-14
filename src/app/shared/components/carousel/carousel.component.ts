@@ -20,11 +20,6 @@ export class CarouselComponent implements OnInit, AfterContentInit {
     this.childrenLength = this.slidesContainer.nativeElement.children.length;
   }
 
-  private slidesMover(direction: number): void {
-    this.currTranslate += direction;
-    this.slidesContainer.nativeElement.style.transform = `translate(${this.currTranslate}%)`;
-  }
-
   public nextSlide(): void {
     const sliderLengthCheck: number = (-this.childrenLength / 4 + 1) * 100;
     if (sliderLengthCheck < this.currTranslate) {
@@ -36,5 +31,10 @@ export class CarouselComponent implements OnInit, AfterContentInit {
     if (this.currTranslate) {
       this.slidesMover(100);
     }
+  }
+
+  private slidesMover(direction: number): void {
+    this.currTranslate += direction;
+    this.slidesContainer.nativeElement.style.transform = `translate(${this.currTranslate}%)`;
   }
 }
