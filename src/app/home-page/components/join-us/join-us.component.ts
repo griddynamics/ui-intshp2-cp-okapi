@@ -8,9 +8,6 @@ import { DataService } from 'src/app/core/services/data.service';
   styleUrls: ['./join-us.component.scss']
 })
 export class JoinUsComponent implements OnInit {
-  submitted(submitted: any): any {
-    throw new Error("Method not implemented.");
-  }
   singupForm: FormGroup;
   msg: string = null;
   edited = true;
@@ -27,5 +24,9 @@ export class JoinUsComponent implements OnInit {
     this.dataService.create('', this.singupForm.value).subscribe();
       this.msg = 'Congratulations! You are with us!';
       this.edited = false;
+  }
+
+  submitted(submitted: any): any {
+    throw new Error('Method not implemented.');
   }
 }
