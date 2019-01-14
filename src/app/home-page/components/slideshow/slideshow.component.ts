@@ -43,8 +43,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   public selected = 0;
   private intervalStart;
   private subscriptions: Subscription[] = [];
-  public buttonsBackAndNext: HTMLElement[];
-  public sliderIsHovered = false;
+  public isHovered = false;
+  public isStoped = false;
 
   constructor() {
     this.moveToEdgeSlideWithoutRewind = this.moveToEdgeSlideWithoutRewind.bind(
@@ -74,8 +74,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
         callback: () => this.moveSlide(SLIDE_DIRECTION.LEFT)
       }
     ]);
-    this.firstItem = this.slidesHolder.nativeElement.querySelectorAll('.slide-item')[0];
-    this.lastItem = this.slidesHolder.nativeElement.querySelectorAll('.slide-item')[this.slidesLength - 1];
+    this.firstItem = this.slidesHolder.nativeElement.querySelector('.slide-item:first-child');
+    this.lastItem = this.slidesHolder.nativeElement.querySelector('.slide-item:last-child');
   }
 
   ngOnDestroy(): void {
@@ -83,9 +83,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     clearInterval(this.intervalStart);
   }
 
-  private moveSlide(direction: SLIDE_DIRECTION): void {
+  public moveSlide(direction: SLIDE_DIRECTION): void {
     this.slidesHolder.nativeElement.style.transition = '';
-    // default values, that matches LEFT direction to reduce code
     let counter = 0;
     let translatePostion = this.translateStep;
     let step = this.currentTranslatePosition + this.translateStep;
@@ -105,30 +104,31 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if (this.counter === counter) {
-      this.handleLastAndFirstMoves(step, itemToMove, itemToMovePosition, counterAction);
+      this.moveEdgeSlides(step, itemToMove, itemToMovePosition, counterAction);
     } else {
-      this.commonSlidesMove(translatePostion, commonCounterAction);
+      this.moveSlides(translatePostion, commonCounterAction);
     }
 
     this.selected = this.counter;
   }
 
-  private handleClick(arr) {
+  private handleClick(arr, time = 400) {
     this.subscriptions = arr.map(({ el, callback }) => {
       const stream = fromEvent(el, 'click');
-      return stream.pipe(throttleTime(400)).subscribe(callback);
+      return stream.pipe(throttleTime(time)).subscribe(callback);
     });
   }
 
   private translateItem(item, step: number): void {
-    if (item.nativeElement) {
-      item.nativeElement.style.transform = `translate(${step}%)`;
-    } else {
-      item.style.transform = `translate(${step}%)`;
+    const { nativeElement } = item;
+    if (nativeElement) {
+      nativeElement.style.transform = `translate(${step}%)`;
+      return;
     }
+    item.style.transform = `translate(${step}%)`;
   }
 
-  private moveContainerAndItem(itemToMove: HTMLElement, direction): void {
+  private moveContainerAndItem(itemToMove: HTMLElement, direction: number): void {
     this.translateItem(this.slidesHolder, this.currentTranslatePosition);
     this.translateItem(itemToMove, direction);
   }
@@ -159,17 +159,17 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  private handleLastAndFirstMoves(changeSlidesPos, itemToMove, positionToMove, counterAction): void {
+  private moveEdgeSlides(changeSlidesPos: number, itemToMove: HTMLElement, positionToMove: number, counterValue: number): void {
     this.currentTranslatePosition = changeSlidesPos;
     this.moveContainerAndItem(itemToMove, positionToMove);
     this.slidesHolder.nativeElement.addEventListener(
       'transitionend',
       this.moveToEdgeSlideWithoutRewind
     );
-    this.counter = counterAction;
+    this.counter = counterValue;
   }
 
-  private commonSlidesMove(translatePostion, counterAction): void {
+  private moveSlides(translatePostion: number, counterAction: string): void {
     this.currentTranslatePosition += translatePostion;
     this.translateItem(this.slidesHolder, this.currentTranslatePosition);
     counterAction === 'inc' ? this.counter++ : this.counter--;
@@ -183,21 +183,24 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     this.translateItem(this.slidesHolder, this.currentTranslatePosition);
   }
 
-  public stopSlideshow(): void {
-    this.continueSlideshow = () => null;
-    this.pauseSlideshow = () => null;
+  public stop(): void {
+    this.isStoped = true;
   }
 
-  public pauseSlideshow(): void {
-    this.sliderIsHovered = true;
-    clearInterval(this.intervalStart);
+  public pause(): void {
+    if (!this.isStoped) {
+      this.isHovered = true;
+      clearInterval(this.intervalStart);
+    }
   }
 
-  public continueSlideshow(): void {
-    this.sliderIsHovered = false;
-    this.intervalStart = setInterval(() => {
-      this.moveSlide(SLIDE_DIRECTION.RIGHT);
-    }, 4000);
+  public continue(): void {
+    if (!this.isStoped) {
+      this.isHovered = false;
+      this.intervalStart = setInterval(() => {
+        this.moveSlide(SLIDE_DIRECTION.RIGHT);
+      }, 4000);
+    }
   }
 }
 

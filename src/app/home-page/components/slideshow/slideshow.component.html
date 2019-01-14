@@ -1,4 +1,4 @@
-<div class="wrapper" (click)="stopSlideshow()" (mouseleave)='continueSlideshow()' (mouseenter)='pauseSlideshow()'>
+<div class="wrapper" (click)="stop()" (mouseleave)='continue()' (mouseenter)='pause()'>
   <div class="slides-holder" #slidesHolder>
     <div class="slide-item" [ngClass]="{animate: selected === i}" #item [style.width.%]="translateStep" *ngFor="let img of responseImgs; let i = index">
       <img [src]=img alt="slide">
