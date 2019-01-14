@@ -33,6 +33,9 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     'http://www.opencart.lionode.com/leoc04_2_2018/oc01/image/cache/catalog/banner%20main2-1540x650.jpg'
   ];
 
+  public isHovered = false;
+  public selected = 0;
+  public isStoped = false;
   private slidesLength: number;
   private translateStep: number;
   private currentTranslatePosition: number;
@@ -40,11 +43,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   private firstItem: HTMLElement;
   private lastItem: HTMLElement;
   private counter = 0;
-  public selected = 0;
   private intervalStart;
   private subscriptions: Subscription[] = [];
-  public isHovered = false;
-  public isStoped = false;
 
   constructor() {
     this.moveToEdgeSlideWithoutRewind = this.moveToEdgeSlideWithoutRewind.bind(
@@ -88,25 +88,23 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     let counter = 0;
     let translatePostion = this.translateStep;
     let step = this.currentTranslatePosition + this.translateStep;
-    let commonCounterAction = 'dec';
     let itemToMove = this.lastItem;
     let itemToMovePosition = -this.totalSlidesSize;
-    let counterAction = this.slidesLength - 1;
+    let counterValue = this.slidesLength - 1;
 
     if (direction === SLIDE_DIRECTION.RIGHT) {
       counter = this.slidesLength - 1;
       translatePostion = -this.translateStep;
       step = -100;
-      commonCounterAction = 'inc';
       itemToMove = this.firstItem;
       itemToMovePosition = this.totalSlidesSize;
-      counterAction = 0;
+      counterValue = 0;
     }
 
     if (this.counter === counter) {
-      this.moveEdgeSlides(step, itemToMove, itemToMovePosition, counterAction);
+      this.moveEdgeSlides(step, itemToMove, itemToMovePosition, counterValue);
     } else {
-      this.moveSlides(translatePostion, commonCounterAction);
+      this.moveSlides(translatePostion, counterValue);
     }
 
     this.selected = this.counter;
@@ -169,10 +167,10 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     this.counter = counterValue;
   }
 
-  private moveSlides(translatePostion: number, counterAction: string): void {
+  private moveSlides(translatePostion: number, counterValue: number): void {
     this.currentTranslatePosition += translatePostion;
     this.translateItem(this.slidesHolder, this.currentTranslatePosition);
-    counterAction === 'inc' ? this.counter++ : this.counter--;
+    counterValue ? this.counter-- : this.counter++;
   }
 
   public bulletHandler(i: number): void {
@@ -203,6 +201,3 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 }
-
-
-
