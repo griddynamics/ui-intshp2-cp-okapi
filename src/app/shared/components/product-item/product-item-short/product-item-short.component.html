@@ -1,6 +1,6 @@
 <div *ngIf="product">
-  <div *ngIf="showShort" class="short-version" (mouseover)="isOutOfStock">
-    <div [ngClass]="{'gray-scale': !product.availability.length}" class="product-item-short">
+  <div *ngIf="showShort" class="short-version" (mouseover)="onMouseOver()">
+    <div [ngClass]="{'gray-scale': isOutOfStock}" class="product-item-short">
       <div class="preview-img-short" [ngStyle]="{'background': product.thumbnailImageSrc ? 'none' : true }">
         <img *ngIf="product.thumbnailImageSrc" [src]="product.thumbnailImageSrc" alt={{product.title}}>
       </div>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div [routerLink]="['/products/',product.id]" *ngIf="!product.availability.length" class="out-of-stock">
+    <div [routerLink]="['/products/',product.id]" *ngIf="isOutOfStock" class="out-of-stock">
     </div>
   </div>
 

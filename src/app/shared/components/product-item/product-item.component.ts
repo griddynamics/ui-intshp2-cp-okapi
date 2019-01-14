@@ -10,13 +10,12 @@ export class ProductItemComponent {
   @Input() product;
 
   private _currentColor;
-  private placeholder = '../../../../assets/img/default.png';
   showFull = true;
-  dynamicImgUrl = this.placeholder;
+  dynamicImgUrl;
 
   handleImgView(showFull): void {
     this.showFull = showFull;
-    this.dynamicImgUrl = this.product.thumbnailImageSrc ? `url(${this.product.thumbnailImageSrc})` : `url(${this.placeholder})`;
+    this.dynamicImgUrl = this.product.thumbnailImageSrc ? `url(${this.product.thumbnailImageSrc})` : '';
   }
 
   hoverStateIn(): void {
@@ -28,11 +27,16 @@ export class ProductItemComponent {
   }
 
   get isOutOfStock() {
-    if (!this.product.availability.length) {
+    return !this.product.availability.length;
+  }
+
+  onMouseOver() {
+    if (this.isOutOfStock) {
       return this.hoverStateOut();
     }
       return this.hoverStateIn();
   }
+
 
   get currentColor() {
     return this._currentColor;
@@ -43,12 +47,12 @@ export class ProductItemComponent {
       return;
     }
     this._currentColor = color;
-    this.dynamicImgUrl = this.currentColor.imgSrc ? `url(${this._currentColor.imgSrc})` : `url(${this.placeholder})`;
+    this.dynamicImgUrl = this.currentColor.imgSrc ? `url(${this._currentColor.imgSrc})` : '';
   }
 
   setDefaultImg(): void {
     this._currentColor = null;
-    this.dynamicImgUrl = this.product.thumbnailImageSrc ? `url(${this.product.thumbnailImageSrc})` : `url(${this.placeholder})`;
+    this.dynamicImgUrl = this.product.thumbnailImageSrc ? `url(${this.product.thumbnailImageSrc})` : '';
   }
 
   onColorChange(color): void {
@@ -56,6 +60,6 @@ export class ProductItemComponent {
   }
 
   getRightImg() {
-    return this.product.thumbnailImageSrc ? this.product.thumbnailImageSrc : this.placeholder;
+    return this.product.thumbnailImageSrc ? this.product.thumbnailImageSrc : '';
   }
 }

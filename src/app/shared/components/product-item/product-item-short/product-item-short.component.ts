@@ -1,4 +1,5 @@
 import { Component, Input} from '@angular/core';
+import { ProductItemComponent } from '../product-item.component';
 
 @Component({
   selector: 'app-product-item-short',
@@ -6,26 +7,11 @@ import { Component, Input} from '@angular/core';
   styleUrls: ['./product-item-short.component.scss']
 })
 
-export class ProductItemShortComponent {
+export class ProductItemShortComponent extends ProductItemComponent {
   @Input() product;
   showShort = true;
 
   handleImgView(showShort) {
     this.showShort = showShort;
-  }
-
-  hoverStateIn(): void {
-    this.handleImgView(false);
-  }
-
-  hoverStateOut(): void {
-    this.handleImgView(true);
-  }
-
-  get isOutOfStock() {
-    if (!this.product.availability.length) {
-      return this.hoverStateOut();
-    }
-      return this.hoverStateIn();
   }
 }

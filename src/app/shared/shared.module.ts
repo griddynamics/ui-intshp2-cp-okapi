@@ -4,6 +4,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ProductItemComponent } from './components/product-item/product-item.component';
+import { ProductItemShortComponent } from './components/product-item/product-item-short/product-item-short.component';
 
 const MODULES = [
   CommonModule,
@@ -14,9 +16,9 @@ const MODULES = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [ProductItemComponent, ProductItemShortComponent],
   imports: [...MODULES],
-  exports: [...MODULES],
+  exports: [...MODULES, ProductItemComponent, ProductItemShortComponent],
 
 })
 export class SharedModule {
