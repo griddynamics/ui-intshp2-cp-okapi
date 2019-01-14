@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/app/core/services/data.service';
 
-
-
 @Component({
   selector: 'app-join-us',
   templateUrl: './join-us.component.html',

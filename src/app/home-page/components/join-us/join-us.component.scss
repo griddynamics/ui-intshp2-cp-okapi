@@ -61,11 +61,12 @@ input {
 }
 
 .button-join.disabled {
-    background-color: #ff5912ab;
+    background-color: $disabled-color;
+    cursor: not-allowed;
 }
 
 ::placeholder {
-    color: #7c8791;
+    color: $font-color;
     font-size: 14px;
     font-family: $main-font-italic;
     font-weight: bold;
@@ -73,7 +74,7 @@ input {
 
 span {
     font-size: 12px;
-    color: #7c8791;
+    color: $font-color;
     position: absolute;
     padding-top: 26px;
 }
