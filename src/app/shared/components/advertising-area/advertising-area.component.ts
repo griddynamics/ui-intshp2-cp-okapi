@@ -13,7 +13,7 @@ export class AdvertisingAreaComponent {
 
   placeholderRatio: number = this.calcPlaceholderRatio(this.height, this.width);
 
-  calcPlaceholderRatio(height = 100, width = 200) {
+  private calcPlaceholderRatio(height = 100, width = 470) {
     return height / width * 100;
   }
 }
