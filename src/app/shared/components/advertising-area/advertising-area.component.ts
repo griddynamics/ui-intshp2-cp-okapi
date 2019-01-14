@@ -1,18 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-advertising-area',
   templateUrl: './advertising-area.component.html',
   styleUrls: ['./advertising-area.component.scss']
 })
-export class AdvertisingAreaComponent implements OnInit {
+export class AdvertisingAreaComponent {
 
-  @Input() contentHeight: number;
-  @Input() contentWidth: number;
-  content: string;
-  placeholderRatio = this.contentHeight / this.contentWidth * 100;
+  @Input() height?: number;
+  @Input() width?: number;
+  @Input() content: string;
 
-  constructor() {}
+  placeholderRatio: number = this.calcPlaceholderRatio(this.height, this.width);
 
-  ngOnInit() {}
+  calcPlaceholderRatio(height = 100, width = 200) {
+    return height / width * 100;
+  }
 }
