@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomePageComponent } from './home-page.component';
 import { CarouselComponent } from 'src/app/shared/components/carousel/carousel.component';
+import { CarouselItemComponent } from 'src/app/shared/components/carousel/carousel-item/carousel-item.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -9,7 +10,7 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePageComponent, CarouselComponent ]
+      declarations: [ HomePageComponent, CarouselComponent, CarouselItemComponent ]
     })
     .compileComponents();
   }));
