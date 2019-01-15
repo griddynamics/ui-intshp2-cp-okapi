@@ -15,6 +15,11 @@ input {
   padding: 0 3px;
 }
 
+.input-container {
+  max-width: $main-container-width;
+  margin: 0 auto;
+}
+
 i, a {
   &:hover, &:active {
   color: $primary-color;
@@ -37,6 +42,8 @@ i, a {
   justify-content: space-between;
   padding-top: 40px;
   padding-bottom: 42px;
+  max-width: $main-container-width;
+  margin: 0 auto;
 
   nav {
     padding-top: $standart-bottom-padding;
@@ -58,6 +65,10 @@ i, a {
 
 .logo {
   margin-right: 80px;
+  background: url("../../../../../assets/img/logo.png") no-repeat;
+  height: 40px;
+  width: 118px;
+  cursor: pointer;
 }
 
 .header-right-bar {
@@ -113,11 +124,12 @@ i, a {
     flex-wrap: wrap;
     text-align: center;
   }
-  
+
   .logo {
     width: 100%;
     margin-right: 0;
     margin-bottom: 25px;
+    background-position: center;
   }
 }
 
@@ -159,7 +171,7 @@ i, a {
   .header-nav-bar {
     display: none;
   }
-  
+
   .logo {
     width: 40%;
     margin-right: 0;
@@ -202,11 +214,16 @@ i, a {
     }
   }
 
+  .fa-bars {
+    font-size: 30px;
+    margin-top: 30px;
+  }
+
   .logo {
     display: flex;
     padding-bottom: $standart-bottom-padding;
     width: 100%;
-    
+
     a {
       margin: 0 auto;
     }
