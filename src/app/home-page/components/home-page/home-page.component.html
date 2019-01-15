@@ -1,3 +1,6 @@
-<p>
-  home-page works!
-</p>
+<app-carousel>
+  <app-carousel-item *ngFor="let product of products">
+      <app-product-item [product]= "product"></app-product-item>
+  </app-carousel-item>
+</app-carousel>
+

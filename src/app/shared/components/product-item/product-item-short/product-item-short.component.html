@@ -1,0 +1,42 @@
+<div *ngIf="product">
+  <div *ngIf="showShort" class="short-version" (mouseover)="isOutOfStock">
+    <div [ngClass]="{'gray-scale': !product.availability.length}" class="product-item-short">
+      <div class="preview-img-short" [ngStyle]="{'background': product.thumbnailImageSrc ? 'none' : true }">
+        <img *ngIf="product.thumbnailImageSrc" [src]="product.thumbnailImageSrc" alt={{product.title}}>
+      </div>
+      <hr>
+      <div>
+        <div [routerLink]="['/products/',product.id]">
+          <h2>{{product.title}}</h2>
+        </div>
+        <div class="item-details">
+          <div class="stars">
+            <i class="fas fa-star rating"></i>
+            <i class="fas fa-star rating"></i>
+            <i class="fas fa-star rating"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p class="price">{{product.price}}</p>
+        </div>
+      </div>
+    </div>
+    <div [routerLink]="['/products/',product.id]" *ngIf="!product.availability.length" class="out-of-stock">
+    </div>
+  </div>
+
+  <div [routerLink]="['/products/',product.id]" *ngIf="!showShort" class="product-item-short hover" (mouseleave)="hoverStateOut()">
+    <div class="preview-img-short" [ngStyle]="{'background': product.thumbnailImageSrc ? 'none' : true }">
+      <img *ngIf="product.thumbnailImageSrc" [src]="product.thumbnailImageSrc" alt={{product.title}}>
+    </div>
+    <hr>
+    <div>
+      <h2>{{product.title}}</h2>
+      <div class="item-details">
+        <a href="#">
+          <p class="cart" [ngClass]="{ 'added': product.addedToCart}"><span><i class="fas fa-cart-plus"></i></span> add
+            to cart</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

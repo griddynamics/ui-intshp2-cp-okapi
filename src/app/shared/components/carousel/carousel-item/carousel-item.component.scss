@@ -1,0 +1,26 @@
+@import "../../../../../scss/mixins";
+
+:host {
+  width: 25%;
+}
+
+.carousel-item-wrap {
+  width: 100%;
+}
+
+@include laptop {
+  :host {
+    width: 31%;
+  }
+}
+
+@include tablet {
+  :host {
+    width: 48%;
+  }
+}
+@include mobile {
+  :host {
+    width: 100%;
+  }
+}

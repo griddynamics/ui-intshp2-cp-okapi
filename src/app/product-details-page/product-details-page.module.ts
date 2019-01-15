@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ProductDetailsPageRoutingModule } from './product-details-page-routing.module';
 import { ProductDetailsPageComponent } from './product-details-page.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [ProductDetailsPageComponent],
   imports: [
-    CommonModule,
+    SharedModule,
     ProductDetailsPageRoutingModule
   ]
 })
