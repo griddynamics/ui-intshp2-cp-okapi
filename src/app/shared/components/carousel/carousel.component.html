@@ -3,7 +3,7 @@
     <i class="fas fa-angle-left"></i>
   </div>
   <div class="slider-container-main">
-    <div class="slides-container" #slidesContainer>
+    <div class="slides-container" [ngStyle]="{width: itemWidth}" #slidesContainer>
       <ng-content></ng-content>
     </div>
  </div>
