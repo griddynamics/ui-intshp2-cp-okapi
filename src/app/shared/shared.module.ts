@@ -4,13 +4,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const MODULES = [
   CommonModule,
   HttpClientModule,
   FormsModule,
   NgbModule,
-  RouterModule
+  RouterModule,
+  ReactiveFormsModule,
 ];
 
 @NgModule({

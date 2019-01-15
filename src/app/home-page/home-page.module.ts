@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 import { HomePageRoutingModule } from './home-page-routing.module';
 import { HomePageComponent } from './components/home-page';
@@ -12,7 +12,7 @@ import { JoinUsComponent } from './components/join-us/join-us.component';
   imports: [
     CommonModule,
     HomePageRoutingModule,
-    ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class HomePageModule { }

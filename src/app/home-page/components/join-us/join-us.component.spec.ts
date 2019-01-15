@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { JoinUsComponent } from './join-us.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+
+import { JoinUsComponent } from './join-us.component';
 
 describe('JoinUsComponent', () => {
   let component: JoinUsComponent;
@@ -46,12 +46,12 @@ describe('JoinUsComponent', () => {
   });
 
   it('form should be invalid', () => {
-    component.singupForm.controls['email'].setValue('');
-    expect(component.singupForm.valid).toBeFalsy();
+    component.submitForm.controls['email'].setValue('');
+    expect(component.submitForm.valid).toBeFalsy();
   });
 
   it('form should be valid', () => {
-    component.singupForm.controls['email'].setValue('asd@asd.com');
-    expect(component.singupForm.valid).toBeTruthy();
+    component.submitForm.controls['email'].setValue('asd@asd.com');
+    expect(component.submitForm.valid).toBeTruthy();
   });
 });

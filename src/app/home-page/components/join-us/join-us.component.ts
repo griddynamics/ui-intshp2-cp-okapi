@@ -8,20 +8,20 @@ import { DataService } from 'src/app/core/services/data.service';
   styleUrls: ['./join-us.component.scss']
 })
 export class JoinUsComponent implements OnInit {
-  singupForm: FormGroup;
+  submitForm: FormGroup;
   msg: string = null;
   edited = true;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.singupForm = new FormGroup({
+    this.submitForm = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email])
     });
   }
 
   onSubmit() {
-    this.dataService.create('', this.singupForm.value).subscribe();
+    this.dataService.create('', this.submitForm.value).subscribe();
       this.msg = 'Congratulations! You are with us!';
       this.edited = false;
   }
@@ -29,4 +29,9 @@ export class JoinUsComponent implements OnInit {
   submitted(submitted: any): any {
     throw new Error('Method not implemented.');
   }
+
+  invalidEmail() {
+    return !this.submitForm.get('email').valid && this.submitForm.get('email').touched;
+  }
+
 }
