@@ -35,8 +35,13 @@
     color: $white-color;
     background-color: $primary-color;
     font-family: $main-font-bold;
-}
 
+    &.disabled {
+        background-color: $disabled-color;
+        cursor: not-allowed;
+    }
+
+}
 
 .message {
     font-family: $main-font-italic;
@@ -45,24 +50,22 @@
     font-size: 14px;
 }
 
-input.ng-invalid.ng-touched {
-  box-shadow: 0px 0px 12px 1px rgba(66,66,66,0.74);
-}
-
-input.ng-valid {
-    box-shadow: 0px 0px 12px 1px $primary-color;
-}
 
 input {
     border-radius: 3px;
     background: url(../../../../assets/img/mail-icon.png) no-repeat scroll 7px 7px;
     padding-left:30px;
     outline: none;
-}
+    z-index: 2;
+    justify-content: center;
 
-.button-join.disabled {
-    background-color: $disabled-color;
-    cursor: not-allowed;
+    &.ng-valid {
+        box-shadow: 0px 0px 12px 1px $primary-color;
+    }
+
+    &.ng-invalid.ng-touched {
+        box-shadow: 0px 0px 12px 1px rgba(66,66,66,0.74);
+    }
 }
 
 ::placeholder {
@@ -89,11 +92,6 @@ form {
     align-self: center;
     position: relative;
     margin-right: 10px;
-}
-
-input {
-    z-index: 2;
-    justify-content: center;
 }
 
 .msg {
