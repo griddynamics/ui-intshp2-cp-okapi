@@ -7,8 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  @Input() content = '<img src="../../../../assets/img/adv_area.png">';
-
+  @Input() content = '<img src="../../../../assets/img/adv_area.png" >';
   constructor() { }
 
   ngOnInit() {
