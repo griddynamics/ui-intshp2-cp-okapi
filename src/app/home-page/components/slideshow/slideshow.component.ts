@@ -34,7 +34,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   public isHovered = false;
-  public selected = 0;
+  public selectedSlideIndex = 0;
   public isStoped = false;
   private slidesLength: number;
   private translateStep: number;
@@ -42,7 +42,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   private totalSlidesSize: number;
   private firstItem: HTMLElement;
   private lastItem: HTMLElement;
-  private counter = 0;
+  private currentSlideIndex = 0;
   private intervalStart;
   private subscriptions: Subscription[] = [];
 
@@ -85,7 +85,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public moveSlide(direction: SLIDE_DIRECTION): void {
     this.slidesHolder.nativeElement.style.transition = '';
-    let counter = 0;
+    let edgeSlideIndex = 0;
     let translatePostion = this.translateStep;
     let step = this.currentTranslatePosition + this.translateStep;
     let itemToMove = this.lastItem;
@@ -93,7 +93,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     let counterValue = this.slidesLength - 1;
 
     if (direction === SLIDE_DIRECTION.RIGHT) {
-      counter = this.slidesLength - 1;
+      edgeSlideIndex = this.slidesLength - 1;
       translatePostion = -this.translateStep;
       step = -100;
       itemToMove = this.firstItem;
@@ -101,13 +101,43 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
       counterValue = 0;
     }
 
-    if (this.counter === counter) {
-      this.moveEdgeSlides(step, itemToMove, itemToMovePosition, counterValue);
+    if (this.currentSlideIndex === edgeSlideIndex) {
+      this.currentSlideIndex = counterValue;
+      this.moveEdgeSlides(step, itemToMove, itemToMovePosition);
     } else {
-      this.moveSlides(translatePostion, counterValue);
+      counterValue ? this.currentSlideIndex-- : this.currentSlideIndex++;
+      this.moveSlides(translatePostion);
     }
 
-    this.selected = this.counter;
+    this.selectedSlideIndex = this.currentSlideIndex;
+  }
+
+  public bulletHandler(i: number): void {
+    this.slidesHolder.nativeElement.style.transition = '';
+    this.currentSlideIndex = i;
+    this.selectedSlideIndex = this.currentSlideIndex;
+    this.currentTranslatePosition = i * -this.translateStep;
+    this.translateItem(this.slidesHolder, this.currentTranslatePosition);
+  }
+
+  public stop(): void {
+    this.isStoped = true;
+  }
+
+  public pause(): void {
+    if (!this.isStoped) {
+      this.isHovered = true;
+      clearInterval(this.intervalStart);
+    }
+  }
+
+  public continue(): void {
+    if (!this.isStoped) {
+      this.isHovered = false;
+      this.intervalStart = setInterval(() => {
+        this.moveSlide(SLIDE_DIRECTION.RIGHT);
+      }, 4000);
+    }
   }
 
   private handleClick(arr, time = 400) {
@@ -138,7 +168,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     let itemMoveDirection = 0;
     let changeTranslatePosition = 0;
 
-    if (this.counter === 0) {
+    if (this.currentSlideIndex === 0) {
       itemToMove = this.firstItem;
     } else {
       itemToMove = this.lastItem;
@@ -157,47 +187,17 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  private moveEdgeSlides(changeSlidesPos: number, itemToMove: HTMLElement, positionToMove: number, counterValue: number): void {
+  private moveEdgeSlides(changeSlidesPos: number, itemToMove: HTMLElement, positionToMove: number): void {
     this.currentTranslatePosition = changeSlidesPos;
     this.moveContainerAndItem(itemToMove, positionToMove);
     this.slidesHolder.nativeElement.addEventListener(
       'transitionend',
       this.moveToEdgeSlideWithoutRewind
     );
-    this.counter = counterValue;
   }
 
-  private moveSlides(translatePostion: number, counterValue: number): void {
+  private moveSlides(translatePostion: number): void {
     this.currentTranslatePosition += translatePostion;
     this.translateItem(this.slidesHolder, this.currentTranslatePosition);
-    counterValue ? this.counter-- : this.counter++;
-  }
-
-  public bulletHandler(i: number): void {
-    this.slidesHolder.nativeElement.style.transition = '';
-    this.counter = i;
-    this.selected = this.counter;
-    this.currentTranslatePosition = i * -this.translateStep;
-    this.translateItem(this.slidesHolder, this.currentTranslatePosition);
-  }
-
-  public stop(): void {
-    this.isStoped = true;
-  }
-
-  public pause(): void {
-    if (!this.isStoped) {
-      this.isHovered = true;
-      clearInterval(this.intervalStart);
-    }
-  }
-
-  public continue(): void {
-    if (!this.isStoped) {
-      this.isHovered = false;
-      this.intervalStart = setInterval(() => {
-        this.moveSlide(SLIDE_DIRECTION.RIGHT);
-      }, 4000);
-    }
   }
 }
