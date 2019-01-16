@@ -5,10 +5,6 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './carousel-item.component.html',
   styleUrls: ['./carousel-item.component.scss']
 })
-export class CarouselItemComponent implements OnInit {
-  @Input() product;
-
-  ngOnInit() {
-  }
+export class CarouselItemComponent {
 
 }

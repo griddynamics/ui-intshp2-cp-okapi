@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-carousel',
@@ -8,58 +9,62 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./carousel.component.scss']
 })
 
-export class CarouselComponent implements OnInit, AfterContentInit {
+export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
+  private itemsPerPage;
+  private resizeEvent: Subscription;
   private currTranslate = 0;
   private childrenLength: number;
-  public itemsPerPage;
-  public styleForContainer;
-  public itemWidth;
+  private counterScrolledItems: number;
 
   @ViewChild('slidesContainer') slidesContainer: ElementRef;
 
-
-  sizeHandler() {
-    if (innerWidth <= 424) {
-      this.itemWidth = '1000%';
-      this.itemsPerPage = 1;
-    } else if (innerWidth <= 768) {
-      this.itemWidth = '500%';
-      this.itemsPerPage = 2;
-    } else if (innerWidth <= 1024) {
-      this.itemWidth = '333.333333%';
-      this.itemsPerPage = 3;
-    } else {
-      this.itemWidth = '250%';
-      this.itemsPerPage = 4;
-    }
-  }
-
   ngOnInit(): void {
-    this.sizeHandler();
-    const event = fromEvent(window, 'resize').subscribe(evt => {
-      this.sizeHandler();
-    });
+    this.resizeEvent = fromEvent(window, 'resize')
+      .pipe(debounceTime(400))
+      .subscribe(evt => {
+        this.handleResize();
+        this.slidesContainer.nativeElement.style.transition = 'none';
+        this.slidesContainer.nativeElement.style.transform = 'translate(0%)';
+        this.counterScrolledItems = this.itemsPerPage;
+        this.currTranslate = 0;
+      });
   }
 
-  ngAfterContentInit(): void {
+  ngAfterViewInit() {
     this.childrenLength = document.querySelectorAll('.carousel-item-wrap').length;
+    const slidesContainerWidth = this.slidesContainer.nativeElement.offsetWidth;
+    const slideItemWidth = this.slidesContainer.nativeElement.children[0].offsetWidth;
+    this.itemsPerPage = Math.round(slidesContainerWidth / slideItemWidth);
+    this.counterScrolledItems = this.itemsPerPage;
+  }
+
+  ngOnDestroy(): void {
+    this.resizeEvent.unsubscribe();
   }
 
   public nextSlide(): void {
-    const sliderLength: number = (-this.childrenLength / this.itemsPerPage) * (100 / this.childrenLength * (this.itemsPerPage - 1));
-    if (sliderLength < this.currTranslate) {
-      this.moveSlides(-100 / this.childrenLength * this.itemsPerPage) ;
+    if (this.counterScrolledItems <= this.childrenLength) {
+      this.counterScrolledItems += this.itemsPerPage;
+      this.slidesMover(-100);
     }
   }
 
   public prevSlide(): void {
-    if (this.currTranslate) {
-      this.moveSlides(100 / this.childrenLength * this.itemsPerPage);
+    if (this.counterScrolledItems > this.itemsPerPage) {
+      this.counterScrolledItems -= this.itemsPerPage;
+      this.slidesMover(100);
     }
   }
 
-  private moveSlides(direction: number): void {
-    this.currTranslate += direction;
+  private slidesMover(translateStep: number): void {
+    this.slidesContainer.nativeElement.style.transition = '';
+    this.currTranslate += translateStep;
     this.slidesContainer.nativeElement.style.transform = `translate(${this.currTranslate}%)`;
+  }
+
+  private handleResize(): void {
+    const slidesContainerWidth = this.slidesContainer.nativeElement.offsetWidth;
+    const slideItemWidth = this.slidesContainer.nativeElement.children[0].offsetWidth;
+    this.itemsPerPage = Math.round(slidesContainerWidth / slideItemWidth);
   }
 }

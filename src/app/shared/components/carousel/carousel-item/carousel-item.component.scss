@@ -1,7 +1,9 @@
 @import "../../../../../scss/mixins";
 
 :host {
+  display: block;
   width: 25%;
+  flex-shrink: 0;
 }
 
 .carousel-item-wrap {
@@ -10,13 +12,13 @@
 
 @include laptop {
   :host {
-    width: 31%;
+    width: 33.333%;
   }
 }
 
 @include tablet {
   :host {
-    width: 48%;
+    width: 50%;
   }
 }
 @include mobile {
