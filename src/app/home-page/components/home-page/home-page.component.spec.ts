@@ -4,8 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { HomePageComponent } from './home-page.component';
 import { JoinUsComponent } from 'src/app/shared/components/join-us/join-us.component';
-
-
+import { SlideshowComponent } from '../slideshow/slideshow.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -14,7 +13,7 @@ describe('HomePageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, HttpClientTestingModule],
-      declarations: [ HomePageComponent, JoinUsComponent ]
+      declarations: [ HomePageComponent, JoinUsComponent, SlideshowComponent ]
     })
     .compileComponents();
   }));

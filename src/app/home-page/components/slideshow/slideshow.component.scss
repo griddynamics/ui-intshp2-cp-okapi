@@ -1,0 +1,100 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+@import '../../../../scss/mixins';
+
+.wrapper {
+  overflow: hidden;
+  position: relative;
+  max-width: 1542px;
+  margin:0 auto;
+}
+
+.slides-holder {
+  display: flex;
+  transition: .4s;
+}
+
+.animate {
+  animation: 
+    pulse 1s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+img {
+  width: 100%;
+}
+
+.bullets {
+  text-align: center;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+
+  .orange {
+    background: $primary-color;
+  }
+
+  div {
+    background:rgba(255,255,255,.7);
+    border-radius: 100px;
+    display: inline-block;
+    margin: 5px;
+    width: 12px;
+    height: 12px;
+
+    &:hover {
+      background: $primary-color;
+      cursor: pointer;
+    }
+  }
+}
+
+button {
+  width: 60px;
+  position: absolute;
+  top: 45%;
+  height: 60px;
+  border: 0;
+  background: rgba(0,0,0,0);
+  transition: .2s;
+  outline: none;
+  color: $white-color;
+  font-size: 26px;
+}
+
+button:hover {
+  transition: .2s;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+#buttonBack {
+  left: 0;
+}
+
+#buttonNext {
+  right: 0;
+}
+
+@include mobile {
+  #buttonBack {
+    display: none;
+  }
+
+  #buttonNext {
+    display: none;
+  }
+
+  .bullets {
+    bottom: 0;
+  }
+}
