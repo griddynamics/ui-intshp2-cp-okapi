@@ -6,10 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { CarouselItemComponent } from './components/carousel/carousel-item/carousel-item.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 import { JoinUsComponent } from './components/join-us/join-us.component';
 import { AdvertisingAreaComponent } from './components/advertising-area/advertising-area.component';
 import { SafePipe } from '../pipes/safe.pipe';
-
 
 const MODULES = [
   CommonModule,
@@ -21,16 +22,17 @@ const MODULES = [
 ];
 
 @NgModule({
-  declarations: [JoinUsComponent],
+  declarations: [ CarouselItemComponent, CarouselComponent, AdvertisingAreaComponent, SafePipe, JoinUsComponent ],
   imports: [...MODULES],
-  exports: [JoinUsComponent],
-];
+  exports: [
+    ...MODULES,
+    CarouselItemComponent,
+    CarouselComponent,
+    AdvertisingAreaComponent,
+    SafePipe,
+    JoinUsComponent
+  ],
 
-@NgModule({
-  declarations: [AdvertisingAreaComponent, SafePipe],
-  imports: [...MODULES],
-  exports: [...MODULES, AdvertisingAreaComponent, SafePipe],
-})
 export class SharedModule {
   static forRoot() {
     return [

@@ -9,9 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent {
   title = 'Capstone-Angular-Project';
-
   isEnvironmentRoute = false;
-
 
   constructor(private router: Router) {
     this.router.events.subscribe(e => {
