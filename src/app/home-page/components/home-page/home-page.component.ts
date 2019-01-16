@@ -10,11 +10,11 @@ export class HomePageComponent implements OnInit {
   banners: any[] = [{
     height: 100,
     width: 670,
-    content: '<img src="../../../../assets/img/adv.png" >',
+    htmlSnippet: '<img src="../../../../assets/img/adv.png" >',
   }, {
     height: 100,
     width: 470,
-    content: '<img src="../../../../assets/img/adv_area.png" >',
+    htmlSnippet: '<img src="../../../../assets/img/adv_area.png" >',
   }];
   constructor() { }
 
