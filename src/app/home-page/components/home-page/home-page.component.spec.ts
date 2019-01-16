@@ -1,7 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomePageComponent } from './home-page.component';
+
+import { SharedModule } from 'src/app/shared/shared.module';
+
 import { SlideshowComponent } from '../slideshow/slideshow.component';
+
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -9,7 +13,12 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+
+      declarations: [ HomePageComponent ],
+      imports: [ SharedModule ],
+
       declarations: [ HomePageComponent, SlideshowComponent ]
+
     })
     .compileComponents();
   }));
