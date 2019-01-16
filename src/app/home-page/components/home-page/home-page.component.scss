@@ -1,0 +1,9 @@
+.row-se{
+  display: flex;
+  justify-content: space-evenly;
+
+  app-advertising-area {
+    display: block;
+    width: 40%;
+  }
+}

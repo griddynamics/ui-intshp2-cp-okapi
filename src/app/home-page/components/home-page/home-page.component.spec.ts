@@ -1,10 +1,12 @@
 import { ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { HomePageComponent } from './home-page.component';
 import { JoinUsComponent } from 'src/app/shared/components/join-us/join-us.component';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
+
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -12,7 +14,7 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      imports: [ReactiveFormsModule, HttpClientTestingModule, SharedModule],
       declarations: [ HomePageComponent, JoinUsComponent, SlideshowComponent ]
     })
     .compileComponents();
