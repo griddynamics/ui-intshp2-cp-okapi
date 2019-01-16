@@ -45,7 +45,7 @@
   }
   .product-item-img {
     padding-top: 45%;
-    animation: pulse .5s, opacityBorn 1s;
+    animation: scale .5s, opacityBorn 1s;
   }
 }
 
@@ -116,20 +116,19 @@ hr {
 }
 
 .out-of-stock-logo {
-  top: -39%;
-  right: 0;
+  top: 24px;
+  right: 25%;
   width: 42%;
-  height: 100%;
   padding-top: 100%;
   position: absolute;
-  background: url('../../../../assets/img/out_stock_en.png') no-repeat center;
+  background: url('../../../../assets/img/out_stock_en.png') no-repeat top;
   background-size: contain;
   transform: rotate(29deg);
   z-index: 10;
   user-select: none;
 }
 
-@keyframes pulse {
+@keyframes scale {
   0% {
     transform: scale(.8);
   }

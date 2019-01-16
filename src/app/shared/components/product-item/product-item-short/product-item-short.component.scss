@@ -79,12 +79,12 @@ hr {
 }
 
 .out-of-stock-logo {
-  top: -26%;
-  right: 5%;
-  width: 22%;
-  height: 100%;
+  top: 10px;
+  right: 25%;
+  width: 26%;
+  padding-top: 100%;
   position: absolute;
-  background: url('../../../../../assets/img/out_stock_en.png') no-repeat center;
+  background: url('../../../../../assets/img/out_stock_en.png') no-repeat top;
   background-size: contain;
   transform: rotate(29deg);
   z-index: 10;
