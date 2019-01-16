@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IBanner } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-home-page',
@@ -7,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  banners: any[] = [{
+  banners: IBanner[] = [{
     height: 100,
-    width: 670,
-    htmlSnippet: '<img src="../../../../assets/img/adv.png" >',
+    width: 470,
+    htmlSnippet: '<img style="width:100%" src="../../../../assets/img/adv_area.png" >',
   }, {
     height: 100,
     width: 470,
-    htmlSnippet: '<img src="../../../../assets/img/adv_area.png" >',
+    htmlSnippet: '<img style="width:100%" src="../../../../assets/img/adv_area.png" >',
   }];
   constructor() { }
 
