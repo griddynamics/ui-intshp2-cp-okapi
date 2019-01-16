@@ -90,7 +90,6 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     let step = this.currentTranslatePosition + this.translateStep;
     let itemToMove = this.lastItem;
     let itemToMovePosition = -this.totalSlidesSize;
-    let counterValue = this.slidesLength - 1;
 
     if (direction === SLIDE_DIRECTION.RIGHT) {
       edgeSlideIndex = this.slidesLength - 1;
@@ -98,14 +97,13 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
       step = -100;
       itemToMove = this.firstItem;
       itemToMovePosition = this.totalSlidesSize;
-      counterValue = 0;
     }
 
     if (this.currentSlideIndex === edgeSlideIndex) {
-      this.currentSlideIndex = counterValue;
+      this.currentSlideIndex = !edgeSlideIndex ? this.slidesLength - 1  : 0 ;
       this.moveEdgeSlides(step, itemToMove, itemToMovePosition);
     } else {
-      counterValue ? this.currentSlideIndex-- : this.currentSlideIndex++;
+      edgeSlideIndex ? this.currentSlideIndex++ : this.currentSlideIndex--;
       this.moveSlides(translatePostion);
     }
 
