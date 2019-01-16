@@ -2,12 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdvertisingAreaComponent } from './advertising-area.component';
 import { SafePipe } from 'src/app/pipes/safe.pipe';
+import { By } from '@angular/platform-browser';
 
 
 describe('AdvertisingAreaComponent', () => {
   let component: AdvertisingAreaComponent;
   let fixture: ComponentFixture<AdvertisingAreaComponent>;
   let spy;
+  let debug;
+  let element;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -42,4 +45,13 @@ describe('AdvertisingAreaComponent', () => {
     expect(component.calcPlaceholderRatio(100, 200)).toBe(50);
   });
 
+  it('should render the external content', () => {
+    fixture = TestBed.createComponent(AdvertisingAreaComponent);
+    component = fixture.componentInstance;
+    component.content = '<img>';
+    fixture.detectChanges();
+    debug = fixture.debugElement.query(By.css('.lazy-container'));
+    element = debug.nativeElement;
+    expect(element.innerHTML).toContain(component.content);
+  });
 });

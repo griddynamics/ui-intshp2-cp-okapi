@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-page',
@@ -7,7 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  @Input() content = '<img src="../../../../assets/img/adv_area.png" >';
+  banners: any[] = [{
+    height: 100,
+    width: 670,
+    content: '<img src="../../../../assets/img/adv.png" >',
+  }, {
+    height: 100,
+    width: 470,
+    content: '<img src="../../../../assets/img/adv_area.png" >',
+  }];
   constructor() { }
 
   ngOnInit() {
