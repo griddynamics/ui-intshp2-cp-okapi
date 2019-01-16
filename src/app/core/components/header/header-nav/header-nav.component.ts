@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderNavComponent implements OnInit {
   isSearchOpen = false;
-
+  showMenu: Boolean = false;
   onSearchBtnClick() {
     this.isSearchOpen = !this.isSearchOpen;
   }
