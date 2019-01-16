@@ -2,7 +2,7 @@ export interface IProduct {
   id: String;
   title: String;
   price: String;
-  rating?: 4;
+  rating?: Number;
   swatches?: Array<ISwatch>;
   availability: Array<ProductAvailabilityState>;
   thumbnailImageSrc?: String;

@@ -7,8 +7,7 @@ import { ISwatch } from '../../interfaces/product';
   styleUrls: ['./product-item.component.scss'],
 })
 export class ProductItemComponent implements OnInit {
-  @Input() product;
-
+  @Input() public product;
   isNotHovered = true;
   _currentThumbnail;
   private _currentSwatch;
@@ -30,7 +29,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   get isOutOfStock() {
-    return !this.product.availability.length;
+    return !this.product.availability || !this.product.availability.length;
   }
 
   get currentSwatch() {

@@ -7,10 +7,7 @@
       <h2>{{product.title}}</h2>
       <div class="item-details">
         <div *ngIf="isNotHovered" class="stars">
-          <i class="fas fa-star rating"></i>
-          <i class="fas fa-star rating"></i>
-          <i class="fas fa-star rating"></i>
-          <i class="fas fa-star"></i>
+            <i *ngFor="let rating of starsArray; let i = index" class="fas fa-star" [ngClass]="{'rating': i <= product.rating}"></i>
         </div>
         <p *ngIf="isNotHovered" class="price">{{product.price}}</p>
         <a *ngIf="!isNotHovered" href="#">
