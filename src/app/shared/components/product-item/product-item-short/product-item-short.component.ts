@@ -9,9 +9,10 @@ import { ProductItemComponent } from '../product-item.component';
 
 export class ProductItemShortComponent extends ProductItemComponent {
   @Input() product;
-  showFull = true;
 
-  handleImgView(showFull): void {
-    this.showFull = showFull;
+  isNotHovered = true;
+
+  handleImgView(isNotHovered): void {
+    this.isNotHovered = isNotHovered;
   }
 }

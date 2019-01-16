@@ -18,6 +18,11 @@ hr {
   margin: 16px 4% 0 2%;    
 }
 
+.product-item-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
 .product-item-short {
   max-width: 370px;
   background-color: $white-color;

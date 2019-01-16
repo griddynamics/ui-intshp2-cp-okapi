@@ -1,19 +1,19 @@
 <div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
+  <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
   <div class="product-item-short" [ngClass]="{'gray-scale': isOutOfStock}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
-    <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
-    <div class="preview-img-short" [ngStyle]="{'background-image': dynamicImgUrl}"></div>
+    <div class="preview-img-short" [ngStyle]="{'background-image': currentThumbnail}"></div>
     <hr>
     <div>
       <h2>{{product.title}}</h2>
       <div class="item-details">
-        <div *ngIf="showFull" class="stars">
+        <div *ngIf="isNotHovered" class="stars">
           <i class="fas fa-star rating"></i>
           <i class="fas fa-star rating"></i>
           <i class="fas fa-star rating"></i>
           <i class="fas fa-star"></i>
         </div>
-        <p *ngIf="showFull" class="price">{{product.price}}</p>
-        <a *ngIf="!showFull" href="#">
+        <p *ngIf="isNotHovered" class="price">{{product.price}}</p>
+        <a *ngIf="!isNotHovered" href="#">
           <p class="cart" [ngClass]="{'added': product.addedToCart}"><span><i class="fas fa-cart-plus"></i></span> add
             to cart</p>
         </a>

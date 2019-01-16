@@ -1,25 +1,53 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ISwatch } from '../../interfaces/product';
 
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.scss']
+  styleUrls: ['./product-item.component.scss'],
 })
-
 export class ProductItemComponent implements OnInit {
   @Input() product;
 
-  private _currentColor;
-  showFull = true;
-  dynamicImgUrl;
+  isNotHovered = true;
+  _currentThumbnail;
+  private _currentSwatch;
 
   ngOnInit() {
-    this.dynamicImgUrl = this.product.thumbnailImageSrc ? `url(${this.product.thumbnailImageSrc})` : '';
+    if (!this.product) {
+      return;
+    }
+
+    this.resetDefaultThumbnail();
   }
 
-  handleImgView(showFull): void {
-    this.showFull = showFull;
-    this.dynamicImgUrl = this.product.thumbnailImageSrc ? `url(${this.product.thumbnailImageSrc})` : '';
+  get currentThumbnail(): String {
+    return this._currentThumbnail;
+  }
+
+  set currentThumbnail(value: String) {
+    this._currentThumbnail = value ? `url(${value})` : '';
+  }
+
+  get isOutOfStock() {
+    return !this.product.availability.length;
+  }
+
+  get currentSwatch() {
+    return this._currentSwatch;
+  }
+
+  set currentSwatch(color) {
+    if (this._currentSwatch === color) {
+      return;
+    }
+    this._currentSwatch = color;
+    this.currentThumbnail = this.currentSwatch.imgSrc;
+  }
+
+  handleImgView(isNotHovered ): void {
+    this.isNotHovered  = isNotHovered;
+    this.resetDefaultThumbnail();
   }
 
   hoverStateIn(): void {
@@ -30,10 +58,6 @@ export class ProductItemComponent implements OnInit {
     this.handleImgView(true);
   }
 
-  get isOutOfStock() {
-    return !this.product.availability.length;
-  }
-
   onMouseLeave() {
     return this.hoverStateOut();
   }
@@ -42,25 +66,18 @@ export class ProductItemComponent implements OnInit {
     return this.hoverStateIn();
   }
 
-  get currentColor() {
-    event.stopPropagation();
-    return this._currentColor;
-  }
-
-  set currentColor(color) {
-    if (this._currentColor === color) {
-      return;
-    }
-    this._currentColor = color;
-    this.dynamicImgUrl = this.currentColor.imgSrc ? `url(${this._currentColor.imgSrc})` : '';
-  }
-
   onMouseLeaveColor(): void {
-    this._currentColor = null;
-    this.dynamicImgUrl = this.product.thumbnailImageSrc ? `url(${this.product.thumbnailImageSrc})` : '';
+    this._currentSwatch = null;
+    this.resetDefaultThumbnail();
   }
 
-  onColorChange(color): void {
-    this.currentColor = color;
+  onSwatchChange(swatch: ISwatch): void {
+    event.stopPropagation();
+
+    this.currentSwatch = swatch;
+  }
+
+  private resetDefaultThumbnail(): void {
+    this.currentThumbnail = this.product.thumbnailImageSrc;
   }
 }
