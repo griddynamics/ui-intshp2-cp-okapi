@@ -4,94 +4,63 @@
 @import '../../../../scss/reset';
 
 .product-item {
-  position: relative;
-  background-color: $white-color;
-  max-width: 270px;
+  width: 100%;
   height: 365px;
+  background-color: $white-color;
   text-align: center;
-  padding: 34px 10% 20px;
   user-select: none;
-  
+  padding: 8% 10% 10%;
+  position: relative;
+
   h2 {
     font-family: $main-font-bold;
     font-size: $font-size-heading;
-    padding-top: 28px;
-    padding-bottom: 24px;
-  }
-
-  p {
-    font-family: $main-font-bold;
-    font-size: $font-size-heading;
-    color: $primary-color;
+    padding-bottom: 9%;
+    padding-top: 8%;
   }
 }
-
-.bottom-content {
-  position: relative;
-  bottom: 0;
-}
-
-.preview-img-full {
-  background: url('../../../../assets/img/default.png') no-repeat center;
-  background-size: contain;
-
-  img {
-    width: 100%;
-    max-height: 100%;
-  }
-}
-
-.product-item {
-  &.hover {
-    padding-bottom: 40px;
-    outline: none;
-    cursor: pointer;
-    
-    h2 {
-      color: $primary-color;
-      padding-top: 17%;
-      padding-bottom: 10%;
-    }
-
-    p {
-      font-family: $main-font-bold;
-      font-size: $font-size-regular;
-      color: $black-color;
-    }
-
-    hr {
-      border-top: $main-border;
-      margin: 0 16%;
-    }
-  }
-}
-
-.preview-img {
+.product-item-img {
   background-image: url('../../../../assets/img/default.png');
-  background-size: contain;
-  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  padding-top: 90px;
-  width: 100%;
+  background-size: contain;
+  padding-top: 100%;
+}
+
+.price {
+  font-family: $main-font-bold;
+  font-size: $font-size-heading;
+  color: $primary-color;
+}
+
+.hovered {
+  h2 {
+    color: $primary-color;
+    padding-bottom: 10%;
+    padding-top: 10%;
+  }
+  .product-item-img {
+    padding-top: 45%;
+    animation: pulse .5s, opacityBorn 1s;
+  }
 }
 
 .sizes {
+  font-family: $main-font-bold;
+  font-size: $font-size-regular;
+  color: $black-color;
+
   span:last-child {
     span {
       display: none;
     }
-  }
-  
-  &.invisible {
-    display: none;
   }
 }
 
 .colors {
   display: flex;
   justify-content: center;
-  margin: 12% 0 16%;
+  margin: 12% 0;
 }
 
 .color {
@@ -99,6 +68,11 @@
   height: 14px;
   border-radius: 50%;
   margin: 0 2px;
+}
+
+hr {
+  border-top: $main-border;
+  margin: 0 11%;
 }
 
 .icons {
@@ -131,28 +105,21 @@
 .gray-scale{
   filter: grayscale(1);
   opacity: 0.5;
+  pointer-events: none;
 }
 
-.out-of-stock {
+.out-of-stock-logo {
   top: -39%;
   right: 0;
   width: 42%;
   height: 100%;
+  padding-top: 100%;
   position: absolute;
   background: url('../../../../assets/img/out_stock_en.png') no-repeat center;
   background-size: contain;
   transform: rotate(29deg);
   z-index: 10;
-}
-
-.pulse {
-  animation: 
-    pulse .5s,
-    opacityBorn 1s;
-}
-.opacity {
-  animation: 
-    opacityBorn 1s;
+  user-select: none;
 }
 
 @keyframes pulse {
@@ -163,20 +130,12 @@
     transform: scale(1);
   }
 }
+
 @keyframes opacityBorn {
   0% {
     opacity: 0.5;
   }
   100% {
     opacity: 1;
-  }
-}
-@include tablet {
-  .product-item {
-    position: relative;
-  }
-  .bottom-content {
-    position: absolute;
-    bottom: 0;
   }
 }

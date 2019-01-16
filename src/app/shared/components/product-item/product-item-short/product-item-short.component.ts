@@ -9,9 +9,9 @@ import { ProductItemComponent } from '../product-item.component';
 
 export class ProductItemShortComponent extends ProductItemComponent {
   @Input() product;
-  showShort = true;
+  showFull = true;
 
-  handleImgView(showShort) {
-    this.showShort = showShort;
+  handleImgView(showFull): void {
+    this.showFull = showFull;
   }
 }

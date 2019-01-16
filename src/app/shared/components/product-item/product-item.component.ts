@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-product-item',
@@ -6,12 +6,16 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./product-item.component.scss']
 })
 
-export class ProductItemComponent {
+export class ProductItemComponent implements OnInit {
   @Input() product;
 
   private _currentColor;
   showFull = true;
   dynamicImgUrl;
+
+  ngOnInit() {
+    this.dynamicImgUrl = this.product.thumbnailImageSrc ? `url(${this.product.thumbnailImageSrc})` : '';
+  }
 
   handleImgView(showFull): void {
     this.showFull = showFull;
@@ -30,15 +34,16 @@ export class ProductItemComponent {
     return !this.product.availability.length;
   }
 
-  onMouseOver() {
-    if (this.isOutOfStock) {
-      return this.hoverStateOut();
-    }
-      return this.hoverStateIn();
+  onMouseLeave() {
+    return this.hoverStateOut();
   }
 
+  onMouseOver() {
+    return this.hoverStateIn();
+  }
 
   get currentColor() {
+    event.stopPropagation();
     return this._currentColor;
   }
 
@@ -50,16 +55,12 @@ export class ProductItemComponent {
     this.dynamicImgUrl = this.currentColor.imgSrc ? `url(${this._currentColor.imgSrc})` : '';
   }
 
-  setDefaultImg(): void {
+  onMouseLeaveColor(): void {
     this._currentColor = null;
     this.dynamicImgUrl = this.product.thumbnailImageSrc ? `url(${this.product.thumbnailImageSrc})` : '';
   }
 
   onColorChange(color): void {
     this.currentColor = color;
-  }
-
-  getRightImg() {
-    return this.product.thumbnailImageSrc ? this.product.thumbnailImageSrc : '';
   }
 }

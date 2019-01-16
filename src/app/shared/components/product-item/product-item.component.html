@@ -1,29 +1,22 @@
-<div *ngIf="product">
-  <div *ngIf="showFull" class="product-item" (mouseover)="onMouseOver()">
-    <div [ngClass]="{'gray-scale': isOutOfStock}">
-      <div class="preview-img-full" [ngStyle]="{'padding-top': product.thumbnailImageSrc ? '0' : '100%' }">
-        <img *ngIf="product.thumbnailImageSrc" [src]="product.thumbnailImageSrc" alt="{{product.title}}">
-      </div>
-      <div [routerLink]="['/products/',product.id]">
-        <h2>{{product.title}}</h2>
-      </div>
-      <p class="price">{{product.price}}</p>
-    </div>
-    <div [routerLink]="['/products/',product.id]" *ngIf="isOutOfStock" class="out-of-stock"></div>
-  </div>
-  <div [routerLink]="['/products/',product.id]" *ngIf="!showFull" class="product-item hover opacity" (mouseleave)="hoverStateOut()">
-    <div class="preview-img pulse" [ngStyle]="{'background-image': dynamicImgUrl}"></div>
+<div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
+  <div class="product-item"  [ngClass]="{'gray-scale': isOutOfStock, 'hovered': !showFull}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
+    <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
+    <div class="product-item-img" [ngStyle]="{'background-image': dynamicImgUrl }"></div>
+    <h2>{{product.title}}</h2>
     <div class="bottom-content">
-      <h2>{{product.title}}</h2>
-      <p class="sizes" [ngClass]="{'invisible': !product.sizes.length}">sizes :
-        <span *ngFor="let size of product.sizes">{{size}} <span>-</span></span></p>
-      <div class="colors" (mouseleave)="setDefaultImg()">
-        <div class="color" *ngFor="let color of product.swatches" [style.background-color]="color.color" (mouseover)="onColorChange(color)"></div>
-      </div>
-      <hr>
-      <div class="icons">
-        <a href="#"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product.addedToCart}"></i></a>
-        <a href="#"><i class="to-wish-list" [ngClass]="{ 'added-to-wishlist': product.addedToWishList}"></i></a>
+      <p *ngIf="showFull" class="price">{{product.price}}</p>
+      <div *ngIf="!showFull">
+        <div *ngIf="product.sizes.length">
+          <p class="sizes">sizes : <span *ngFor="let size of product.sizes">{{size}} <span>-</span></span></p>
+        </div>
+        <div class="colors" (mouseleave)="onMouseLeaveColor()">
+          <div class="color" *ngFor="let color of product.swatches" [style.background-color]="color.color" (mouseover)="onColorChange(color)"></div>
+        </div>
+        <hr>
+        <div class="icons">
+          <a href="#"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product.addedToCart}"></i></a>
+          <a href="#"><i class="to-wish-list" [ngClass]="{ 'added-to-wishlist': product.addedToWishList}"></i></a>
+        </div>
       </div>
     </div>
   </div>
