@@ -4,6 +4,7 @@ import { HomePageComponent } from './home-page.component';
 import { ProductItemComponent } from 'src/app/shared/components/product-item/product-item.component';
 import { ProductItemShortComponent } from 'src/app/shared/components/product-item/product-item-short/product-item-short.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SlideshowComponent } from '../slideshow/slideshow.component';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -12,7 +13,7 @@ describe('HomePageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [ HomePageComponent, ProductItemComponent, ProductItemShortComponent]
+      declarations: [ HomePageComponent, SlideshowComponent, ProductItemComponent, ProductItemShortComponent]
     })
     .compileComponents();
   }));
