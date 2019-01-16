@@ -108,15 +108,8 @@ form {
     .info {
         flex-direction: column;
     }
-}
-
-@include mobile {
     .info {
         align-items: center;
-    }
-
-    .message {
-        font-size: 16px;        
     }
 
     .button-join {
@@ -129,5 +122,11 @@ form {
 
     .input-block {
         margin-right: 10px;
+    }
+}
+
+@include mobile {
+    .message {
+        font-size: 16px;        
     }
 }
