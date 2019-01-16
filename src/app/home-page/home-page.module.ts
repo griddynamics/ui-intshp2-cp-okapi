@@ -10,6 +10,10 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     HomePageComponent,
   ],
+import { SlideshowComponent } from './components/slideshow/slideshow.component';
+
+@NgModule({
+  declarations: [HomePageComponent, SlideshowComponent],
   imports: [
     CommonModule,
     HomePageRoutingModule,
