@@ -1,7 +1,11 @@
 <app-slideshow></app-slideshow>
-<div class="template">
-    <app-product-item *ngFor="let product of products" [product]="product" [style.width.%]="25"></app-product-item>
+<app-carousel>
+  <app-carousel-item>
+    <!-- <app-product-item></app-product-item> -->
+  </app-carousel-item>
+</app-carousel>
+<div class="row-se">
+  <app-advertising-area *ngFor="let banner of banners" [content]="banner.htmlSnippet" [height]="banner.height" [width]="banner.width"></app-advertising-area>
 </div>
-<div class="template-short">
-    <app-product-item-short *ngFor="let product of products" [product]="product" [style.width.%]="33"></app-product-item-short>
-</div>
+<app-join-us></app-join-us>
+

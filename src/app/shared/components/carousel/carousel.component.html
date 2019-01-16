@@ -1,0 +1,15 @@
+<div class="main-container">
+  <div class="arrow-left" (click)="prevSlide()" #leftButton>
+    <i class="fas fa-angle-left"></i>
+  </div>
+
+  <div class="slider-container-main" #slidesContainerMain>
+    <div class="slides-container" #slidesContainer>
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <div class="arrow-right" (click)="nextSlide()">
+    <i class="fas fa-angle-right"></i>
+  </div>
+</div>

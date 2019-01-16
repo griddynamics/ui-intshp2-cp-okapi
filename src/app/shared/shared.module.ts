@@ -4,22 +4,46 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { ProductItemShortComponent } from './components/product-item/product-item-short/product-item-short.component';
+import { CarouselItemComponent } from './components/carousel/carousel-item/carousel-item.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { JoinUsComponent } from './components/join-us/join-us.component';
+import { AdvertisingAreaComponent } from './components/advertising-area/advertising-area.component';
+import { SafePipe } from '../pipes/safe.pipe';
 
 const MODULES = [
   CommonModule,
   HttpClientModule,
   FormsModule,
   NgbModule,
-  RouterModule
+  RouterModule,
+  ReactiveFormsModule,
 ];
 
 @NgModule({
-  declarations: [ProductItemComponent, ProductItemShortComponent],
+  declarations: [
+    CarouselItemComponent,
+    CarouselComponent,
+    AdvertisingAreaComponent,
+    SafePipe,
+    JoinUsComponent,
+    ProductItemComponent,
+    ProductItemShortComponent
+  ],
   imports: [...MODULES],
-  exports: [...MODULES, ProductItemComponent, ProductItemShortComponent],
-
+  exports: [
+    ...MODULES,
+    CarouselItemComponent,
+    CarouselComponent,
+    AdvertisingAreaComponent,
+    SafePipe,
+    JoinUsComponent,
+    ProductItemComponent,
+    ProductItemShortComponent
+  ],
 })
 export class SharedModule {
   static forRoot() {

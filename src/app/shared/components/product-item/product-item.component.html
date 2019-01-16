@@ -1,11 +1,11 @@
 <div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
   <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
-  <div class="product-item"  [ngClass]="{'gray-scale': isOutOfStock, 'hovered': !isNotHovered}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
+  <div class="product-item"  [ngClass]="{'gray-scale': isOutOfStock, 'hovered': isHovered}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
     <div class="product-item-img" [ngStyle]="{'background-image': currentThumbnail }"></div>
     <h2>{{product.title}}</h2>
     <div class="bottom-content">
-      <p *ngIf="isNotHovered" class="price">{{product.price}}</p>
-      <div *ngIf="!isNotHovered">
+      <p *ngIf="!isHovered" class="price">{{product.price}}</p>
+      <div *ngIf="isHovered">
         <div *ngIf="product.sizes.length">
           <p class="sizes">sizes : <span *ngFor="let size of product.sizes">{{size}} <span>-</span></span></p>
         </div>

@@ -27,14 +27,14 @@ describe('ProductItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call onMouseOver, if product item was hovered', () => {
-    component.product = {};
-    fixture.detectChanges();
-    const item = fixture.debugElement.query(By.css('.product-item'));
-    spyOn(component, 'onMouseOver');
-    expect(item).toBeDefined();
+  // it('should call onMouseOver, if product item was hovered', () => {
+  //   component.product = {};
+  //   fixture.detectChanges();
+  //   const item = fixture.debugElement.query(By.css('.product-item'));
+  //   spyOn(component, 'onMouseOver');
+  //   expect(item).toBeDefined();
 
-    item.triggerEventHandler('mouseover', null);
-    expect(component.onMouseOver).toHaveBeenCalled();
-  });
+  //   item.triggerEventHandler('mouseover', null);
+  //   expect(component.onMouseOver).toHaveBeenCalled();
+  // });
 });

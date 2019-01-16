@@ -8,7 +8,7 @@ import { ISwatch } from '../../interfaces/product';
 })
 export class ProductItemComponent implements OnInit {
   @Input() public product;
-  isNotHovered = true;
+  isHovered = true;
   _currentThumbnail;
   private _currentSwatch;
 
@@ -44,8 +44,8 @@ export class ProductItemComponent implements OnInit {
     this.currentThumbnail = this.currentSwatch.imgSrc;
   }
 
-  handleImgView(isNotHovered ): void {
-    this.isNotHovered  = isNotHovered;
+  handleImgView(isHovered ): void {
+    this.isHovered  = isHovered;
     this.resetDefaultThumbnail();
   }
 
