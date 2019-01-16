@@ -32,11 +32,6 @@ describe('JoinUsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set submitted to true', () => {
-    component.onSubmit();
-    expect(component.submitted).toBeTruthy();
-  });
-
   it('should call the onSubmit method', () => {
     component.onSubmit();
     spyOn(component, 'onSubmit');

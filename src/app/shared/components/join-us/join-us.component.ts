@@ -26,10 +26,6 @@ export class JoinUsComponent implements OnInit {
       this.edited = false;
   }
 
-  submitted(submitted: any): any {
-    throw new Error('Method not implemented.');
-  }
-
   invalidEmail() {
     return !this.submitForm.get('email').valid && this.submitForm.get('email').touched;
   }
