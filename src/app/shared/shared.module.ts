@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { ProductItemComponent } from './components/product-item/product-item.component';
+import { ProductItemShortComponent } from './components/product-item/product-item-short/product-item-short.component';
 import { CarouselItemComponent } from './components/carousel/carousel-item/carousel-item.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { JoinUsComponent } from './components/join-us/join-us.component';
@@ -22,7 +24,15 @@ const MODULES = [
 ];
 
 @NgModule({
-  declarations: [ CarouselItemComponent, CarouselComponent, AdvertisingAreaComponent, SafePipe, JoinUsComponent ],
+  declarations: [
+    CarouselItemComponent,
+    CarouselComponent,
+    AdvertisingAreaComponent,
+    SafePipe,
+    JoinUsComponent,
+    ProductItemComponent,
+    ProductItemShortComponent
+  ],
   imports: [...MODULES],
   exports: [
     ...MODULES,
@@ -30,9 +40,11 @@ const MODULES = [
     CarouselComponent,
     AdvertisingAreaComponent,
     SafePipe,
-    JoinUsComponent
+    JoinUsComponent,
+    ProductItemComponent,
+    ProductItemShortComponent
   ],
-
+})
 export class SharedModule {
   static forRoot() {
     return [

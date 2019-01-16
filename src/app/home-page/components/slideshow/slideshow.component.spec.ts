@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlideshowComponent } from './slideshow.component';
 import { By } from '@angular/platform-browser';
-import { executionAsyncId } from 'async_hooks';
 
 describe('SlideshowComponent', () => {
   let component: SlideshowComponent;

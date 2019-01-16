@@ -1,3 +1,16 @@
+.template {
+  display: flex;
+  flex-direction: row;
+  padding: 0 12%;
+  width: 100%;
+}
+.template-short {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 12%;
+  width: 100%;
+}
 .row-se{
   display: flex;
   justify-content: space-evenly;
@@ -6,4 +19,4 @@
     display: block;
     width: 40%;
   }
-}
+} 

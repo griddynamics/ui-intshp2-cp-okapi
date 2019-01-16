@@ -4,9 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { HomePageComponent } from './home-page.component';
-import { CarouselComponent } from 'src/app/shared/components/carousel/carousel.component';
-import { CarouselItemComponent } from 'src/app/shared/components/carousel/carousel-item/carousel-item.component';
-import { JoinUsComponent } from 'src/app/shared/components/join-us/join-us.component';
+import { RouterTestingModule } from '@angular/router/testing';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
 
 
@@ -16,8 +14,11 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, HttpClientTestingModule, SharedModule],
-      declarations: [ HomePageComponent, CarouselComponent, CarouselItemComponent, SlideshowComponent, JoinUsComponent ] 
+      imports: [HttpClientTestingModule, SharedModule, RouterTestingModule],
+      declarations: [
+        HomePageComponent,
+        SlideshowComponent,
+      ],
     })
     .compileComponents();
   }));

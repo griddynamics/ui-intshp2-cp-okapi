@@ -39,7 +39,9 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.resizeEvent.unsubscribe();
+    if (this.resizeEvent) {
+      this.resizeEvent.unsubscribe();
+    }
   }
 
   public nextSlide(): void {
