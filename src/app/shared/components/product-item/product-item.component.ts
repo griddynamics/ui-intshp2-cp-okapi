@@ -8,7 +8,7 @@ import { ISwatch } from '../../interfaces/product';
 })
 export class ProductItemComponent implements OnInit {
   @Input() public product;
-  isHovered = true;
+  isHovered = false;
   _currentThumbnail;
   private _currentSwatch;
 
@@ -50,11 +50,11 @@ export class ProductItemComponent implements OnInit {
   }
 
   hoverStateIn(): void {
-    this.handleImgView(false);
+    this.handleImgView(true);
   }
 
   hoverStateOut(): void {
-    this.handleImgView(true);
+    this.handleImgView(false);
   }
 
   onMouseLeave() {

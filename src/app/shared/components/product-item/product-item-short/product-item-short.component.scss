@@ -21,6 +21,10 @@ hr {
 .product-item-wrapper {
   position: relative;
   cursor: pointer;
+  
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .product-item-short {
@@ -55,6 +59,10 @@ hr {
 }
 
 .cart {
+  &:active, &:visited {
+    color: $primary-color;
+  }
+  
   &.added {
     color: $primary-color;
   }
@@ -88,4 +96,14 @@ hr {
   background-size: contain;
   transform: rotate(29deg);
   z-index: 10;
+}
+
+@include tablet {
+  .product-item-wrapper {
+    pointer-events: none;
+  }
+  
+  .product-item-short {
+    margin: 10px auto;
+  }
 }

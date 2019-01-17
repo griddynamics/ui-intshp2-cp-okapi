@@ -1,11 +1,29 @@
 <app-slideshow></app-slideshow>
+<app-heading [alertText]="'new'" [headingText]="'Arrivals'"></app-heading>
 <app-carousel>
-  <app-carousel-item>
-    <!-- <app-product-item></app-product-item> -->
+  <app-carousel-item *ngFor="let product of products">
+    <app-product-item [product]="product"></app-product-item>
   </app-carousel-item>
 </app-carousel>
-<div class="row-se">
-  <app-advertising-area *ngFor="let banner of banners" [content]="banner.htmlSnippet" [height]="banner.height" [width]="banner.width"></app-advertising-area>
+<div class="main-container">
+  <div class="row-sb">
+    <app-advertising-area
+      *ngFor="let banner of banners"
+      [content]="banner.htmlSnippet"
+      [height]="banner.height"
+      [width]="banner.width"
+    ></app-advertising-area>
+  </div>
 </div>
-<app-join-us></app-join-us>
 
+<app-heading  [alertText]="'wish'" [headingText]="'list'"></app-heading>
+
+<div class="main-container">
+  <div class="product-item-short-wrapper">
+    <ng-container *ngFor="let product of filteredByRating; let i = index">
+      <app-product-item-short  *ngIf="i < 3" [product]="product"></app-product-item-short>
+    </ng-container>
+  </div>
+</div>
+
+<app-join-us></app-join-us>

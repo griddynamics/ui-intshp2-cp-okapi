@@ -1,27 +1,32 @@
 <div class="main-container">
-    <div class="join">
-      <div class="info">
+  <div class="join">
+    <div class="info">
       <div class="letter">NEWS LETTER</div>
       <div class="message">join us now to get all news and special offers</div>
-      </div>
-      <div class="register">
-      <form [formGroup] = "submitForm" 
-            (ngSubmit)="onSubmit($event)">
+    </div>
+    <div class="register">
+      <form [formGroup]="submitForm" (ngSubmit)="onSubmit($event)">
         <div class="input-block">
-          <input *ngIf = "edited" 
-                 formControlName="email" 
-                 placeholder="type your email here"  />
-              <span *ngIf="invalidEmail(submitForm)"> 
-             Please enter a valid email
-          </span> 
+          <input
+            *ngIf="edited"
+            formControlName="email"
+            placeholder="type your email here"
+          />
+          <span *ngIf="invalidEmail(submitForm)">
+            Please enter a valid email
+          </span>
           <div class="msg">{{ msg }}</div>
         </div>
-       <button *ngIf = "edited" 
-               class="button-join" 
-               type="submit" 
-               [ngClass]="{disabled : !submitForm.valid}" 
-               (click)="submitForm.valid" >join us</button>
+        <button
+          *ngIf="edited"
+          class="button-join"
+          type="submit"
+          [ngClass]="{ disabled: !submitForm.valid }"
+          (click)="(submitForm.valid)"
+        >
+          join us
+        </button>
       </form>
-      </div>
     </div>
   </div>
+</div>

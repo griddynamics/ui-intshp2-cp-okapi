@@ -3,12 +3,17 @@
 @import '../../../../scss/reset';
 @import '../../../../scss/mixins';
 
-.main-container {
+.main-wrapper {
   padding: 0 $content-padding;
   background-color: $bg-color;
+}
+
+.main-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
+  max-width: $main-container-width;
 }
 
 .fas {
@@ -19,6 +24,7 @@
 .slider-container-main {
   width: 100%;
   overflow: hidden;
+  padding: 15px 0;
 }
 
 .slides-container {
