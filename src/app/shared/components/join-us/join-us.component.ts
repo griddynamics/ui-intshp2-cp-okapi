@@ -11,12 +11,13 @@ export class JoinUsComponent implements OnInit {
   submitForm: FormGroup;
   msg: string = null;
   edited = true;
+  emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.submitForm = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.email])
+      'email': new FormControl(null, [Validators.required, Validators.email, Validators.pattern(this.emailRegExp)])
     });
   }
 

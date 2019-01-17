@@ -11,7 +11,7 @@ export class ProductItemShortComponent extends ProductItemComponent {
   @Input() product;
 
   starsArray = Array(4).fill(null).map((x, i) => i);
-  isHovered = true;
+  isHovered = false;
 
   handleImgView(isHovered): void {
     this.isHovered = isHovered;

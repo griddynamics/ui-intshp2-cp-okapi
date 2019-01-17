@@ -1,11 +1,12 @@
-@import '../../../../scss/mixins';
-@import '../../../../scss/variables';
-@import '../../../../scss/fonts';
-@import '../../../../scss/reset';
+@import "../../../../scss/mixins";
+@import "../../../../scss/variables";
+@import "../../../../scss/fonts";
+@import "../../../../scss/reset";
 
 .product-item-wrapper {
   position: relative;
   cursor: pointer;
+  margin: 0 10px;
 }
 
 .product-item {
@@ -24,7 +25,7 @@
   }
 }
 .product-item-img {
-  background-image: url('../../../../assets/img/default.png');
+  background-image: url("../../../../assets/img/default.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -38,6 +39,8 @@
 }
 
 .hovered {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
   h2 {
     color: $primary-color;
     padding-bottom: 10%;
@@ -45,7 +48,7 @@
   }
   .product-item-img {
     padding-top: 45%;
-    animation: scale .5s, opacityBorn 1s;
+    animation: scale 0.5s, opacityBorn 1s;
   }
 }
 
@@ -90,6 +93,9 @@ hr {
     padding: 0 7%;
     font-family: "Font Awesome 5 Free";
     font-style: normal;
+    &:active, &:visited {
+      color: $primary-color;
+    }
   }
 }
 
@@ -98,18 +104,18 @@ hr {
 }
 
 .to-wish-list::before {
-  font-weight: 400; 
+  font-weight: 400;
   content: "\f004";
   color: $black-color;
 }
 
 .added-to-wishlist::before {
-  font-weight: 900; 
+  font-weight: 900;
   content: "\f004";
   color: $primary-color;
 }
 
-.gray-scale{
+.gray-scale {
   filter: grayscale(1);
   opacity: 0.5;
   pointer-events: none;
@@ -121,7 +127,7 @@ hr {
   width: 42%;
   padding-top: 100%;
   position: absolute;
-  background: url('../../../../assets/img/out_stock_en.png') no-repeat top;
+  background: url("../../../../assets/img/out_stock_en.png") no-repeat top;
   background-size: contain;
   transform: rotate(29deg);
   z-index: 10;
@@ -130,7 +136,7 @@ hr {
 
 @keyframes scale {
   0% {
-    transform: scale(.8);
+    transform: scale(0.8);
   }
   100% {
     transform: scale(1);
@@ -143,5 +149,23 @@ hr {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@include laptop {
+  .product-item {
+    height: 320px;
+  }
+}
+
+@include tablet {
+  .product-item {
+    pointer-events: none;
+    padding-top: 0;
+  }
+}
+@include mobile {
+  .product-item {
+    height: 365px;
   }
 }
