@@ -6,7 +6,6 @@
 .row-sb{
   display: flex;
   justify-content: space-between;
-  padding: 0 2.5%;
   margin: 10% auto;
   max-width: $main-container-width;
 
@@ -18,6 +17,10 @@
 
 app-product-item-short {
   width: 30%;
+  margin-right: 5%;
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .main-container {
@@ -28,7 +31,7 @@ app-product-item-short {
 .product-item-short-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: start;
   margin: 0 auto;
   max-width: $main-container-width;
 }
@@ -36,6 +39,7 @@ app-product-item-short {
 @include tablet {
   app-product-item-short {
     width: 100%;
+    margin-right: 0;
   }
 
   .row-sb{

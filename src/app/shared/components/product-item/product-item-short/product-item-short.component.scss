@@ -59,7 +59,9 @@ hr {
 }
 
 .cart {
-  &:active, &:visited {
+  color: $font-color;
+  
+  &:hover {
     color: $primary-color;
   }
   

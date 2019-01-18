@@ -17,7 +17,9 @@
         <hr>
         <div class="icons">
           <a href="#"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product.addedToCart}"></i></a>
-          <a href="#"><i class="to-wish-list" [ngClass]="{ 'added-to-wishlist': product.addedToWishList}"></i></a>
+          <!-- <a href="#wish-list"> -->
+            <i class="to-wish-list" (click)="addToWishList()" [ngClass]="{ 'added-to-wishlist': product.addedToWishList}"></i>
+          <!-- </a> -->
         </div>
       </div>
     </div>

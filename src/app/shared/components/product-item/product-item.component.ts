@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ISwatch } from '../../interfaces/product';
 
 @Component({
@@ -8,6 +8,9 @@ import { ISwatch } from '../../interfaces/product';
 })
 export class ProductItemComponent implements OnInit {
   @Input() public product;
+  @Output() addItemToWishList = new EventEmitter();
+
+
   isHovered = false;
   _currentThumbnail;
   private _currentSwatch;
@@ -74,6 +77,12 @@ export class ProductItemComponent implements OnInit {
     event.stopPropagation();
 
     this.currentSwatch = swatch;
+  }
+
+  addToWishList(): void {
+    event.stopPropagation();
+    this.product.addedToWishList = !this.product.addedToWishList;
+    this.addItemToWishList.emit(this.product);
   }
 
   private resetDefaultThumbnail(): void {

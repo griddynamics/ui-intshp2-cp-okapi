@@ -1,7 +1,7 @@
-@import '../../../../scss/variables';
-@import '../../../../scss/fonts';
-@import '../../../../scss/reset';
-@import '../../../../scss/mixins';
+@import "../../../../scss/variables";
+@import "../../../../scss/fonts";
+@import "../../../../scss/reset";
+@import "../../../../scss/mixins";
 
 .main-wrapper {
   padding: 0 $content-padding;
@@ -14,11 +14,42 @@
   align-items: center;
   margin: 0 auto;
   max-width: $main-container-width;
+  position: relative;
+}
+
+.arrow-left {
+  position: absolute;
+  left: -15px;
+  z-index: 1;
+
+  &:hover {
+    color: #ff5912;
+  }
+}
+
+.arrow-right {
+  position: absolute;
+  right: -15px;
+  z-index: 1;
+
+  &:hover {
+    color: #ff5912;
+  }
 }
 
 .fas {
   font-size: 30px;
   cursor: pointer;
+  border: 2px solid #afbbc580;
+  border-radius: 50%;
+  padding: 7px 14px;
+  background: $bg-color;
+  color: #afbbc580;
+
+  &:hover {
+    border: 2px solid #ff591266;
+    color: #ff591266;
+  }
 }
 
 .slider-container-main {
@@ -57,7 +88,7 @@
   ::-webkit-scrollbar-thumb {
     background: none;
   }
-
+  
   ::-webkit-scrollbar-thumb:hover {
     background: none;
   }
