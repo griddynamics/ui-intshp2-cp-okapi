@@ -21,7 +21,7 @@ export class HomePageComponent {
     thumbnailImageSrc: 'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
-    addedToWishList: false,
+    addedToWishList: true,
   },
   {
     id: '2',
@@ -139,15 +139,14 @@ export class HomePageComponent {
     htmlSnippet: '<img style="width:100%" src="../../../../assets/img/adv_area.png" >',
   }];
 
-  filteredByRating = this.products.filter((el) => el.rating === 4 && el.availability.length);
   wishListFilter = this.products.filter(el => el.addedToWishList);
 
   refreshWishList(resFromChild) {
     if (this.wishListFilter.every(el => el.id !== resFromChild.id)) {
       this.wishListFilter.unshift(resFromChild);
-    } else {
+      return;
+    }
       const indexOfItem = this.wishListFilter.findIndex(el => el.id === resFromChild.id);
       this.wishListFilter.splice(indexOfItem, 1);
-    }
   }
 }

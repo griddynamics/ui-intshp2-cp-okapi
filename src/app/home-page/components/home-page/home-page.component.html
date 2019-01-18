@@ -20,9 +20,6 @@
 
 <div class="main-container">
   <div class="product-item-short-wrapper">
-    <!-- <ng-container *ngFor="let product of filteredByRating; let i = index">
-      <app-product-item-short  *ngIf="i < 3" [product]="product"></app-product-item-short>
-    </ng-container> -->
     <ng-container *ngFor="let product of wishListFilter; let i = index">
       <app-product-item-short  *ngIf="i < 3" [product]="product"></app-product-item-short>
     </ng-container>
