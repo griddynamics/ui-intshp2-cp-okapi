@@ -1,0 +1,37 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+@import '../../../../scss/mixins';
+
+
+.main-container {
+  padding: 0 $content-padding;
+  background-color: $bg-color;
+}
+
+.heading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10% 0 5.5%;
+  text-align: center;
+}
+
+h2 {
+  color: $black-color;
+  font-family: $main-font-bold;
+  font-size: $font-size-heading-large;
+  text-transform: uppercase;
+  
+  .first-word {
+    color: $primary-color;
+  }
+}
+
+p {
+  color: $font-color;
+  font-family: $main-font-regular;
+  font-size: $font-size-medium;
+  line-height: 30px;
+}

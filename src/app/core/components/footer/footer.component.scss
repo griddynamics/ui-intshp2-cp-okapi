@@ -1,0 +1,268 @@
+@import '../../../../scss/mixins';
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+
+.main-container {
+  padding: 0 $content-padding;
+  background-color: $white-color;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 88px 0px;
+  width: 100%;
+  max-width: $main-container-width;
+  margin: 0 auto;
+
+  &-logo {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-right: 6px;
+
+    .logo {
+      background: url("../../../../assets/img/logo.png") no-repeat;
+      height: 40px;
+      width: 118px;
+      cursor: pointer;
+    }
+
+    p {
+      color: $black-color;
+      font-family: $main-font-regular;
+      font-size: $font-size-regular;
+      line-height: 30px;
+      margin-top: 14px;
+    }
+  }
+
+  &-nav {
+    display: flex;
+    width: 50%;
+
+    .about-us {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      margin-right: 24px;
+
+      a {
+        color: $black-color;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .our-feed {
+      width: 35%;
+      display: flex;
+      flex-direction: column;
+
+      a {
+        color: $black-color;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .join-us {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      padding-left: 14px;
+
+      a {
+        color: $black-color;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    li {
+      font-family: $main-font-regular;
+      font-size: $font-size-regular;
+      line-height: 30px;
+      list-style: disc;
+    }
+  }
+
+  &-payment {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+
+    h2 {
+      color: $primary-color;
+      font-family: $main-font-regular;
+      font-size: $font-size-medium;
+      line-height: 30px;
+      margin: 2px 0 15px 3px;
+    }
+
+    &-icon {
+      display: flex;
+      justify-content: space-around;
+
+      .fab {
+        font-size: $font-size-large;
+      }
+
+      .fa-cc-amex {
+        color: $am-ex-color;
+
+        &:hover {
+          color: $am-ex-color-lighter;
+        }
+      }
+
+      .fa-cc-paypal {
+        color: $pay-pal-color;
+
+        &:hover {
+          color: $pay-pal-color-lighter;
+        }
+      }
+
+      .fa-cc-visa {
+        color: $visa-color;
+
+        &:hover {
+          color: $visa-color-lighter;
+        }
+      }
+
+      .fa-cc-mastercard {
+        color: $master-card-color;
+
+        &:hover {
+          color: $master-card-color-lighter;
+        }
+      }
+
+      .fa-cc-amazon-pay {
+        color: $amazon-pay-color;
+
+        &:hover {
+          color: $amazon-pay-color-lighter;
+        }
+      }
+    }
+  }
+}
+
+
+@include laptop {
+  .footer-container {
+    flex-wrap: wrap;
+    padding: 22px 0px;
+
+    &-logo {
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0;
+      order: 1;
+      margin-top: 30px;
+
+      div {
+        margin-right: 60px;
+      }
+
+      p {
+        margin-top: 0;
+      }
+    }
+
+    &-nav {
+      width: 60%;
+
+      .about-us {
+        width: 25%;
+        margin-right: 24px;
+      }
+      .our-feed {
+        width: 40%;
+      }
+
+      .join-us {
+        width: 25%;
+      }
+    }
+
+    &-payment {
+      width: 27%;
+    }
+  }
+}
+
+@include tablet {
+  .footer-container {
+    padding: 44px 0px;
+
+    &-logo {
+      div {
+        margin-right: 20px;
+      }
+    }
+
+    &-nav {
+      width: 100%;
+      justify-content: center;
+
+      .about-us {
+        width: 30%;
+        margin: 0 $container-nav-margin;
+      }
+      .our-feed {
+        width: 32%;
+        margin: 0 $container-nav-margin;
+      }
+
+      .join-us {
+        width: 23%;
+        padding-left: 0;
+        margin: 0 $container-nav-margin;
+      }
+
+      li {
+        list-style: none;
+      }
+    }
+
+    &-payment {
+      width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+
+      h2 {
+        margin: 0 10px 0;
+      }
+
+      &-icon {
+        a {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  .footer-container-payment {
+    h2 {
+      display: none;
+    }
+  }
+}

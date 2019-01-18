@@ -1,0 +1,171 @@
+@import "../../../../scss/mixins";
+@import "../../../../scss/variables";
+@import "../../../../scss/fonts";
+@import "../../../../scss/reset";
+
+.product-item-wrapper {
+  position: relative;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.product-item {
+  width: 100%;
+  height: 365px;
+  background-color: $white-color;
+  text-align: center;
+  user-select: none;
+  padding: 8% 10% 10%;
+
+  h2 {
+    font-family: $main-font-bold;
+    font-size: $font-size-heading;
+    padding-bottom: 9%;
+    padding-top: 8%;
+  }
+}
+.product-item-img {
+  background-image: url("../../../../assets/img/default.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  padding-top: 100%;
+}
+
+.price {
+  font-family: $main-font-bold;
+  font-size: $font-size-heading;
+  color: $primary-color;
+}
+
+.hovered {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    color: $primary-color;
+    padding-bottom: 10%;
+    padding-top: 10%;
+  }
+  .product-item-img {
+    padding-top: 45%;
+    animation: scale 0.5s, opacityBorn 1s;
+  }
+}
+
+.sizes {
+  font-family: $main-font-bold;
+  font-size: $font-size-regular;
+  color: $black-color;
+
+  span:last-child {
+    span {
+      display: none;
+    }
+  }
+}
+
+.colors {
+  display: flex;
+  justify-content: center;
+  margin: 12% 0;
+}
+
+.swatch {
+  padding: 0 2px;
+}
+
+.color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+hr {
+  border-top: $main-border;
+  margin: 0 11%;
+}
+
+.icons {
+  margin-top: 15%;
+  font-size: $font-size-large;
+
+  i {
+    padding: 0 7%;
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    &:active, &:visited {
+      color: $primary-color;
+    }
+  }
+}
+
+.added-to-cart {
+  color: $primary-color;
+}
+
+.to-wish-list::before {
+  font-weight: 400;
+  content: "\f004";
+  color: $black-color;
+}
+
+.added-to-wishlist::before {
+  font-weight: 900;
+  content: "\f004";
+  color: $primary-color;
+}
+
+.gray-scale {
+  filter: grayscale(1);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.out-of-stock-logo {
+  top: 24px;
+  right: 25%;
+  width: 42%;
+  padding-top: 100%;
+  position: absolute;
+  background: url("../../../../assets/img/out_stock_en.png") no-repeat top;
+  background-size: contain;
+  transform: rotate(29deg);
+  z-index: 10;
+  user-select: none;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes opacityBorn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include laptop {
+  .product-item {
+    height: 320px;
+  }
+}
+
+@include tablet {
+  .product-item {
+    pointer-events: none;
+    padding-top: 0;
+  }
+}
+@include mobile {
+  .product-item {
+    height: 365px;
+  }
+}

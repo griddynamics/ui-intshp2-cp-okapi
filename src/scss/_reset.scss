@@ -1,0 +1,24 @@
+* {
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: $bg-color;
+  font-family: $main-font-regular;
+}
+
+a {
+  text-decoration: none;
+  color: $black-color;
+}
+
+button, div {
+  outline: none;
+}
+
+li {
+  list-style: none;
+}

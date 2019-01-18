@@ -1,0 +1,58 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+@import '../../../../scss/mixins';
+
+.row-sb{
+  display: flex;
+  justify-content: space-between;
+  margin: 10% auto;
+  max-width: $main-container-width;
+
+  app-advertising-area {
+    display: block;
+    width: 48%;
+  }
+} 
+
+app-product-item-short {
+  width: 30%;
+  margin-right: 5%;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.main-container {
+  padding: 0 $content-padding;
+  background-color: $bg-color;
+}
+
+.product-item-short-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin: 0 auto;
+  max-width: $main-container-width;
+}
+
+@include tablet {
+  app-product-item-short {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .row-sb{
+    flex-direction: column;
+
+    app-advertising-area {
+      display: block;
+      width: 90%;
+      margin: 5px auto;
+    }
+  }
+
+  .product-item-short-wrapper {
+    flex-direction: column;
+  }
+}
