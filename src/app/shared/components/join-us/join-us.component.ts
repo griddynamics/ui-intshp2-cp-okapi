@@ -11,7 +11,7 @@ export class JoinUsComponent implements OnInit {
   submitForm: FormGroup;
   msg: string = null;
   edited = true;
-  emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  private emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   constructor(private dataService: DataService) {}
 

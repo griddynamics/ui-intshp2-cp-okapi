@@ -49,7 +49,6 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
       this.counterScrolledItems += this.itemsPerPage;
       this.slidesMover(-100);
     }
-    console.log(this.counterScrolledItems, this.childrenLength);
   }
 
   public prevSlide(): void {
