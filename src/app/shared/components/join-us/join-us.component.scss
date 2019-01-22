@@ -104,6 +104,10 @@ form {
   text-transform: uppercase;
 }
 
+u {
+  cursor: pointer;
+}
+
 @include laptop {
   .main-container {
     padding: 0;

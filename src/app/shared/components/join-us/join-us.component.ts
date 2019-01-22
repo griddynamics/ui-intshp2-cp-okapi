@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/app/core/services/data.service';
 
+
 @Component({
   selector: 'app-join-us',
   templateUrl: './join-us.component.html',
   styleUrls: ['./join-us.component.scss']
 })
+
 export class JoinUsComponent implements OnInit {
   submitForm: FormGroup;
-  msg: string = null;
   edited = true;
   private emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -23,12 +24,20 @@ export class JoinUsComponent implements OnInit {
 
   onSubmit() {
     this.dataService.create('', this.submitForm.value).subscribe();
-      this.msg = 'Congratulations! You are with us!';
       this.edited = false;
+      localStorage.setItem('email', JSON.stringify(this.submitForm.value));
   }
 
   invalidEmail() {
     return !this.submitForm.get('email').valid && this.submitForm.get('email').touched;
   }
 
+  checkLocal() {
+    return localStorage.getItem('email') !== null;
+  }
+
+  unsubscribe() {
+  localStorage.removeItem('email');
+  this.edited = true;
+  }
 }

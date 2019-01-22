@@ -5,7 +5,7 @@
       <div class="message">join us now to get all news and special offers</div>
     </div>
     <div class="register">
-      <form [formGroup]="submitForm" (ngSubmit)="onSubmit($event)">
+      <form *ngIf="!checkLocal()" [formGroup]="submitForm" (ngSubmit)="onSubmit($event)">
         <div class="input-block">
           <input
             *ngIf="edited"
@@ -15,7 +15,6 @@
           <span *ngIf="invalidEmail(submitForm)">
             Please enter a valid email
           </span>
-          <div class="msg">{{ msg }}</div>
         </div>
         <button
           *ngIf="edited"
@@ -27,6 +26,12 @@
           join us
         </button>
       </form>
+      <div *ngIf="checkLocal()"  class="unsub">
+      <div class="msg">Congratulations! You are with us!</div>
+      <span>*if you want to unsubscribe please click
+        <u (click)= unsubscribe()>here</u>
+      </span>
+      </div>
     </div>
   </div>
 </div>
