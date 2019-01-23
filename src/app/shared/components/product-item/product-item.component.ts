@@ -10,7 +10,6 @@ export class ProductItemComponent implements OnInit {
   @Input() public product;
   @Output() addItemToWishList = new EventEmitter();
 
-
   isHovered = false;
   _currentThumbnail;
   private _currentSwatch;

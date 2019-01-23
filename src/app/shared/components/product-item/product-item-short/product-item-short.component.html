@@ -3,7 +3,7 @@
   <div class="product-item-short" [ngClass]="{'gray-scale': isOutOfStock}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
     <div class="preview-img-short" [ngStyle]="{'background-image': currentThumbnail}"></div>
     <hr>
-    <div>
+    <div class="main-details">
       <h2>{{product.title}}</h2>
       <div class="item-details">
         <div *ngIf="!isHovered" class="stars">

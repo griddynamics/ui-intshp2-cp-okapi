@@ -1,8 +1,12 @@
 <app-slideshow></app-slideshow>
-<app-heading [alertText]="'new'" [headingText]="'Arrivals'"></app-heading>
+<app-heading 
+  [alertText]="'new'" 
+  [headingText]="'Arrivals'"></app-heading>
 <app-carousel>
   <app-carousel-item *ngFor="let product of products">
-    <app-product-item (addItemToWishList)="refreshWishList($event)" [product]="product"></app-product-item>
+    <app-product-item 
+      (addItemToWishList)="wishListHandler($event)" 
+      [product]="product"></app-product-item>
   </app-carousel-item>
 </app-carousel>
 <div class="main-container">
@@ -16,14 +20,26 @@
   </div>
 </div>
 
-<app-heading id="wish-list" *ngIf="wishListFilter.length" [alertText]="'wish'" [headingText]="'list'"></app-heading>
+<app-heading 
+  id="wish-list" 
+  [alertText]="'wish'" 
+  [headingText]="'list'"
+></app-heading>
+
+<div class="main-container">
+  <app-wishlist [allProducts]="products.length"></app-wishlist>
+</div>
+
+<!-- <app-heading id="wish-list" *ngIf="wishListFilter?.length" [alertText]="'wish'" [headingText]="'list'"></app-heading>
 
 <div class="main-container">
   <div class="product-item-short-wrapper">
     <ng-container *ngFor="let product of wishListFilter; let i = index">
-      <app-product-item-short  *ngIf="i < 3" [product]="product"></app-product-item-short>
+      <app-product-item-short  *ngIf="i < visibleWishItems" [product]="product"></app-product-item-short>
     </ng-container>
   </div>
-</div>
+
+  <button class="load-more" (click)="visibleWishItems = visibleWishItems < products?.length ? products?.length : 3  "><i class="fas fa-ellipsis-h"></i></button>
+</div> -->
 
 <app-join-us></app-join-us>
