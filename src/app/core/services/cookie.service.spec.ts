@@ -22,4 +22,12 @@ describe('CookieService', () => {
     expect(cookie).toBe('value');
   });
 
+  it('delete method should work', () => {
+    const cookieService: CookieService = TestBed.get(CookieService);
+    cookieService.set(mockCookieName, mockCookieValue);
+    cookieService.delete(mockCookieName);
+    cookie = cookieService.get(mockCookieName);
+    expect(cookie).not.toBeDefined();
+  });
+
 });
