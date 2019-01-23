@@ -7,14 +7,26 @@ export class CookieService {
 
   constructor() { }
 
-  set(name: string, value: string, expires?: number, path?: string, domain?: string, secure?: boolean) {
-    const date = new Date();
-    date.setTime(date.getTime() + (expires * 24 * 60 * 60 * 1000));
-    document.cookie = name + '=' + value + ';'
-                      + 'expires =' + date.toUTCString() + ';'
-                      + 'path =' + path + ';'
-                      + 'domain =' + domain + ';'
-                      + 'secure =' + secure + ';';
+  set(name: string, value: string, expires?: number | Date, path?: string, domain?: string, secure?: boolean) {
+    let cookieString = name + '=' + value + ';';
+    if (expires) {
+      if (typeof expires === 'number') {
+        const dateExpires = new Date(new Date().getTime() + expires * 1000 * 60 * 60 * 24);
+        cookieString += 'expires=' + dateExpires.toUTCString() + ';';
+      } else {
+        cookieString += 'expires=' + expires.toUTCString() + ';';
+      }
+    }
+    if (path) {
+      cookieString += 'path=' + path + ';';
+    }
+    if (domain) {
+      cookieString += 'domain=' + domain + ';';
+    }
+    if (secure) {
+      cookieString += 'secure;';
+    }
+    document.cookie = cookieString;
   }
 
   get(name: string) {
@@ -26,9 +38,7 @@ export class CookieService {
     }
   }
 
-  delete(name: string) {
-    const date = new Date();
-    date.setTime(date.getTime() + (-1 * 24 * 60 * 60 * 1000));
-    document.cookie = name + '=; expires=' + date.toUTCString() + '; path=/';
+  delete(name) {
+    this.set(name, '', new Date('Thu, 01 Jan 1970 00:00:01 GMT'));
   }
 }
