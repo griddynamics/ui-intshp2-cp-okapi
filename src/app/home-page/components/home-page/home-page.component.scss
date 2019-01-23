@@ -29,30 +29,8 @@ app-product-item-short {
   background-color: $bg-color;
 }
 
-// .product-item-short-wrapper {
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   justify-content: start;
-//   margin: 0 auto;
-//   max-width: $main-container-width;
-// }
-
-// @include laptop {
-//   app-product-item-short {
-//     width: 48%;
-//     margin-right: 0;
-//   }
-
-//   .product-item-short-wrapper {
-//     justify-content: space-around;
-//   }
-// }
 
 @include tablet {
-  // app-product-item-short {
-  //   width: 100%;
-  // }
 
   .row-sb{
     flex-direction: column;
@@ -63,30 +41,4 @@ app-product-item-short {
       margin: 5px auto;
     }
   }
-
-  // .product-item-short-wrapper {
-  //   flex-direction: column;
-  // }
-
 }
-
-// .load-more {
-//   cursor: pointer;
-//   padding: 5px 10px;
-//   color: $primary-color;
-//   display: block;
-//   margin: 15px auto;
-//   transition: .4s;
-//   border-radius: 4px;
-
-//   &:hover {
-//     transform: scale(1.1);
-//     transition: .4s;
-//     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-//   }
-
-//   i {
-//     vertical-align: middle;
-//     font-size: 25px;
-//   }
-// }
