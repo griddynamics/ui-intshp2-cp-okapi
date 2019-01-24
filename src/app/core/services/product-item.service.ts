@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { IProduct, ProductAvailabilityState, ProductSize } from 'src/app/shared/interfaces/product';
-import { Observable, from, of, BehaviorSubject } from 'rxjs';
+import { Observable, from, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductItemService {
-  wishListArr: IProduct[] = [];
+  wishListArr: IProduct[];
 
   products: IProduct[] = [
     {
@@ -143,12 +143,12 @@ export class ProductItemService {
   // returns products as a stream to emulate server behavior
   getProducts(): Observable<IProduct> {
     const wishListFromLS = JSON.parse(localStorage.getItem('wishlist'));
-    const updatedProductsWithWL = this.products.map(el => {
+    const productsSynchronizedWithLS = this.products.map(el => {
       const currentItemInLS = wishListFromLS.find(e => el.id === e.id);
       return currentItemInLS ? currentItemInLS : el;
     });
 
-    return from(updatedProductsWithWL);
+    return from(productsSynchronizedWithLS);
   }
 
   public toggleProduct(item: IProduct): void {
