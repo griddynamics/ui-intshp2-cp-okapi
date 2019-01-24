@@ -8,11 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductDescriptionComponent implements OnInit {
   @Input() productTitle;
   @Input() productDescription;
+  @Input() productName;
 
+  name: string;
   title: string;
   description: string;
 
   ngOnInit() {
+    this.name = this.productName;
     this.title = this.productTitle;
     this.description = this.productDescription;
   }
