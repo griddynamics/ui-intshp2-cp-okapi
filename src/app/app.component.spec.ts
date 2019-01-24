@@ -1,6 +1,7 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 
 
 
@@ -12,6 +13,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        CoreModule
       ],
       declarations: [
         AppComponent,
@@ -26,7 +28,7 @@ describe('AppComponent', () => {
   });
 
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
