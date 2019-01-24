@@ -8,20 +8,20 @@ export class CookieService {
   constructor() { }
 
   set(name: string, value: string, expires?: number | Date, path?: string, domain?: string, secure?: boolean) {
-    let cookieString = name + '=' + value + ';';
+    let cookieString = `${name}=${value};`;
     if (expires) {
       if (typeof expires === 'number') {
         const dateExpires = new Date(new Date().getTime() + expires * 1000 * 60 * 60 * 24);
-        cookieString += 'expires=' + dateExpires.toUTCString() + ';';
+        cookieString += `expires=${dateExpires.toUTCString()};`;
       } else {
-        cookieString += 'expires=' + expires.toUTCString() + ';';
+        cookieString += `expires=${expires.toUTCString()};`;
       }
     }
     if (path) {
-      cookieString += 'path=' + path + ';';
+      cookieString += `path=${path};`;
     }
     if (domain) {
-      cookieString += 'domain=' + domain + ';';
+      cookieString += `domain=${domain};`;
     }
     if (secure) {
       cookieString += 'secure;';
