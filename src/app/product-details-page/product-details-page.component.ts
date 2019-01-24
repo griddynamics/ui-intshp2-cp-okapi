@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RecentlyViewedService } from '../shared/components/recently-viewed/recently-viewed.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-details-page',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsPageComponent implements OnInit {
 
-  constructor() { }
+ @Input() id: number;
+
+  constructor(
+    private recView: RecentlyViewedService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+   this.id = +this.route.snapshot.paramMap.get('id');
+    // this..(this.id)
+    //     .subscribe();
+
+    // const currentItem = this.products.filter(el => el.id === this.route.snapshot.params.id);
+    this.recView.setObject(this.id);
   }
 
 }

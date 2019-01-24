@@ -88,4 +88,12 @@ export class ProductItemComponent implements OnInit {
   private resetDefaultThumbnail(): void {
     this.currentThumbnail = this.product.thumbnailImageSrc;
   }
+
+//   getId() {this.id = +this.route.snapshot.paramMap.get('id');
+//   // this..(this.id)
+//   //     .subscribe();
+
+//   // const currentItem = this.products.filter(el => el.id === this.route.snapshot.params.id);
+//   this.recView.setObject(this.id);
+// }
 }
