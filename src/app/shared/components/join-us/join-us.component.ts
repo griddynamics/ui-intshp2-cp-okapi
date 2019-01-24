@@ -33,11 +33,11 @@ export class JoinUsComponent implements OnInit {
   }
 
   checkLocal() {
-    return localStorage.getItem('email') !== null;
+    return localStorage.getItem('email');
   }
 
   unsubscribe() {
-  localStorage.removeItem('email');
-  this.edited = true;
+    localStorage.removeItem('email');
+    this.edited = true;
   }
 }

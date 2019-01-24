@@ -2,7 +2,7 @@
   <div class="join">
     <div class="info">
       <div class="letter">NEWS LETTER</div>
-      <div class="message">join us now to get all news and special offers</div>
+      <div class="join-message">join us now to get all news and special offers</div>
     </div>
     <div class="register">
       <form *ngIf="!checkLocal()" [formGroup]="submitForm" (ngSubmit)="onSubmit($event)">
@@ -27,7 +27,7 @@
         </button>
       </form>
       <div *ngIf="checkLocal()"  class="unsub">
-      <div class="msg">Congratulations! You are with us!</div>
+      <div class="congrsts-message">Congratulations! You are with us!</div>
       <span>*if you want to unsubscribe please click
         <u (click)= unsubscribe()>here</u>
       </span>
