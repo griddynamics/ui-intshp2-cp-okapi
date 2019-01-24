@@ -10,12 +10,13 @@ export class CookieService {
   set(name: string, value: string, expires?: number | Date, path?: string, domain?: string, secure?: boolean) {
     let cookieString = `${name}=${value};`;
     if (expires) {
+      let expireTerm = expires;
       if (typeof expires === 'number') {
-        const dateExpires = new Date(new Date().getTime() + expires * 1000 * 60 * 60 * 24);
-        cookieString += `expires=${dateExpires.toUTCString()};`;
+        expireTerm = new Date(new Date().getTime() + expires * 1000 * 60 * 60 * 24);
       } else {
-        cookieString += `expires=${expires.toUTCString()};`;
+        expireTerm = expires;
       }
+      cookieString += `expires=${expireTerm.toUTCString()};`;
     }
     if (path) {
       cookieString += `path=${path};`;
