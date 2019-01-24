@@ -1,22 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-description',
   templateUrl: './product-description.component.html',
   styleUrls: ['./product-description.component.scss']
 })
-export class ProductDescriptionComponent implements OnInit {
-  @Input() productTitle;
-  @Input() productDescription;
-  @Input() productName;
-
-  name: string;
-  title: string;
-  description: string;
-
-  ngOnInit() {
-    this.name = this.productName;
-    this.title = this.productTitle;
-    this.description = this.productDescription;
-  }
+export class ProductDescriptionComponent {
+  @Input() name: string;
+  @Input() title: string;
+  @Input() description: string;
 }
