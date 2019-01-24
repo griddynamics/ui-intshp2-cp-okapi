@@ -20,6 +20,7 @@ export class ProductsService {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: true,
+    description: 'Half Jacket + Skiny Trousers + Boot leather',
   },
   {
     id: '2',
@@ -33,6 +34,7 @@ export class ProductsService {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
+    description: 'Half Jacket + Skiny Trousers + Boot leather',
   },
   {
     id: '3',
@@ -46,6 +48,7 @@ export class ProductsService {
     sizes: [],
     addedToCart: false,
     addedToWishList: false,
+    description: 'Half Jacket + Skiny Trousers + Boot leather',
   },
   {
     id: '4',
@@ -59,6 +62,7 @@ export class ProductsService {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
+    description: 'Half Jacket + Skiny Trousers + Boot leather',
   },
   {
     id: '5',
@@ -72,6 +76,7 @@ export class ProductsService {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
+    description: 'Half Jacket + Skiny Trousers + Boot leather',
   },
   {
     id: '6',
@@ -85,6 +90,7 @@ export class ProductsService {
     sizes: [],
     addedToCart: false,
     addedToWishList: false,
+    description: 'Half Jacket + Skiny Trousers + Boot leather',
   },
   {
     id: '7',
@@ -98,6 +104,7 @@ export class ProductsService {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
+    description: 'Half Jacket + Skiny Trousers + Boot leather',
   },
   {
     id: '8',
@@ -111,6 +118,7 @@ export class ProductsService {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
+    description: 'Half Jacket + Skiny Trousers + Boot leather',
   },
   {
     id: '9',
@@ -124,6 +132,7 @@ export class ProductsService {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
+    description: 'Half Jacket + Skiny Trousers + Boot leather',
   }
   ];
 }

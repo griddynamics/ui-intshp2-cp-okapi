@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from 'src/app/core/services/products.service';
-import { IProduct } from 'src/app/shared/interfaces/product';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-product-description',
@@ -9,16 +6,14 @@ import { IProduct } from 'src/app/shared/interfaces/product';
   styleUrls: ['./product-description.component.scss']
 })
 export class ProductDescriptionComponent implements OnInit {
+  @Input() productTitle;
+  @Input() productDescription;
 
-  productDetails: IProduct;
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private productsService: ProductsService
-  ) { }
+  title: string;
+  description: string;
 
   ngOnInit() {
-    const id: string = this.activatedRoute.snapshot.params.id;
-    this.productDetails = this.productsService.products.find(el => el.id === id);
+    this.title = this.productTitle;
+    this.description = this.productDescription;
   }
-
 }
