@@ -13,7 +13,8 @@
   "prepush": {
     "run": [
       "lint",
-      "test"
+      "test",
+      "coverage"
     ]
   },
   "private": true,
