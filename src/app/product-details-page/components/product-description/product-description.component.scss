@@ -5,11 +5,10 @@
 
 .main-container {
   padding: 0 $content-padding;
-  background-color: $bg-color;
+  background-color: $white-color;
 
   &-wrapper {
-    padding: 0 $wrapper-padding;
-    margin: 95px 0 134px;
+    padding: 95px $wrapper-padding 134px $wrapper-padding;
     display: flex;
   }
 }
@@ -17,14 +16,12 @@
 .image-container {
   min-width: 330px;
   height: 414px;
-  background: $primary-color;
   margin-top: 8px;
   margin-right: 8%;
 }
 
 .details-container {
   &-info {
-
     h2 {
       color: $primary-color;
       font-family: $main-font-bold;

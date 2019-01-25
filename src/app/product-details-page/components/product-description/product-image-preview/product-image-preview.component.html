@@ -1,0 +1,9 @@
+<div class="img-big-container">
+  <img src="{{imageSrc}}">
+</div>
+<div class="img-small-container">
+  <div [ngClass]="{'img': swatch !== ''}" *ngFor="let swatch of smallImagesArr; let i = index" (click)="scaleImg(swatch, i)">
+    <div [ngClass]="{'background-toggle': i === selectedImg}"></div>
+    <img src="{{swatch}}">
+  </div>
+</div>

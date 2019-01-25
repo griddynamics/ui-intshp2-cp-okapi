@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./product-description.component.scss']
 })
 export class ProductDescriptionComponent {
-  @Input() name: string;
-  @Input() title: string;
-  @Input() description: string;
+  @Input() product;
+
 }
