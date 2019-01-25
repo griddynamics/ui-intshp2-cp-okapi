@@ -153,7 +153,8 @@ export class ProductItemService {
 
   public toggleProduct(item: IProduct): void {
     // adding product if it isn't in wishlist
-    if (this.wishListArr.every(el => el.id !== item.id)) {
+    const itemMissingInLS = this.wishListArr.every(el => el.id !== item.id);
+    if (itemMissingInLS) {
       this.wishListArr.unshift(item);
       this.setProductToLS(this.wishListArr);
       this.updateBS(this.wishListArr);
