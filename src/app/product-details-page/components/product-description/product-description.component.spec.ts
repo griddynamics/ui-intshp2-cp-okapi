@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductDescriptionComponent } from './product-description.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ZoomitComponent } from './product-image-preview/zoomit/zoomit.component';
 
 describe('ProductDescriptionComponent', () => {
   let component: ProductDescriptionComponent;
@@ -8,7 +9,7 @@ describe('ProductDescriptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductDescriptionComponent ],
+      declarations: [ ProductDescriptionComponent, ZoomitComponent ],
       imports: [RouterTestingModule]
     })
     .compileComponents();

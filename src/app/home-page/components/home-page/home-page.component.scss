@@ -3,6 +3,14 @@
 @import '../../../../scss/reset';
 @import '../../../../scss/mixins';
 
+app-product-item-short {
+  width: 30%;
+  margin-right: 5%;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
 .row-sb{
   display: flex;
   justify-content: space-between;
@@ -15,14 +23,6 @@
   }
 } 
 
-app-product-item-short {
-  width: 30%;
-  margin-right: 5%;
-  &:last-child {
-    margin-right: 0;
-  }
-}
-
 .main-container {
   padding: 0 $content-padding;
   background-color: $bg-color;
@@ -31,7 +31,7 @@ app-product-item-short {
 .product-item-short-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   margin: 0 auto;
   max-width: $main-container-width;
 }

@@ -3,6 +3,12 @@
 @import '../../../../scss/reset';
 @import '../../../../scss/mixins';
 
+app-zoomit {
+  display: flex;
+  z-index: 10;
+  position: relative;
+}
+
 .main-container {
   padding: 0 $content-padding;
   background-color: $bg-color;
