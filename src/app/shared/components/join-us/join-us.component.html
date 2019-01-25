@@ -5,7 +5,7 @@
       <div class="join-message">join us now to get all news and special offers</div>
     </div>
     <div class="register">
-      <form *ngIf="!checkLocal()" [formGroup]="submitForm" (ngSubmit)="onSubmit($event)">
+      <form *ngIf="!checkCookie()" [formGroup]="submitForm" (ngSubmit)="onSubmit($event)">
         <div class="input-block">
           <input
             *ngIf="edited"
@@ -26,7 +26,7 @@
           join us
         </button>
       </form>
-      <div *ngIf="checkLocal()"  class="unsub">
+      <div *ngIf="checkCookie()"  class="unsub">
       <div class="congrsts-message">Congratulations! You are with us!</div>
       <span>*if you want to unsubscribe please click
         <u (click)= unsubscribe()>here</u>

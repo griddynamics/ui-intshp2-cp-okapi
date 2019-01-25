@@ -34,7 +34,7 @@ export class JoinUsComponent implements OnInit {
     return !this.submitForm.get('user_email').valid && this.submitForm.get('user_email').touched;
   }
 
-  checkLocal() {
+  checkCookie() {
     return this.cookieService.get('user_email');
   }
 
