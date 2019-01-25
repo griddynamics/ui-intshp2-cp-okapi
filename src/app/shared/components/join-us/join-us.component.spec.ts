@@ -40,12 +40,12 @@ describe('JoinUsComponent', () => {
   });
 
   it('form should be invalid', () => {
-    component.submitForm.controls['email'].setValue('');
+    component.submitForm.controls['user_email'].setValue('');
     expect(component.submitForm.valid).toBeFalsy();
   });
 
   it('form should be valid', () => {
-    component.submitForm.controls['email'].setValue('asd@asd.com');
+    component.submitForm.controls['user_email'].setValue('asd@asd.com');
     expect(component.submitForm.valid).toBeTruthy();
   });
 });
