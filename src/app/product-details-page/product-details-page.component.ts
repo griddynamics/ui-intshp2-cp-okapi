@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailsPageComponent implements OnInit {
 
- @Input() id: number;
+ id: number;
 
   constructor(
     private recView: RecentlyViewedService,
@@ -24,6 +24,7 @@ export class ProductDetailsPageComponent implements OnInit {
 
     // const currentItem = this.products.filter(el => el.id === this.route.snapshot.params.id);
     this.recView.setObject(this.id);
+    // console.log(this.id);
   }
 
 }

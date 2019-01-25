@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RecentlyViewedService } from './recently-viewed.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,8 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./recently-viewed.component.scss']
 })
 export class RecentlyViewedComponent implements OnInit {
-   id: number;
-
+   @Input() id: number;
   constructor(private recentlyViewedService: RecentlyViewedService,
               private route: ActivatedRoute) { }
 
@@ -20,5 +19,6 @@ export class RecentlyViewedComponent implements OnInit {
 
     // // const currentItem = this.products.filter(el => el.id === this.route.snapshot.params.id);
     // this.recentlyViewedService.setObject(this.id);
+    console.log(this.id);
   }
 }
