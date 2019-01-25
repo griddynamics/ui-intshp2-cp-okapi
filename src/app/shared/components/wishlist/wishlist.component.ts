@@ -8,9 +8,10 @@ import { IProduct } from '../../interfaces/product';
   styleUrls: ['./wishlist.component.scss']
 })
 export class WishlistComponent implements OnInit {
-  @Input() allProducts;
+  @Input() allProducts: number;
 
-  public visibleWishItems = 3;
+  public visibleWishItems: number;
+  public viewPortForItems: number;
   public wishlist: IProduct[];
 
   constructor(
@@ -21,13 +22,13 @@ export class WishlistComponent implements OnInit {
     this.productItem.productsSubscribers.subscribe(data => {
       this.wishlist = data;
     });
+
+    // here some logic how to handle visibleWishItems count depending on parent width
+    this.viewPortForItems = window.innerWidth <= 1024 ? 2 : 3;
+    this.visibleWishItems = this.viewPortForItems;
   }
 
-  loadMoreHandler() {
-    if (this.visibleWishItems >= this.wishlist.length) {
-      this.visibleWishItems = 3;
-      return;
-    }
+  public loadMoreHandler(): void {
     this.visibleWishItems = this.allProducts;
   }
 }

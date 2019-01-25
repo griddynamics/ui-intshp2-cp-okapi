@@ -15,6 +15,7 @@ import { AdvertisingAreaComponent } from './components/advertising-area/advertis
 import { SafePipe } from '../pipes/safe.pipe';
 import { HeadingComponent } from './components/heading/heading.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { LoadMoreComponent } from './components/load-more/load-more.component';
 
 const MODULES = [
   CommonModule,
@@ -36,6 +37,7 @@ const MODULES = [
     ProductItemShortComponent,
     HeadingComponent,
     WishlistComponent,
+    LoadMoreComponent,
   ],
   imports: [...MODULES],
   exports: [
@@ -49,6 +51,7 @@ const MODULES = [
     ProductItemShortComponent,
     HeadingComponent,
     WishlistComponent,
+    LoadMoreComponent
   ],
 })
 export class SharedModule {

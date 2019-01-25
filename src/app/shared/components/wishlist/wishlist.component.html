@@ -1,8 +1,7 @@
-<div class="product-item-short-wrapper">
-  <ng-container *ngFor="let product of wishlist; let i = index">
-    <app-product-item-short  *ngIf="i < visibleWishItems" [product]="product"></app-product-item-short>
- </ng-container>
-</div>
-<button class="load-more" (click)="loadMoreHandler()">
-    <i class="fas fa-ellipsis-h"></i> 
-</button>
+<app-load-more [buttonVisibility]="wishlist.length > visibleWishItems" (loadMore)="loadMoreHandler($event)">
+  <div class="product-item-short-wrapper">
+    <ng-container *ngFor="let product of wishlist; let i = index">
+      <app-product-item-short *ngIf="i < visibleWishItems" [product]="product"></app-product-item-short>
+    </ng-container>
+  </div>
+</app-load-more>

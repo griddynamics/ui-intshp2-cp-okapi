@@ -1,0 +1,26 @@
+
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+@import '../../../../scss/mixins';
+
+.load-more {
+  cursor: pointer;
+  padding: 5px 10px;
+  color: $primary-color;
+  display: block;
+  margin: 15px auto;
+  transition: .4s;
+  border-radius: 4px;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: .4s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  i {
+    vertical-align: middle;
+    font-size: 25px;
+  }
+}
