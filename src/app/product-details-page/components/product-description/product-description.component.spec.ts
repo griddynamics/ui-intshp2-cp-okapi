@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductDescriptionComponent } from './product-description.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductImagePreviewComponent } from './product-image-preview/product-image-preview.component';
+import { ProductOrderComponent } from './product-order/product-order.component';
 
 describe('ProductDescriptionComponent', () => {
   const productInfo = {
@@ -18,7 +19,7 @@ describe('ProductDescriptionComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        ProductDescriptionComponent, ProductImagePreviewComponent
+        ProductDescriptionComponent, ProductImagePreviewComponent, ProductOrderComponent
       ],
     }).compileComponents();
   }));
