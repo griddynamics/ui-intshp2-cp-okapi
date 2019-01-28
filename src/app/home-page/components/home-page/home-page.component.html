@@ -30,16 +30,4 @@
   <app-wishlist [allProducts]="products.length"></app-wishlist>
 </div>
 
-<!-- <app-heading id="wish-list" *ngIf="wishListFilter?.length" [alertText]="'wish'" [headingText]="'list'"></app-heading>
-
-<div class="main-container">
-  <div class="product-item-short-wrapper">
-    <ng-container *ngFor="let product of wishListFilter; let i = index">
-      <app-product-item-short  *ngIf="i < visibleWishItems" [product]="product"></app-product-item-short>
-    </ng-container>
-  </div>
-
-  <button class="load-more" (click)="visibleWishItems = visibleWishItems < products?.length ? products?.length : 3  "><i class="fas fa-ellipsis-h"></i></button>
-</div> -->
-
 <app-join-us></app-join-us>

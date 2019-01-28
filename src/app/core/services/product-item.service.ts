@@ -132,7 +132,6 @@ export class ProductItemService {
   public productsSubscribers = this.productsSource.asObservable();
 
   constructor() {
-    // create logic, that saves wished items in carousels heart
     this.wishListArr = localStorage.getItem('wishlist') ? JSON.parse(localStorage.getItem('wishlist')) : [];
     if (!localStorage.getItem('wishlist')) {
       localStorage.setItem('wishlist', '[]');
@@ -140,7 +139,6 @@ export class ProductItemService {
     this.productsSource.next(this.wishListArr);
   }
 
-  // returns products as a stream to emulate server behavior
   getProducts(): Observable<IProduct> {
     const wishListFromLS = JSON.parse(localStorage.getItem('wishlist'));
     const productsSynchronizedWithLS = this.products.map(el => {
@@ -152,7 +150,6 @@ export class ProductItemService {
   }
 
   public toggleProduct(item: IProduct): void {
-    // adding product if it isn't in wishlist
     const itemMissingInLS = this.wishListArr.every(el => el.id !== item.id);
     if (itemMissingInLS) {
       this.wishListArr.unshift(item);
@@ -160,19 +157,17 @@ export class ProductItemService {
       this.updateBS(this.wishListArr);
       return;
     }
-    // removing item if it already exists in wishlist
+
     const indexOfItem = this.wishListArr.findIndex(el => el.id === item.id);
     this.wishListArr.splice(indexOfItem, 1);
     this.setProductToLS(this.wishListArr);
     this.updateBS(this.wishListArr);
   }
 
-  // updatind of BehaviorSubject, that will be emited in wishlist component
   private updateBS(wishArr: IProduct[]): void {
     this.productsSource.next(wishArr);
   }
 
-  // sets item to localStorage
   private setProductToLS(item: IProduct[]): void {
     localStorage.setItem('wishlist', JSON.stringify(item));
   }

@@ -26,4 +26,20 @@ describe('WishlistComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create', () => {
+    component.visibleWishItems = 1;
+    component.allProducts = 5;
+    // const spy = spyOn(component, 'countItemsInViewPort');
+    // component.countItemsInViewPort();
+    // expect(spy).toHaveBeenCalled();
+  });
+
+  it('should create', () => {
+    const spy = spyOn(component, 'loadMoreHandler');
+    const test = component.loadMoreHandler();
+    component.loadMoreHandler();
+    // expect(spy).toHaveBeenCalled();
+    // expect(test).toEqual(undefined);
+  });
 });
