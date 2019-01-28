@@ -24,7 +24,6 @@ describe('JoinUsComponent', () => {
     fixture = TestBed.createComponent(JoinUsComponent);
     component = fixture.componentInstance;
     debugEl = fixture.debugElement.query(By.css('form'));
-    el = debugEl.nativeElement;
     fixture.detectChanges();
   });
 
