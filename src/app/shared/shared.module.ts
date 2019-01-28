@@ -15,7 +15,7 @@ import { AdvertisingAreaComponent } from './components/advertising-area/advertis
 import { SafePipe } from '../pipes/safe.pipe';
 import { HeadingComponent } from './components/heading/heading.component';
 import { RecentlyViewedComponent } from './components/recently-viewed/recently-viewed.component';
-import { ProductDetailsPageComponent } from '../product-details-page/product-details-page.component';
+
 
 const MODULES = [
   CommonModule,
