@@ -3,6 +3,10 @@
 @import "../../../../scss/reset";
 @import "../../../../scss/mixins";
 
+u {
+  cursor: pointer;
+}
+
 .main-container {
   padding: 0 $content-padding;
   background-color: $bg-color;
@@ -47,7 +51,7 @@
   }
 }
 
-.message {
+.join-message {
   font-family: $main-font-italic;
   color: $black-color;
   font-weight: bold;
@@ -97,7 +101,7 @@ form {
   margin-right: 10px;
 }
 
-.msg {
+.congrats-message {
   color: $primary-color;
   font-family: $main-font-bold;
   font-size: 18px;
@@ -108,10 +112,9 @@ form {
   .main-container {
     padding: 0;
   }
+
   .info {
     flex-direction: column;
-  }
-  .info {
     align-items: center;
   }
 
@@ -129,12 +132,12 @@ form {
 }
 
 @include mobile {
-  .message {
+  .join-message {
     font-size: 14px;
     text-align: center;
   }
   
-  .msg {
+  .congrats-message {
     font-size: 12px;
     text-align: center;
   }

@@ -4,6 +4,7 @@ import { ProductDetailsPageComponent } from './product-details-page.component';
 import { ProductDescriptionComponent } from '../product-description/product-description.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ZoomitComponent } from '../product-description/product-image-preview/zoomit/zoomit.component';
+import { ProductImagePreviewComponent } from '../product-description/product-image-preview/product-image-preview.component';
 
 describe('ProductDetailsPageComponent', () => {
   let component: ProductDetailsPageComponent;
@@ -11,7 +12,8 @@ describe('ProductDetailsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductDetailsPageComponent, ProductDescriptionComponent, ZoomitComponent ],
+      declarations: [ ProductDetailsPageComponent, ProductDescriptionComponent, ProductImagePreviewComponent,
+      ZoomitComponent ],
       imports: [RouterTestingModule]
     })
     .compileComponents();
