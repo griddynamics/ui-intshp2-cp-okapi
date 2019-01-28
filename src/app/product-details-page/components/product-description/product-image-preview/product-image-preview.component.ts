@@ -22,7 +22,7 @@ export class ProductImagePreviewComponent implements OnInit {
     this.imageSrc = this.thumbnailImageSrc;
   }
 
-  scaleImg(swatch, i) {
+  setSelectedImg(swatch, i) {
     this.imageSrc = swatch;
     this.selectedImg = i;
   }
