@@ -3,6 +3,12 @@
 @import '../../../../../scss/reset';
 @import '../../../../../scss/mixins';
 
+app-zoom {
+  display: flex;
+  z-index: 10;
+  position: relative;
+}
+
 .img-big-container {
   display: flex;
   justify-content: center;

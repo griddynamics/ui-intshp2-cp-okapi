@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductDescriptionComponent } from './product-description.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ZoomitComponent } from './product-image-preview/zoomit/zoomit.component';
+import { ZoomComponent } from './product-image-preview/zoom/zoom.component';
 import { ProductImagePreviewComponent } from './product-image-preview/product-image-preview.component';
 
 describe('ProductDescriptionComponent', () => {
@@ -20,7 +20,7 @@ describe('ProductDescriptionComponent', () => {
       ],
       declarations: [
         ProductDescriptionComponent, ProductImagePreviewComponent,
-        ZoomitComponent
+        ZoomComponent
       ],
     }).compileComponents();
   }));

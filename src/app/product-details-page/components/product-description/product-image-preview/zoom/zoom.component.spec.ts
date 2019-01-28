@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZoomitComponent } from './zoomit.component';
+import { ZoomComponent } from './zoom.component';
 
-describe('ZoomitComponent', () => {
-  let component: ZoomitComponent;
-  let fixture: ComponentFixture<ZoomitComponent>;
+describe('ZoomComponent', () => {
+  let component: ZoomComponent;
+  let fixture: ComponentFixture<ZoomComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ZoomitComponent ]
+      declarations: [ ZoomComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ZoomitComponent);
+    fixture = TestBed.createComponent(ZoomComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,7 +24,7 @@ describe('ZoomitComponent', () => {
   });
 
   it('should return undefined if we call stop', () => {
-    fixture = TestBed.createComponent(ZoomitComponent);
+    fixture = TestBed.createComponent(ZoomComponent);
     component = fixture.componentInstance;
 
     const functionsReturn = component.onMouseLeave();
@@ -32,7 +32,7 @@ describe('ZoomitComponent', () => {
   });
 
   it('should return undefined if we call stop', () => {
-    fixture = TestBed.createComponent(ZoomitComponent);
+    fixture = TestBed.createComponent(ZoomComponent);
     component = fixture.componentInstance;
     const functionsReturn = component.onMouseOver();
     expect(functionsReturn).toBeUndefined();

@@ -63,14 +63,6 @@ describe('ProductItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('resetDefaultThumbnail should set preview image', () => {
-    component.product = product;
-    component.resetDefaultThumbnail();
-    expect(component.currentThumbnail).toBe(
-      `url(${product.thumbnailImageSrc})`
-    );
-  });
-
   it('should return undefined if we call stop', () => {
     fixture = TestBed.createComponent(ProductItemComponent);
     component = fixture.componentInstance;
