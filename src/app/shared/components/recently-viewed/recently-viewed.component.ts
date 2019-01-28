@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RecentlyViewedService } from './recently-viewed.service';
-import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../../interfaces/product';
 
 @Component({
@@ -15,8 +14,7 @@ export class RecentlyViewedComponent implements OnInit {
   item;
 
   products;
-  constructor(private recentlyViewedService: RecentlyViewedService,
-              private route: ActivatedRoute) { }
+  constructor(private recentlyViewedService: RecentlyViewedService) { }
 
   ngOnInit() {
     this.recentlyViewedService.currentProduct.subscribe(data => {

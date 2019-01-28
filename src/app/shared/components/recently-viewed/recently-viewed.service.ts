@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { IProduct, ProductAvailabilityState, ProductSize } from '../../interfaces/product';
 import { BehaviorSubject } from 'rxjs';
@@ -144,7 +143,7 @@ export class RecentlyViewedService {
   ];
 
 
-  constructor(private router: ActivatedRoute) {
+  constructor() {
     const condition = JSON.parse(localStorage.getItem('recentlyViewed'));
     if (!condition) {
       const arrForStorage = JSON.stringify([]);
