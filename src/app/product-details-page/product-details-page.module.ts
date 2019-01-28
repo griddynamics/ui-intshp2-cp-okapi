@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProductDetailsPageRoutingModule } from './product-details-page-routing.module';
-import { ProductDetailsPageComponent } from './product-details-page.component';
+import { ProductDescriptionComponent } from './components/product-description/product-description.component';
+import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
+import { ProductImagePreviewComponent } from './components/product-description/product-image-preview/product-image-preview.component';
 
 @NgModule({
-  declarations: [ProductDetailsPageComponent],
+  declarations: [ProductDetailsPageComponent, ProductDescriptionComponent, ProductImagePreviewComponent],
   imports: [
     CommonModule,
     ProductDetailsPageRoutingModule

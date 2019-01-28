@@ -18,14 +18,18 @@
 
 <app-heading id="wish-list" *ngIf="wishListFilter.length" [alertText]="'wish'" [headingText]="'list'"></app-heading>
 
-<div class="main-container">
+<!-- <div class="main-container">
   <div class="product-item-short-wrapper">
     <ng-container *ngFor="let product of wishListFilter; let i = index">
       <app-product-item-short  *ngIf="i < 3" [product]="product"></app-product-item-short>
     </ng-container>
   </div>
-</div>
+</div> -->
 
-<app-recently-viewed></app-recently-viewed> 
-
+<div class="main-container">
+    <div class="product-item-short-wrapper">
+          <app-recently-viewed></app-recently-viewed> 
+    </div>
+  </div>
+  
 <app-join-us></app-join-us>

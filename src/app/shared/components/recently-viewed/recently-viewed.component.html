@@ -1,13 +1,7 @@
-<!-- <div class="main-container">
-    <div class="product-item-short-wrapper">
-      <ng-container *ngFor="let product of wishListFilter; let i = index">
-        <app-product-item-short  *ngIf="i < 3" [product]="product.id"></app-product-item-short>
-      </ng-container>
-    </div>
-  </div> -->
+   <div>
+      <div *ngFor="let product of products">
+        <app-product-item-short [product]="product"></app-product-item-short>
 
-  <div>
-      <p [id]="id">{{id}}</p>
+        <!-- {{data.name}} -->
+      </div>
   </div>
-
-  <div> lalalallalalalala</div>

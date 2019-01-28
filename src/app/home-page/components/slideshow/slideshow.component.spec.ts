@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlideshowComponent } from './slideshow.component';
-import { By } from '@angular/platform-browser';
 
 describe('SlideshowComponent', () => {
   let component: SlideshowComponent;
   let fixture: ComponentFixture<SlideshowComponent>;
+  let functionsReturn;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,49 +24,62 @@ describe('SlideshowComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call bulletHandler, if bullet was pressed', () => {
-    const bullet = fixture.debugElement.query(By.css('.bullets > div'));
-    spyOn(component, 'bulletHandler');
-    expect(bullet).toBeDefined();
-
-    bullet.triggerEventHandler('click', null);
-    fixture.detectChanges();
-    expect(component.bulletHandler).toHaveBeenCalled();
+  it('should return undefined if we call stop', () => {
+    fixture = TestBed.createComponent(SlideshowComponent);
+    component = fixture.componentInstance;
+    component.stop();
+    functionsReturn = component.stop();
+    expect(functionsReturn).toBeUndefined();
   });
 
-  it('should call stop, if slider was clicked', () => {
-    const slider = fixture.debugElement.query(By.css('.wrapper'));
-    spyOn(component, 'stop');
-    expect(slider).toBeDefined();
-
-    slider.triggerEventHandler('click', null);
-    fixture.detectChanges();
-    expect(component.stop).toHaveBeenCalled();
+  it('should return undefined if we call stop', () => {
+    fixture = TestBed.createComponent(SlideshowComponent);
+    component = fixture.componentInstance;
+    functionsReturn = component.continue();
+    expect(functionsReturn).toBeUndefined();
   });
 
-  it('should call pause, if slider was hovered', () => {
-    const slider = fixture.debugElement.query(By.css('.wrapper'));
-    spyOn(component, 'pause');
-    expect(slider).toBeDefined();
-
-    slider.triggerEventHandler('mouseenter', null);
-    fixture.detectChanges();
-    expect(component.pause).toHaveBeenCalled();
+  it('govno', () => {
+    component.isStoped = true;
+    component.continue();
+    expect(component.isHovered).toBe(false);
   });
 
-  it('should call continue, if slider was unhovered', () => {
-    const slider = fixture.debugElement.query(By.css('.wrapper'));
-    spyOn(component, 'continue');
-    expect(slider).toBeDefined();
-
-    slider.triggerEventHandler('mouseleave', null);
-    fixture.detectChanges();
-    expect(component.continue).toHaveBeenCalled();
+  it('govno2', () => {
+    component.isStoped = true;
+    component.pause();
+    expect(component.isHovered).toBe(false);
   });
 
-  it('should call moveSlide, if nextButton was pressed', () => {
-    const nextButton = fixture.debugElement.query(By.css('#buttonNext'));
-    spyOn(component, 'moveSlide');
-    expect(nextButton).toBeDefined();
+  it('govno3', () => {
+    component.moveSlide(1);
+    expect(component.selectedSlideIndex).toBe(1);
+  });
+
+  it('govno4', () => {
+    component.moveSlide(0);
+    const slidesLength = component.responseImgs.length;
+    expect(component.selectedSlideIndex).toBe(slidesLength - 1);
+  });
+
+  it('should return undefined if we call stop', () => {
+    fixture = TestBed.createComponent(SlideshowComponent);
+    component = fixture.componentInstance;
+    functionsReturn = component.pause();
+    expect(functionsReturn).toBeUndefined();
+  });
+
+  it('should return undefined if we call stop', () => {
+    fixture = TestBed.createComponent(SlideshowComponent);
+    component = fixture.componentInstance;
+    functionsReturn = component.moveSlide(1);
+    expect(functionsReturn).toBeUndefined();
+  });
+
+  it('should return undefined if we call stop', () => {
+    fixture = TestBed.createComponent(SlideshowComponent);
+    component = fixture.componentInstance;
+    functionsReturn = component.bulletHandler(1);
+    expect(functionsReturn).toBeUndefined();
   });
 });
