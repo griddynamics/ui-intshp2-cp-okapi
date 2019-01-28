@@ -13,6 +13,7 @@ import { CookieService } from 'src/app/core/services/cookie.service';
 export class JoinUsComponent implements OnInit {
   submitForm: FormGroup;
   edited = true;
+  registered = false;
   private emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   constructor(private dataService: DataService,
@@ -20,18 +21,22 @@ export class JoinUsComponent implements OnInit {
 
   ngOnInit() {
     this.submitForm = new FormGroup({
-      'user_email': new FormControl(null, [Validators.required, Validators.email, Validators.pattern(this.emailRegExp)])
+      'email': new FormControl(null, [Validators.required, Validators.email, Validators.pattern(this.emailRegExp)])
     });
+    if (this.checkCookie()) {
+      this.registered = true;
+    }
   }
 
   onSubmit() {
     this.dataService.create('', this.submitForm.value).subscribe();
+    this.cookieService.set('user_email', this.submitForm.value.email);
     this.edited = false;
-    this.cookieService.set('user_email', this.submitForm.value.user_email);
+    this.registered = true;
   }
 
-  invalidEmail() {
-    return !this.submitForm.get('user_email').valid && this.submitForm.get('user_email').touched;
+  isValidEmail() {
+    return this.submitForm.get('email').valid || this.submitForm.get('email').untouched;
   }
 
   checkCookie() {
@@ -40,6 +45,7 @@ export class JoinUsComponent implements OnInit {
 
   unsubscribe() {
     this.cookieService.delete('user_email');
+    this.registered = false;
     this.edited = true;
   }
 }

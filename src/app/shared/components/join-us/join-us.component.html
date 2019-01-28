@@ -5,14 +5,14 @@
       <div class="join-message">join us now to get all news and special offers</div>
     </div>
     <div class="register">
-      <form *ngIf="!checkCookie()" [formGroup]="submitForm" (ngSubmit)="onSubmit($event)">
+      <form  *ngIf="!registered" [formGroup]="submitForm" (ngSubmit)="onSubmit($event)">
         <div class="input-block">
           <input
             *ngIf="edited"
-            formControlName="user_email"
+            formControlName="email"
             placeholder="type your email here"
           />
-          <span *ngIf="invalidEmail(submitForm)">
+          <span *ngIf="!isValidEmail(submitForm)">
             Please enter a valid email
           </span>
         </div>
@@ -26,8 +26,8 @@
           join us
         </button>
       </form>
-      <div *ngIf="checkCookie()"  class="unsub">
-      <div class="congrsts-message">Congratulations! You are with us!</div>
+      <div *ngIf="registered" class="unsub">
+      <div class="congrats-message">Congratulations! You are with us!</div>
       <span>*if you want to unsubscribe please click
         <u (click)= unsubscribe()>here</u>
       </span>
