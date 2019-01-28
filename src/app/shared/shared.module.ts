@@ -14,6 +14,7 @@ import { JoinUsComponent } from './components/join-us/join-us.component';
 import { AdvertisingAreaComponent } from './components/advertising-area/advertising-area.component';
 import { SafePipe } from '../pipes/safe.pipe';
 import { HeadingComponent } from './components/heading/heading.component';
+import { RelatedProductsComponent } from './components/related-products/related-products.component';
 
 const MODULES = [
   CommonModule,
@@ -33,7 +34,8 @@ const MODULES = [
     JoinUsComponent,
     ProductItemComponent,
     ProductItemShortComponent,
-    HeadingComponent
+    HeadingComponent,
+    RelatedProductsComponent
   ],
   imports: [...MODULES],
   exports: [
@@ -45,7 +47,8 @@ const MODULES = [
     JoinUsComponent,
     ProductItemComponent,
     ProductItemShortComponent,
-    HeadingComponent
+    HeadingComponent,
+    RelatedProductsComponent
   ],
 })
 export class SharedModule {

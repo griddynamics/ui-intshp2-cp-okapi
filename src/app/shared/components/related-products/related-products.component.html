@@ -1,0 +1,6 @@
+<app-heading [alertText]="'related'" [headingText]="'products'"></app-heading>
+<app-carousel>
+  <app-carousel-item *ngFor="let product of products">
+    <app-product-item (addItemToWishList)="refreshWishList($event)" [product]="product"></app-product-item>
+  </app-carousel-item>
+</app-carousel>
