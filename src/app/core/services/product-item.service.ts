@@ -139,7 +139,7 @@ export class ProductItemService {
     this.productsSource.next(this.wishListArr);
   }
 
-  getProducts(): Observable<IProduct> {
+  public getProducts(): Observable<IProduct> {
     const wishListFromLS = JSON.parse(localStorage.getItem('wishlist'));
     const productsSynchronizedWithLS = this.products.map(el => {
       const currentItemInLS = wishListFromLS.find(e => el.id === e.id);

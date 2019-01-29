@@ -21,6 +21,7 @@ export class WishlistComponent implements OnInit, AfterViewInit, OnDestroy {
   private wrapperWidth;
   private singleWishListItem;
   private onResize;
+  private addItemsStep;
 
   constructor(
     private productItem: ProductItemService,
@@ -49,7 +50,7 @@ export class WishlistComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public loadMoreHandler(): void {
-    this.visibleWishItems = this.allProducts;
+    this.visibleWishItems += this.addItemsStep;
   }
 
   private countItemsInViewPort(): void {
@@ -57,6 +58,7 @@ export class WishlistComponent implements OnInit, AfterViewInit, OnDestroy {
       this.wrapperWidth = this.wrapper.nativeElement.offsetWidth;
       this.singleWishListItem = this.child.nativeElement.nextElementSibling.offsetWidth;
       this.visibleWishItems = Math.floor(this.wrapperWidth / this.singleWishListItem);
+      this.addItemsStep = this.visibleWishItems;
     }
   }
 }
