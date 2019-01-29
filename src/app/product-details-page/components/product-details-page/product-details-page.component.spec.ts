@@ -5,7 +5,8 @@ import { ProductDescriptionComponent } from '../product-description/product-desc
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductImagePreviewComponent } from '../product-description/product-image-preview/product-image-preview.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ProductItemComponent } from 'src/app/shared/components/product-item/product-item.component';
+import { SlideshowComponent } from 'src/app/home-page/components/slideshow/slideshow.component';
+import { RelatedProductsComponent } from './related-products/related-products.component';
 
 describe('ProductDetailsPageComponent', () => {
   let component: ProductDetailsPageComponent;
@@ -13,8 +14,14 @@ describe('ProductDetailsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductDetailsPageComponent, ProductItemComponent],
-      imports: [SharedModule, RouterTestingModule]
+      imports: [SharedModule, RouterTestingModule],
+      declarations: [
+        ProductDetailsPageComponent,
+        SlideshowComponent,
+        ProductDescriptionComponent,
+        ProductImagePreviewComponent,
+        RelatedProductsComponent
+      ],
     })
     .compileComponents();
   }));
@@ -25,7 +32,7 @@ describe('ProductDetailsPageComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

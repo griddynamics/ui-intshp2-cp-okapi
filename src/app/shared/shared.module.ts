@@ -12,9 +12,8 @@ import { CarouselItemComponent } from './components/carousel/carousel-item/carou
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { JoinUsComponent } from './components/join-us/join-us.component';
 import { AdvertisingAreaComponent } from './components/advertising-area/advertising-area.component';
-import { SafePipe } from '../pipes/safe.pipe';
 import { HeadingComponent } from './components/heading/heading.component';
-import { RelatedProductsComponent } from './components/related-products/related-products.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 const MODULES = [
   CommonModule,
@@ -35,7 +34,6 @@ const MODULES = [
     ProductItemComponent,
     ProductItemShortComponent,
     HeadingComponent,
-    RelatedProductsComponent
   ],
   imports: [...MODULES],
   exports: [
@@ -48,7 +46,6 @@ const MODULES = [
     ProductItemComponent,
     ProductItemShortComponent,
     HeadingComponent,
-    RelatedProductsComponent
   ],
 })
 export class SharedModule {
