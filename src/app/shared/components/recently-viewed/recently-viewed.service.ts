@@ -15,6 +15,7 @@ export class RecentlyViewedService {
     this.setObject(product);
     const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed'));
     this.productsSource.next(recentlyViewed);
+    // this.productsSource.next(product);
   }
 
   // changeMessage(product) {
@@ -157,14 +158,4 @@ export class RecentlyViewedService {
     localStorage.setItem('recentlyViewed', JSON.stringify(LSarr));
    // console.log(JSON.parse(localStorage.getItem('recentlyViewed')));
   }
-
-  // public loadRouting(): void {
-  //   this.router.events
-  //     .pipe(filter(event => event instanceof NavigationEnd))
-  //     .subscribe(({urlAfterRedirects}: NavigationEnd) => {
-  //       this.history = [...this.history, urlAfterRedirects];
-  //     });
-  // }
-
-
 }
