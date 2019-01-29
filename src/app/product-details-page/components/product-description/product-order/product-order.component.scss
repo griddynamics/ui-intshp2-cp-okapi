@@ -89,7 +89,7 @@ hr {
 }
 
 .order-container-wrapper {
-  margin-top: 58px;
+  margin-top: 38px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -98,6 +98,7 @@ hr {
 .price {
   display: flex;
   align-items: center;
+  margin-top: 20px;
 
   p {
     font-family: $main-font-bold;
@@ -111,6 +112,7 @@ hr {
   justify-content: space-between;
   align-items: center;
   width: 250px;
+  margin-top: 20px;
 
   i {
     font-family: "Font Awesome 5 Free";

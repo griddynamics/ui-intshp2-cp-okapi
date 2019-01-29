@@ -10,9 +10,9 @@
     </div>
     <div class="chose-container-quantity">
       <p class="text">Choos Quantity</p>
-      <button class="button-plus" (click)="changePlus()">+</button>
+      <button class="button-plus" (click)="increaseQuantity()">+</button>
       <p class="quantity">{{productConfiguration?.count}}</p>
-      <button class="button-minus" (click)="changeMinus()">-</button>
+      <button class="button-minus" (click)="decreaseQuantity">-</button>
     </div>
   </div>
 </div>
@@ -24,9 +24,9 @@
       <p>Price : {{price}}</p>
     </div>
     <div class="order">
-        <a href="#"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product?.addedToCart}"></i></a>
+        <a (click)="addToCart($event)"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product?.addedToCart}"></i></a>
         <i class="to-wish-list" [ngClass]="{ 'added-to-wishlist': product?.addedToWishList}"></i>
-        <button [routerLink]="['/order-page']" routerLinkActive="router-link-active"  class="order-button">Order Now</button>
+        <button [routerLink]="['/order-page']" class="order-button">Order Now</button>
     </div>
   </div>
 </div>

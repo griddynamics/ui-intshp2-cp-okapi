@@ -5,6 +5,8 @@ import { ProductDescriptionComponent } from '../product-description/product-desc
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductImagePreviewComponent } from '../product-description/product-image-preview/product-image-preview.component';
 import { ProductOrderComponent } from '../product-description/product-order/product-order.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 describe('ProductDetailsPageComponent', () => {
   let component: ProductDetailsPageComponent;
@@ -13,7 +15,7 @@ describe('ProductDetailsPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductDetailsPageComponent, ProductDescriptionComponent, ProductImagePreviewComponent, ProductOrderComponent ],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule, HttpClientModule]
     })
     .compileComponents();
   }));

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-product-order',
@@ -18,21 +19,24 @@ export class ProductOrderComponent implements OnInit {
     price: ''
   };
 
-  constructor() { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     if (!this.sizes && !this.price) {
       return;
     }
     this.productConfiguration.price = this.price;
-
   }
 
-  changePlus() {
+  addToCart() {
+    this.dataService.create('add-to-cart/', this.productConfiguration).subscribe();
+  }
+
+  increaseQuantity() {
     this.productConfiguration.count++;
   }
 
-  changeMinus() {
+  decreaseQuantity() {
     if (this.productConfiguration.count > 1) {
       this.productConfiguration.count--;
     }
