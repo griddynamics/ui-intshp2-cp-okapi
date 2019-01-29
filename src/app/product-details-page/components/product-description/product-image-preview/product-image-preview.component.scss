@@ -62,3 +62,30 @@ app-zoom {
     }
   }
 }
+
+
+@include laptop {
+  .img-big-container {
+    width: 270px;
+  }
+
+  .img-small-container {
+    width: 270px;
+
+    .img {
+      width: 122px;
+      height: 90px;
+    }
+  }
+}
+@include laptop {
+  .img-small-container {
+    width: 100%;
+    justify-content: center;
+
+    .img {
+      width: 122px;
+      height: 90px;
+    }
+  }
+}

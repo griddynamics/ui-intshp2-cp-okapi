@@ -10,6 +10,7 @@
   &-wrapper {
     padding: 95px $wrapper-padding 134px $wrapper-padding;
     display: flex;
+    margin: 0;
   }
 }
 
@@ -46,10 +47,42 @@
       margin-bottom: 80px;
     }
   }
+}
 
-  &-order {
-    height: 170px;
-    background: $primary-color;
+@include laptop {
+  .main-container {
+    &-wrapper {
+      padding: 95px 0 134px 0;
+      display: flex;
+    }
+  }
+
+  .image-container {
+    min-width: 270px;
+  }
+
+  .details-container {
+    &-info {
+      h2 {
+        font-size: 35px;
+      }
+    }
   }
 }
 
+@include tablet {
+  .details-container {
+    margin-top: 100px;
+  }
+
+  .main-container {
+    &-wrapper {
+      flex-direction: column;
+    }
+  }
+
+  .image-container {
+    min-width: 100%;
+    margin: 0;
+  }
+}
