@@ -9,7 +9,7 @@ export interface IProduct {
   sizes?: Array<ProductSize>;
   addedToCart: Boolean;
   addedToWishList: Boolean;
-  relatedProducts: Array<IProduct>;
+  relatedProducts?: Array<IProduct>;
 }
 
 export interface ISwatch {
