@@ -11,7 +11,7 @@ export class ProductImagePreviewComponent implements OnInit {
 
   public imageSrc;
   public selectedImg = 0;
-  private smallImagesArr = [];
+  public smallImagesArr = [];
 
   ngOnInit() {
     if (!this.swatches) {

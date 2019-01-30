@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductImagePreviewComponent } from './product-image-preview.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ProductDescriptionComponent } from '../product-description.component';
+import { ProductOrderComponent } from '../product-order/product-order.component';
 
 describe('ProductImagePreviewComponent', () => {
   let component: ProductImagePreviewComponent;
@@ -8,11 +10,15 @@ describe('ProductImagePreviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductImagePreviewComponent ],
+      declarations: [ ProductImagePreviewComponent, ProductDescriptionComponent, ProductOrderComponent ],
       imports: [ RouterTestingModule ]
     })
-    .compileComponents();
+    .compileComponents().then(() => {
+      fixture = TestBed.createComponent(ProductImagePreviewComponent);
+      component = fixture.componentInstance;
+    });
   }));
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductImagePreviewComponent);
@@ -23,4 +29,17 @@ describe('ProductImagePreviewComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render img if smallImagesArr has length', (() => {
+    const smallImagesArr = ['http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
+                            'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
+                            'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
+                            'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png'];
+    component.smallImagesArr = smallImagesArr;
+    fixture.detectChanges();
+    spyOn(component, 'setSelectedImg').and.callThrough();
+    const button = fixture.debugElement.nativeElement.querySelector('.img-render img');
+    button.click();
+    expect(component.setSelectedImg).toHaveBeenCalled();
+  }));
 });

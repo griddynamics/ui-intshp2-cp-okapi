@@ -22,7 +22,7 @@
   width: 330px;
   justify-content: flex-start;
 
-  .img {
+  .img-render {
     width: 96px;
     height: 70px;
     text-align: center;
@@ -66,9 +66,9 @@
   .img-small-container {
     width: 270px;
 
-    .img {
+    .img-render {
       width: 122px;
-      height: 90px;
+      height: 64px;
     }
   }
 }
@@ -77,9 +77,9 @@
     width: 100%;
     justify-content: center;
 
-    .img {
-      width: 122px;
-      height: 90px;
+    .img-render {
+      width: 87px;
+      height: 67px;
     }
   }
 }
