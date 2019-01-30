@@ -1,4 +1,4 @@
-<div *ngIf="products.length">
+<div *ngIf="products?.length">
   <app-heading [alertText]="'related'" [headingText]="'products'"></app-heading>
   <app-carousel>
     <app-carousel-item *ngFor="let relatedProduct of products">

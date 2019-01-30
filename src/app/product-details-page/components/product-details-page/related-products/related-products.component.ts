@@ -7,7 +7,7 @@ import { IProduct } from 'src/app/shared/interfaces/product';
 })
 export class RelatedProductsComponent implements OnChanges {
 
-  @Input() products: IProduct[];
+  @Input() products: IProduct[] = [];
 
   ngOnChanges(): void {
     if (this.products) {
