@@ -3,8 +3,7 @@ import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-environment',
-  templateUrl: './environment.component.html',
-  styleUrls: ['./environment.component.scss']
+  template: `<h1>Environment</h1><pre>{{env | json}}</pre>`,
 })
 export class EnvironmentComponent implements OnInit {
   env = environment;

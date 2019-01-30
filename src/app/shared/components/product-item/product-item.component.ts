@@ -47,11 +47,6 @@ export class ProductItemComponent implements OnInit {
     this.currentThumbnail = this.currentSwatch.imgSrc;
   }
 
-  handleImgView(isHovered ): void {
-    this.isHovered  = isHovered;
-    this.resetDefaultThumbnail();
-  }
-
   hoverStateIn(): void {
     this.handleImgView(true);
   }
@@ -89,11 +84,8 @@ export class ProductItemComponent implements OnInit {
     this.currentThumbnail = this.product.thumbnailImageSrc;
   }
 
-//   getId() {this.id = +this.route.snapshot.paramMap.get('id');
-//   // this..(this.id)
-//   //     .subscribe();
-
-//   // const currentItem = this.products.filter(el => el.id === this.route.snapshot.params.id);
-//   this.recView.setObject(this.id);
-// }
+  protected handleImgView(isHovered ): void {
+    this.isHovered  = isHovered;
+    this.resetDefaultThumbnail();
+  }
 }
