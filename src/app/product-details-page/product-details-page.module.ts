@@ -9,7 +9,11 @@ import { ProductOrderComponent } from './components/product-description/product-
 import { ZoomComponent } from './components/product-description/product-image-preview/zoom/zoom.component';
 
 @NgModule({
-  declarations: [ProductDetailsPageComponent, ProductDescriptionComponent, ProductImagePreviewComponent, ProductOrderComponent, ZoomComponent],
+  declarations: [ProductDetailsPageComponent,
+                 ProductDescriptionComponent,
+                 ProductImagePreviewComponent,
+                 ProductOrderComponent,
+                 ZoomComponent],
   imports: [
     CommonModule,
     ProductDetailsPageRoutingModule
