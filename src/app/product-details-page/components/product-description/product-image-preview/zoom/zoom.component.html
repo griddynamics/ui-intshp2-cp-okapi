@@ -1,0 +1,7 @@
+<img src="{{ zsrc }}" [ngClass]="{'hovered': isHovered}" (mousemove)="onMouseMove($event)" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()"/>
+<div *ngIf="isHovered"
+  class="zoombox"
+  [style.background-image]="'url(' + zsrc + ')'"
+  [style.background-position]="pos"
+  >
+</div>
