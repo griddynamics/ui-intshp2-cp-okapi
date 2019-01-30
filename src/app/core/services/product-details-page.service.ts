@@ -8,9 +8,9 @@ import { BehaviorSubject } from 'rxjs';
 export class ProductDetailsPageService {
 
 
-  constructor(private mocks: DataService) {}
+  constructor(private dataService: DataService) {}
 
-  getRelatedProducts() {
-    return this.mocks.get('/assets/mocks/pdp.json');
+  getProduct(id: String) {
+    return this.dataService.get('/assets/mocks/pdp.json');
   }
 }

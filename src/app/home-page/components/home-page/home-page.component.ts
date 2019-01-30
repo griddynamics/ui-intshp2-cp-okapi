@@ -22,7 +22,6 @@ export class HomePageComponent {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: true,
-    relatedProducts: [],
   },
   {
     id: '2',
@@ -36,7 +35,6 @@ export class HomePageComponent {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
-    relatedProducts: [],
   },
   {
     id: '3',
@@ -50,7 +48,6 @@ export class HomePageComponent {
     sizes: [],
     addedToCart: false,
     addedToWishList: false,
-    relatedProducts: [],
   },
   {
     id: '4',
@@ -64,7 +61,6 @@ export class HomePageComponent {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
-    relatedProducts: [],
   },
   {
     id: '5',
@@ -78,7 +74,6 @@ export class HomePageComponent {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
-    relatedProducts: [],
   },
   {
     id: '6',
@@ -92,7 +87,6 @@ export class HomePageComponent {
     sizes: [],
     addedToCart: false,
     addedToWishList: false,
-    relatedProducts: [],
   },
   {
     id: '7',
@@ -106,7 +100,6 @@ export class HomePageComponent {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
-    relatedProducts: [],
   },
   {
     id: '8',
@@ -120,7 +113,6 @@ export class HomePageComponent {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
-    relatedProducts: [],
   },
   {
     id: '9',
@@ -134,7 +126,6 @@ export class HomePageComponent {
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
     addedToWishList: false,
-    relatedProducts: [],
   }
   ];
 

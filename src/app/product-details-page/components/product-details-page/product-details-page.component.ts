@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct, ProductAvailabilityState, ProductSize } from 'src/app/shared/interfaces/product';
+import { DataService } from 'src/app/core/services/data.service';
+import { ProductDetailsPageService } from 'src/app/core/services/product-details-page.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -7,7 +10,7 @@ import { IProduct, ProductAvailabilityState, ProductSize } from 'src/app/shared/
   templateUrl: './product-details-page.component.html',
   styleUrls: ['./product-details-page.component.scss']
 })
-export class ProductDetailsPageComponent {
+export class ProductDetailsPageComponent implements OnInit {
 
   productInfo = {
     id: '1',
@@ -24,4 +27,13 @@ export class ProductDetailsPageComponent {
     title: 'Half Jacket + Skiny Trousers + Boot leather',
     description: 'Lorem Lorem Lorem',
   };
+  routeId: String;
+  relatedProducts: IProduct[] = [];
+
+  constructor(private route: ActivatedRoute, private dataService: ProductDetailsPageService) { }
+
+  ngOnInit() {
+    this.route.params.subscribe(data => this.routeId = data.id);
+    this.dataService.getProduct(this.routeId).subscribe(data => this.relatedProducts = data.relatedProducts);
+  }
 }
