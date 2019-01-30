@@ -45,62 +45,18 @@ describe('ProductItemComponent', () => {
   let component: ProductItemComponent;
   let fixture: ComponentFixture<ProductItemComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [ProductItemComponent],
     }).compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ProductItemComponent);
     component = fixture.componentInstance;
-
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should return undefined if we call stop', () => {
-    fixture = TestBed.createComponent(ProductItemComponent);
-    component = fixture.componentInstance;
-    component.product = product;
-    const functionsReturn = component.hoverStateIn();
-    expect(functionsReturn).toBeUndefined();
-  });
-
-  it('should return undefined if we call stop', () => {
-    fixture = TestBed.createComponent(ProductItemComponent);
-    component = fixture.componentInstance;
-    component.product = product;
-    const functionsReturn = component.hoverStateOut();
-    expect(functionsReturn).toBeUndefined();
-  });
-
-  it('should return undefined if we call stop', () => {
-    fixture = TestBed.createComponent(ProductItemComponent);
-    component = fixture.componentInstance;
-    component.product = product;
-    const functionsReturn = component.onMouseLeave();
-    expect(functionsReturn).toBeUndefined();
-  });
-
-  it('should return undefined if we call stop', () => {
-    fixture = TestBed.createComponent(ProductItemComponent);
-    component = fixture.componentInstance;
-    component.product = product;
-    const functionsReturn = component.onMouseOver();
-    expect(functionsReturn).toBeUndefined();
-  });
-
-  it('should return undefined if we call stop', () => {
-    fixture = TestBed.createComponent(ProductItemComponent);
-    component = fixture.componentInstance;
-    component.product = product;
-    const functionsReturn = component.onMouseLeaveColor();
-    expect(functionsReturn).toBeUndefined();
   });
 
   it('renders a h2 with the provided label text', () => {
@@ -121,4 +77,41 @@ describe('ProductItemComponent', () => {
     expect(compiled.querySelector('.price').textContent).toContain(product.price);
   });
 
+  it('should trigger mouseover', () => {
+    spyOn(component, "onMouseOver");
+    component.product = product;
+    fixture.detectChanges();
+    const element = fixture.nativeElement.querySelector(".product-item");
+    const event = new MouseEvent("mouseover");
+    element.dispatchEvent(event);
+    expect(component.onMouseOver).toHaveBeenCalled();
+  });
+
+  it('should be ishovered on mouseover', () => {
+    component.product = product;
+    fixture.detectChanges();
+    const element = fixture.nativeElement.querySelector(".product-item");
+    const event = new MouseEvent("mouseover");
+    element.dispatchEvent(event);
+    expect(component.isHovered).toBeTruthy();
+  });
+
+  it('should trigger mouseleave', () => {
+    spyOn(component, "onMouseLeave");
+    component.product = product;
+    fixture.detectChanges();
+    const element = fixture.nativeElement.querySelector(".product-item");
+    const event = new MouseEvent("mouseleave");
+    element.dispatchEvent(event);
+    expect(component.onMouseLeave).toHaveBeenCalled();
+  });
+
+  it('should not be ishovered on mouseleave', () => {
+    component.product = product;
+    fixture.detectChanges();
+    const element = fixture.nativeElement.querySelector(".product-item");
+    const event = new MouseEvent("mouseleave");
+    element.dispatchEvent(event);
+    expect(component.isHovered).toBeFalsy();
+  });
 });
