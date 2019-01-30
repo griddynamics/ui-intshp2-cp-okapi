@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct, ProductAvailabilityState, ProductSize } from 'src/app/shared/interfaces/product';
-import { ActivatedRoute } from '@angular/router';
-import { RecentlyViewedService } from 'src/app/shared/components/recently-viewed/recently-viewed.service';
-import { filter } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-product-details-page',
@@ -11,12 +7,6 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./product-details-page.component.scss']
 })
 export class ProductDetailsPageComponent implements OnInit {
-
-  id: number;
-  LS: [];
-  newLocal;
-  products: IProduct;
-  title: string;
 
   productInfo = {
     id: '1',
@@ -34,28 +24,10 @@ export class ProductDetailsPageComponent implements OnInit {
     description: 'Lorem Lorem Lorem',
   };
 
-  // constructor(
-  //   private recView: RecentlyViewedService,
-  //   private route: ActivatedRoute,
-  // ) {}
-
   ngOnInit() {
-//  this.recView.changeMessage(this.productInfo);
-   localStorage.setItem('some', JSON.stringify(this.productInfo));
-//  this.id = +this.route.snapshot.paramMap.get('id');
-//  this.recView.setObject(this.id);
-
- // let condition = JSON.parse(localStorage.getItem('myprod'));
-    //   this.newLocal = localStorage.setItem('myprod', JSON.stringify(this.productInfo));
-    //  // console.log(localStorage.setItem('myprod', JSON.stringify(this.productInfo)));
-    //   console.log(this.newLocal);
-      //  this.LS.push(JSON.parse(this.newLocal));
- // localStorage.setItem('myprod', JSON.stringify(this.productInfo));
- // console.log(localStorage.getItem('myprod'));
-
-
- // const LSarr = JSON.parse(localStorage.getItem('recentlyViewed'));
- //   LSarr.push(item);
-//   localStorage.setItem('recentlyViewed', JSON.stringify(LSarr));
+    const stored = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+    const newProd = this.productInfo;
+    stored.unshift(newProd);
+    localStorage.setItem('recentlyViewed', JSON.stringify(stored));
   }
 }

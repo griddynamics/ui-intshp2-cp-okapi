@@ -1,34 +1,23 @@
 <app-slideshow></app-slideshow>
 <app-heading [alertText]="'new'" [headingText]="'Arrivals'"></app-heading>
-<app-carousel>
+<app-carousel [productsLength]="products.length">
   <app-carousel-item *ngFor="let product of products">
     <app-product-item (addItemToWishList)="refreshWishList($event)" [product]="product"></app-product-item>
   </app-carousel-item>
 </app-carousel>
 <div class="main-container">
   <div class="row-sb">
-    <app-advertising-area
-      *ngFor="let banner of banners"
-      [content]="banner.htmlSnippet"
-      [height]="banner.height"
-      [width]="banner.width"
-    ></app-advertising-area>
+    <app-advertising-area *ngFor="let banner of banners" [content]="banner.htmlSnippet" [height]="banner.height"
+      [width]="banner.width"></app-advertising-area>
   </div>
 </div>
 
 <app-heading id="wish-list" *ngIf="wishListFilter.length" [alertText]="'wish'" [headingText]="'list'"></app-heading>
 
-<!-- <div class="main-container">
-  <div class="product-item-short-wrapper">
-    <ng-container *ngFor="let product of wishListFilter; let i = index">
-      <app-product-item-short  *ngIf="i < 3" [product]="product"></app-product-item-short>
-    </ng-container>
-  </div>
-</div> -->
+<app-carousel *ngIf="viewedItems" [productsLength]="viewedItems.length">
+    <app-carousel-item *ngFor="let product of viewedItems">
+        <app-product-item-short [product]="product"></app-product-item-short>
+    </app-carousel-item>
+  </app-carousel>
 
-<div class="main-container">
-    <div class="product-item-short-wrapper">
-          <app-recently-viewed></app-recently-viewed> 
-    </div>
-  </div>
 <app-join-us></app-join-us>

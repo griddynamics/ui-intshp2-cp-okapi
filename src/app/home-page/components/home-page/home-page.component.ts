@@ -10,6 +10,8 @@ import { IProduct, ProductSize, ProductAvailabilityState } from 'src/app/shared/
 
 
 export class HomePageComponent {
+  viewedItems = JSON.parse(localStorage.getItem('recentlyViewed')); 
+
   products: IProduct [] = [{
     id: '1',
     title: 'Reebock Track Jacket',
@@ -149,4 +151,5 @@ export class HomePageComponent {
       const indexOfItem = this.wishListFilter.findIndex(el => el.id === resFromChild.id);
       this.wishListFilter.splice(indexOfItem, 1);
   }
+
 }
