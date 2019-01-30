@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RelatedProductsComponent } from './related-products.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 describe('RelatedProductsComponent', () => {
@@ -12,7 +11,7 @@ describe('RelatedProductsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, RouterTestingModule, HttpClientModule],
+      imports: [SharedModule, HttpClientTestingModule],
       declarations: [RelatedProductsComponent],
       providers: []
     }).compileComponents().then(() => {

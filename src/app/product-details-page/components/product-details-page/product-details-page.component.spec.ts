@@ -7,6 +7,7 @@ import { ProductImagePreviewComponent } from '../product-description/product-ima
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SlideshowComponent } from 'src/app/home-page/components/slideshow/slideshow.component';
 import { RelatedProductsComponent } from './related-products/related-products.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProductDetailsPageComponent', () => {
   let component: ProductDetailsPageComponent;
@@ -14,7 +15,7 @@ describe('ProductDetailsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, RouterTestingModule],
+      imports: [SharedModule, RouterTestingModule, HttpClientTestingModule],
       declarations: [
         ProductDetailsPageComponent,
         SlideshowComponent,
