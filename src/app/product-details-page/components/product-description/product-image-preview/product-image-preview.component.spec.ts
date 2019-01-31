@@ -10,32 +10,26 @@ describe('ProductImagePreviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductImagePreviewComponent, ProductDescriptionComponent, ProductOrderComponent ],
-      imports: [ RouterTestingModule ]
+      declarations: [ProductImagePreviewComponent, ProductDescriptionComponent, ProductOrderComponent],
+      imports: [RouterTestingModule]
     })
-    .compileComponents().then(() => {
-      fixture = TestBed.createComponent(ProductImagePreviewComponent);
-      component = fixture.componentInstance;
-    });
+      .compileComponents().then(() => {
+        fixture = TestBed.createComponent(ProductImagePreviewComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
   }));
-
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProductImagePreviewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should render img if smallImagesArr has length', (() => {
-    const smallImagesArr = ['http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
-                            'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
-                            'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
-                            'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png'];
-    component.smallImagesArr = smallImagesArr;
+    const swatches = ['http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
+      'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
+      'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
+      'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png'];
+    component.smallImagesArr = swatches;
     fixture.detectChanges();
     spyOn(component, 'setSelectedImg').and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector('.img-render img');
