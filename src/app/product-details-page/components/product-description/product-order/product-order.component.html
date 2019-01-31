@@ -2,17 +2,17 @@
   <hr>
   <div class="chose-container-wrapper">
     <div class="chose-container-sizes">
-      <p class="title">Choos Size</p>
+      <p class="title">Choose Size</p>
       <div *ngFor="let size of sizes; let i = index">
         <button (click)="onChooseSize(size, i)" [ngClass]="{'selectedSize': i === selected}">{{size}}</button>
         <span *ngIf="i !== sizes.length-1">-</span>
       </div>
     </div>
     <div class="chose-container-quantity">
-      <p class="text">Choos Quantity</p>
+      <p class="text">Choose Quantity</p>
       <button class="button-plus" (click)="increaseQuantity()">+</button>
       <p class="quantity">{{productConfiguration?.count}}</p>
-      <button class="button-minus" (click)="decreaseQuantity">-</button>
+      <button class="button-minus" (click)="decreaseQuantity()">-</button>
     </div>
   </div>
 </div>

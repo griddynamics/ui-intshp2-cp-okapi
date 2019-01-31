@@ -14,8 +14,7 @@ import { ZoomComponent } from './components/product-description/product-image-pr
     ProductDescriptionComponent,
     ProductImagePreviewComponent,
     ProductOrderComponent,
-    ZoomComponent
-  ],
+    ZoomComponent],
   imports: [
     CommonModule,
     ProductDetailsPageRoutingModule

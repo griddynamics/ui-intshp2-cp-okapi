@@ -20,7 +20,8 @@ describe('ProductDetailsPageComponent', () => {
         ProductDescriptionComponent,
         ProductImagePreviewComponent,
         ProductOrderComponent,
-        ZoomComponent],
+        ZoomComponent
+      ],
       imports: [RouterTestingModule, HttpClientModule]
     })
       .compileComponents();
