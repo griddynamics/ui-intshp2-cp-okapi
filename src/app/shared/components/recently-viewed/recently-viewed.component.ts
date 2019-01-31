@@ -136,10 +136,6 @@ export class RecentlyViewedComponent implements OnInit {
     } else {
       this.viewedItems = [];
     }
-
-    // if (recentlyViewIds) {
-    //   this.viewedItems = this.viewedItems.filter( el => recentlyViewIds.some(e => e === el.id ));
-    // }
   }
 
 }
