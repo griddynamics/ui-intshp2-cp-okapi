@@ -3,6 +3,7 @@ import { ProductImagePreviewComponent } from './product-image-preview.component'
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductDescriptionComponent } from '../product-description.component';
 import { ProductOrderComponent } from '../product-order/product-order.component';
+import { ZoomComponent } from './zoom/zoom.component';
 
 describe('ProductImagePreviewComponent', () => {
   let component: ProductImagePreviewComponent;
@@ -10,7 +11,7 @@ describe('ProductImagePreviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductImagePreviewComponent, ProductDescriptionComponent, ProductOrderComponent],
+      declarations: [ProductImagePreviewComponent, ProductDescriptionComponent, ProductOrderComponent, ZoomComponent],
       imports: [RouterTestingModule]
     })
       .compileComponents().then(() => {

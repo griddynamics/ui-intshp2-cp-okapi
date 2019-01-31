@@ -1,0 +1,37 @@
+@import '../../../../../../scss/variables';
+@import '../../../../../../scss/fonts';
+@import '../../../../../../scss/reset';
+@import '../../../../../../scss/mixins';
+
+img {
+  width: auto;
+  height: 250px;
+  cursor: move;
+}
+
+.zoombox {
+  display: inline-block;
+  border: 1px ridge $border-color;
+  width: 300px;
+  height: 300px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 280px;
+  top: -2px;
+  z-index: 12;
+  background-position-x: 200%;
+  background-position-y: 200%;
+}
+
+@include laptop {
+  .zoombox {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@include tablet {
+  .zoombox {
+    display: none;
+  }
+}
