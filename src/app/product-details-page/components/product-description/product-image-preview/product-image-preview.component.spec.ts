@@ -30,7 +30,7 @@ describe('ProductImagePreviewComponent', () => {
       'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
       'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
       'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png'];
-    component.smallImagesArr = swatches;
+    component.swatches = swatches;
     fixture.detectChanges();
     spyOn(component, 'setSelectedImg').and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector('.img-render img');
