@@ -78,11 +78,11 @@ describe('ProductItemComponent', () => {
   });
 
   it('should trigger mouseover', () => {
-    spyOn(component, "onMouseOver");
+    spyOn(component, 'onMouseOver');
     component.product = product;
     fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector(".product-item");
-    const event = new MouseEvent("mouseover");
+    const element = fixture.nativeElement.querySelector('.product-item');
+    const event = new MouseEvent('mouseover');
     element.dispatchEvent(event);
     expect(component.onMouseOver).toHaveBeenCalled();
   });
@@ -90,18 +90,18 @@ describe('ProductItemComponent', () => {
   it('should be ishovered on mouseover', () => {
     component.product = product;
     fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector(".product-item");
-    const event = new MouseEvent("mouseover");
+    const element = fixture.nativeElement.querySelector('.product-item');
+    const event = new MouseEvent('mouseover');
     element.dispatchEvent(event);
     expect(component.isHovered).toBeTruthy();
   });
 
   it('should trigger mouseleave', () => {
-    spyOn(component, "onMouseLeave");
+    spyOn(component, 'onMouseLeave');
     component.product = product;
     fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector(".product-item");
-    const event = new MouseEvent("mouseleave");
+    const element = fixture.nativeElement.querySelector('.product-item');
+    const event = new MouseEvent('mouseleave');
     element.dispatchEvent(event);
     expect(component.onMouseLeave).toHaveBeenCalled();
   });
@@ -109,8 +109,8 @@ describe('ProductItemComponent', () => {
   it('should not be ishovered on mouseleave', () => {
     component.product = product;
     fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector(".product-item");
-    const event = new MouseEvent("mouseleave");
+    const element = fixture.nativeElement.querySelector('.product-item');
+    const event = new MouseEvent('mouseleave');
     element.dispatchEvent(event);
     expect(component.isHovered).toBeFalsy();
   });
