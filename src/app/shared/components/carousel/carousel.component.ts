@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterContentInit, AfterContentChecked } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -9,12 +9,13 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./carousel.component.scss']
 })
 
-export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
-  private itemsPerPage;
+export class CarouselComponent implements OnInit, AfterContentInit, AfterContentChecked, OnDestroy {
+  public childrenLength: number;
+  public counterScrolledItems: number;
+  public singleItemWidth;
+  public itemsPerPage;
   private resizeEvent: Subscription;
   private currTranslate = 0;
-  private childrenLength: number;
-  private counterScrolledItems: number;
 
   @ViewChild('slidesContainer') slidesContainer: ElementRef;
 
@@ -30,12 +31,21 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
       });
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
+    if (this.slidesContainer.nativeElement.querySelector('.carousel-item-wrap')) {
+    }
+  }
+
+  ngAfterContentChecked(): void {
     this.childrenLength = document.querySelectorAll('.carousel-item-wrap').length;
-    const slidesContainerWidth = this.slidesContainer.nativeElement.offsetWidth;
-    const slideItemWidth = this.slidesContainer.nativeElement.children[0].offsetWidth;
-    this.itemsPerPage = Math.round(slidesContainerWidth / slideItemWidth);
-    this.counterScrolledItems = this.itemsPerPage;
+
+    if (this.slidesContainer.nativeElement.children[0] && !this.singleItemWidth) {
+      this.singleItemWidth = this.slidesContainer.nativeElement.children[0].offsetWidth;
+      this.childrenLength = document.querySelectorAll('.carousel-item-wrap').length;
+      const slidesContainerWidth = this.slidesContainer.nativeElement.offsetWidth;
+      this.itemsPerPage = Math.round(slidesContainerWidth / this.singleItemWidth);
+      this.counterScrolledItems = this.itemsPerPage;
+    }
   }
 
   ngOnDestroy(): void {

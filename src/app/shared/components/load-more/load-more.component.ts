@@ -7,7 +7,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 })
 export class LoadMoreComponent implements OnInit {
   @Output() loadMore = new EventEmitter();
-  @Input() buttonVisibility: boolean;
+  @Input() showLoadMore: boolean;
 
   constructor() { }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
-import { ProductItemService } from 'src/app/core/services/product-item.service';
+import { ProductsService } from 'src/app/core/services/products.service';
 
 @Component({
   selector: 'app-home-page',
@@ -25,16 +25,20 @@ export class HomePageComponent implements OnInit {
 
 
   constructor(
-    public productItemService: ProductItemService
+    public productsService: ProductsService
   ) { }
 
   ngOnInit(): void {
-    this.productItemService.getProducts().subscribe(data => {
-      this.products.push(data);
+    this.productsService.getProducts().subscribe(data => {
+      this.products = data;
     });
   }
 
-  public wishListHandler(product): void {
-    this.productItemService.toggleProduct(product);
+  public wishListHandler(product: IProduct): void {
+    if (!product.addedToWishList) {
+      this.productsService.addToWishList(product.id);
+      return;
+    }
+    this.productsService.removeFromWishList(product.id);
   }
 }

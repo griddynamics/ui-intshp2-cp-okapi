@@ -80,11 +80,10 @@ export class ProductItemComponent implements OnInit {
 
   addToWishList(): void {
     event.stopPropagation();
-    this.product.addedToWishList = !this.product.addedToWishList;
     this.addItemToWishList.emit(this.product);
   }
 
-  private resetDefaultThumbnail(): void {
+  public resetDefaultThumbnail(): void {
     this.currentThumbnail = this.product.thumbnailImageSrc;
   }
 }

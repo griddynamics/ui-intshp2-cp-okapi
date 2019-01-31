@@ -1,0 +1,7 @@
+<app-load-more [showLoadMore]="wishlist.length > visibleWishItems" (loadMore)="loadMoreHandler($event)">
+  <div class="product-item-short-wrapper" #wrapper>
+    <ng-container *ngFor="let product of wishlist; let i = index">
+      <app-product-item-short (informParentWidth)="singleShortItemWidth($event)" *ngIf="i < visibleWishItems" [product]="product"></app-product-item-short>
+    </ng-container>
+  </div>
+</app-load-more>

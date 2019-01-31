@@ -14,7 +14,6 @@ import { JoinUsComponent } from './components/join-us/join-us.component';
 import { AdvertisingAreaComponent } from './components/advertising-area/advertising-area.component';
 import { SafePipe } from '../pipes/safe.pipe';
 import { HeadingComponent } from './components/heading/heading.component';
-import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
 
 const MODULES = [
@@ -36,7 +35,6 @@ const MODULES = [
     ProductItemComponent,
     ProductItemShortComponent,
     HeadingComponent,
-    WishlistComponent,
     LoadMoreComponent,
   ],
   imports: [...MODULES],
@@ -50,7 +48,6 @@ const MODULES = [
     ProductItemComponent,
     ProductItemShortComponent,
     HeadingComponent,
-    WishlistComponent,
     LoadMoreComponent
   ],
 })
