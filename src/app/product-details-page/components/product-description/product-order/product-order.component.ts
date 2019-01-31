@@ -7,7 +7,7 @@ import { DataService } from 'src/app/core/services/data.service';
   styleUrls: ['./product-order.component.scss']
 })
 export class ProductOrderComponent implements OnInit {
-  @Input() sizes: string;
+  @Input() sizes: string[];
   @Input() price: string;
   @Input() addedToCart: boolean;
   @Input() addedToWishList: boolean;
