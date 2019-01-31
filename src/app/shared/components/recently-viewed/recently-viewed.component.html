@@ -1,5 +1,4 @@
-<!-- <app-carousel *ngIf="viewedItems" [productsLength]="viewedItems.length"> -->
-<app-carousel *ngIf="viewedItems">
+<app-carousel *ngIf="viewedItems.length" [productsLength]="viewedItems.length">
   <app-carousel-item *ngFor="let product of viewedItems">
       <app-product-item-short [product]="product"></app-product-item-short>
   </app-carousel-item>

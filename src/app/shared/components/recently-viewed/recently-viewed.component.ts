@@ -131,15 +131,15 @@ export class RecentlyViewedComponent implements OnInit {
 
   ngOnInit() {
     const recentlyViewIds = JSON.parse(localStorage.getItem('recentlyViewed'));
-    // if (recentlyViewIds) {
-    //   this.viewedItems = this.viewedItems.filter( el => recentlyViewIds.some(e => e === el.id ));
-    // } else {
-    //   this.viewedItems = [];
-    // }
-
     if (recentlyViewIds) {
       this.viewedItems = this.viewedItems.filter( el => recentlyViewIds.some(e => e === el.id ));
+    } else {
+      this.viewedItems = [];
     }
+
+    // if (recentlyViewIds) {
+    //   this.viewedItems = this.viewedItems.filter( el => recentlyViewIds.some(e => e === el.id ));
+    // }
   }
 
 }
