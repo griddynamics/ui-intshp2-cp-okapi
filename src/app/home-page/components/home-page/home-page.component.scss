@@ -3,6 +3,15 @@
 @import '../../../../scss/reset';
 @import '../../../../scss/mixins';
 
+app-product-item-short {
+  width: 30%;
+  margin-right: 5%;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
 .row-sb{
   display: flex;
   justify-content: space-between;

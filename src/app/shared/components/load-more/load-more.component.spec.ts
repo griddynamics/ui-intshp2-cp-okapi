@@ -24,6 +24,5 @@ describe('LoadMoreComponent', () => {
     spy = spyOn(component, 'onLoadMore');
     component.onLoadMore();
     expect(spy).toHaveBeenCalled();
-    console.log('here');
   });
 });

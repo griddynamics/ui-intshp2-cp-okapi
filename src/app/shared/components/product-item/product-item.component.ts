@@ -46,11 +46,6 @@ export class ProductItemComponent implements OnInit {
     this.currentThumbnail = this.currentSwatch.imgSrc;
   }
 
-  handleImgView(isHovered ): void {
-    this.isHovered  = isHovered;
-    this.resetDefaultThumbnail();
-  }
-
   hoverStateIn(): void {
     this.handleImgView(true);
   }
@@ -85,5 +80,10 @@ export class ProductItemComponent implements OnInit {
 
   public resetDefaultThumbnail(): void {
     this.currentThumbnail = this.product.thumbnailImageSrc;
+  }
+
+  protected handleImgView(isHovered ): void {
+    this.isHovered  = isHovered;
+    this.resetDefaultThumbnail();
   }
 }

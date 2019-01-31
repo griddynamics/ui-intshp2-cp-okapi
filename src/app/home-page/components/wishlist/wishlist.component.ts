@@ -35,7 +35,7 @@ export class WishlistComponent implements OnInit, OnDestroy, AfterViewInit {
     this.onResize = fromEvent(window, 'resize').pipe(
       debounceTime(100)
     ).subscribe(e => {
-      if (this.wishListArr) {
+      if (this.refToSingleItem) {
         this.countItemsInViewPort(this.refToSingleItem);
       }
     });

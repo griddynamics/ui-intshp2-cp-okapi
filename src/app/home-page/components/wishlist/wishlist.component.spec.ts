@@ -31,11 +31,6 @@ describe('WishlistComponent', () => {
 
   it('should call singleShortItemWidth with correct args', () => {
     component.singleShortItemWidth('');
-    // component.visibleWishItems = 1;
-    // component.wishListArr = 5;
-    // const spy = spyOn(component, 'countItemsInViewPort');
-    // component.countItemsInViewPort();
-    // expect(spy).toHaveBeenCalled();
   });
 
   it('should not call countItemsInViewPort if statement is true', () => {
