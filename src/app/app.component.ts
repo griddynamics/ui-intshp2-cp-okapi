@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { environment } from 'src/environments/environment';
-// import { RecentlyViewedService } from './shared/components/recently-viewed/recently-viewed.service';
+
 
 @Component({
   selector: 'app-root',
@@ -19,7 +19,6 @@ export class AppComponent {
       }
     });
 
-    // recentlyViewedService.loadRouting();
   }
 
 }

@@ -10,7 +10,6 @@ import { IProduct, ProductSize, ProductAvailabilityState } from 'src/app/shared/
 
 
 export class HomePageComponent {
-  viewedItems = JSON.parse(localStorage.getItem('recentlyViewed'));
 
   products: IProduct [] = [{
     id: '1',

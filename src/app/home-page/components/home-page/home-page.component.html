@@ -14,10 +14,6 @@
 
 <app-heading id="wish-list" *ngIf="wishListFilter.length" [alertText]="'wish'" [headingText]="'list'"></app-heading>
 
-<app-carousel *ngIf="viewedItems" [productsLength]="viewedItems.length">
-    <app-carousel-item *ngFor="let product of viewedItems">
-        <app-product-item-short [product]="product"></app-product-item-short>
-    </app-carousel-item>
-  </app-carousel>
+<app-recently-viewed></app-recently-viewed>
 
 <app-join-us></app-join-us>
