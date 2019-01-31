@@ -39,7 +39,6 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
     this.counterScrolledItems = this.itemsPerPage;
 
     this.childrenLength = this.productsLength;
-    console.log(this.childrenLength);
   }
 
   ngOnDestroy(): void {
@@ -49,7 +48,6 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public nextSlide(): void {
-    console.log(this.counterScrolledItems, this.childrenLength);
     if (this.counterScrolledItems < this.childrenLength) {
       this.counterScrolledItems += this.itemsPerPage;
       this.slidesMover(-100);
