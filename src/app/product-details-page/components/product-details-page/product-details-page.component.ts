@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct, ProductAvailabilityState, ProductSize } from 'src/app/shared/interfaces/product';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-details-page',
@@ -24,9 +25,13 @@ export class ProductDetailsPageComponent implements OnInit {
     description: 'Lorem Lorem Lorem',
   };
 
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
+
   ngOnInit() {
     const stored = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
-    const newProd = this.productInfo;
+    const newProd = this.activatedRoute.snapshot.params['id'];
     stored.unshift(newProd);
     localStorage.setItem('recentlyViewed', JSON.stringify(stored));
   }
