@@ -22,44 +22,44 @@ describe('ZoomComponent', () => {
   });
 
   it('should trigger mouseover', () => {
-    spyOn(component, "onMouseOver");
+    spyOn(component, 'onMouseOver');
     fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector("img");
-    const event = new MouseEvent("mouseover");
+    const element = fixture.nativeElement.querySelector('img');
+    const event = new MouseEvent('mouseover');
     element.dispatchEvent(event);
     expect(component.onMouseOver).toHaveBeenCalled();
   });
 
   it('should be ishovered on mouseover', () => {
     fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector("img");
-    const event = new MouseEvent("mouseover");
+    const element = fixture.nativeElement.querySelector('img');
+    const event = new MouseEvent('mouseover');
     element.dispatchEvent(event);
     expect(component.isHovered).toBeTruthy();
   });
 
   it('should trigger mouseleave', () => {
-    spyOn(component, "onMouseLeave");
+    spyOn(component, 'onMouseLeave');
     fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector("img");
-    const event = new MouseEvent("mouseleave");
+    const element = fixture.nativeElement.querySelector('img');
+    const event = new MouseEvent('mouseleave');
     element.dispatchEvent(event);
     expect(component.onMouseLeave).toHaveBeenCalled();
   });
 
   it('should not be ishovered on mouseleave', () => {
     fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector("img");
-    const event = new MouseEvent("mouseleave");
+    const element = fixture.nativeElement.querySelector('img');
+    const event = new MouseEvent('mouseleave');
     element.dispatchEvent(event);
     expect(component.isHovered).toBeFalsy();
   });
 
   it('should trigger mousemove', () => {
-    spyOn(component, "onMouseMove");
+    spyOn(component, 'onMouseMove');
     fixture.detectChanges();
-    const element = fixture.nativeElement.querySelector("img");
-    const event = new MouseEvent("mousemove");
+    const element = fixture.nativeElement.querySelector('img');
+    const event = new MouseEvent('mousemove');
     element.dispatchEvent(event);
     expect(component.onMouseMove).toHaveBeenCalled();
   });

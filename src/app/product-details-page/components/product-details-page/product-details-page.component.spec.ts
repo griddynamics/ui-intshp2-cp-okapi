@@ -15,10 +15,15 @@ describe('ProductDetailsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductDetailsPageComponent, ProductDescriptionComponent, ProductImagePreviewComponent, ProductOrderComponent, ZoomComponent ],
+      declarations: [
+        ProductDetailsPageComponent,
+        ProductDescriptionComponent,
+        ProductImagePreviewComponent,
+        ProductOrderComponent,
+        ZoomComponent],
       imports: [RouterTestingModule, HttpClientModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
