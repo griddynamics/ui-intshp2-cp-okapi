@@ -31,7 +31,7 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.childrenLength = document.querySelectorAll('.carousel-item-wrap').length;
+    this.childrenLength = this.slidesContainer.nativeElement.children.length;
     const slidesContainerWidth = this.slidesContainer.nativeElement.offsetWidth;
     const slideItemWidth = this.slidesContainer.nativeElement.children[0].offsetWidth;
     this.itemsPerPage = Math.round(slidesContainerWidth / slideItemWidth);

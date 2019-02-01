@@ -18,7 +18,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  public create(path: string, options: RequestOptions): Observable<any> {
+  public create(path: string, options): Observable<any> {
     return this.sendRequest('post', path, options);
   }
 

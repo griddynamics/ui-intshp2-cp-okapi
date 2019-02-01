@@ -3,6 +3,12 @@
 @import '../../../../../scss/reset';
 @import '../../../../../scss/mixins';
 
+app-zoom {
+  display: flex;
+  z-index: 10;
+  position: relative;
+}
+
 .img-big-container {
   display: flex;
   justify-content: center;
@@ -22,7 +28,7 @@
   width: 330px;
   justify-content: flex-start;
 
-  .img {
+  .img-render {
     width: 96px;
     height: 70px;
     text-align: center;
@@ -53,6 +59,33 @@
     img {
       max-width: 100%;
       max-height: 100%;
+    }
+  }
+}
+
+
+@include laptop {
+  .img-big-container {
+    width: 270px;
+  }
+
+  .img-small-container {
+    width: 270px;
+
+    .img-render {
+      width: 122px;
+      height: 64px;
+    }
+  }
+}
+@include laptop {
+  .img-small-container {
+    width: 100%;
+    justify-content: center;
+
+    .img-render {
+      width: 87px;
+      height: 67px;
     }
   }
 }
