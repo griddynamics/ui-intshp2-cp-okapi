@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef  } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 

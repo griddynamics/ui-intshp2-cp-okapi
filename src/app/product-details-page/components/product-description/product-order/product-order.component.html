@@ -2,10 +2,10 @@
   <hr>
   <div class="chose-container-wrapper">
     <div class="chose-container-sizes">
-      <p class="title">Choose Size</p>
-      <div *ngFor="let size of sizes; let i = index">
+      <p class="title">Choos Size</p>
+      <div *ngFor="let size of product.sizes; let i = index">
         <button (click)="onChooseSize(size, i)" [ngClass]="{'selectedSize': i === selected}">{{size}}</button>
-        <span *ngIf="i !== sizes.length-1">-</span>
+        <span *ngIf="i !== product.sizes.length-1">-</span>
       </div>
     </div>
     <div class="chose-container-quantity">
@@ -21,16 +21,12 @@
   <hr>
   <div class="order-container-wrapper">
     <div class="price">
-      <p>Price : {{price}}</p>
+      <p>Price : {{productConfiguration.price | currency:'USD':true}}</p>
     </div>
     <div class="order">
-        <i (click)="addToCart($event)" class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product?.addedToCart}"></i> 
-        <i *ngIf="wishListEnabled" class="to-wish-list" [ngClass]="{ 'added-to-wishlist': product?.addedToWishList}"></i>
-        <button [routerLink]="['/order-page']" class="order-button">
-          <span>
-            Order Now
-          </span>
-        </button>
+        <a (click)="addToCart($event)"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product?.addedToCart}"></i></a>
+        <i *ngIf="wishListEnabled" class="to-wish-list" (click)="toggleWishList()" [ngClass]="{ 'added-to-wishlist': product?.addedToWishList}"></i>
+        <button [routerLink]="['/order-page']" class="order-button">Order Now</button>
     </div>
   </div>
 </div>

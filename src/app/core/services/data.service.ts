@@ -22,7 +22,7 @@ export class DataService {
     return this.sendRequest('post', path, options);
   }
 
-  public delete(path: string, options: RequestOptions): Observable<any> {
+  public delete(path: string, options?: RequestOptions): Observable<any> {
     return this.sendRequest('delete', path, options);
   }
 
@@ -38,7 +38,7 @@ export class DataService {
     return this.sendRequest('get', path, options);
   }
 
-  public update(path: string, options: RequestOptions): Observable<any> {
+  public update(path: string, options?: RequestOptions): Observable<any> {
     return this.sendRequest('put', path, options);
   }
 
@@ -58,7 +58,7 @@ export class DataService {
       'Something bad happened; please try again later.');
   }
 
-  private sendRequest(method: string, path: string, options: RequestOptions): Observable<any> {
+  private sendRequest(method: string, path: string, options?: RequestOptions): Observable<any> {
     if (!this.http[method]) {
       throw new Error('Method does\'nt supported in HTTPClient');
     }
