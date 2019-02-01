@@ -1,8 +1,6 @@
-<div *ngIf="products?.length">
-  <app-heading [alertText]="'related'" [headingText]="'products'"></app-heading>
-  <app-carousel>
-    <app-carousel-item *ngFor="let relatedProduct of products">
-      <app-product-item (addItemToWishList)="refreshWishList($event)" [product]="relatedProduct"></app-product-item>
-    </app-carousel-item>
-  </app-carousel>
-</div>
+<app-heading [alertText]="'related'" [headingText]="'products'"></app-heading>
+<app-carousel>
+  <app-carousel-item *ngFor="let relatedProduct of products">
+    <app-product-item (addItemToWishList)="refreshWishList($event)" [product]="relatedProduct"></app-product-item>
+  </app-carousel-item>
+</app-carousel>

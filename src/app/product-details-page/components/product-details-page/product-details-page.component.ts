@@ -11,7 +11,7 @@ import { mergeMap } from 'rxjs/operators';
 })
 export class ProductDetailsPageComponent implements OnInit, OnDestroy {
 
-  productSubscription;
+  private productSubscription;
   product;
 
   constructor(private route: ActivatedRoute, private dataService: ProductDetailsPageService) { }

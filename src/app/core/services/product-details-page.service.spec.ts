@@ -1,9 +1,9 @@
-import { TestBed } from '@angular/core/testing';
-
-import { ProductDetailsPageService } from './product-details-page.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { isObservable } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
+
+import { ProductDetailsPageService } from './product-details-page.service';
 
 describe('ProductDetailsPageService', () => {
   beforeEach(() => TestBed.configureTestingModule({

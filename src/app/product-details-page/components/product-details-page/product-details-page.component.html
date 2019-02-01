@@ -1,2 +1,2 @@
 <app-product-description [product]="productInfo"></app-product-description>
-<app-related-products [products]="product?.relatedProducts"></app-related-products>
+<app-related-products *ngIf="product?.relatedProducts" [products]="product?.relatedProducts"></app-related-products>
