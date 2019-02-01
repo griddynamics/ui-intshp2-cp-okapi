@@ -23,9 +23,8 @@ describe('KillswitchService', () => {
   });
 
   it('should return corect value of object', () => {
-    const killswitches = {'key': 'false'};
     const killswitchService: KillswitchService = TestBed.get(KillswitchService);
-    const resValue = killswitchService.getKillswitch(killswitches.key);
-    expect(resValue).toBeFalsy();
+    killswitchService.killswitches = {'wishListEnabled': true};
+    expect(killswitchService.getKillswitch('wishListEnabled')).toBe(true);
   });
 });

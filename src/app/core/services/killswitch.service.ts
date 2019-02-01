@@ -9,7 +9,7 @@ import { DataService } from './data.service';
 export class KillswitchService {
     static CONFIG_URL = 'assets/config/killswitches.json';
 
-    private killswitches = {};
+    public killswitches = {};
 
     constructor(private dataService: DataService) {}
 
