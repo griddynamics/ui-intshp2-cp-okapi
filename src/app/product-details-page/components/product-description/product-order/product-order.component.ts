@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { DataService } from 'src/app/core/services/data.service';
+import { KillswitchService } from 'src/app/core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
 
@@ -20,13 +21,16 @@ export class ProductOrderComponent implements OnInit {
     size: '',
     price: 0
   };
+  protected wishListEnabled;
 
   constructor(
+    private productsService: ProductsService,
     private dataService: DataService,
-    private productsService: ProductsService
+    private killswitchService: KillswitchService
     ) { }
 
   ngOnInit() {
+    this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
     if (!this.product || !this.product.sizes && !this.product.price) {
       return;
     }

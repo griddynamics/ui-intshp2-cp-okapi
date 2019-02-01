@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
+import { KillswitchService } from '../../../core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 
 @Component({
@@ -27,12 +28,16 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }];
 
   private subscriptions: Subscription[] = [];
+  protected wishListEnabled;
 
   constructor(
-    public productsService: ProductsService
+    public productsService: ProductsService,
+    private killswitchService: KillswitchService
   ) { }
 
   ngOnInit(): void {
+    this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
+
     this.subscriptions = [
       this.productsService.getProducts().subscribe(data => {
         this.products = data;
@@ -43,11 +48,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
       })];
   }
 
-  public wishListHandler(product: IProduct): void {
-    this.productsService.toggleWishListProduct(product);
-  }
-
   ngOnDestroy(): void {
     this.subscriptions.map(subscription => subscription.unsubscribe());
+  }
+
+  public wishListHandler(product: IProduct): void {
+    this.productsService.toggleWishListProduct(product);
   }
 }

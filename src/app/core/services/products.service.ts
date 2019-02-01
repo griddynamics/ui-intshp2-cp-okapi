@@ -28,10 +28,8 @@ export class ProductsService {
   public getProducts(): Observable<IProduct[]> {
     return Observable.create((observer) => {
 
-      this.dataService.get('assets/mock/products.json').subscribe((data: IProduct[]) => {
-
+      this.dataService.get('assets/mocks/products.json').subscribe((data: IProduct[]) => {
         this.prepareProductResponse(data);
-
         this.wishListSource.next(this.wishList);
         observer.next(this.products);
       });
