@@ -31,8 +31,21 @@ export class ProductDetailsPageComponent implements OnInit {
 
   ngOnInit() {
     const stored = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
-    const newProd = this.activatedRoute.snapshot.params['id'];
-    stored.unshift(newProd);
-    localStorage.setItem('recentlyViewed', JSON.stringify(stored));
+    const newProdId = this.activatedRoute.snapshot.params['id'];
+    if (stored.length) {
+      let isInArray = 0;
+      for (let i = 0; i < stored.length; i++) {
+        if (stored[i] == newProdId) {
+          isInArray = 1;
+         }
+        }
+        if (!isInArray) {
+        stored.push(newProdId);
+        localStorage.setItem('recentlyViewed', JSON.stringify(stored));
+        }
+    } else {
+      stored.push(newProdId);
+      localStorage.setItem('recentlyViewed', JSON.stringify(stored));
+    }
   }
 }
