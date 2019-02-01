@@ -29,3 +29,43 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Feature flags
+
+### Flag data
+
+The flag data that drives the feature flag service is a json format. Put your flag name into the file 'src/assets/config/killswitches.json'. Below is an example:
+
+```bash
+{ 
+  "featureName": boolean,
+},
+```
+| featureName |  boolean|
+| :---:   | :-: |
+|  a short name of the flag| Boolean value for enabling/disabling the feature |
+
+
+### Setting flag data
+
+Edit the [your component name].ts where you want to use feature flag with the code below
+
+```typescript
+  ...
+  protected featureName;
+
+  constructor(private killswitchService: KillswitchService) {}
+
+  ngOnInit() {
+    this.featureName = this.killswitchService.getKillswitch('featureName');
+  }
+  ...
+```
+
+### Toggling elements
+Then you need to add the *ngIf directive with feature-flag in [your component name].html, e.g:
+
+```html
+content you want to toggle
+  <p *ngIf="featureName1" >Lorem ipsum dolor...</p>
+```
