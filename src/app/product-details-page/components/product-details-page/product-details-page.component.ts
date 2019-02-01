@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IProduct, ProductAvailabilityState, ProductSize } from 'src/app/shared/interfaces/product';
+import { ProductAvailabilityState, ProductSize } from 'src/app/shared/interfaces/product';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { IProduct, ProductAvailabilityState, ProductSize } from 'src/app/shared/
 export class ProductDetailsPageComponent {
 
   productInfo = {
-    id: '1',
+    id: '12',
     name: 'Reebock Track Jacket',
     price: '100$',
     rating: 2,
@@ -20,7 +20,7 @@ export class ProductDetailsPageComponent {
     thumbnailImageSrc: 'http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png',
     sizes: [ProductSize.S, ProductSize.M, ProductSize.L, ProductSize.XL],
     addedToCart: false,
-    addedToWishList: true,
+    addedToWishList: false,
     title: 'Half Jacket + Skiny Trousers + Boot leather',
     description: 'Lorem Lorem Lorem',
   };

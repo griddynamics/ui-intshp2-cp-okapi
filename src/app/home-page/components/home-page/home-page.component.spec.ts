@@ -6,7 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HomePageComponent } from './home-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SlideshowComponent } from '../slideshow/slideshow.component';
-import { WishlistComponent } from '../wishlist/wishlist.component';
+import { WishListComponent } from '../wish-list/wish-list.component';
 
 
 describe('HomePageComponent', () => {
@@ -19,7 +19,7 @@ describe('HomePageComponent', () => {
       declarations: [
         HomePageComponent,
         SlideshowComponent,
-        WishlistComponent
+        WishListComponent
       ],
     })
     .compileComponents();

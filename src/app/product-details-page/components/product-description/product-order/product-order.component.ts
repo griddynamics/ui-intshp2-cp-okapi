@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
+import { ProductsService } from 'src/app/core/services/products.service';
+import { IProduct } from 'src/app/shared/interfaces/product';
 
 @Component({
   selector: 'app-product-order',
@@ -7,11 +9,10 @@ import { DataService } from 'src/app/core/services/data.service';
   styleUrls: ['./product-order.component.scss']
 })
 export class ProductOrderComponent implements OnInit {
-  @Input() sizes: string;
-  @Input() price: string;
+  @Input() product: IProduct;
   @Input() addedToCart: boolean;
   @Input() addedToWishList: boolean;
-  selected;
+  public selected;
 
   public productConfiguration = {
     count: 1,
@@ -19,17 +20,24 @@ export class ProductOrderComponent implements OnInit {
     price: ''
   };
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private productsService: ProductsService
+    ) { }
 
   ngOnInit() {
-    if (!this.sizes && !this.price) {
+    if (!this.product || !this.product.sizes && !this.product.price) {
       return;
     }
-    this.productConfiguration.price = this.price;
+    this.productConfiguration.price = String(this.product.price);
   }
 
   addToCart() {
     this.dataService.create('add-to-cart/', this.productConfiguration).subscribe();
+  }
+
+  handleWishListToggle() {
+    this.productsService.toggleWishListProduct(this.product);
   }
 
   increaseQuantity() {

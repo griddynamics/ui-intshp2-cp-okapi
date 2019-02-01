@@ -1,22 +1,20 @@
-<div #singleShortItem>
-  <div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
-    <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
-    <div class="product-item-short" [ngClass]="{'gray-scale': isOutOfStock}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
-      <div class="preview-img-short" [ngStyle]="{'background-image': currentThumbnail}"></div>
-      <hr>
-      <div class="main-details">
-        <h2>{{product.title}}</h2>
-        <div class="item-details">
-          <div *ngIf="!isHovered" class="stars">
-            <i *ngFor="let rating of starsArray; let i = index" class="fas fa-star" [ngClass]="{'rating': i + 1 <= product.rating}"></i>
-          </div>
-          <p *ngIf="!isHovered" class="price">{{product.price}}</p>
-          <a *ngIf="isHovered" href="#">
-            <p class="cart" [ngClass]="{'added': product.addedToCart}"><span><i class="fas fa-cart-plus"></i></span>
-              add
-              to cart</p>
-          </a>
+<div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
+  <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
+  <div class="product-item-short" [ngClass]="{'gray-scale': isOutOfStock}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
+    <div class="preview-img-short" [ngStyle]="{'background-image': currentThumbnail}"></div>
+    <hr>
+    <div class="main-details">
+      <h2>{{product.title}}</h2>
+      <div class="item-details">
+        <div *ngIf="!isHovered" class="stars">
+          <i *ngFor="let rating of starsArray; let i = index" class="fas fa-star" [ngClass]="{'rating': i + 1 <= product.rating}"></i>
         </div>
+        <p *ngIf="!isHovered" class="price">{{product.price}}</p>
+        <a *ngIf="isHovered" href="#">
+          <p class="cart" [ngClass]="{'added': product.addedToCart}"><span><i class="fas fa-cart-plus"></i></span>
+            add
+            to cart</p>
+        </a>
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@
 <app-heading 
   [alertText]="'new'" 
   [headingText]="'Arrivals'"></app-heading>
-<app-carousel>
+<app-carousel *ngIf="products.length">
   <app-carousel-item *ngFor="let product of products">
     <app-product-item 
       (addItemToWishList)="wishListHandler($event)" 
@@ -27,7 +27,7 @@
 ></app-heading>
 
 <div class="main-container">
-  <app-wishlist [wishListArr]="products?.length"></app-wishlist>
+  <app-wish-list *ngIf="wishList.length" [products]="wishList"></app-wish-list>
 </div>
 
 <app-join-us></app-join-us>

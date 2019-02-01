@@ -5,11 +5,11 @@ import { SharedModule} from '../shared/shared.module';
 
 import { HomePageComponent } from './components/home-page';
 import { SlideshowComponent } from './components/slideshow/slideshow.component';
-import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
 
 
 @NgModule({
-  declarations: [HomePageComponent, SlideshowComponent, WishlistComponent],
+  declarations: [HomePageComponent, SlideshowComponent, WishListComponent],
   imports: [
     HomePageRoutingModule,
     SharedModule

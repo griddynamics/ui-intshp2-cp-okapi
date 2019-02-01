@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { ProductsService } from 'src/app/core/services/products.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -10,8 +11,9 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 
 
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
+  public wishList: IProduct[] = [];
 
   banners: IBanner[] = [{
     height: 100,
@@ -23,22 +25,28 @@ export class HomePageComponent implements OnInit {
     htmlSnippet: '<img style="width:100%" src="../../../../assets/img/adv_area.png" >',
   }];
 
+  private subscriptions: Subscription[] = [];
 
   constructor(
     public productsService: ProductsService
   ) { }
 
   ngOnInit(): void {
-    this.productsService.getProducts().subscribe(data => {
-      this.products = data;
-    });
+    this.subscriptions = [
+      this.productsService.getProducts().subscribe(data => {
+        this.products = data;
+      }),
+
+      this.productsService.getWishList().subscribe(data => {
+        this.wishList = data;
+      })];
   }
 
   public wishListHandler(product: IProduct): void {
-    if (!product.addedToWishList) {
-      this.productsService.addToWishList(product.id);
-      return;
-    }
-    this.productsService.removeFromWishList(product.id);
+    this.productsService.toggleWishListProduct(product);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.map(subscription => subscription.unsubscribe());
   }
 }

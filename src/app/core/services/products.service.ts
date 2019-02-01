@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { IProduct, ProductAvailabilityState, ProductSize } from 'src/app/shared/interfaces/product';
-import { Observable, from, BehaviorSubject } from 'rxjs';
+import { IProduct } from 'src/app/shared/interfaces/product';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  private wishListArr: IProduct[] = [];
+  private wishList: IProduct[] = [];
   private wishListIds: String[] = [];
   private products: IProduct[] = [];
 
@@ -17,10 +17,10 @@ export class ProductsService {
     private dataService: DataService,
   ) {
     const wishListIds = JSON.parse(localStorage.getItem('wishlist'));
-    this.wishListIds = wishListIds ? wishListIds : [];
+    this.wishListIds = wishListIds ? wishListIds : this.wishListIds;
   }
 
-  public getWishListArr(): Observable<IProduct[]> {
+  public getWishList(): Observable<IProduct[]> {
     return this.wishListSource.asObservable();
   }
 
@@ -28,59 +28,63 @@ export class ProductsService {
     return Observable.create((observer) => {
 
       this.dataService.get('assets/mock/products.json').subscribe(data => {
-        this.products = data;
 
-        data.forEach(product => {
-          const currentProduct = this.checkProductInStorage(product);
+        this.prepareProductResponse(data);
 
-          if (currentProduct.addedToWishList) {
-            this.wishListArr.push(currentProduct);
-          }
-        });
-
-        this.wishListSource.next(this.wishListArr);
+        this.wishListSource.next(this.wishList);
         observer.next(this.products);
       });
 
     });
   }
 
-  public addToWishList(id: String): void {
-    const currentProduct = this.products.find(el => el.id === id);
+  public addToWishList(product): void {
 
-    if (!currentProduct) {
-      throw new Error('product is no longer avaliable');
-    }
-
-    currentProduct.addedToWishList = true;
-    this.wishListArr.push(currentProduct);
-    this.wishListIds.push(id);
+    product.addedToWishList = true;
+    this.wishList.push(product);
+    this.wishListIds.push(product.id);
 
     this.updateWishList();
   }
 
-  public removeFromWishList(id: String): void {
-    const currentProduct = this.products.find(el => el.id === id);
+  public removeFromWishList(product): void {
+    product.addedToWishList = false;
 
-    if (currentProduct) {
-      currentProduct.addedToWishList = false;
-    }
-
-    const indexOfCurrId = this.wishListIds.findIndex(el => el === id);
+    const indexOfCurrId = this.wishListIds.findIndex(el => el === product.id);
     this.wishListIds.splice(indexOfCurrId, 1);
-    const indexOfCurrProduct = this.wishListArr.findIndex(el => el.id === id);
-    this.wishListArr.splice(indexOfCurrProduct, 1);
+    const indexOfCurrProduct = this.wishList.findIndex(el => el.id === product.id);
+    this.wishList.splice(indexOfCurrProduct, 1);
 
     this.updateWishList();
   }
 
-  private checkProductInStorage(product: IProduct): IProduct {
+  public toggleWishListProduct(product) {
+    if (!product.addedToWishList) {
+      this.addToWishList(product);
+      return;
+    }
+    this.removeFromWishList(product);
+  }
+
+  private checkProductInWishList(product: IProduct): IProduct {
     product.addedToWishList = this.wishListIds.includes(product.id);
     return product;
   }
 
+  private prepareProductResponse(products: IProduct[]): void {
+    this.products = products.map(el => {
+      const currentProduct = this.checkProductInWishList(el);
+
+      if (currentProduct.addedToWishList) {
+        this.wishList.push(currentProduct);
+      }
+
+      return currentProduct;
+    });
+  }
+
   private updateWishList(): void {
     localStorage.setItem('wishlist', JSON.stringify(this.wishListIds));
-    this.wishListSource.next(this.wishListArr);
+    this.wishListSource.next(this.wishList);
   }
 }
