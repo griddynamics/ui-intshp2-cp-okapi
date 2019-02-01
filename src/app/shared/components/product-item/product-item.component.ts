@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ISwatch } from '../../interfaces/product';
+import { KillswitchService } from 'src/app/core/services/killswitch.service';
 
 @Component({
   selector: 'app-product-item',
@@ -15,7 +16,13 @@ export class ProductItemComponent implements OnInit {
   _currentThumbnail;
   private _currentSwatch;
 
+  protected wishListEnabled;
+
+  constructor(private killswitchService: KillswitchService) {}
+
   ngOnInit() {
+    this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
+
     if (!this.product) {
       return;
     }
