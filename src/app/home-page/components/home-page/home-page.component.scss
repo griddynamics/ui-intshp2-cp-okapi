@@ -12,6 +12,10 @@ app-product-item-short {
   }
 }
 
+app-carousel-item {
+  display: block;
+}
+
 .row-sb{
   display: flex;
   justify-content: space-between;
@@ -24,24 +28,22 @@ app-product-item-short {
   }
 } 
 
+app-product-item-short {
+  width: 30%;
+  margin-right: 3%;
+  margin-bottom: 15px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
 .main-container {
   padding: 0 $content-padding;
   background-color: $bg-color;
 }
 
-.product-item-short-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin: 0 auto;
-  max-width: $main-container-width;
-}
 
 @include tablet {
-  app-product-item-short {
-    width: 100%;
-    margin-right: 0;
-  }
 
   .row-sb{
     flex-direction: column;
@@ -51,9 +53,5 @@ app-product-item-short {
       width: 90%;
       margin: 5px auto;
     }
-  }
-
-  .product-item-short-wrapper {
-    flex-direction: column;
   }
 }

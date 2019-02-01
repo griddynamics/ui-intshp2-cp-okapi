@@ -10,7 +10,6 @@ export class ProductItemComponent implements OnInit {
   @Input() public product;
   @Output() addItemToWishList = new EventEmitter();
 
-
   isHovered = false;
   _currentThumbnail;
   private _currentSwatch;
@@ -76,11 +75,10 @@ export class ProductItemComponent implements OnInit {
 
   addToWishList(): void {
     event.stopPropagation();
-    this.product.addedToWishList = !this.product.addedToWishList;
     this.addItemToWishList.emit(this.product);
   }
 
-  private resetDefaultThumbnail(): void {
+  public resetDefaultThumbnail(): void {
     this.currentThumbnail = this.product.thumbnailImageSrc;
   }
 

@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { DataService } from 'src/app/core/services/data.service';
+import { ProductsService } from 'src/app/core/services/products.service';
+import { IProduct } from 'src/app/shared/interfaces/product';
 
 @Component({
   selector: 'app-product-order',
@@ -7,42 +10,50 @@ import { DataService } from 'src/app/core/services/data.service';
   styleUrls: ['./product-order.component.scss']
 })
 export class ProductOrderComponent implements OnInit {
-  @Input() sizes: string[];
-  @Input() price: string;
+  @Input() product: IProduct;
   @Input() addedToCart: boolean;
   @Input() addedToWishList: boolean;
-  selected;
+  public selected: number;
 
   public productConfiguration = {
     count: 1,
     size: '',
-    price: ''
+    price: 0
   };
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private productsService: ProductsService
+    ) { }
 
   ngOnInit() {
-    if (!this.sizes && !this.price) {
+    if (!this.product || !this.product.sizes && !this.product.price) {
       return;
     }
-    this.productConfiguration.price = this.price;
+    this.productConfiguration.price = this.product.price;
   }
 
   addToCart() {
     this.dataService.create('add-to-cart/', this.productConfiguration).subscribe();
   }
 
-  increaseQuantity() {
-    this.productConfiguration.count++;
+  public toggleWishList(): void {
+    this.productsService.toggleWishListProduct(this.product);
   }
 
-  decreaseQuantity() {
+  public increaseQuantity(): void {
+    this.productConfiguration.count++;
+    this.productConfiguration.price += this.product.price;
+  }
+
+  public decreaseQuantity(): void {
     if (this.productConfiguration.count > 1) {
       this.productConfiguration.count--;
+      this.productConfiguration.price -= this.product.price;
     }
   }
 
-  onChooseSize(size, i) {
+  public onChooseSize(size: string, i: number): void {
     this.productConfiguration.size = size;
     this.selected = i;
   }
