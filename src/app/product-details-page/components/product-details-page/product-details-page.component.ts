@@ -35,7 +35,7 @@ export class ProductDetailsPageComponent implements OnInit {
     if (stored.length) {
       let isInArray = 0;
       for (let i = 0; i < stored.length; i++) {
-        if (stored[i] == newProdId) {
+        if (stored[i] === newProdId) {
           isInArray = 1;
          }
         }
