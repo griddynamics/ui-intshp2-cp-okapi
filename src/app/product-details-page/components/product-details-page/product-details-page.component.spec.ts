@@ -21,7 +21,7 @@ describe('ProductDetailsPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         SharedModule,
-        RouterTestingModule, 
+        RouterTestingModule,
         HttpClientTestingModule,
         HttpClientModule
       ],
