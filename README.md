@@ -46,26 +46,18 @@ The flag data that drives the feature flag service is a json format. Put your fl
 |  a short name of the flag| Boolean value for enabling/disabling the feature |
 
 
-### Setting flag data
+### Get the flag value
 
 Edit the [your component name].ts where you want to use feature flag with the code below
 
 ```typescript
   ...
-  protected featureName;
-
-  constructor(private killswitchService: KillswitchService) {}
-
-  ngOnInit() {
-    this.featureName = this.killswitchService.getKillswitch('featureName');
-  }
+  this.killswitchName = this.killswitchService.getKillswitch('killswitchName');
   ...
 ```
-
-### Toggling elements
-Then you need to add the *ngIf directive with feature-flag in [your component name].html, e.g:
+and then you need to add the *ngIf directive with feature-flag in [your component name].html, e.g:
 
 ```html
 content you want to toggle
-  <p *ngIf="featureName1" >Lorem ipsum dolor...</p>
+  <ng-content *ngIf="killswitchName" >...</ng-content>
 ```
