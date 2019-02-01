@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { ProductsService } from 'src/app/core/services/products.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',

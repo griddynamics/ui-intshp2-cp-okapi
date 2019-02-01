@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild, OnDestroy, ElementRef, AfterViewInit, ChangeDetectorRef, OnInit } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+
 import { IProduct } from 'src/app/shared/interfaces/product';
 
 @Component({

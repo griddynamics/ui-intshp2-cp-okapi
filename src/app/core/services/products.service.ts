@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { IProduct } from 'src/app/shared/interfaces/product';
 import { Observable, BehaviorSubject } from 'rxjs';
+
 import { DataService } from './data.service';
+import { IProduct } from 'src/app/shared/interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class ProductsService {
   public getProducts(): Observable<IProduct[]> {
     return Observable.create((observer) => {
 
-      this.dataService.get('assets/mock/products.json').subscribe(data => {
+      this.dataService.get('assets/mock/products.json').subscribe((data: IProduct[]) => {
 
         this.prepareProductResponse(data);
 
@@ -38,7 +39,7 @@ export class ProductsService {
     });
   }
 
-  public addToWishList(product): void {
+  public addToWishList(product: IProduct): void {
 
     product.addedToWishList = true;
     this.wishList.push(product);
@@ -47,7 +48,7 @@ export class ProductsService {
     this.updateWishList();
   }
 
-  public removeFromWishList(product): void {
+  public removeFromWishList(product: IProduct): void {
     product.addedToWishList = false;
 
     const indexOfCurrId = this.wishListIds.findIndex(el => el === product.id);
@@ -58,7 +59,7 @@ export class ProductsService {
     this.updateWishList();
   }
 
-  public toggleWishListProduct(product) {
+  public toggleWishListProduct(product: IProduct) {
     if (!product.addedToWishList) {
       this.addToWishList(product);
       return;

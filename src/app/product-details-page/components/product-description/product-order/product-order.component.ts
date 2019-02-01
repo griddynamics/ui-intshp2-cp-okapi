@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
 import { DataService } from 'src/app/core/services/data.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
@@ -12,7 +13,7 @@ export class ProductOrderComponent implements OnInit {
   @Input() product: IProduct;
   @Input() addedToCart: boolean;
   @Input() addedToWishList: boolean;
-  public selected;
+  public selected: number;
 
   public productConfiguration = {
     count: 1,
@@ -36,7 +37,7 @@ export class ProductOrderComponent implements OnInit {
     this.dataService.create('add-to-cart/', this.productConfiguration).subscribe();
   }
 
-  handleWishListToggle() {
+  public toggleWishList(): void {
     this.productsService.toggleWishListProduct(this.product);
   }
 
