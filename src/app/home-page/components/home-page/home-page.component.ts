@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct, ProductSize, ProductAvailabilityState } from 'src/app/shared/interfaces/product';
+import { KillswitchService } from '../../../core/services/killswitch.service';
 
 @Component({
   selector: 'app-home-page',
@@ -9,7 +10,7 @@ import { IProduct, ProductSize, ProductAvailabilityState } from 'src/app/shared/
 })
 
 
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
   products: IProduct [] = [{
     id: '1',
     title: 'Reebock Track Jacket',
@@ -140,6 +141,14 @@ export class HomePageComponent {
   }];
 
   wishListFilter = this.products.filter(el => el.addedToWishList);
+
+  protected wishListEnabled;
+
+  constructor(private killswitchService: KillswitchService) {}
+
+  ngOnInit() {
+    this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
+  }
 
   refreshWishList(resFromChild) {
     if (this.wishListFilter.every(el => el.id !== resFromChild.id)) {

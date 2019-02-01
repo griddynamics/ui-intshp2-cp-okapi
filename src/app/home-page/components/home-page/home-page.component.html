@@ -6,7 +6,7 @@
   </app-carousel-item>
 </app-carousel>
 <div class="main-container">
-  <div class="row-sb">
+  <div  class="row-sb">
     <app-advertising-area
       *ngFor="let banner of banners"
       [content]="banner.htmlSnippet"
@@ -16,14 +16,17 @@
   </div>
 </div>
 
-<app-heading id="wish-list" *ngIf="wishListFilter.length" [alertText]="'wish'" [headingText]="'list'"></app-heading>
+<ng-container *ngIf="wishListEnabled">
+  <app-heading id="wish-list" *ngIf="wishListFilter.length" [alertText]="'wish'" [headingText]="'list'"></app-heading>
 
-<div class="main-container">
-  <div class="product-item-short-wrapper">
-    <ng-container *ngFor="let product of wishListFilter; let i = index">
-      <app-product-item-short  *ngIf="i < 3" [product]="product"></app-product-item-short>
-    </ng-container>
+  <div class="main-container">
+    <div class="product-item-short-wrapper">
+      <ng-container *ngFor="let product of wishListFilter; let i = index">
+        <app-product-item-short  *ngIf="i < 3" [product]="product"></app-product-item-short>
+      </ng-container>
+    </div>
   </div>
-</div>
+</ng-container>
+
 
 <app-join-us></app-join-us>

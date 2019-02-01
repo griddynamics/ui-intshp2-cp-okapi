@@ -18,7 +18,7 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  public create(path: string, options): Observable<any> {
+  public create(path: string, options?): Observable<any> {
     return this.sendRequest('post', path, options);
   }
 
@@ -34,7 +34,7 @@ export class DataService {
     this.headers.delete(key);
   }
 
-  public get(path: string, options: RequestOptions): Observable<any> {
+  public get(path: string, options?: any): Observable<any> {
     return this.sendRequest('get', path, options);
   }
 

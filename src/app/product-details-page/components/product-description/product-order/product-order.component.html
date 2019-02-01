@@ -25,7 +25,7 @@
     </div>
     <div class="order">
         <a (click)="addToCart($event)"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product?.addedToCart}"></i></a>
-        <i class="to-wish-list" [ngClass]="{ 'added-to-wishlist': product?.addedToWishList}"></i>
+        <i *ngIf="wishListEnabled" class="to-wish-list" [ngClass]="{ 'added-to-wishlist': product?.addedToWishList}"></i>
         <button [routerLink]="['/order-page']" class="order-button">Order Now</button>
     </div>
   </div>
