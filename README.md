@@ -38,7 +38,7 @@ The flag data that drives the feature flag service is a json format. Put your fl
 
 ```bash
 { 
-  "featureName": boolean,
+  "killswitchName": boolean,
 },
 ```
 | featureName |  boolean|
