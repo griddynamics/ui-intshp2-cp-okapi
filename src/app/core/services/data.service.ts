@@ -34,7 +34,7 @@ export class DataService {
     this.headers.delete(key);
   }
 
-  public get(path: string, options?: RequestOptions): Observable<any> {
+  public get(path: string, options?: any): Observable<any> {
     return this.sendRequest('get', path, options);
   }
 

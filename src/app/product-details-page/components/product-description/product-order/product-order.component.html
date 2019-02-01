@@ -21,7 +21,7 @@
   <hr>
   <div class="order-container-wrapper">
     <div class="price">
-      <p>Price : {{product.price}}</p>
+      <p>Price : {{productConfiguration.price | currency:'USD':true}}</p>
     </div>
     <div class="order">
         <a (click)="addToCart($event)"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product?.addedToCart}"></i></a>

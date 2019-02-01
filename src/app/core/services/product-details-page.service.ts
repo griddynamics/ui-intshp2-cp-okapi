@@ -12,6 +12,6 @@ export class ProductDetailsPageService {
   constructor(private dataService: DataService) {}
 
   getProduct(id: String): Observable<IProduct> {
-    return this.dataService.get('/assets/mocks/pdp.json');
+    return this.dataService.get('/assets/mocks/pdp.json', {id});
   }
 }

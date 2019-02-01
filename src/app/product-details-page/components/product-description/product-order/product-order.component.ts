@@ -18,7 +18,7 @@ export class ProductOrderComponent implements OnInit {
   public productConfiguration = {
     count: 1,
     size: '',
-    price: ''
+    price: 0
   };
 
   constructor(
@@ -30,7 +30,7 @@ export class ProductOrderComponent implements OnInit {
     if (!this.product || !this.product.sizes && !this.product.price) {
       return;
     }
-    this.productConfiguration.price = String(this.product.price);
+    this.productConfiguration.price = this.product.price;
   }
 
   addToCart() {
@@ -41,17 +41,19 @@ export class ProductOrderComponent implements OnInit {
     this.productsService.toggleWishListProduct(this.product);
   }
 
-  increaseQuantity() {
+  public increaseQuantity(): void {
     this.productConfiguration.count++;
+    this.productConfiguration.price += this.product.price;
   }
 
-  decreaseQuantity() {
+  public decreaseQuantity(): void {
     if (this.productConfiguration.count > 1) {
       this.productConfiguration.count--;
+      this.productConfiguration.price -= this.product.price;
     }
   }
 
-  onChooseSize(size, i) {
+  public onChooseSize(size: string, i: number): void {
     this.productConfiguration.size = size;
     this.selected = i;
   }
