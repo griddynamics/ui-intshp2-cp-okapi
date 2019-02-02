@@ -9,7 +9,6 @@ import { ProductItemComponent } from '../product-item.component';
 
 export class ProductItemShortComponent extends ProductItemComponent {
   @Input() product;
-
   starsArray = Array(4).fill(null).map((x, i) => i);
   isHovered = false;
 

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ISwatch } from '../../interfaces/product';
+import { KillswitchService } from 'src/app/core/services/killswitch.service';
 
 @Component({
   selector: 'app-product-item',
@@ -10,12 +11,17 @@ export class ProductItemComponent implements OnInit {
   @Input() public product;
   @Output() addItemToWishList = new EventEmitter();
 
-
   isHovered = false;
   _currentThumbnail;
   private _currentSwatch;
 
+  protected wishListEnabled;
+
+  constructor(private killswitchService: KillswitchService) {}
+
   ngOnInit() {
+    this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
+
     if (!this.product) {
       return;
     }
@@ -76,11 +82,10 @@ export class ProductItemComponent implements OnInit {
 
   addToWishList(): void {
     event.stopPropagation();
-    this.product.addedToWishList = !this.product.addedToWishList;
     this.addItemToWishList.emit(this.product);
   }
 
-  private resetDefaultThumbnail(): void {
+  public resetDefaultThumbnail(): void {
     this.currentThumbnail = this.product.thumbnailImageSrc;
   }
 

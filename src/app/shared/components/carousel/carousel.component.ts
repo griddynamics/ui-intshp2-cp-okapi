@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, Input } from '@angular/core';
-import { ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef  } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -17,7 +16,6 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   private counterScrolledItems: number;
 
   @ViewChild('slidesContainer') slidesContainer: ElementRef;
-  @Input() productsLength;
 
   ngOnInit(): void {
     this.resizeEvent = fromEvent(window, 'resize')
@@ -32,13 +30,13 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.childrenLength = document.querySelectorAll('.carousel-item-wrap').length;
+    this.childrenLength = this.slidesContainer.nativeElement.children.length;
     const slidesContainerWidth = this.slidesContainer.nativeElement.offsetWidth;
     const slideItemWidth = this.slidesContainer.nativeElement.children[0].offsetWidth;
     this.itemsPerPage = Math.round(slidesContainerWidth / slideItemWidth);
     this.counterScrolledItems = this.itemsPerPage;
 
-    this.childrenLength = this.productsLength;
+ //   this.childrenLength = this.productsLength;
   }
 
   ngOnDestroy(): void {

@@ -1,8 +1,8 @@
 <app-slideshow></app-slideshow>
 <app-heading [alertText]="'new'" [headingText]="'Arrivals'"></app-heading>
-<app-carousel [productsLength]="products.length">
+<app-carousel *ngIf="products.length">
   <app-carousel-item *ngFor="let product of products">
-    <app-product-item (addItemToWishList)="refreshWishList($event)" [product]="product"></app-product-item>
+    <app-product-item (addItemToWishList)="wishListHandler($event)" [product]="product"></app-product-item>
   </app-carousel-item>
 </app-carousel>
 <div class="main-container">
@@ -12,8 +12,13 @@
   </div>
 </div>
 
-<app-heading id="wish-list" *ngIf="wishListFilter.length" [alertText]="'wish'" [headingText]="'list'"></app-heading>
+<ng-container *ngIf="wishListEnabled">
+  <app-heading id="wish-list" [alertText]="'wish'" [headingText]="'list'"></app-heading>
 
 <app-recently-viewed></app-recently-viewed>
+  <div class="main-container">
+    <app-wish-list *ngIf="wishList.length" [products]="wishList"></app-wish-list>
+  </div>
+</ng-container>
 
 <app-join-us></app-join-us>

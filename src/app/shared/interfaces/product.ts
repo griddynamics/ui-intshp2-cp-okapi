@@ -1,7 +1,7 @@
 export interface IProduct {
   id: String;
   title: String;
-  price: String;
+  price: number;
   rating?: Number;
   swatches?: Array<ISwatch>;
   availability: Array<ProductAvailabilityState>;
@@ -9,6 +9,7 @@ export interface IProduct {
   sizes?: Array<ProductSize>;
   addedToCart: Boolean;
   addedToWishList: Boolean;
+  relatedProducts?: Array<IProduct>;
 }
 
 export interface ISwatch {

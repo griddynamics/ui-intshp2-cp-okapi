@@ -12,10 +12,10 @@ import { CarouselItemComponent } from './components/carousel/carousel-item/carou
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { JoinUsComponent } from './components/join-us/join-us.component';
 import { AdvertisingAreaComponent } from './components/advertising-area/advertising-area.component';
-import { SafePipe } from '../pipes/safe.pipe';
 import { HeadingComponent } from './components/heading/heading.component';
 import { RecentlyViewedComponent } from './components/recently-viewed/recently-viewed.component';
-
+import { LoadMoreComponent } from './components/load-more/load-more.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 const MODULES = [
   CommonModule,
@@ -37,6 +37,7 @@ const MODULES = [
     ProductItemShortComponent,
     HeadingComponent,
     RecentlyViewedComponent,
+    LoadMoreComponent,
   ],
   imports: [...MODULES],
   exports: [
@@ -50,6 +51,7 @@ const MODULES = [
     ProductItemShortComponent,
     HeadingComponent,
     RecentlyViewedComponent,
+    LoadMoreComponent
   ],
 })
 export class SharedModule {

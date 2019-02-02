@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ProductItemComponent } from './product-item.component';
 import { ProductAvailabilityState, ProductSize } from '../../interfaces/product';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ProductItemComponent', () => {
   const product = {
@@ -47,7 +48,7 @@ describe('ProductItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientModule],
       declarations: [ProductItemComponent],
     }).compileComponents();
 
