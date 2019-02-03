@@ -35,8 +35,6 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
     const slideItemWidth = this.slidesContainer.nativeElement.children[0].offsetWidth;
     this.itemsPerPage = Math.round(slidesContainerWidth / slideItemWidth);
     this.counterScrolledItems = this.itemsPerPage;
-
- //   this.childrenLength = this.productsLength;
   }
 
   ngOnDestroy(): void {
