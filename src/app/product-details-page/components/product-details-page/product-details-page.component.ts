@@ -1,25 +1,18 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
 import { IProduct, ProductAvailabilityState, ProductSize } from 'src/app/shared/interfaces/product';
-import { ActivatedRoute } from '@angular/router';
-=======
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { mergeMap } from 'rxjs/operators';
 
 import { ProductDetailsPageService } from 'src/app/core/services/product-details-page.service';
-import { IProduct } from 'src/app/shared/interfaces/product';
 
 
->>>>>>> development
 
 @Component({
   selector: 'app-product-details-page',
   templateUrl: './product-details-page.component.html',
   styleUrls: ['./product-details-page.component.scss']
 })
-<<<<<<< HEAD
-export class ProductDetailsPageComponent implements OnInit {
+export class ProductDetailsPageComponent implements OnInit, OnDestroy {
 
   productInfo = {
     id: '1',
@@ -36,36 +29,12 @@ export class ProductDetailsPageComponent implements OnInit {
     title: 'Half Jacket + Skiny Trousers + Boot leather',
     description: 'Lorem Lorem Lorem',
   };
-
-  constructor(
-    private activatedRoute: ActivatedRoute
-  ) { }
-
-  ngOnInit() {
-    const stored = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
-    const newProdId = this.activatedRoute.snapshot.params['id'];
-    if (stored.length) {
-      let isInArray = 0;
-      for (let i = 0; i < stored.length; i++) {
-        if (stored[i] === newProdId) {
-          isInArray = 1;
-         }
-        }
-        if (!isInArray) {
-        stored.push(newProdId);
-        localStorage.setItem('recentlyViewed', JSON.stringify(stored));
-        }
-    } else {
-      stored.push(newProdId);
-      localStorage.setItem('recentlyViewed', JSON.stringify(stored));
-    }
-=======
-export class ProductDetailsPageComponent implements OnInit, OnDestroy {
-
-  public product: IProduct;
-  private productSubscription;
-
-  constructor(private route: ActivatedRoute, private productService: ProductDetailsPageService) { }
+  
+    public product: IProduct;
+    private productSubscription;
+  
+    constructor(private route: ActivatedRoute, private productService: ProductDetailsPageService) { }
+  
 
   ngOnInit() {
     this.productSubscription = this.route.params.pipe(
@@ -73,10 +42,15 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
       )).subscribe(product => {
         this.product = product;
       });
-  }
+    const stored = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+    const newProdId = this.route.snapshot.params['id'];
+      if (!stored.includes(newProdId)) {
+        stored.push(newProdId);
+        localStorage.setItem('recentlyViewed', JSON.stringify(stored));
+        }
+      }
 
   ngOnDestroy() {
     this.productSubscription.unsubscribe();
->>>>>>> development
   }
 }
