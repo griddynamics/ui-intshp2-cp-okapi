@@ -13,7 +13,8 @@ import { ProductDetailsPageService } from 'src/app/core/services/product-details
   styleUrls: ['./product-details-page.component.scss']
 })
 export class ProductDetailsPageComponent implements OnInit, OnDestroy {
-
+  public product: IProduct;
+  private productSubscription;
   productInfo = {
     id: '1',
     name: 'Reebock Track Jacket',
@@ -29,25 +30,19 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
     title: 'Half Jacket + Skiny Trousers + Boot leather',
     description: 'Lorem Lorem Lorem',
   };
-  
-    public product: IProduct;
-    private productSubscription;
-  
-    constructor(private route: ActivatedRoute, private productService: ProductDetailsPageService) { }
-  
-
+  constructor(private route: ActivatedRoute, private productService: ProductDetailsPageService) { }
   ngOnInit() {
-    this.productSubscription = this.route.params.pipe(
-      mergeMap((id: String) => this.productService.getProduct(id)
-      )).subscribe(product => {
-        this.product = product;
-      });
     const stored = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
     const newProdId = this.route.snapshot.params['id'];
       if (!stored.includes(newProdId)) {
         stored.push(newProdId);
         localStorage.setItem('recentlyViewed', JSON.stringify(stored));
         }
+    this.productSubscription = this.route.params.pipe(
+      mergeMap((id: String) => this.productService.getProduct(id)
+      )).subscribe(product => {
+        this.product = product;
+      });
       }
 
   ngOnDestroy() {

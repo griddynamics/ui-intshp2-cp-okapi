@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,7 +17,6 @@ export class AppComponent {
         this.isEnvironmentRoute = true;
       }
     });
-
   }
 
 }
