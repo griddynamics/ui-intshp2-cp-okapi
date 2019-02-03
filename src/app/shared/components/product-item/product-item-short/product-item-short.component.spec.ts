@@ -4,8 +4,6 @@ import { ProductItemShortComponent } from './product-item-short.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 describe('ProductItemShortComponent', () => {
   let component: ProductItemShortComponent;
   let fixture: ComponentFixture<ProductItemShortComponent>;
