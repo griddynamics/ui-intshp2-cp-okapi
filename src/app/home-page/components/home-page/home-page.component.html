@@ -13,8 +13,6 @@
 </div>
 
 <ng-container *ngIf="wishListEnabled">
-  <app-heading id="wish-list" [alertText]="'wish'" [headingText]="'list'"></app-heading>
-
   <div class="main-container">
     <app-wish-list *ngIf="wishList.length" [products]="wishList"></app-wish-list>
   </div>
