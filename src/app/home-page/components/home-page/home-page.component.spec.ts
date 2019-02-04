@@ -19,7 +19,7 @@ describe('HomePageComponent', () => {
       declarations: [
         HomePageComponent,
         SlideshowComponent,
-        WishListComponent,
+        WishListComponent
       ],
     })
     .compileComponents();

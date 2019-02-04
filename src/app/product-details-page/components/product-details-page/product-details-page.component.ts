@@ -1,9 +1,9 @@
-import { IProduct } from 'src/app/shared/interfaces/product';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { mergeMap } from 'rxjs/operators';
 
 import { ProductDetailsPageService } from 'src/app/core/services/product-details-page.service';
+import { IProduct } from 'src/app/shared/interfaces/product';
 
 @Component({
   selector: 'app-product-details-page',
