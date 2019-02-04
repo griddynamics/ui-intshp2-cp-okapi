@@ -12,6 +12,8 @@
   </div>
 </div>
 
+<app-recently-viewed *ngIf="recentlyViewed.length" [products]="recentlyViewed"></app-recently-viewed>
+
 <ng-container *ngIf="wishListEnabled">
   <app-heading id="wish-list" [alertText]="'wish'" [headingText]="'list'"></app-heading>
   
@@ -20,6 +22,5 @@
   </div>
 </ng-container>
 
-<app-recently-viewed *ngIf="products.length && !wishList.length" [products]="products"></app-recently-viewed>
 
 <app-join-us></app-join-us>

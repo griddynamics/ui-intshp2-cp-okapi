@@ -13,12 +13,6 @@ export class RecentlyViewedComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const recentlyViewIds = JSON.parse(localStorage.getItem('recentlyViewed'));
-    if (recentlyViewIds) {
-      this.products = this.products.filter( el => recentlyViewIds.some(e => e === el.id ));
-    } else {
-      this.products = [];
-    }
   }
 
 }

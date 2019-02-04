@@ -1,5 +1,5 @@
-<app-heading *ngIf="products.length" [alertText]="'recently viewed'" [headingText]="'list'"></app-heading>
-<app-carousel *ngIf="products.length">
+<app-heading [alertText]="'recently viewed'" [headingText]="'list'"></app-heading>
+<app-carousel>
   <app-carousel-item *ngFor="let product of products">
       <app-product-item-short [product]="product"></app-product-item-short>
   </app-carousel-item>
