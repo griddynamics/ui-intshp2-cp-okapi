@@ -12,7 +12,7 @@ describe('CarouselComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule, ProductDetailsPageModule],
-      providers: [],
+      providers: []
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(CarouselComponent);
       component = fixture.componentInstance;
