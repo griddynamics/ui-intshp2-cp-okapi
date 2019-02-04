@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductAvailabilityState, ProductSize, IProduct } from '../../interfaces/product';
+import { IProduct } from '../../interfaces/product';
 
 @Component({
   selector: 'app-recently-viewed',
