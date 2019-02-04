@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef  } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -30,9 +30,10 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.childrenLength = this.slidesContainer.nativeElement.children.length;
-    const slidesContainerWidth = this.slidesContainer.nativeElement.offsetWidth;
-    const slideItemWidth = this.slidesContainer.nativeElement.children[0].offsetWidth;
+    const { nativeElement } = this.slidesContainer;
+    this.childrenLength = nativeElement.children.length;
+    const slidesContainerWidth = nativeElement.offsetWidth;
+    const slideItemWidth = this.childrenLength ? nativeElement.children[0].offsetWidth : 0;
     this.itemsPerPage = Math.round(slidesContainerWidth / slideItemWidth);
     this.counterScrolledItems = this.itemsPerPage;
   }

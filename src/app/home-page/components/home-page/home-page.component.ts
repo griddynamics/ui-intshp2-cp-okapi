@@ -16,6 +16,7 @@ import { ProductsService } from 'src/app/core/services/products.service';
 export class HomePageComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
   public wishList: IProduct[] = [];
+  public recentlyViewed: IProduct[] = [];
 
   banners: IBanner[] = [{
     height: 100,
@@ -41,11 +42,20 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.subscriptions = [
       this.productsService.getProducts().subscribe(data => {
         this.products = data;
+        this.prepareRecentlyViewedItems();
       }),
 
       this.productsService.getWishList().subscribe(data => {
         this.wishList = data;
       })];
+
+  }
+
+  private prepareRecentlyViewedItems() {
+    const recentlyViewIds = JSON.parse(localStorage.getItem('recentlyViewedIds'));
+    if (recentlyViewIds) {
+      this.recentlyViewed = this.products.filter( el => recentlyViewIds.some(e => e === el.id ));
+    }
   }
 
   ngOnDestroy(): void {
@@ -55,4 +65,5 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public wishListHandler(product: IProduct): void {
     this.productsService.toggleWishListProduct(product);
   }
+
 }
