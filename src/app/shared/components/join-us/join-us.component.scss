@@ -89,6 +89,10 @@ span {
   padding-top: 26px;
 }
 
+.unsub-message {
+  padding-top: 0px;
+}
+
 form {
   display: flex;
 }
@@ -109,6 +113,10 @@ form {
 }
 
 @include laptop {
+  .letter {
+    margin-right: 0;
+  }
+
   .main-container {
     padding: 0;
   }
