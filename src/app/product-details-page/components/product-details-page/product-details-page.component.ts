@@ -30,11 +30,11 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
 
   markAsRecentlyViewed() {
     const recentlyViewedIds = JSON.parse(localStorage.getItem('recentlyViewedIds')) || [];
-    const newProdId = this.route.snapshot.params['id'];
-      if (!recentlyViewedIds.includes(newProdId)) {
-        recentlyViewedIds.push(newProdId);
+    this.route.params.subscribe(data => {
+      if (!recentlyViewedIds.includes(data.id)) {
+        recentlyViewedIds.push(data.id);
         localStorage.setItem('recentlyViewedIds', JSON.stringify(recentlyViewedIds));
         }
+    });
   }
-
 }
