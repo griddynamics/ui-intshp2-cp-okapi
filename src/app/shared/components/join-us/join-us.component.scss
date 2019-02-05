@@ -89,6 +89,10 @@ span {
   padding-top: 26px;
 }
 
+.unsub-message {
+  padding-top: 0px;
+}
+
 form {
   display: flex;
 }
@@ -109,6 +113,10 @@ form {
 }
 
 @include laptop {
+  .letter {
+    margin-right: 0;
+  }
+
   .main-container {
     padding: 0;
   }
@@ -129,16 +137,35 @@ form {
   .input-block {
     margin-right: 10px;
   }
+
+  .unsub-message {
+    padding-top: 0px;
+    padding-left: 44px;
+    position: static;
+  }
 }
 
 @include mobile {
+  .info {
+    display: none;
+  }
+
+  .unsub-message {
+    padding-left: 24px;
+  }
+  
+  .join {
+    padding-bottom: 20px;
+    padding-top: 10px;
+  }
+  
   .join-message {
     font-size: 14px;
     text-align: center;
   }
   
   .congrats-message {
-    font-size: 12px;
+    font-size: 16px;
     text-align: center;
   }
 }

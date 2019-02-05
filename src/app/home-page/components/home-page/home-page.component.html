@@ -12,10 +12,13 @@
   </div>
 </div>
 
+<app-recently-viewed *ngIf="recentlyViewed.length" [products]="recentlyViewed"></app-recently-viewed>
+
 <ng-container *ngIf="wishListEnabled">
   <div class="main-container">
     <app-wish-list *ngIf="wishList.length" [products]="wishList"></app-wish-list>
   </div>
 </ng-container>
+
 
 <app-join-us></app-join-us>

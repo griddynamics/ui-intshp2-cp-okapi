@@ -25,10 +25,8 @@ hr {
 .product-item-wrapper {
   position: relative;
   cursor: pointer;
+  margin: 2%;
   
-  &:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
 }
 
 .product-item-short {
@@ -40,6 +38,11 @@ hr {
   user-select: none;
   cursor: pointer;
   outline: none;
+  margin: 0px 5px 0px 18px;
+  
+   &:hover {
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+   }
 }
 
 .preview-img-short {
