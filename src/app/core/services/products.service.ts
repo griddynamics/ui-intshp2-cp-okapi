@@ -73,8 +73,8 @@ export class ProductsService {
   private prepareProductResponse(products: IProduct[]): void {
     this.products = products.map(el => {
       const currentProduct = this.checkProductInWishList(el);
-
-      if (currentProduct.addedToWishList) {
+      const isPresentInWishList = this.wishList.find(product => product.id === currentProduct.id);
+      if (currentProduct.addedToWishList && !isPresentInWishList) {
         this.wishList.push(currentProduct);
       }
 

@@ -1,3 +1,5 @@
+<app-heading id="wish-list" [alertText]="'wish'" [headingText]="'list'"></app-heading>
+
 <app-load-more [showLoadMore]="products.length > visibleWishItems" (loadMore)="loadMoreHandler($event)">
   <div class="product-item-short-wrapper" #wrapper>
     <ng-container *ngFor="let product of products; let i = index">
