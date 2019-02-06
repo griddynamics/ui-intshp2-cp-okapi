@@ -1,0 +1,25 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+@import '../../../../scss/mixins';
+
+.main-container {
+  padding: 120px $content-padding;
+  background-color: $bg-color;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-column-gap: 30px;
+}
+
+.filters,
+.products-grid {
+  background-color: gray;
+}
+
+.filters {
+  height: 1228px;
+}
+
+.products-grid {
+  height: 1248px;
+}
