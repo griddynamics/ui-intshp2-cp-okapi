@@ -6,6 +6,8 @@ import { DataService } from './data.service';
     providedIn: 'root'
 })
 
+// node create route6 that creates static files from assets
+
 export class KillswitchService {
     static CONFIG_URL = 'assets/config/killswitches.json';
 
