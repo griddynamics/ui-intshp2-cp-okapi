@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { debounceTime } from 'rxjs/operators';
@@ -6,7 +6,8 @@ import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
-  styleUrls: ['./loader.component.scss']
+  styleUrls: ['./loader.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoaderComponent implements OnInit, OnDestroy {
 

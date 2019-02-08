@@ -3,4 +3,28 @@
 @import "./scss/variables";
 @import "./scss/fonts";
 @import "./scss/reset";
-@import "../src/app/shared/components/loader/loader.component.scss";
+
+.spinner {
+  width: 4em;
+  height: 4em;
+  background: $primary-color;
+  border-radius: 50%;
+  margin: 50vh auto;
+  border: .3em solid transparent;
+  animation: glow 1s ease infinite;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 0 .4em $primary-color, 0 0 0 .1em $primary-color;
+    transform: rotate(360deg);
+  }
+
+  50% {
+    border-top-color: $white-color;
+  }
+
+  100% {
+    box-shadow: 0 0 0 .4em $primary-color, 0 0 0 3.6em transparent;
+  }
+}
