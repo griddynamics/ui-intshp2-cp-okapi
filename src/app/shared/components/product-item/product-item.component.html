@@ -4,7 +4,7 @@
     <div class="product-item-img" [ngStyle]="{'background-image': currentThumbnail }"></div>
     <h2>{{product.title}}</h2>
     <div class="bottom-content">
-      <p *ngIf="!isHovered" class="price">{{product.price}}</p>
+      <p *ngIf="!isHovered" class="price">{{product.price | currency:'USD'}}</p>
       <div *ngIf="isHovered">
         <div *ngIf="product.sizes.length">
           <p class="sizes">sizes : <span *ngFor="let size of product.sizes">{{size}} <span>-</span></span></p>

@@ -1,0 +1,24 @@
+@import '../../../../../scss/variables';
+@import '../../../../../scss/fonts';
+@import '../../../../../scss/reset';
+@import '../../../../../scss/mixins';
+
+.product-grid-wrapper {
+  display: grid;
+  grid-row-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+@include laptop {
+  .product-grid-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@include tablet {
+  .product-grid-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+

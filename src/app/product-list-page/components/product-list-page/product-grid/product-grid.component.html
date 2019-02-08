@@ -1,0 +1,7 @@
+<app-load-more [showLoadMore]="products?.length > visibleItems" (loadMore)="addItems()">
+  <div class="product-grid-wrapper" #wrapper>
+    <div class="product" *ngFor="let product of products; let i = index;">
+      <app-product-item *ngIf="i < visibleItems" [product]="product"></app-product-item>
+    </div>
+  </div>
+</app-load-more>

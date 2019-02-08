@@ -2,7 +2,7 @@
   {
     "id": "1",
     "title": "Reebock Track Jacket",
-    "price": "100$",
+    "price": 100,
     "rating": 2,
     "swatches": [
       {
@@ -39,7 +39,7 @@
   {
     "id": "2",
     "title": "Reebock Track Jacket",
-    "price": "100$",
+    "price": 100,
     "rating": 4,
     "swatches": [
       {
@@ -76,7 +76,7 @@
   {
     "id": "3",
     "title": "Reebock Track Jacket",
-    "price": "100$",
+    "price": 100,
     "rating": 3,
     "swatches": [
       {
@@ -108,7 +108,7 @@
   {
     "id": "4",
     "title": "Reebock Track Jacket",
-    "price": "100$",
+    "price": 100,
     "rating": 4,
     "swatches": [
       {
@@ -145,7 +145,7 @@
   {
     "id": "5",
     "title": "Reebock Track Jacket",
-    "price": "100$",
+    "price": 100,
     "rating": 4,
     "swatches": [
       {
@@ -182,7 +182,7 @@
   {
     "id": "6",
     "title": "Reebock Track Jacket",
-    "price": "100$",
+    "price": 100,
     "rating": 3,
     "swatches": [
       {
@@ -214,7 +214,7 @@
   {
     "id": "7",
     "title": "Reebock Track Jacket",
-    "price": "100$",
+    "price": 100,
     "rating": 4,
     "swatches": [
       {
@@ -251,7 +251,7 @@
   {
     "id": "8",
     "title": "Panties",
-    "price": "100$",
+    "price": 100,
     "rating": 4,
     "swatches": [
       {
@@ -284,7 +284,7 @@
   {
     "id": "9",
     "title": "Reebock Track Jacket",
-    "price": "100$",
+    "price": 100,
     "rating": 4,
     "swatches": [
       {
@@ -305,6 +305,191 @@
       }
     ],
     "availability": [],
+    "thumbnailImageSrc": "http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png",
+    "sizes": [
+      "s",
+      "m",
+      "l",
+      "xl"
+    ],
+    "addedToCart": false,
+    "addedToWishList": false
+  },
+  {
+    "id": "10",
+    "title": "Reebock Track Jacket",
+    "price": 100,
+    "rating": 2,
+    "swatches": [
+      {
+        "color": "red",
+        "imgSrc": ""
+      },
+      {
+        "color": "black",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Beautiful%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20SW87_LRG.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Popular%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20MJ85_LRG.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Cheap%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20PE94_LRG.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png",
+    "sizes": [
+      "s",
+      "m",
+      "l",
+      "xl"
+    ],
+    "addedToCart": false,
+    "addedToWishList": false
+  },
+  {
+    "id": "11",
+    "title": "Reebock Track Jacket",
+    "price": 100,
+    "rating": 2,
+    "swatches": [
+      {
+        "color": "red",
+        "imgSrc": ""
+      },
+      {
+        "color": "black",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Beautiful%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20SW87_LRG.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Popular%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20MJ85_LRG.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Cheap%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20PE94_LRG.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png",
+    "sizes": [
+      "s",
+      "m",
+      "l",
+      "xl"
+    ],
+    "addedToCart": false,
+    "addedToWishList": false
+  },
+  {
+    "id": "11",
+    "title": "Reebock Track Jacket",
+    "price": 100,
+    "rating": 2,
+    "swatches": [
+      {
+        "color": "red",
+        "imgSrc": ""
+      },
+      {
+        "color": "black",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Beautiful%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20SW87_LRG.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Popular%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20MJ85_LRG.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Cheap%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20PE94_LRG.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png",
+    "sizes": [
+      "s",
+      "m",
+      "l",
+      "xl"
+    ],
+    "addedToCart": false,
+    "addedToWishList": false
+  },
+  {
+    "id": "12",
+    "title": "Reebock Track Jacket",
+    "price": 100,
+    "rating": 2,
+    "swatches": [
+      {
+        "color": "red",
+        "imgSrc": ""
+      },
+      {
+        "color": "black",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Beautiful%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20SW87_LRG.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Popular%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20MJ85_LRG.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Cheap%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20PE94_LRG.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png",
+    "sizes": [
+      "s",
+      "m",
+      "l",
+      "xl"
+    ],
+    "addedToCart": false,
+    "addedToWishList": false
+  },
+  {
+    "id": "13",
+    "title": "Reebock Track Jacket",
+    "price": 100,
+    "rating": 2,
+    "swatches": [
+      {
+        "color": "red",
+        "imgSrc": ""
+      },
+      {
+        "color": "black",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Beautiful%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20SW87_LRG.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Popular%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20MJ85_LRG.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "http://www.roasterydepartment.com/images/large/reebok/Cheap%20Reebok%20Women%20Reebok%20Full%20Zip%20Fleece%20Jacket%20Women%20Reebok%20Jackets%20PE94_LRG.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
     "thumbnailImageSrc": "http://therxreview.com/wp-content/uploads/2013/05/Reebok-Track-Jacket.png",
     "sizes": [
       "s",
