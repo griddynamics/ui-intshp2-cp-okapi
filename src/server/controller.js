@@ -8,41 +8,61 @@ module.exports = {
     notFound,
 }
 
-function getProducts(req, res) {
-    const productsArrCopy = JSON.parse(JSON.stringify(productsMOCK));
+const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 
-    const dataWithoutRelatedProducts = productsArrCopy.map(el => {
-        el.relatedProducts = null
-        return el
+function cleanUpProductProperties(product) {
+    PRODUCTS_REDUNDANT_PROPS.forEach(property => {
+        delete product[property];
     });
 
-    if(req.query.ids) {
+    return product;
+}
+
+function getProducts(req, res) {
+    const productsArrCopy = JSON.parse(JSON.stringify(productsMOCK));
+    const query = req.query;
+    let cleanedProducts = productsArrCopy.map(cleanUpProductProperties);
+
+    if (query.ids) {
         const idsArr = req.query.ids.split(',');
-        const productsArr = dataWithoutRelatedProducts.filter(el => idsArr.some(id => id === el.id))
+        const productsArr = cleanedProducts.filter(el => idsArr.some(id => id === el.id))
         res.json(productsArr);
-        return
+        return;
     }
-    
-    res.json(dataWithoutRelatedProducts);
-    //filters here
+    if (query.max) {
+        cleanedProducts = cleanedProducts.filter(el => el.price <= Number(query.max))
+    }
+
+    if (query.min) {
+        cleanedProducts = cleanedProducts.filter(el => el.price >= Number(query.min))
+    }
+
+    if (query.category) {
+        cleanedProducts = cleanedProducts.filter(el => el.sex === query.category)
+    }
+
+    if (query.size) {
+        const sizesArr = query.size.split(',');
+        cleanedProducts = cleanedProducts.filter(el => el.sizes.some(size => sizesArr.includes(size.toLowerCase())))
+    }
+
+    if (query.brand) {
+        cleanedProducts = cleanedProducts.filter(el => el.brand === query.brand);
+    }
+
+    cleanedProducts = cleanedProducts.slice(+query.start || 0, +query.end || cleanedProducts.length);
+
+    res.json(cleanedProducts);
 }
 
 function getProductById(req, res) {
-    const arr = JSON.parse(JSON.stringify(productsMOCK));
+    const product = JSON.parse(JSON.stringify(productsMOCK.find((({ id }) => id === req.params.id))));
 
-    const product = arr.find((({ id }) => id === req.params.id));    
+    if(!product) notFound(req, res);
 
-    arr.forEach(item => {
-        if (item.id !== req.params.id) {
-            item.relatedProducts = null;
-        }
-    });
+    product.relatedProducts = productsMOCK.filter(item => product.relatedProducts.some(id => id === item.id));
 
-    product.relatedProducts = arr.filter(item => {
-        return product.relatedProducts.some(el => el === item.id)
-    });
-
-    product ? res.json(product) : notFound(req, res); 
+    res.json(product);
 }
 
 function notFound(req, res) {

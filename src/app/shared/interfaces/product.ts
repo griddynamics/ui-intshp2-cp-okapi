@@ -3,6 +3,7 @@ export interface IProduct {
   title: String;
   price: number;
   description?: String;
+  sex?: String;
   name?: String;
   rating?: Number;
   swatches?: Array<ISwatch>;
