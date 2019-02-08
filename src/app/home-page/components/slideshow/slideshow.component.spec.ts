@@ -151,13 +151,4 @@ describe('SlideshowComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('govno updated', () => {
-    fixture = TestBed.createComponent(SlideshowComponent);
-    component = fixture.componentInstance;
-    component.slideshowTransitionEnabled = true;
-    component.continue();
-
-    component.slideshowTransitionEnabled = false;
-    component.continue();
-  });
 });
