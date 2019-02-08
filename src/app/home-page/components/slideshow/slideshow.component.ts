@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
+import { KillswitchService } from 'src/app/core/services/killswitch.service';
 
 enum SLIDE_DIRECTION {
   RIGHT = 1,
@@ -26,8 +27,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('back') back: ElementRef;
 
   responseImgs: any[] = [
-    'https://myupdateweb.com/wp-content/uploads/2017/07/Bluehost.com_-1-1540x650.png',
     'http://forgedground.com/image/cache/catalog/Slideshow/forged-ground-featured-official-merch-es-1540x650.jpg',
+    'https://myupdateweb.com/wp-content/uploads/2017/07/Bluehost.com_-1-1540x650.png',
     'http://forgedground.com/image/cache/catalog/viking-medieval-escudos-cascos-cuernos-espadass-accesorios-forgedground-1540x650.jpg',
     'http://www.opencart.lionode.com/leoc04_2_2018/oc01/image/cache/catalog/banner%20main1-1540x650.jpg',
     'http://www.opencart.lionode.com/leoc04_2_2018/oc01/image/cache/catalog/banner%20main2-1540x650.jpg'
@@ -36,17 +37,21 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   public isHovered = false;
   public selectedSlideIndex = 0;
   public isStoped = false;
-  private slidesLength: number;
+  public slideshowTransitionEnabled: Boolean;
+  public slidesLength: number;
+  private currentSlideIndex = 0;
   private translateStep: number;
   private currentTranslatePosition: number;
   private totalSlidesSize: number;
   private firstItem: HTMLElement;
   private lastItem: HTMLElement;
-  private currentSlideIndex = 0;
   private intervalStart;
   private subscriptions: Subscription[] = [];
 
-  constructor() {
+
+  constructor(
+    private killswitchService: KillswitchService
+  ) {
     this.moveToEdgeSlideWithoutRewind = this.moveToEdgeSlideWithoutRewind.bind(
       this
     );
@@ -58,8 +63,13 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     this.slidesHolder.nativeElement.style.width = this.totalSlidesSize + '%';
     this.translateStep = 100 / this.slidesLength;
     this.currentTranslatePosition = 0;
+    this.slideshowTransitionEnabled = this.killswitchService.getKillswitch('slideshowTransitionEnabled');
     this.intervalStart = setInterval(() => {
-      this.moveSlide(SLIDE_DIRECTION.RIGHT);
+      if (this.slideshowTransitionEnabled) {
+        this.moveSlide(SLIDE_DIRECTION.RIGHT);
+      } else {
+        this.moveSliderOpacity(SLIDE_DIRECTION.RIGHT);
+      }
     }, 4000);
   }
 
@@ -67,11 +77,15 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     this.handleClick([
       {
         el: this.next.nativeElement,
-        callback: () => this.moveSlide(SLIDE_DIRECTION.RIGHT)
+        callback: () => {
+          this.slideshowTransitionEnabled ? this.moveSlide(SLIDE_DIRECTION.RIGHT) : this.moveSliderOpacity(SLIDE_DIRECTION.RIGHT);
+        }
       },
       {
         el: this.back.nativeElement,
-        callback: () => this.moveSlide(SLIDE_DIRECTION.LEFT)
+        callback: () => {
+          this.slideshowTransitionEnabled ? this.moveSlide(SLIDE_DIRECTION.LEFT) : this.moveSliderOpacity(SLIDE_DIRECTION.LEFT);
+        }
       }
     ]);
     this.firstItem = this.slidesHolder.nativeElement.querySelector('.slide-item:first-child');
@@ -81,6 +95,41 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
     clearInterval(this.intervalStart);
+  }
+
+  public moveSliderOpacity(direction: SLIDE_DIRECTION) {
+    this.slidesHolder.nativeElement.style.transition = 'none';
+    if (direction === SLIDE_DIRECTION.RIGHT) {
+      this.currentSlideIndex !== this.slidesLength - 1 ? this.prepareSlideMove(direction) : this.edgeMoveOpacity(direction);
+    } else {
+      this.currentSlideIndex !== 0 ? this.prepareSlideMove(direction) : this.edgeMoveOpacity(direction);
+    }
+  }
+
+  public prepareSlideMove(moveDirection) {
+    if (moveDirection) {
+      this.currentTranslatePosition -= this.translateStep;
+      this.selectedSlideIndex++;
+      this.currentSlideIndex++;
+    } else {
+      this.currentTranslatePosition += this.translateStep;
+      this.selectedSlideIndex--;
+      this.currentSlideIndex--;
+    }
+    this.translateItem(this.slidesHolder, this.currentTranslatePosition);
+  }
+
+  public edgeMoveOpacity(moveDirection) {
+    if (!moveDirection) {
+      this.currentSlideIndex = this.slidesLength - 1;
+      this.selectedSlideIndex = this.slidesLength - 1;
+      this.currentTranslatePosition = -100 + this.translateStep;
+    } else {
+      this.currentSlideIndex = 0;
+      this.selectedSlideIndex = 0;
+      this.currentTranslatePosition = 0;
+    }
+    this.slidesHolder.nativeElement.style.transform = `translate(${this.currentTranslatePosition}%)`;
   }
 
   public moveSlide(direction: SLIDE_DIRECTION): void {
@@ -100,7 +149,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if (this.currentSlideIndex === edgeSlideIndex) {
-      this.currentSlideIndex = !edgeSlideIndex ? this.slidesLength - 1  : 0 ;
+      this.currentSlideIndex = !edgeSlideIndex ? this.slidesLength - 1 : 0;
       this.moveEdgeSlides(step, itemToMove, itemToMovePosition);
     } else {
       edgeSlideIndex ? this.currentSlideIndex++ : this.currentSlideIndex--;
@@ -111,7 +160,11 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public bulletHandler(i: number): void {
-    this.slidesHolder.nativeElement.style.transition = '';
+    if (this.slideshowTransitionEnabled) {
+      this.slidesHolder.nativeElement.style.transition = '';
+    } else {
+      this.slidesHolder.nativeElement.style.transition = 'none';
+    }
     this.currentSlideIndex = i;
     this.selectedSlideIndex = this.currentSlideIndex;
     this.currentTranslatePosition = i * -this.translateStep;
@@ -133,7 +186,11 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!this.isStoped) {
       this.isHovered = false;
       this.intervalStart = setInterval(() => {
-        this.moveSlide(SLIDE_DIRECTION.RIGHT);
+        if (this.slideshowTransitionEnabled) {
+          this.moveSlide(SLIDE_DIRECTION.RIGHT);
+        } else {
+          this.moveSliderOpacity(SLIDE_DIRECTION.RIGHT);
+        }
       }, 4000);
     }
   }
