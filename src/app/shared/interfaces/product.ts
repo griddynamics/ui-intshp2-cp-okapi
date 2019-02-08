@@ -2,6 +2,8 @@ export interface IProduct {
   id: String;
   title: String;
   price: number;
+  description?: String;
+  name?: String;
   rating?: Number;
   swatches?: Array<ISwatch>;
   availability: Array<ProductAvailabilityState>;

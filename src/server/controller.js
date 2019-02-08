@@ -1,30 +1,50 @@
+const productsMOCK = require('../assets/mocks/products.json');
+
+// const cacheMap = new Map();
+
 module.exports = {
-    getAccounts,
-    getRoles,
-    getBlogs,
+    getProducts,
+    getProductById,
     notFound,
-    // getById
 }
 
-function getAccounts(req, res) {
-    res.json(require('./dummy-data/accounts.json'));
+function getProducts(req, res) {
+    const productsArrCopy = JSON.parse(JSON.stringify(productsMOCK));
+
+    const dataWithoutRelatedProducts = productsArrCopy.map(el => {
+        el.relatedProducts = null
+        return el
+    });
+
+    if(req.query.ids) {
+        const idsArr = req.query.ids.split(',');
+        const productsArr = dataWithoutRelatedProducts.filter(el => idsArr.some(id => id === el.id))
+        res.json(productsArr);
+        return
+    }
+    
+    res.json(dataWithoutRelatedProducts);
+    //filters here
 }
 
-function getRoles(req, res) {
-    res.json(require('./dummy-data/roles.json'));
-}
+function getProductById(req, res) {
+    const arr = JSON.parse(JSON.stringify(productsMOCK));
 
-function getBlogs(req, res) {
-    res.json(require('./dummy-data/blogs.json'));
+    const product = arr.find((({ id }) => id === req.params.id));    
+
+    arr.forEach(item => {
+        if (item.id !== req.params.id) {
+            item.relatedProducts = null;
+        }
+    });
+
+    product.relatedProducts = arr.filter(item => {
+        return product.relatedProducts.some(el => el === item.id)
+    });
+
+    product ? res.json(product) : notFound(req, res); 
 }
 
 function notFound(req, res) {
     res.status(404).send();
 }
-
-// function getById(req, res) {
-//     console.log(req, res)
-//     const test = null;
-
-//     res.json(require(test))
-// }

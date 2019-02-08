@@ -17,12 +17,11 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private productService: ProductDetailsPageService, private ds: DataService) { }
   ngOnInit() {
-
-    this.ds.get('api/accounts').subscribe(console.log);
-
     this.markAsRecentlyViewed();
     this.productSubscription = this.route.params.pipe(
-      mergeMap((id: String) => this.productService.getProduct(id)
+      mergeMap(({id}) => {
+        return this.productService.getProduct(id);
+      }
       )).subscribe(product => {
         this.product = product;
       });
