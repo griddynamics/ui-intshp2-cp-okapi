@@ -1,8 +1,6 @@
 <div class="main-container">
   <div class="filters"></div>
-  <div class="products-grid">
-    <app-product-grid *ngIf="products?.length" [products]="products"></app-product-grid>
-
-  </div>
+  <app-product-grid [products]="products"></app-product-grid>
 </div>
+
 <app-join-us></app-join-us>

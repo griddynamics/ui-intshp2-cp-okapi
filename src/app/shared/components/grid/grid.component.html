@@ -1,0 +1,5 @@
+<app-load-more [showLoadMore]="products?.length > visibleItems" (loadMore)="addItems()">
+  <div class="product-grid-wrapper" #wrapper>
+    <ng-content></ng-content>
+  </div>
+</app-load-more>

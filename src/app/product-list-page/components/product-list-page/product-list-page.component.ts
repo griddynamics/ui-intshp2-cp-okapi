@@ -8,7 +8,7 @@ import { ProductsService } from 'src/app/core/services/products.service';
   styleUrls: ['./product-list-page.component.scss']
 })
 export class ProductListPageComponent implements OnInit {
-  products: IProduct[] = [];
+  products: IProduct[];
   constructor(
     private productService: ProductsService
   ) { }

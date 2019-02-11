@@ -11,7 +11,7 @@ describe('ProductListPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ SharedModule ],
-      declarations: [ ProductListPageComponent, ProductGridComponent ]
+      declarations: [ ProductListPageComponent, ProductGridComponent]
     })
     .compileComponents();
   }));
