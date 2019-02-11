@@ -29,6 +29,7 @@ function getProducts(req, res) {
         res.json(productsArr);
         return;
     }
+    
     if (query.max) {
         cleanedProducts = cleanedProducts.filter(el => el.price <= Number(query.max))
     }
