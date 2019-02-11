@@ -21,7 +21,7 @@ export class LazyLoadComponent implements OnInit {
       this.observer.observe(this.element.nativeElement);
   }
 
-  handleIntersect(entries, observer): void {
+  handleIntersect(entries): void {
     entries.forEach((entry: IntersectionObserverEntry) => {
       if (entry.isIntersecting) {
         this.inView = true;
