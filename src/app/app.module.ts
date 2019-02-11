@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { KillswitchService } from './core/services/killswitch.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,

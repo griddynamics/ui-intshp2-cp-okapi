@@ -30,7 +30,7 @@ export class LazyLoadComponent implements OnInit {
     });
   }
 
-  defaultInViewHandler(entry) {
+  defaultInViewHandler(entry: any) {
     if (this.visible) {
       return false;
     }

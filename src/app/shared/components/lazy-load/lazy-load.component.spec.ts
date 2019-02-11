@@ -22,4 +22,9 @@ describe('LazyLoadComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return false in case visible is true', () => {
+    component.visible = true;
+    expect(component.defaultInViewHandler('entry')).toBeFalsy();
+  });
 });
