@@ -9,7 +9,7 @@ describe('ProductItemComponent', () => {
   const product = {
     id: '1',
     title: 'Reebock Track Jacket',
-    price: '100$',
+    price: 100,
     rating: 2,
     // tslint:disable-next-line
     swatches: [

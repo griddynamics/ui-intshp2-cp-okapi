@@ -17,7 +17,7 @@ import { RecentlyViewedComponent } from './components/recently-viewed/recently-v
 import { LoadMoreComponent } from './components/load-more/load-more.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { LazyLoadComponent } from './components/lazy-load/lazy-load.component';
-
+import { LoaderComponent } from './components/loader/loader.component';
 
 const MODULES = [
   CommonModule,
@@ -41,6 +41,7 @@ const MODULES = [
     RecentlyViewedComponent,
     LoadMoreComponent,
     LazyLoadComponent,
+    LoaderComponent
   ],
   imports: [...MODULES],
   exports: [
@@ -56,6 +57,7 @@ const MODULES = [
     RecentlyViewedComponent,
     LoadMoreComponent,
     LazyLoadComponent,
+    LoaderComponent
   ],
 })
 export class SharedModule {
