@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { KillswitchService } from './core/services/killswitch.service';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { KillswitchService } from './core/services/killswitch.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [
     KillswitchService,

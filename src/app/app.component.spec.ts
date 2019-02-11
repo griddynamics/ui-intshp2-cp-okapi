@@ -2,8 +2,8 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-
-
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -13,10 +13,12 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        CoreModule
+        HttpClientModule,
+        CoreModule,
+        SharedModule
       ],
       declarations: [
-        AppComponent,
+        AppComponent
       ],
     }).compileComponents();
   }));
