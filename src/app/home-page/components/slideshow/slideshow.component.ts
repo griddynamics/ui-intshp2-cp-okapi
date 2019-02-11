@@ -33,6 +33,8 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     'http://www.opencart.lionode.com/leoc04_2_2018/oc01/image/cache/catalog/banner%20main2-1540x650.jpg'
   ];
 
+// responseImgs = Array.from(Array(100), (_, x) => x);
+
   public isHovered = false;
   public selectedSlideIndex = 0;
   public isStoped = false;
