@@ -16,6 +16,7 @@ import { HeadingComponent } from './components/heading/heading.component';
 import { RecentlyViewedComponent } from './components/recently-viewed/recently-viewed.component';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { LoaderComponent } from './components/loader/loader.component';
 
 const MODULES = [
   CommonModule,
@@ -38,6 +39,7 @@ const MODULES = [
     HeadingComponent,
     RecentlyViewedComponent,
     LoadMoreComponent,
+    LoaderComponent
   ],
   imports: [...MODULES],
   exports: [
@@ -51,7 +53,8 @@ const MODULES = [
     ProductItemShortComponent,
     HeadingComponent,
     RecentlyViewedComponent,
-    LoadMoreComponent
+    LoadMoreComponent,
+    LoaderComponent
   ],
 })
 export class SharedModule {

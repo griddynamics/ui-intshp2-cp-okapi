@@ -30,7 +30,7 @@ export class JoinUsComponent implements OnInit {
 
   onSubmit() {
     this.dataService.create('', this.submitForm.value).subscribe();
-    this.cookieService.set('user_email', this.submitForm.value.email);
+    this.cookieService.set('user_email', this.submitForm.value.email, null, '/');
     this.edited = false;
     this.registered = true;
   }

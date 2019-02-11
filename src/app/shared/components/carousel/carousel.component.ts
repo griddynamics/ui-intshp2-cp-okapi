@@ -9,11 +9,11 @@ import { debounceTime } from 'rxjs/operators';
 })
 
 export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
-  private itemsPerPage;
+  public itemsPerPage;
+  public counterScrolledItems: number;
+  public childrenLength: number;
   private resizeEvent: Subscription;
   private currTranslate = 0;
-  private childrenLength: number;
-  private counterScrolledItems: number;
 
   @ViewChild('slidesContainer') slidesContainer: ElementRef;
 
