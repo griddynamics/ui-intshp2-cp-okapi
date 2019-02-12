@@ -30,10 +30,9 @@ describe('SlideshowComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call clearInterval method when runAutoplay method is called', () => {
-    component.intervalStart = 74;
+  it('should be a number', () => {
     component.runAutoplay();
-    expect(component.intervalStart).toBe(76);
+    expect(typeof component.intervalStart).toBe('number');
   });
 
   it('should check equality if moveSlide method is called', () => {
@@ -61,10 +60,11 @@ describe('SlideshowComponent', () => {
     expect(component.isHovered).toBe(true);
   });
 
-  it('should return undefined when pause method is called and isStopped === true', () => {
+  it('should not change isHovered when pause method is called and isStopped === true', () => {
+    component.isHovered = false;
     component.isStoped = true;
     component.pause();
-    expect(component.pause()).toBeUndefined();
+    expect(component.isHovered).toBe(false);
   });
 
   it('should call runAutoplay method when continue method is called', () => {
@@ -75,9 +75,10 @@ describe('SlideshowComponent', () => {
   });
 
   it('should return undefined when continue method is called and isStopped === true', () => {
+    component.isHovered = true;
     component.isStoped = true;
     component.continue();
-    expect(component.continue()).toBeUndefined();
+    expect(component.isHovered).toBe(true);
   });
 
 });
