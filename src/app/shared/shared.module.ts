@@ -18,6 +18,7 @@ import { LoadMoreComponent } from './components/load-more/load-more.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { LazyLoadComponent } from './components/lazy-load/lazy-load.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { LazyComponent } from './components/lazy/lazy.component';
 
 const MODULES = [
   CommonModule,
@@ -41,7 +42,8 @@ const MODULES = [
     RecentlyViewedComponent,
     LoadMoreComponent,
     LazyLoadComponent,
-    LoaderComponent
+    LoaderComponent,
+    LazyComponent
   ],
   imports: [...MODULES],
   exports: [
@@ -57,7 +59,8 @@ const MODULES = [
     RecentlyViewedComponent,
     LoadMoreComponent,
     LazyLoadComponent,
-    LoaderComponent
+    LoaderComponent,
+    LazyComponent
   ],
 })
 export class SharedModule {

@@ -6,6 +6,9 @@ import { ProductItemShortComponent } from 'src/app/shared/components/product-ite
 import { LoadMoreComponent } from 'src/app/shared/components/load-more/load-more.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeadingComponent } from 'src/app/shared/components/heading/heading.component';
+import { LazyLoadComponent } from 'src/app/shared/components/lazy-load/lazy-load.component';
+
+
 
 describe('WishlistComponent', () => {
   let component: WishListComponent;
@@ -13,8 +16,8 @@ describe('WishlistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WishListComponent, ProductItemShortComponent, LoadMoreComponent, HeadingComponent],
-      imports: [ RouterTestingModule, HttpClientModule ]
+      declarations: [WishListComponent, ProductItemShortComponent, LoadMoreComponent, HeadingComponent, LazyLoadComponent],
+      imports: [ RouterTestingModule, HttpClientModule]
     })
       .compileComponents();
   }));

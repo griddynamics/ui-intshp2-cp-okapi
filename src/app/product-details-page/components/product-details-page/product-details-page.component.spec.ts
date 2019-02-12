@@ -11,6 +11,7 @@ import { ProductDescriptionComponent } from '../product-description/product-desc
 import { RelatedProductsComponent } from './related-products/related-products.component';
 import { ProductOrderComponent } from '../product-description/product-order/product-order.component';
 import { ProductAvailabilityState } from 'src/app/shared/interfaces/product';
+import { LazyLoadComponent } from 'src/app/shared/components/lazy-load/lazy-load.component';
 
 
 

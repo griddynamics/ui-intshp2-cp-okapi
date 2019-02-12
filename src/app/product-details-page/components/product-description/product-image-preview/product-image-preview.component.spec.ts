@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ProductDescriptionComponent } from '../product-description.component';
 import { ProductOrderComponent } from '../product-order/product-order.component';
 import { ZoomComponent } from './zoom/zoom.component';
+import { LazyLoadComponent } from 'src/app/shared/components/lazy-load/lazy-load.component';
 
 describe('ProductImagePreviewComponent', () => {
   let component: ProductImagePreviewComponent;
@@ -11,7 +12,7 @@ describe('ProductImagePreviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductImagePreviewComponent, ProductDescriptionComponent, ProductOrderComponent, ZoomComponent],
+      declarations: [ProductImagePreviewComponent, ProductDescriptionComponent, ProductOrderComponent, ZoomComponent ],
       imports: [RouterTestingModule]
     })
       .compileComponents().then(() => {

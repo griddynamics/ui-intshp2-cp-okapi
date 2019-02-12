@@ -9,6 +9,7 @@ import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { WishListComponent } from '../wish-list/wish-list.component';
 
 
+
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
   let fixture: ComponentFixture<HomePageComponent>;
@@ -19,7 +20,7 @@ describe('HomePageComponent', () => {
       declarations: [
         HomePageComponent,
         SlideshowComponent,
-        WishListComponent
+        WishListComponent,
       ],
     })
     .compileComponents();
