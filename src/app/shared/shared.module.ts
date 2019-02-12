@@ -14,8 +14,9 @@ import { JoinUsComponent } from './components/join-us/join-us.component';
 import { AdvertisingAreaComponent } from './components/advertising-area/advertising-area.component';
 import { HeadingComponent } from './components/heading/heading.component';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
-import { SafePipe } from './pipes/safe.pipe';
+import { ImgPlaceholderComponent } from '../shared/components/img-placeholder/img-placeholder.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 const MODULES = [
   CommonModule,
@@ -37,6 +38,7 @@ const MODULES = [
     ProductItemShortComponent,
     HeadingComponent,
     LoadMoreComponent,
+    ImgPlaceholderComponent,
     LoaderComponent
   ],
   imports: [...MODULES],
@@ -50,7 +52,9 @@ const MODULES = [
     ProductItemComponent,
     ProductItemShortComponent,
     HeadingComponent,
+    RecentlyViewedComponent,
     LoadMoreComponent,
+    ImgPlaceholderComponent,
     LoaderComponent
   ],
 })

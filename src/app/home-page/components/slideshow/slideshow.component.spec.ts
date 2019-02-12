@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlideshowComponent } from './slideshow.component';
+import { ImgPlaceholderComponent } from 'src/app/shared/components/img-placeholder/img-placeholder.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 enum SLIDE_DIRECTION {
@@ -14,7 +15,7 @@ describe('SlideshowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SlideshowComponent ],
+      declarations: [ SlideshowComponent, ImgPlaceholderComponent ],
       imports: [HttpClientTestingModule]
     })
     .compileComponents();
