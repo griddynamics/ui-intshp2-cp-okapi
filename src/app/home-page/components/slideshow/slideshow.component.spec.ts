@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlideshowComponent } from './slideshow.component';
+import { ImgPlaceholderComponent } from 'src/app/shared/components/img-placeholder/img-placeholder.component';
 
 describe('SlideshowComponent', () => {
   let component: SlideshowComponent;
@@ -9,7 +10,7 @@ describe('SlideshowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SlideshowComponent ]
+      declarations: [ SlideshowComponent, ImgPlaceholderComponent ]
     })
     .compileComponents();
   }));
