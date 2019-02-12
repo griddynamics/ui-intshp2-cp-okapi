@@ -1,5 +1,0 @@
-<app-grid [products]="products" [visibleItems]="visibleItems" (visibleItemsTest)="testFunc($event)">
-  <div class="product" *ngFor="let product of products; let i = index;">
-    <app-product-item *ngIf="i < visibleItems" [product]="product"></app-product-item>
-  </div>
-</app-grid>

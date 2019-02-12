@@ -18,9 +18,8 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewInit {
   @ViewChild('wrapper') wrapper: ElementRef;
-  @Input() products;
-  @Output() visibleItemsTest = new EventEmitter();
-  @Input() visibleItems;
+  @Output() loadMore = new EventEmitter();
+  @Input() showLoadMore;
 
   private itemStep = 1;
   private wrapperWidth: number;
@@ -28,15 +27,14 @@ export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewI
 
   constructor(private cdRef: ChangeDetectorRef) { }
 
-  ngAfterContentChecked(): void {
-    this.countItems();
-    this.cdRef.detectChanges();
-  }
+
   ngAfterViewInit(): void {
     this.resizeEvent = fromEvent(window, 'resize').pipe(
       debounceTime(100)
     ).subscribe(this.countItems.bind(this));
+  }
 
+  ngAfterContentChecked(): void {
     this.countItems();
     this.cdRef.detectChanges();
   }
@@ -45,9 +43,8 @@ export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewI
     this.resizeEvent.unsubscribe();
   }
 
-  public addItems(): void {
-    this.visibleItems += this.itemStep;
-    this.visibleItemsTest.emit(this.itemStep);
+  public onLoadMore(): void {
+    this.loadMore.emit(this.itemStep);
   }
 
   private countItems() {

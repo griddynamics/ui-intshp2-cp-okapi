@@ -1,6 +1,10 @@
 <div class="main-container">
   <div class="filters"></div>
-  <app-product-grid [products]="products"></app-product-grid>
+  <app-grid [showLoadMore]="showLoadMore" (loadMore)="onLoadMore($event)">
+    <div class="product" *ngFor="let product of products;">
+      <app-product-item [product]="product"></app-product-item>
+    </div>
+  </app-grid>
 </div>
 
 <app-join-us></app-join-us>

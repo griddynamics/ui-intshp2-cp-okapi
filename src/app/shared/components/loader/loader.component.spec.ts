@@ -1,24 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ProductGridComponent } from './product-grid.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { LoaderComponent } from './loader.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('ProductGridComponent', () => {
-  let component: ProductGridComponent;
-  let fixture: ComponentFixture<ProductGridComponent>;
+describe('LoaderComponent', () => {
+  let component: LoaderComponent;
+  let fixture: ComponentFixture<LoaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ SharedModule, RouterTestingModule, HttpClientModule ],
-      declarations: [ ProductGridComponent ]
+      imports: [RouterTestingModule, HttpClientModule],
+      declarations: [ LoaderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductGridComponent);
+    fixture = TestBed.createComponent(LoaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
