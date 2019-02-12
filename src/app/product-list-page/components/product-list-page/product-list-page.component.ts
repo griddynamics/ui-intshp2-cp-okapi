@@ -22,7 +22,7 @@ export class ProductListPageComponent implements OnInit {
     });
   }
 
-  onLoadMore(loadAmount): void {
+  onLoadMore(loadAmount: number): void {
     this.products = this.allProducts.slice(0, this.products.length + loadAmount);
   }
 
