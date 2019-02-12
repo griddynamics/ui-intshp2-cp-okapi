@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarouselItemComponent } from './carousel-item.component';
+import { LazyLoadComponent } from '../../lazy-load/lazy-load.component';
 
 describe('CarouselItemComponent', () => {
   let component: CarouselItemComponent;

@@ -3,6 +3,7 @@ import { By } from '@angular/platform-browser';
 import { CarouselComponent } from './carousel.component';
 import { SharedModule } from '../../shared.module';
 import { ProductDetailsPageModule } from 'src/app/product-details-page/product-details-page.module';
+import { LazyLoadComponent } from '../lazy-load/lazy-load.component';
 
 
 describe('CarouselComponent', () => {

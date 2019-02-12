@@ -1,4 +1,4 @@
-<app-lazy-load>
+<!-- <app-lazy-load> -->
 <div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
   <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
   <div class="product-item"  [ngClass]="{'gray-scale': isOutOfStock, 'hovered': isHovered}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
@@ -24,4 +24,4 @@
     </div>
   </div>
 </div>
-</app-lazy-load>
+<!-- </app-lazy-load> -->
