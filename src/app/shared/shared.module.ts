@@ -54,7 +54,6 @@ const MODULES = [
     ProductItemComponent,
     ProductItemShortComponent,
     HeadingComponent,
-    RecentlyViewedComponent,
     LoadMoreComponent,
     GridComponent,
     LoadMoreComponent,
