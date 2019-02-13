@@ -1,0 +1,63 @@
+@import '../../scss/variables';
+@import '../../scss/fonts';
+@import '../../scss/reset';
+@import '../../scss/mixins';
+
+.main-container {
+  padding: 0 $content-padding;
+  background-color: $white-color;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: $main-container-width;
+
+  .text-wrapper p{
+    padding-top: 20%;
+    font-size: $font-size-heading-large;
+  }
+  
+  .text-wrapper a{
+    display: block;
+    padding-top: 10%;
+    font-size: $font-size-large;
+    text-decoration: underline;
+  }
+}
+
+@include laptop {
+  .content {
+    .text-wrapper p{
+      padding-top: 20%;
+      font-size: $font-size-large;
+    }
+    
+    .text-wrapper a{
+      display: block;
+      padding-top: 10%;
+      font-size: 20px;
+      text-decoration: underline;
+    }
+  }
+}
+
+@include tablet {
+  .content {
+    .text-wrapper p{
+      padding-top: 20%;
+      font-size: $font-size-heading;
+    }
+    
+    .text-wrapper a{
+      display: block;
+      padding-top: 10%;
+      font-size: $font-size-medium;
+      text-decoration: underline;
+    }
+  }
+}
+
+@include mobile {
+
+}
