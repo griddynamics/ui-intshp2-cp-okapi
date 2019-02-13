@@ -14,15 +14,15 @@ module.exports = {
 
 function addSubscription(req, res) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!subscriptions.has(req.body.email) || !req.body.email.match(emailPattern)) {
+    if (!subscriptions.has(req.body.email) || !req.body.email.match(emailPattern)) {
         return res.status(400).send();
-    } 
+    }
     subscriptions.add(req.body.email);
     res.status(201).send();
 }
 
 function deleteSubscription(req, res) {
-    if(!subscriptions.has(req.body.email)) return res.status(404).send();
+    if (!subscriptions.has(req.body.email)) return res.status(404).send();
     subscriptions.delete(req.body.email);
     res.status(202).send();
 }
@@ -72,6 +72,7 @@ function getProducts(req, res) {
     const query = req.query;
     let cleanedProducts = productsArrCopy.map(cleanUpProductProperties);
 
+
     if (query.ids) {
         const idsArr = req.query.ids.split(',');
         const productsArr = cleanedProducts.filter(el => idsArr.some(id => id === el.id))
@@ -79,12 +80,18 @@ function getProducts(req, res) {
         return;
     }
 
-    if (query.max) {
-        cleanedProducts = cleanedProducts.filter(el => el.price <= Number(query.max))
-    }
+    if (query.price) {
+        const rangeArr = req.query.price.split(',');
+        const fromPrice = Number(rangeArr[0]);
+        const toPrice = Number(rangeArr[1]);
 
-    if (query.min) {
-        cleanedProducts = cleanedProducts.filter(el => el.price >= Number(query.min))
+        if (rangeArr.length === 1 || (rangeArr.length === 2 && (fromPrice === toPrice))) {
+            cleanedProducts = cleanedProducts.filter(({ price }) => price === fromPrice)
+        }
+        
+        if (rangeArr.length === 2) {
+            cleanedProducts = cleanedProducts.filter(({ price }) => price >= fromPrice && price <= toPrice)
+        }
     }
 
     if (query.category) {

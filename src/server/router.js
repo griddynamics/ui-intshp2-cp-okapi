@@ -4,6 +4,7 @@ let express = require('express');
 let controller = require('./controller');
 let router = express.Router();
 
+// router.get('/api/homepage', memcacheMiddleWare, controller.getHomepage);
 router.get('/api/homepage', controller.getHomepage);
 router.get('/api/products/:id', controller.getProductById);
 router.get('/api/products', controller.getProducts);
