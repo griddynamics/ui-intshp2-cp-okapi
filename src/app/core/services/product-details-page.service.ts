@@ -14,6 +14,6 @@ export class ProductDetailsPageService {
   constructor(private dataService: DataService) {}
 
   getProduct(id: String): Observable<IProduct> {
-    return this.dataService.get(`${environment.productsPATH}/${id}`);
+    return this.dataService.get(`${environment.productsURL}/${id}`);
   }
 }

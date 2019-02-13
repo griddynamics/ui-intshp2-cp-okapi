@@ -7,8 +7,6 @@ import { environment } from '../../../environments/environment';
     providedIn: 'root'
 })
 
-// node create router that creates static files from assets
-
 export class KillswitchService {
     public killswitches = {};
 
