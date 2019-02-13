@@ -13,8 +13,8 @@ export class FiltersComponent {
 
   toggleCheck(event) {
     event.target.checked ? this.isChecked = true : this.isChecked = false;
-    console.log(this.isChecked);
   }
+
   valueChanged(e) {
     this.rangeValue = e.target.value;
 

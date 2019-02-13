@@ -1,4 +1,4 @@
 <app-loader></app-loader>
 <app-header *ngIf="!isEnvironmentRoute"></app-header>
-<router-outlet></router-outlet>
+<router-outlet (activate)="onActivate($event)"></router-outlet>
 <app-footer *ngIf="!isEnvironmentRoute"></app-footer>
