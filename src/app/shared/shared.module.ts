@@ -15,6 +15,8 @@ import { AdvertisingAreaComponent } from './components/advertising-area/advertis
 import { HeadingComponent } from './components/heading/heading.component';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { GridComponent } from './components/grid/grid.component';
+import { ImgPlaceholderComponent } from '../shared/components/img-placeholder/img-placeholder.component';
 import { LoaderComponent } from './components/loader/loader.component';
 
 const MODULES = [
@@ -37,6 +39,8 @@ const MODULES = [
     ProductItemShortComponent,
     HeadingComponent,
     LoadMoreComponent,
+    GridComponent,
+    ImgPlaceholderComponent,
     LoaderComponent
   ],
   imports: [...MODULES],
@@ -50,7 +54,11 @@ const MODULES = [
     ProductItemComponent,
     ProductItemShortComponent,
     HeadingComponent,
+    RecentlyViewedComponent,
     LoadMoreComponent,
+    GridComponent,
+    LoadMoreComponent,
+    ImgPlaceholderComponent,
     LoaderComponent
   ],
 })
