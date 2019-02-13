@@ -1,0 +1,19 @@
+<div class="filter-item">
+  <span class="filter-title">Price Filter</span>
+  <div class="filter-line filter-line-range">
+    <span class="range-values left">${{range[0]}}</span>
+    <span class="range-values right">${{range[1]}}</span>
+    <input type="range" [value]="range[0]" min="0" max="100" step="5" [(ngModel)]="range[0]" (change)="valueChanged($event)"/>
+    <input type="range" [value]="range[1]" min="0" max="100" step="5" [(ngModel)]="range[1]" (change)="valueChanged($event)"/>
+  </div>
+  <div class="filter-line filter-line-price">
+    <div class="filter-price-from">
+      <span>From</span>
+      <input type="number" min="0" max="100" (keyup)="validateMin($event)" [max]="range[1]" required value="{{range[0]}}" [(ngModel)]="range[0]"/>
+    </div>
+    <div class="filter-price-to">
+      <span>To</span>
+      <input type="number" min="0" max="100" (keyup)="validateMax($event)" [min]="range[0]" required value="{{range[1]}}" [(ngModel)]="range[1]"/>
+    </div>
+  </div>
+</div>

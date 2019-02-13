@@ -1,40 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { FiltersComponent } from './filters.component';
 import { FormsModule } from '@angular/forms';
 
-describe('FiltersComponent', () => {
-  let component: FiltersComponent;
-  let fixture: ComponentFixture<FiltersComponent>;
+import { PriceRangeFilterComponent } from './price-range-filter.component';
+
+describe('PriceRangeFilterComponent', () => {
+  let component: PriceRangeFilterComponent;
+  let fixture: ComponentFixture<PriceRangeFilterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FiltersComponent ],
+      declarations: [ PriceRangeFilterComponent ],
       imports: [ FormsModule ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FiltersComponent);
+    fixture = TestBed.createComponent(PriceRangeFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should set isChecked depending on event target', () => {
-    component.isChecked = false;
-    let event = {target: {checked: true}};
-    component.toggleCheck(event);
-    expect(component.isChecked).toBe(true);
-
-    component.isChecked = false;
-    event = {target: {checked: false}};
-    component.toggleCheck(event);
-    expect(component.isChecked).toBe(false);
   });
 
   it('should change range value', () => {

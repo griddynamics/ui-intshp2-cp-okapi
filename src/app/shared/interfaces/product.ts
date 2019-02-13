@@ -2,6 +2,7 @@ export interface IProduct {
   id: String;
   title: String;
   price: number;
+  brand?: String;
   description?: String;
   sex?: String;
   name?: String;

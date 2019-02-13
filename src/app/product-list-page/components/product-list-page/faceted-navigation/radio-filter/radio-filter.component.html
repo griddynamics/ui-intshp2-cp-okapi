@@ -1,0 +1,25 @@
+<div *ngIf="products?.category" class="filter-item">
+  <span class="filter-title">{{products?.category.title}}</span>
+  <div class="filter-line">
+    <div *ngFor="let category of products?.categories" class="filter-line">
+      <input type="radio" name="filter-category" id="radio-{{category}}" (change)="toggleCheck($event)">
+      <label for="radio-{{category}}">{{category}}</label>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="filter-item">
+    <span class="filter-title">Categories</span>
+<div class="filter-line">
+    <input type="radio" name="filter-category" id="radio-2" (change)="toggleCheck($event)">
+    <label for="radio-2">Women</label>
+  </div>
+  <div class="filter-line">
+    <input type="radio" name="filter-category" id="radio-3" (change)="toggleCheck($event)">
+    <label for="radio-3">Children</label>
+  </div>
+  <div class="filter-line">
+    <input type="radio" name="filter-category" id="radio-4" (change)="toggleCheck($event)">
+    <label for="radio-4">Hot Deals</label>
+  </div>
+</div> -->

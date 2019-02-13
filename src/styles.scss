@@ -9,9 +9,12 @@
   height: 4em;
   background: $primary-color;
   border-radius: 50%;
-  margin: 50vh auto;
+  margin: -2em 0 0 -2em;
   border: .3em solid transparent;
   animation: glow 1s ease infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 @keyframes glow {

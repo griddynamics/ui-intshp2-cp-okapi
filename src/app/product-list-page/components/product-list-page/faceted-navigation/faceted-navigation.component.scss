@@ -1,0 +1,44 @@
+@import '../../../../../scss/variables';
+@import '../../../../../scss/fonts';
+@import '../../../../../scss/reset';
+@import '../../../../../scss/mixins';
+
+.all-products-filter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.filter-item {
+  background: $white-color;
+  padding: 32px 40px;
+  margin-bottom: 30px;
+}
+
+.filter-title {
+  display: block;
+  margin-bottom: 30px;
+  color: $primary-color;
+  font-size: $font-size-large;
+  font-family: $main-font-bold;
+}
+
+.filter-line {
+  margin-bottom: 22px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  label {
+    font-size: $font-size-medium;
+    cursor: pointer;
+  } 
+}
+
+
+
+
+
+
+
