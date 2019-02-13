@@ -26,6 +26,7 @@
 }
 .product-item-img {
   background-image: url("../../../../assets/img/default.png");
+  opacity: 0.5;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -50,6 +51,15 @@
     padding-top: 45%;
     animation: scale 0.5s, opacityBorn 1s;
   }
+}
+
+.lazy-load {
+  opacity: 0.9;
+}
+
+.loaded {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
 }
 
 .sizes {

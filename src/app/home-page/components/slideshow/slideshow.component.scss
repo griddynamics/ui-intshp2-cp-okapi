@@ -13,6 +13,10 @@
 .slides-holder {
   display: flex;
   transition: .4s;
+
+  img[data-src] {
+    opacity: 0;
+  }
 }
 
 .animate {

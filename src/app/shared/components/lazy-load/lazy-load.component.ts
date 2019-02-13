@@ -1,45 +1,63 @@
-import { Component, ContentChild, ElementRef, OnInit, TemplateRef } from '@angular/core';
+import { Component, AfterViewInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-lazy-load',
   templateUrl: './lazy-load.component.html',
   styleUrls: ['./lazy-load.component.scss']
 })
-export class LazyLoadComponent implements OnInit {
+export class LazyLoadComponent implements AfterViewInit {
 
   observer: IntersectionObserver;
-  inView = false;
-  visible = false;
 
-  @ContentChild(TemplateRef) template: TemplateRef<any>;
-  options: any = {threshold: [.1, .2, .3, .4, .5, .6, .7, .8, .9]};
+  constructor(public element: ElementRef) { }
 
-  constructor(public element: ElementRef) {}
+  options: any = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
 
-  ngOnInit(): void {
-      this.observer = new IntersectionObserver(this.handleIntersect.bind(this), this.options);
-      this.observer.observe(this.element.nativeElement);
+  ngAfterViewInit() {
+    const images = this.element.nativeElement.querySelectorAll('.lazy-load');
+    this.observer = new IntersectionObserver(this.handleIntersection, this.options);
+    images.forEach(img => {
+      this.observer.observe(img);
+    });
   }
 
-  handleIntersect(entries): void {
-    entries.forEach((entry: IntersectionObserverEntry) => {
-      if (entry.isIntersecting) {
-        this.inView = true;
-        this.defaultInViewHandler(entry);
+  fetchImage = (url) => {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.src = url;
+      image.onload = resolve;
+      image.onerror = reject;
+    });
+  }
+
+  loadImage = (target) => {
+    const isBackground = !!target.dataset.bgSrc;
+    const src = isBackground ? target.dataset.bgSrc : target.dataset.src;
+    if (!src) { return; }
+
+    this.fetchImage(src).then(() => {
+      this.observer.unobserve(target);
+      if (isBackground) {
+        target.removeAttribute('data-bg-src');
+        target.style.backgroundImage = `url(${src})`;
+      } else {
+        target.removeAttribute('data-src');
+        target.src = src;
+      }
+      target.classList.add('loaded');
+    });
+  }
+
+  handleIntersection = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > 0) {
+        this.loadImage(entry.target);
       }
     });
   }
 
-  defaultInViewHandler(entry: any) {
-    if (this.visible) {
-      return false;
-    }
-    if (entry.intersectionRatio < 0.8) {
-      const opacity = entry.intersectionRatio;
-      Object.assign(entry.target.style, {opacity});
-    } else {
-       entry.target.style.opacity = 1;
-       this.visible = true;
-    }
-  }
 }

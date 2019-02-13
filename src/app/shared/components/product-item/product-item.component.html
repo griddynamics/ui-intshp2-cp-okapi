@@ -1,8 +1,8 @@
-<!-- <app-lazy-load> -->
+<app-lazy-load>
 <div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
   <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
   <div class="product-item"  [ngClass]="{'gray-scale': isOutOfStock, 'hovered': isHovered}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
-    <div class="product-item-img" [ngStyle]="{'background-image': currentThumbnail }"></div>
+    <div class="product-item-img lazy-load" [attr.data-bg-src]="currentThumbnail"></div>
     <h2>{{product.title}}</h2>
     <div class="bottom-content">
       <p *ngIf="!isHovered" class="price">{{product.price | currency:'USD'}}</p>
@@ -24,4 +24,4 @@
     </div>
   </div>
 </div>
-<!-- </app-lazy-load> -->
+</app-lazy-load>

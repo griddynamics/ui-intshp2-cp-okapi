@@ -8,8 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeadingComponent } from 'src/app/shared/components/heading/heading.component';
 import { LazyLoadComponent } from 'src/app/shared/components/lazy-load/lazy-load.component';
 
-
-
 describe('WishlistComponent', () => {
   let component: WishListComponent;
   let fixture: ComponentFixture<WishListComponent>;

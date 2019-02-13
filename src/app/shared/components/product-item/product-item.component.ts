@@ -16,50 +16,10 @@ export class ProductItemComponent implements OnInit {
   public _currentSwatch;
 
   protected wishListEnabled;
-//   observer: IntersectionObserver;
-
-//   options: any = {
-//     root: null,
-//     rootMargin: '0px',
-//     threshold: 0.1
-//   };
-
-//   images = document.querySelectorAll('img');
-//   // console.log(this.i)
-
-//   fetchImage = (url) => {
-//     return new Promise((resolve, reject) => {
-//       const image = new Image();
-//       image.src = url;
-//       image.onload = resolve;
-//       image.onerror = reject;
-//     });
-// }
-
-// loadImage = (image) => {
-//   const src = image.dataset.src;
-//   this.fetchImage(src).then(() => {
-//     image.src = src;
-//   });
-
-// }
-
-// handleIntersection = (entries, observer) => {
-//   entries.forEach(entry => {
-//     if (entry.intersectionRatio > 0) {
-//       console.log(entry.intersectionRatio);
-//       this.loadImage(entry.target);
-//     }
-//   });
-// }
 
   constructor(private killswitchService: KillswitchService) {}
 
   ngOnInit() {
-    // this.observer = new IntersectionObserver(this.handleIntersection, this.options);
-    // this.images.forEach(img => {
-    //   this.observer.observe(img);
-    // });
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
 
     if (!this.product) {
@@ -74,7 +34,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   set currentThumbnail(value: String) {
-    this._currentThumbnail = value ? `url(${value})` : '';
+    this._currentThumbnail = value || '';
   }
 
   get isOutOfStock() {

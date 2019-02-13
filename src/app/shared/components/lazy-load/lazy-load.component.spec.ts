@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LazyLoadComponent } from './lazy-load.component';
 
-describe('LazyLoadComponent', () => {
+describe('LazyComponent', () => {
   let component: LazyLoadComponent;
   let fixture: ComponentFixture<LazyLoadComponent>;
 
@@ -21,10 +21,5 @@ describe('LazyLoadComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should return false in case visible is true', () => {
-    component.visible = true;
-    expect(component.defaultInViewHandler('entry')).toBeFalsy();
   });
 });

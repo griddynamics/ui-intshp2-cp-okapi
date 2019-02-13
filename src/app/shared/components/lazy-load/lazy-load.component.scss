@@ -1,5 +1,4 @@
- :host {
-     display: block;
-   min-height: 100px;
- //   height: auto;
-    }
+img[data-src] {
+    opacity: 0;
+    height: 100%;
+}

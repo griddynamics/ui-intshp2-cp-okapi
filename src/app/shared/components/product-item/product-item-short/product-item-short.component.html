@@ -2,7 +2,7 @@
 <div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
   <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
   <div class="product-item-short" [ngClass]="{'gray-scale': isOutOfStock}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
-    <div class="preview-img-short" [ngStyle]="{'background-image': currentThumbnail}"></div>
+    <div class="preview-img-short lazy-load" [attr.data-bg-src]="currentThumbnail"></div>
     <hr>
     <div class="main-details">
       <h2>{{product.title}}</h2>

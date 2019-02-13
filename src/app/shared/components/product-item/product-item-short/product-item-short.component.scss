@@ -49,6 +49,7 @@ hr {
   width: 40%;
   height: 100%;
   background: url('../../../../../assets/img/default.png') no-repeat center;
+  opacity: 0.5;
   background-size: contain;
 }
 
@@ -107,6 +108,15 @@ hr {
   background-size: contain;
   transform: rotate(29deg);
   z-index: 10;
+}
+
+.lazy-load {
+  opacity: 0;
+}
+
+.loaded {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
 }
 
 @include tablet {
