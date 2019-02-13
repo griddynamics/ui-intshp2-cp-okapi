@@ -10,6 +10,7 @@ export class RelatedProductsComponent implements OnInit {
   @Input() products: IProduct[] = [];
 
   ngOnInit(): void {
+
     if (this.products) {
       this.products = this.products;
     }
