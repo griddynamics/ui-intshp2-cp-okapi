@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IProduct } from '../../interfaces/product';
+import { IProduct } from 'src/app/shared/interfaces/product';
+
 
 @Component({
   selector: 'app-recently-viewed',

@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { LazyLoadComponent } from '../../lazy-load/lazy-load.component';
 
+
 describe('ProductItemShortComponent', () => {
   let component: ProductItemShortComponent;
   let fixture: ComponentFixture<ProductItemShortComponent>;

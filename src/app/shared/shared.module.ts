@@ -13,10 +13,11 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { JoinUsComponent } from './components/join-us/join-us.component';
 import { AdvertisingAreaComponent } from './components/advertising-area/advertising-area.component';
 import { HeadingComponent } from './components/heading/heading.component';
-import { RecentlyViewedComponent } from './components/recently-viewed/recently-viewed.component';
 import { LoadMoreComponent } from './components/load-more/load-more.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { LazyLoadComponent } from './components/lazy-load/lazy-load.component';
+import { GridComponent } from './components/grid/grid.component';
+import { ImgPlaceholderComponent } from '../shared/components/img-placeholder/img-placeholder.component';
 import { LoaderComponent } from './components/loader/loader.component';
 
 const MODULES = [
@@ -38,10 +39,11 @@ const MODULES = [
     ProductItemComponent,
     ProductItemShortComponent,
     HeadingComponent,
-    RecentlyViewedComponent,
     LoadMoreComponent,
     LazyLoadComponent,
     LoaderComponent,
+    GridComponent,
+    ImgPlaceholderComponent,
   ],
   imports: [...MODULES],
   exports: [
@@ -54,10 +56,11 @@ const MODULES = [
     ProductItemComponent,
     ProductItemShortComponent,
     HeadingComponent,
-    RecentlyViewedComponent,
     LoadMoreComponent,
     LazyLoadComponent,
     LoaderComponent,
+    GridComponent,
+    ImgPlaceholderComponent,
   ],
 })
 export class SharedModule {

@@ -6,7 +6,7 @@ import { ProductListPageRoutingModule } from './product-list-page-routing.module
 import { ProductListPageComponent } from './components/product-list-page/product-list-page.component';
 
 @NgModule({
-  declarations: [ProductListPageComponent],
+  declarations: [ ProductListPageComponent ],
   imports: [
     CommonModule,
     ProductListPageRoutingModule,

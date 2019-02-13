@@ -1,9 +1,10 @@
 <div class="main-container">
   <div class="filters"></div>
-  <div class="products-grid">
-    <div *ngFor = 'let product of products'>
-        <app-product-item-short *ngIf = "products" [product]="product"></app-product-item-short>
+  <app-grid [showLoadMore]="showLoadMore" (loadMore)="onLoadMore($event)">
+    <div class="product" *ngFor="let product of products;">
+      <app-product-item [product]="product"></app-product-item>
     </div>
-  </div>
+  </app-grid>
 </div>
+
 <app-join-us></app-join-us>

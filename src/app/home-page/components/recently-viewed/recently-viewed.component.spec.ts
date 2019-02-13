@@ -1,24 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { WishListComponent } from './wish-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
+
+import { RecentlyViewedComponent } from './recently-viewed.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-describe('WishlistComponent', () => {
-  let component: WishListComponent;
-  let fixture: ComponentFixture<WishListComponent>;
+
+describe('RecentlyViewedComponent', () => {
+  let component: RecentlyViewedComponent;
+  let fixture: ComponentFixture<RecentlyViewedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WishListComponent ],
-      imports: [ RouterTestingModule, HttpClientModule, SharedModule ]
+      imports: [RouterTestingModule, SharedModule],
+      declarations: [ RecentlyViewedComponent],
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WishListComponent);
+    fixture = TestBed.createComponent(RecentlyViewedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -26,5 +26,4 @@ describe('WishlistComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });

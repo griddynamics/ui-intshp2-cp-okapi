@@ -1,4 +1,3 @@
-<div class="lazy-container" 
-[innerHtml]="content | safePipe" 
-[style.paddingBottom.%]="placeholderRatio"
->
+<app-img-placeholder [height]="100" [width]="470">
+  <div [innerHtml]="content | safePipe"></div>
+</app-img-placeholder>

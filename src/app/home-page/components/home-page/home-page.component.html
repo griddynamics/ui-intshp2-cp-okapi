@@ -7,8 +7,7 @@
 </app-carousel>
 <div class="main-container">
   <div class="row-sb">
-    <app-advertising-area *ngFor="let banner of banners" [content]="banner.htmlSnippet" [height]="banner.height"
-      [width]="banner.width"></app-advertising-area>
+    <app-advertising-area *ngFor="let banner of banners" [content]="banner.htmlSnippet"></app-advertising-area>
   </div>
 </div>
 
@@ -19,5 +18,6 @@
     <app-wish-list *ngIf="wishList.length" [products]="wishList"></app-wish-list>
   </div>
 </ng-container>
+
 
 <app-join-us></app-join-us>

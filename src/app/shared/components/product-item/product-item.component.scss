@@ -164,7 +164,7 @@ hr {
 
 @include laptop {
   .product-item {
-    height: 320px;
+    height: 420px;
   }
 }
 
@@ -172,10 +172,11 @@ hr {
   .product-item {
     pointer-events: none;
     padding-top: 0;
+    height: 425px;
   }
 }
 @include mobile {
   .product-item {
-    height: 365px;
+    height: 420px;
   }
 }
