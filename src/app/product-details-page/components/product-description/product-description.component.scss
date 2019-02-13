@@ -10,7 +10,8 @@
   &-wrapper {
     padding: 95px $wrapper-padding 134px $wrapper-padding;
     display: flex;
-    margin: 0;
+    max-width: 1180px;
+    margin: 0 auto;
   }
 }
 
