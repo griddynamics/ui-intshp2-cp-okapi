@@ -53,13 +53,13 @@
   }
 }
 
-.lazy-load {
-  opacity: 0.9;
+.loading {
+  opacity: 0;
 }
 
 .loaded {
   opacity: 1;
-  transition: opacity .25s ease-in-out;
+  transition: opacity .6s ease-in-out;
 }
 
 .sizes {
