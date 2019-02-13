@@ -15,7 +15,7 @@ export class ProductItemComponent implements OnInit {
   _currentThumbnail;
   private _currentSwatch;
 
-  protected wishListEnabled;
+  public wishListEnabled;
 
   constructor(private killswitchService: KillswitchService) {}
 
