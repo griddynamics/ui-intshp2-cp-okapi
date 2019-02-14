@@ -1,40 +1,42 @@
-import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-lazy-load',
   templateUrl: './lazy-load.component.html',
-  styleUrls: ['./lazy-load.component.scss']
+  styleUrls: ['./lazy-load.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LazyLoadComponent implements AfterViewInit {
 
-  observer: IntersectionObserver;
+   private observer: IntersectionObserver;
 
   constructor(public element: ElementRef) { }
 
-  options: any = {
+  private options: any = {
     root: null,
     rootMargin: '0px',
     threshold: 0.1
   };
 
   ngAfterViewInit() {
-    const images = this.element.nativeElement.querySelectorAll('.lazy-load');
-    this.observer = new IntersectionObserver(this.handleIntersection, this.options);
-    images.forEach(img => {
-      this.observer.observe(img);
-    });
+  const images = this.element.nativeElement.querySelectorAll('.lazy-load');
+    if (!images) { return; }
+      this.observer = new IntersectionObserver(this.handleIntersection.bind(this), this.options);
+      images.forEach(img => {
+        this.observer.observe(img);
+      });
   }
 
-  fetchImage = (url) => {
+ private fetchImage(url: String): Promise<any> {
     return new Promise((resolve, reject) => {
       const image = new Image();
-      image.src = url;
+      image.src = String(url);
       image.onload = resolve;
       image.onerror = reject;
     });
   }
 
-  loadImage = (target) => {
+ private loadImage(target: HTMLImageElement): void  {
     const isBackground = !!target.dataset.bgSrc;
     const src = isBackground ? target.dataset.bgSrc : target.dataset.src;
     if (!src) { return; }
@@ -52,7 +54,7 @@ export class LazyLoadComponent implements AfterViewInit {
     });
   }
 
-  handleIntersection = (entries, observer) => {
+  private handleIntersection (entries): void {
     entries.forEach(entry => {
       if (entry.intersectionRatio > 0) {
         this.loadImage(entry.target);
@@ -61,3 +63,4 @@ export class LazyLoadComponent implements AfterViewInit {
   }
 
 }
+

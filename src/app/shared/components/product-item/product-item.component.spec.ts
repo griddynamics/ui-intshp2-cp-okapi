@@ -61,13 +61,6 @@ describe('ProductItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should return right color', () => {
-    component._currentSwatch = 'mockColor';
-    component.currentSwatch = 'mockColor';
-    component._currentSwatch = '';
-    component.currentSwatch = 'mockColor';
-  });
-
   it('renders a h2 with the provided label text', () => {
     fixture = TestBed.createComponent(ProductItemComponent);
     component = fixture.componentInstance;

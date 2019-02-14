@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { ISwatch } from '../../interfaces/product';
 import { KillswitchService } from 'src/app/core/services/killswitch.service';
 
@@ -6,6 +6,8 @@ import { KillswitchService } from 'src/app/core/services/killswitch.service';
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class ProductItemComponent implements OnInit {
   @Input() public product;
@@ -13,7 +15,7 @@ export class ProductItemComponent implements OnInit {
 
   isHovered = false;
   _currentThumbnail;
-  public _currentSwatch;
+  private _currentSwatch;
 
   protected wishListEnabled;
 

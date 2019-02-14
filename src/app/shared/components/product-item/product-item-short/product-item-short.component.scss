@@ -110,11 +110,6 @@ hr {
   z-index: 10;
 }
 
-.loaded {
-  opacity: 1;
-  transition: opacity .6s ease-in-out;
-}
-
 @include tablet {
   .product-item-wrapper {
     pointer-events: none;

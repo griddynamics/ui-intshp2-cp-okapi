@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadMoreComponent } from './load-more.component';
-import { ProductItemComponent } from '../product-item/product-item.component';
 
 describe('LoadMoreComponent', () => {
   let component: LoadMoreComponent;

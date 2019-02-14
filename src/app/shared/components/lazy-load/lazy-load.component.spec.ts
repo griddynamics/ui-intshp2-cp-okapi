@@ -22,4 +22,6 @@ describe('LazyComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
+
