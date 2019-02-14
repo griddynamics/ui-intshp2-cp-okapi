@@ -61,3 +61,4 @@ and then you need to add the *ngIf directive with feature-flag in [your componen
 content you want to toggle
   <ng-content *ngIf="killswitchName" >...</ng-content>
 ```
+<!-- todo add readme for env -->

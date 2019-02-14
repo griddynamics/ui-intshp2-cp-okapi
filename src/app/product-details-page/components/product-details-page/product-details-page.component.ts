@@ -4,6 +4,7 @@ import { mergeMap } from 'rxjs/operators';
 
 import { ProductDetailsPageService } from 'src/app/core/services/product-details-page.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-product-details-page',
@@ -14,11 +15,13 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
   public product: IProduct;
   private productSubscription;
 
-  constructor(private route: ActivatedRoute, private productService: ProductDetailsPageService) { }
+  constructor(private route: ActivatedRoute, private productService: ProductDetailsPageService, private ds: DataService) { }
   ngOnInit() {
     this.markAsRecentlyViewed();
     this.productSubscription = this.route.params.pipe(
-      mergeMap((id: String) => this.productService.getProduct(id)
+      mergeMap(({id}) => {
+        return this.productService.getProduct(id);
+      }
       )).subscribe(product => {
         this.product = product;
       });
