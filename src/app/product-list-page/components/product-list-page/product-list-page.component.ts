@@ -22,6 +22,10 @@ export class ProductListPageComponent implements OnInit {
     });
   }
 
+  public wishListHandler(product: IProduct): void {
+    this.productService.toggleWishListProduct(product);
+  }
+
   onLoadMore(loadAmount: number): void {
     this.products = this.allProducts.slice(0, this.products.length + loadAmount);
   }
