@@ -5,7 +5,6 @@ import { ZoomComponent } from './product-image-preview/zoom/zoom.component';
 import { ProductImagePreviewComponent } from './product-image-preview/product-image-preview.component';
 import { ProductOrderComponent } from './product-order/product-order.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { LazyLoadComponent } from 'src/app/shared/components/lazy-load/lazy-load.component';
 
 describe('ProductDescriptionComponent', () => {
   const productInfo = {

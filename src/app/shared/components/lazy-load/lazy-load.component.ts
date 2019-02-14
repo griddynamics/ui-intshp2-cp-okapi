@@ -41,7 +41,7 @@ export class LazyLoadComponent implements AfterViewInit {
 
     this.fetchImage(src).then(() => {
       this.observer.unobserve(target);
-      target.classList.add('loadeding');
+    //  target.classList.add('loading');
       if (isBackground) {
         target.removeAttribute('data-bg-src');
         target.style.backgroundImage = `url(${src})`;

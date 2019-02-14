@@ -16,7 +16,7 @@ describe('SlideshowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SlideshowComponent, ImgPlaceholderComponent, LazyLoadComponent],
+      declarations: [SlideshowComponent, ImgPlaceholderComponent, LazyLoadComponent],
       imports: [HttpClientTestingModule]
     })
     .compileComponents();

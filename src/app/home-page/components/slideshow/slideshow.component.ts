@@ -33,7 +33,6 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     'assets/img/slideshow/banner-main2-1540x650.jpg'
   ];
 
-
   public isHovered = false;
   public selectedSlideIndex = 0;
   public isStoped = false;
