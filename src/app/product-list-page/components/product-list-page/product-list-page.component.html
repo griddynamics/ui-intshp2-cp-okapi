@@ -2,7 +2,7 @@
   <div class="filters"></div>
   <app-grid [showLoadMore]="showLoadMore" (loadMore)="onLoadMore($event)">
     <div class="product" *ngFor="let product of products;">
-      <app-product-item [product]="product"></app-product-item>
+      <app-product-item (addItemToWishList)="wishListHandler($event)" [product]="product"></app-product-item>
     </div>
   </app-grid>
 </div>
