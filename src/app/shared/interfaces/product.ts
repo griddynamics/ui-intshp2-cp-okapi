@@ -32,3 +32,15 @@ export enum ProductSize {
   L = 'l',
   XL = 'xl'
 }
+
+export interface IFilter {
+  type: String;
+  name: String;
+  fields?: Array<String>;
+  range?: Array<PriceRange>;
+}
+
+export enum PriceRange {
+  min = 0,
+  max = 1
+}

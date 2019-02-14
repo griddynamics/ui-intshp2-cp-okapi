@@ -8,7 +8,7 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 })
 export class RadioFilterComponent {
 
-  @Input() items;
+  @Input() public filter;
   public isChecked = false;
 
   toggleCheck(event) {

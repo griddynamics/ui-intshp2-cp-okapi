@@ -16,6 +16,7 @@
 }
 
 .filter-title {
+  text-transform: capitalize;
   display: block;
   margin-bottom: 30px;
   color: $primary-color;
@@ -31,6 +32,7 @@
   }
   
   label {
+    text-transform: capitalize;
     font-size: $font-size-medium;
     cursor: pointer;
   } 

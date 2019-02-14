@@ -1,9 +1,9 @@
-<div *ngIf="items" class="filter-item">
-  <span class="filter-title">{{title}}</span>
-  <div *ngFor="let item of items" class="filter-line">
-    <label class="checkbox" (change)="toggleCheck($event)">{{item}}
+<div *ngIf="filter" class="filter-item">
+  <span class="filter-title">{{filter.name}}</span>
+  <div *ngFor="let field of filter.fields" class="filter-line">
+    <label for="checkbox-{{field}}" class="checkbox" (change)="toggleCheck($event)">{{field}}
+      <input id="checkbox-{{field}}" type="checkbox"/>
       <span class="custom-checkbox"></span>
-      <input type="checkbox" />
     </label>
   </div>
 </div>

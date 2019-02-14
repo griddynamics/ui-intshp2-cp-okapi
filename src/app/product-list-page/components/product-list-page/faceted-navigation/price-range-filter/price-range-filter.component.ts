@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-price-range-filter',
@@ -7,9 +8,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class PriceRangeFilterComponent {
-
+  @Input() public filter;
   public rangeValue = 0;
-  public range = [10, 100];
+  public range = [0, 100];
 
   valueChanged(e) {
     this.rangeValue = e.target.value;

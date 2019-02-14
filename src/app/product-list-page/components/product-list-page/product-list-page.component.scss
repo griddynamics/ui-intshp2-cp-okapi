@@ -4,7 +4,7 @@
 @import '../../../../scss/mixins';
 
 .main-container {
-  padding: 120px $content-padding;
+  padding: 120px $content-padding 0;
   background-color: $bg-color;
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -13,10 +13,6 @@
 
 .products-grid {
   background-color: gray;
-}
-
-.filters {
-  height: 1228px;
 }
 
 app-product-grid {
