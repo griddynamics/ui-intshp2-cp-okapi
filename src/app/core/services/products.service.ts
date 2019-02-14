@@ -4,6 +4,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { DataService } from './data.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,7 +30,7 @@ export class ProductsService {
   public getProducts(): Observable<IProduct[]> {
     return Observable.create((observer) => {
 
-      this.dataService.get('assets/mocks/products.json').subscribe((data: IProduct[]) => {
+      this.dataService.get(environment.productsPATH).subscribe((data: IProduct[]) => {
         this.prepareProductResponse(data);
         this.wishListSource.next(this.wishList);
         observer.next(this.products);

@@ -2,9 +2,12 @@
   "name": "capstone-angular-project",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "server": "node src/server/app.js",
+    "server:debug": "nodemon node --inspect src/server/app.js",
+    "start": "npm run serve:dev",
+    "build:prod": "ng build --prod --aot",
+    "serve:prod": "http-server dist/",
+    "serve:dev": "ng serve -o --configuration=test",
     "test": "ng test",
     "coverage": "ng test --code-coverage",
     "lint": "ng lint",
@@ -32,7 +35,10 @@
     "core-js": "^2.6.2",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.0",
@@ -59,6 +65,7 @@
     "puppeteer": "^1.11.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.1.6"
+    "typescript": "~3.1.6",
+    "nodemon": "^1.18.9"
   }
 }

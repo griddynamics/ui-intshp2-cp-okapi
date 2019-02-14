@@ -29,7 +29,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }];
 
   private subscriptions: Subscription[] = [];
-  protected wishListEnabled;
+  public wishListEnabled;
 
   constructor(
     public productsService: ProductsService,
