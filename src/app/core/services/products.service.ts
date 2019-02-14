@@ -31,6 +31,7 @@ export class ProductsService {
     return Observable.create((observer) => {
 
       this.dataService.get(environment.productsPATH).subscribe((data: IProduct[]) => {
+        console.log(data, 'here')
         this.prepareProductResponse(data);
         this.wishListSource.next(this.wishList);
         observer.next(this.products);

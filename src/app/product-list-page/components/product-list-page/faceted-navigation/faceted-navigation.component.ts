@@ -8,7 +8,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class FacetedNavigationComponent {
 
-  public singleChoise = true;
-  public multipleChoise = true;
-
 }

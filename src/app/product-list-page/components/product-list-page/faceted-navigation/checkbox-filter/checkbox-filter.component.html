@@ -1,18 +1,8 @@
-<div *ngIf="products?.brand" class="filter-item">
-  <span class="filter-title">{{products?.category}}</span>
-  <div *ngFor="let brand of products?.brands" class="filter-line">
+<div *ngIf="items" class="filter-item">
+  <span class="filter-title">{{title}}</span>
+  <div *ngFor="let item of items" class="filter-line">
     <label class="checkbox" (change)="toggleCheck($event)"
-      >{{brand}} <input type="checkbox" /><span class="custom-checkbox"></span>
+      >{{item}} <input type="checkbox" /><span class="custom-checkbox"></span>
     </label>
   </div>
 </div>
-<!-- <div class="filter-item">
-    <span class="filter-title">Brands</span>
-    <div class="filter-line">
-    <label class="checkbox"
-      >Addidas <input type="checkbox" (change)="toggleCheck($event)" /><span
-        class="custom-checkbox"
-      ></span>
-    </label>
-  </div>
-</div> -->
