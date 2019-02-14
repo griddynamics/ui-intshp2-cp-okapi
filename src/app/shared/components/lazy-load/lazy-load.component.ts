@@ -8,7 +8,7 @@ import { Component, AfterViewInit, ElementRef, ViewEncapsulation } from '@angula
 })
 export class LazyLoadComponent implements AfterViewInit {
 
-   private observer: IntersectionObserver;
+  private observer: IntersectionObserver;
 
   constructor(public element: ElementRef) { }
 
@@ -19,15 +19,15 @@ export class LazyLoadComponent implements AfterViewInit {
   };
 
   ngAfterViewInit() {
-  const images = this.element.nativeElement.querySelectorAll('.lazy-load');
+    const images = this.element.nativeElement.querySelectorAll('.lazy-load');
     if (!images) { return; }
-      this.observer = new IntersectionObserver(this.handleIntersection.bind(this), this.options);
-      images.forEach(img => {
-        this.observer.observe(img);
-      });
+    this.observer = new IntersectionObserver(this.handleIntersection.bind(this), this.options);
+    images.forEach(img => {
+      this.observer.observe(img);
+    });
   }
 
- private fetchImage(url: String): Promise<any> {
+  private fetchImage(url: String): Promise<any> {
     return new Promise((resolve, reject) => {
       const image = new Image();
       image.src = String(url);
@@ -36,7 +36,7 @@ export class LazyLoadComponent implements AfterViewInit {
     });
   }
 
- private loadImage(target: HTMLImageElement): void  {
+  private loadImage(target: HTMLImageElement): void {
     const isBackground = !!target.dataset.bgSrc;
     const src = isBackground ? target.dataset.bgSrc : target.dataset.src;
     if (!src) { return; }
@@ -54,7 +54,7 @@ export class LazyLoadComponent implements AfterViewInit {
     });
   }
 
-  private handleIntersection (entries): void {
+  private handleIntersection(entries): void {
     entries.forEach(entry => {
       if (entry.intersectionRatio > 0) {
         this.loadImage(entry.target);

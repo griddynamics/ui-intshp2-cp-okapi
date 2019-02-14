@@ -8,7 +8,7 @@ export interface IProduct {
   rating?: Number;
   swatches?: Array<ISwatch>;
   availability: Array<ProductAvailabilityState>;
-  thumbnailImageSrc?: String;
+  thumbnailImageSrc?: string;
   sizes?: Array<ProductSize>;
   addedToCart: Boolean;
   addedToWishList: Boolean;

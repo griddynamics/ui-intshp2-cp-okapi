@@ -1,9 +1,12 @@
-// img[data-bg-src] {
-//     opacity: 0;
-//     height: 100%;
-// }
+img[data-bg-src] {
+    height: 100%;
+    opacity: 0;
+}
+
+.lazy-load {
+    transition: opacity .6s ease-in-out;
+}
 
 .loaded {
     opacity: 1;
-    transition: opacity .6s ease-in-out;
 }
