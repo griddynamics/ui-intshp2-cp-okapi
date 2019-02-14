@@ -1,11 +1,7 @@
 <aside class="all-products-filter">
-  <div *ngIf="singleChoise">
-    <app-radio-filter></app-radio-filter>
-  </div>
+  <app-radio-filter [title]="'gender'" [items]="product?.sex"></app-radio-filter>
   <app-price-range-filter></app-price-range-filter>
   <app-sizes-filter></app-sizes-filter>
-  <div *ngIf="multipleChoise">
-    <app-checkbox-filter></app-checkbox-filter>
-  </div>
- 
+  <app-checkbox-filter [title]="'brands'" [items]="product?.brands"></app-checkbox-filter>
+  <app-checkbox-filter [title]="'categories'" [items]="product?.categories"></app-checkbox-filter>
 </aside>

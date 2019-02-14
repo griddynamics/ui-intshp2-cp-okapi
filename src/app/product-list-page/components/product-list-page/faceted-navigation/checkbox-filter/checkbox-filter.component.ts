@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 
 @Component({
   selector: 'app-checkbox-filter',
@@ -8,6 +8,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class CheckboxFilterComponent {
 
+  @Input() items;
   public isChecked = false;
 
   toggleCheck(event) {

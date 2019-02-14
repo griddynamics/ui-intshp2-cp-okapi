@@ -6,7 +6,9 @@
 .checkbox {
   position: relative;
   display: block;
-  padding-left: 40px;
+  padding-left: 30px;
+  display: flex;
+  justify-content: space-between;
 
   input[type="checkbox"] {
     display: none;
@@ -15,7 +17,7 @@
       border: 4px solid $primary-color;
     }
   }
-
+  
   .custom-checkbox {
     position: absolute;
     left: 0;
