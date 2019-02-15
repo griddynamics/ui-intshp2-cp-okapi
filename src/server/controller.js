@@ -4,9 +4,6 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const subscriptions = new Set();
 
-//and usage
-// router.get('api/products', memCacheMiddlerware(), controller.getProducts);
-
 module.exports = {
     getProducts,
     getProductById,
@@ -14,30 +11,8 @@ module.exports = {
     addSubscription,
     deleteSubscription,
     getFilters,
-    memCacheMiddlerware,
     notFound,
 }
-
-function memCacheMiddlerware() {
-    return (req, res, next) => {
-      const key = '__memcachekey__' + req.originalUrl || req.url;
-      const cachedContent = memCache.get(key);
-  
-      if (cachedContent) {
-        res.send(cachedContent);
-        return;
-      }
-  
-      const _send = res.send.bind(res);
-  
-      res.send = (body) => {
-        memCache.set(key, body);
-        _send(body);
-      };
-  
-      next();
-    };
-  }
 
 function addSubscription(req, res) {
     if (!subscriptions.has(req.body.email) || !req.body.email.match(EMAIL_PATTERN)) {
@@ -55,10 +30,19 @@ function deleteSubscription(req, res) {
 
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 
+
+function cleanUpProductProperties(product) {
+    PRODUCTS_REDUNDANT_PROPS.forEach(property => {
+        delete product[property];
+    });
+
+    return product;
+}
+
 function getHomepage(req, res) {
     const randomProducts = new Set();
     while (Array.from(randomProducts).length !== 6) {
-        const cleanedUpProduct = cleanUpProductProperties(productsMOCK[Math.floor(Math.random() * productsMOCK.length)])
+        const cleanedUpProduct = _cleanUpProductProperties(productsMOCK[Math.floor(Math.random() * productsMOCK.length)])
         randomProducts.add(cleanedUpProduct)
     }
 
@@ -95,14 +79,6 @@ function getFilters(req, res) {
     res.json(filters);
 }
 
-function cleanUpProductProperties(product) {
-    PRODUCTS_REDUNDANT_PROPS.forEach(property => {
-        delete product[property];
-    });
-
-    return product;
-}
-
 function getProducts(req, res) {
     const productsArrCopy = JSON.parse(JSON.stringify(productsMOCK));
     const total = productsArrCopy.length;
@@ -114,24 +90,24 @@ function getProducts(req, res) {
     const query = req.query;
     let cleanedProducts = productsArrCopy.map(cleanUpProductProperties);
 
-
     if (query.ids) {
-        const idsArr = req.query.ids.split(',');
-        const productsArr = cleanedProducts.filter(el => idsArr.some(id => id === el.id))
+        const idsArr = req.query.ids.split(',').map(el => parseInt(el));
+
+        const productsArr = cleanedProducts.filter(el => idsArr.some(id => String(id) === el.id))
         responseProducts.products = productsArr;
         res.json(responseProducts);
         return;
     }
 
     if (query.price) {
-        const rangeArr = req.query.price.split(',');
+        const rangeArr = req.query.price.split(',').map(el => parseInt(el));
         const fromPrice = Number(rangeArr[0]);
         const toPrice = Number(rangeArr[1]);
 
         if (rangeArr.length === 1 || (rangeArr.length === 2 && (fromPrice === toPrice))) {
             cleanedProducts = cleanedProducts.filter(({ price }) => price === fromPrice)
         }
-        
+
         if (rangeArr.length === 2) {
             cleanedProducts = cleanedProducts.filter(({ price }) => price >= fromPrice && price <= toPrice)
         }
@@ -174,4 +150,12 @@ function getProductById(req, res) {
 
 function notFound(req, res) {
     res.status(404).send();
+}
+
+function _cleanUpProductProperties(product) {
+  PRODUCTS_REDUNDANT_PROPS.forEach(property => {
+      delete product[property];
+  });
+
+  return product;
 }
