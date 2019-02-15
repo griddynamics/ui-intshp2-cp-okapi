@@ -4,7 +4,7 @@
     <div class="product-item" [ngClass]="{'gray-scale': isOutOfStock, 'hovered': isHovered}" (mouseover)="onMouseOver()"
       (mouseleave)="onMouseLeave()">
       <div class="product-item-img lazy-load" [attr.data-bg-src]="currentThumbnail" [ngStyle]="{'background-image': swatchThumbnail}"></div>
-      <h2>{{product.title}}</h2>
+      <h2>{{product.name}}</h2>
       <div class="bottom-content">
         <p *ngIf="!isHovered" class="price">{{product.price | currency:'USD'}}</p>
         <div *ngIf="isHovered">

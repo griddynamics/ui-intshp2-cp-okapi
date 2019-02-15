@@ -5,7 +5,7 @@
       <div class="preview-img-short lazy-load" [attr.data-bg-src]="currentThumbnail" [ngStyle]="{'background-image': swatchThumbnail}"></div>
       <hr>
       <div class="main-details">
-        <h2>{{product.title}}</h2>
+        <h2>{{product.name}}</h2>
         <div class="item-details">
           <div *ngIf="!isHovered" class="stars">
             <i *ngFor="let rating of starsArray; let i = index" class="fas fa-star" [ngClass]="{'rating': i + 1 <= product.rating}"></i>
