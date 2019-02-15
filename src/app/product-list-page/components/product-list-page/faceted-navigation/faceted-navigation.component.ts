@@ -23,7 +23,7 @@ export class FacetedNavigationComponent {
     {
       'type': 'checkbox',
       'name': 'size',
-      'fields': ['small', 'medium', 'large', 'x large']
+      'fields': ['s', 'm', 'l', 'xl']
     },
     {
       'type': 'range',
