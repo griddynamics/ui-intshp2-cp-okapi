@@ -1,6 +1,11 @@
 const productsMOCK = require('../assets/mocks/products.json');
+const filters = require('../assets/mocks/filters.json');
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const subscriptions = new Set();
+
+//and usage
+// router.get('api/products', memCacheMiddlerware(), controller.getProducts);
 
 module.exports = {
     getProducts,
@@ -8,13 +13,34 @@ module.exports = {
     getHomepage,
     addSubscription,
     deleteSubscription,
+    getFilters,
+    memCacheMiddlerware,
     notFound,
 }
 
+function memCacheMiddlerware() {
+    return (req, res, next) => {
+      const key = '__memcachekey__' + req.originalUrl || req.url;
+      const cachedContent = memCache.get(key);
+  
+      if (cachedContent) {
+        res.send(cachedContent);
+        return;
+      }
+  
+      const _send = res.send.bind(res);
+  
+      res.send = (body) => {
+        memCache.set(key, body);
+        _send(body);
+      };
+  
+      next();
+    };
+  }
 
 function addSubscription(req, res) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!subscriptions.has(req.body.email) || !req.body.email.match(emailPattern)) {
+    if (!subscriptions.has(req.body.email) || !req.body.email.match(EMAIL_PATTERN)) {
         return res.status(400).send();
     }
     subscriptions.add(req.body.email);
@@ -37,15 +63,14 @@ function getHomepage(req, res) {
     }
 
     const homePageAggregated = {
-        newArrivals: Array.from(randomProducts),
-        slideShow: [
-            'https://myupdateweb.com/wp-content/uploads/2017/07/Bluehost.com_-1-1540x650.png',
-            'http://forgedground.com/image/cache/catalog/Slideshow/forged-ground-featured-official-merch-es-1540x650.jpg',
-            'http://forgedground.com/image/cache/catalog/viking-medieval-escudos-cascos-cuernos-espadass-accesorios-forgedground-1540x650.jpg',
-            'http://www.opencart.lionode.com/leoc04_2_2018/oc01/image/cache/catalog/banner%20main1-1540x650.jpg',
-            'http://www.opencart.lionode.com/leoc04_2_2018/oc01/image/cache/catalog/banner%20main2-1540x650.jpg'
+        slideshow: [
+            'assets/img/slideshow/banner-main1-1540x650.jpg',
+            'assets/img/slideshow/banner-main2-1540x650.jpg',
+            'assets/img/slideshow/forged-ground-featured-official-merch-es-1540x650',
+            'assets/img/slideshow/forged-ground-featured-official-merch-es-1540x650',
         ],
-        advArray: [{
+        arrivals: Array.from(randomProducts),
+        banners: [{
             height: 100,
             width: 470,
             htmlSnippet: '<img style="width:100%" src="../../../../assets/img/adv_area.png" >',
@@ -59,6 +84,17 @@ function getHomepage(req, res) {
     res.json(homePageAggregated);
 }
 
+function getFilters(req, res) {
+    const rangeFilter = filters.find(el => el.type === 'range');
+    const productsSorted = JSON.parse(JSON.stringify(productsMOCK)).sort((a, b) => b.price - a.price);
+
+    const mostExpencive = productsSorted[0].price
+    const cheapest = productsSorted[productsSorted.length - 1].price;
+
+    rangeFilter.range = [cheapest, mostExpencive];
+    res.json(filters);
+}
+
 function cleanUpProductProperties(product) {
     PRODUCTS_REDUNDANT_PROPS.forEach(property => {
         delete product[property];
@@ -69,6 +105,12 @@ function cleanUpProductProperties(product) {
 
 function getProducts(req, res) {
     const productsArrCopy = JSON.parse(JSON.stringify(productsMOCK));
+    const total = productsArrCopy.length;
+    const responseProducts = {
+        total,
+        products: productsArrCopy
+    }
+
     const query = req.query;
     let cleanedProducts = productsArrCopy.map(cleanUpProductProperties);
 
@@ -76,7 +118,8 @@ function getProducts(req, res) {
     if (query.ids) {
         const idsArr = req.query.ids.split(',');
         const productsArr = cleanedProducts.filter(el => idsArr.some(id => id === el.id))
-        res.json(productsArr);
+        responseProducts.products = productsArr;
+        res.json(responseProducts);
         return;
     }
 
@@ -95,7 +138,11 @@ function getProducts(req, res) {
     }
 
     if (query.category) {
-        cleanedProducts = cleanedProducts.filter(el => el.sex === query.category)
+        cleanedProducts = cleanedProducts.filter(el => el.category === query.category)
+    }
+
+    if (query.gender) {
+        cleanedProducts = cleanedProducts.filter(el => el.sex === query.gender)
     }
 
     if (query.size) {
@@ -108,14 +155,17 @@ function getProducts(req, res) {
     }
 
     cleanedProducts = cleanedProducts.slice(+query.start || 0, +query.end || cleanedProducts.length);
-
-    res.json(cleanedProducts);
+    responseProducts.products = cleanedProducts
+    res.json(responseProducts);
 }
 
 function getProductById(req, res) {
     const product = JSON.parse(JSON.stringify(productsMOCK.find((({ id }) => id === req.params.id))));
 
-    if (!product) notFound(req, res);
+    if (!product) {
+        notFound(req, res);
+        return;
+    };
 
     product.relatedProducts = productsMOCK.filter(item => product.relatedProducts.some(id => id === item.id));
 

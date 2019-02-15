@@ -1,11 +1,12 @@
 [
   {
     "id": "1",
+    "category": "shoes",
     "name": "WORKOUT PLUS ATI 90S",
     "brand": "adidas",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE.",
     "description": "This item is excluded from all promotions.",
-    "sex": "unisex",
+    "sex": "children",
     "price": 90,
     "rating": 5,
     "swatches": [
@@ -48,11 +49,12 @@
   },
   {
     "id": "2",
+    "category": "shoes",
     "name": "CLUB C 1985 TV",
     "brand": "nike",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "unisex",
+    "sex": "children",
     "price": 85,
     "rating": 5,
     "swatches": [
@@ -95,11 +97,12 @@
   },
   {
     "id": "3",
+    "category": "shoes",
     "name": "REEBOK CROSSFIT NANO 8 FLEXWEAVE",
     "brand": "reebok",
     "title": "This item is excluded from all promotions.",
     "description": "This item is excluded from all promotions.",
-    "sex": "unisex",
+    "sex": "children",
     "price": 130,
     "rating": 5,
     "swatches": [
@@ -138,11 +141,12 @@
   },
   {
     "id": "4",
+    "category": "shoes",
     "name": "CLUB C 85",
     "brand": "adidas",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "unisex",
+    "sex": "children",
     "price": 70,
     "rating": 5,
     "swatches": [
@@ -172,11 +176,12 @@
   },
   {
     "id": "5",
+    "category": "shoes",
     "name": "REEBOK AZTREK",
     "brand": "nike",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "unisex",
+    "sex": "children",
     "price": 80,
     "rating": 5,
     "swatches": [
@@ -206,11 +211,12 @@
   },
   {
     "id": "6",
+    "category": "shoes",
     "name": "FLOATRIDE RUN SMOOTH",
     "brand": "nike",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "unisex",
+    "sex": "children",
     "price": 70,
     "rating": 5,
     "swatches": [
@@ -244,11 +250,12 @@
   },
   {
     "id": "7",
+    "category": "shoes",
     "name": "AZTREK",
     "brand": "air",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "unisex",
+    "sex": "children",
     "price": 80,
     "rating": 5,
     "swatches": [
@@ -287,7 +294,7 @@
     "brand": "adidas",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "unisex",
+    "sex": "children",
     "price": 25,
     "rating": 5,
     "swatches": [
@@ -317,11 +324,12 @@
   },
   {
     "id": "9",
+    "category": "t-shirts",
     "name": "REEBOK LINEAR READ TEE",
     "brand": "air",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "unisex",
+    "sex": "children",
     "price": 25,
     "rating": 5,
     "swatches": [
@@ -352,11 +360,12 @@
   },
   {
     "id": "10",
+    "category": "t-shirts",
     "name": "TRAINING ACTIVCHILL MOVE TEE",
     "brand": "reebok",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "unisex",
+    "sex": "children",
     "price": 35,
     "rating": 5,
     "swatches": [
@@ -394,11 +403,12 @@
   },
   {
     "id": "11",
+    "category": "t-shirts",
     "name": "CLASSIC LOGO TEE",
     "brand": "air",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "unisex",
+    "sex": "children",
     "price": 25,
     "rating": 5,
     "swatches": [
@@ -432,11 +442,12 @@
   },
   {
     "id": "12",
+    "category": "t-shirts",
     "name": "REEBOK CROSSFIT® OPEN TESTED TEE",
     "brand": "adidas",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "men",
+    "sex": "man",
     "price": 25,
     "rating": 5,
     "swatches": [
@@ -470,11 +481,12 @@
   },
   {
     "id": "13",
+    "category": "t-shirts",
     "name": "REEBOK CROSSFIT® OPEN TESTED TEE",
     "brand": "nike",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "men",
+    "sex": "man",
     "price": 20,
     "rating": 5,
     "swatches": [
@@ -513,11 +525,12 @@
   },
   {
     "id": "14",
+    "category": "t-shirts",
     "name": "REEBOK CROSSFIT SPEEDWICK F.E.F. GRAPHIC T-SHIRT",
     "brand": "nike",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "unisex",
+    "sex": "children",
     "price": 28,
     "rating": 5,
     "swatches": [
@@ -560,11 +573,12 @@
   },
   {
     "id": "15",
+    "category": "shorts",
     "name": "WOR MÉLANGE DOUBLEKNIT SHORTS",
     "brand": "air",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "unisex",
+    "sex": "children",
     "price": 35,
     "rating": 5,
     "swatches": [
@@ -598,11 +612,12 @@
   },
   {
     "id": "16",
+    "category": "shorts",
     "name": "REEBOK CROSSFIT® SPEED PRINT SHORTS",
     "brand": "air",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "men",
+    "sex": "man",
     "price": 65,
     "rating": 5,
     "swatches": [],
@@ -628,6 +643,7 @@
   },
   {
     "id": "17",
+    "category": "shorts",
     "name": "REEBOK CROSSFIT® SPEED PRINT SHORTS",
     "brand": "adidas",
     "title": "MEN TRAINING",
@@ -667,11 +683,12 @@
   },
   {
     "id": "18",
+    "category": "shorts",
     "name": "RUNNING EPIC TWO-IN-ONE SHORTS",
     "brand": "adidas",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "men",
+    "sex": "man",
     "price": 55,
     "rating": 5,
     "swatches": [
@@ -702,11 +719,12 @@
   },
   {
     "id": "19",
+    "category": "shorts",
     "name": "REEBOK SPEED SHORT",
     "brand": "adidas",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "men",
+    "sex": "man",
     "price": 40,
     "rating": 5,
     "swatches": [
@@ -748,6 +766,7 @@
   },
   {
     "id": "20",
+    "category": "shorts",
     "name": "REEBOK CROSSFIT® SPEEDWICK SHORTS",
     "brand": "nike",
     "title": "MEN TRAINING",
@@ -786,6 +805,7 @@
   },
   {
     "id": "21",
+    "category": "shorts",
     "name": "TRAINING SPEEDWICK SHORTS",
     "brand": "reebok",
     "title": "MEN TRAINING",
