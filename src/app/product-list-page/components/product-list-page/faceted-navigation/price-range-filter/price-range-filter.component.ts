@@ -43,7 +43,9 @@ export class PriceRangeFilterComponent implements OnInit {
   validateRange(e) {
     if (e.target.value >  this.range[1]) {
       e.target.value =  this.range[1];
-    } else if (e.target.value <  this.range[0] || e.target.value === '') {
+      return;
+    }
+    if (e.target.value <  this.range[0] || e.target.value === '') {
       e.target.value =  this.range[0];
     }
   }
