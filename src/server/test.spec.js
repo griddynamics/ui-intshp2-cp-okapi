@@ -4,8 +4,8 @@ const request = require('supertest'),
     app = require('./app'),
     productsMocks = require('../assets/products.json');
 
-describe('#API TESTS', () => {
-  describe('Accounts', () => {
+describe('should return status 200, if get is successful', () => {
+  describe('200', () => {
     it('should answer on GET', done => {
       request(app)
         .get('/api/products')

@@ -22,7 +22,8 @@
       "thumbnailImageSrc": "",
       "sizes": ["S", "M", "L", "XL"],
       "addedToCart": false,
-      "addedToWishList": false
+      "addedToWishList": false,
+      "relatedProducts": []
     },
     {
       "id": "8",

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "server": "node src/server/app.js",
-    "server:debug": "nodemon node --inspect src/server/app.js",
+    "server:watch": "nodemon node --inspect src/server/app.js",
+    "server:debug": "node --inspect src/server/app.js",
     "start": "npm run serve:dev",
     "build:prod": "ng build --prod --aot",
     "serve:prod": "http-server dist/",

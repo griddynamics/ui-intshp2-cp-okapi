@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   baseURL: 'http://localhost:4200',
   killswitchesPath: 'assets/config/killswitches.json',
-  productsPATH: 'assets/mocks/products.json',
+  productsURL: 'assets/mocks/products.json',
   pdpPath: 'assets/mocks/pdp.json'
 };
 

@@ -2,7 +2,7 @@
     production: false,
     baseURL: 'http://localhost:3000',
     killswitchesPath: 'config/killswitches.json',
-    productsPATH: 'api/products',
+    productsURL: 'api/products',
   };
 
   export const referenceLinks = {
@@ -16,6 +16,3 @@
     googlePlusURL: 'https://plus.google.com/115302417170674279390',
     linkedinURL: 'https://www.linkedin.com/company/grid-dynamics/'
   };
-
-  // use conf test
-  // move links to shared(create common file and imp it to env files);

@@ -15,6 +15,7 @@ export class RelatedProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     if (this.products) {
       this.products = this.products;
     }
