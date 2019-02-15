@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { IFilter } from 'src/app/shared/interfaces/product';
 
 @Component({
@@ -8,6 +8,7 @@ import { IFilter } from 'src/app/shared/interfaces/product';
   encapsulation: ViewEncapsulation.None
 })
 export class FacetedNavigationComponent {
+
   filters: IFilter[] = [
     {
       'type': 'radio',
@@ -27,7 +28,7 @@ export class FacetedNavigationComponent {
     {
       'type': 'range',
       'name': 'price',
-      'range': [0, 100]
+      'range': [25, 130]
     },
     {
       'type': 'checkbox',

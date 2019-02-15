@@ -8,7 +8,6 @@ import { ProductListPageComponent } from './components/product-list-page/product
 import { FacetedNavigationComponent } from './components/product-list-page/faceted-navigation/faceted-navigation.component';
 import { CheckboxFilterComponent } from './components/product-list-page/faceted-navigation/checkbox-filter/checkbox-filter.component';
 import { RadioFilterComponent } from './components/product-list-page/faceted-navigation/radio-filter/radio-filter.component';
-import { SizesFilterComponent } from './components/product-list-page/faceted-navigation/sizes-filter/sizes-filter.component';
 import {
   PriceRangeFilterComponent
 } from './components/product-list-page/faceted-navigation/price-range-filter/price-range-filter.component';
@@ -19,8 +18,7 @@ import {
     FacetedNavigationComponent,
     CheckboxFilterComponent,
     PriceRangeFilterComponent,
-    RadioFilterComponent,
-    SizesFilterComponent
+    RadioFilterComponent
   ],
   imports: [
     CommonModule,

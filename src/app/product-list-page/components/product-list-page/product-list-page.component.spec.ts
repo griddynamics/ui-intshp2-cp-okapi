@@ -5,7 +5,6 @@ import { FacetedNavigationComponent } from './faceted-navigation/faceted-navigat
 import { CheckboxFilterComponent } from './faceted-navigation/checkbox-filter/checkbox-filter.component';
 import { PriceRangeFilterComponent } from './faceted-navigation/price-range-filter/price-range-filter.component';
 import { RadioFilterComponent } from './faceted-navigation/radio-filter/radio-filter.component';
-import { SizesFilterComponent } from './faceted-navigation/sizes-filter/sizes-filter.component';
 
 describe('ProductListPageComponent', () => {
   let component: ProductListPageComponent;
@@ -19,8 +18,7 @@ describe('ProductListPageComponent', () => {
         FacetedNavigationComponent,
         CheckboxFilterComponent,
         PriceRangeFilterComponent,
-        RadioFilterComponent,
-        SizesFilterComponent
+        RadioFilterComponent
       ]
     })
     .compileComponents();

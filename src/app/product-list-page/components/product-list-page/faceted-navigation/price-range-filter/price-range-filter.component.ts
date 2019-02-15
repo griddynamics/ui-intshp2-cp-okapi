@@ -1,5 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
-import { filter } from 'rxjs/operators';
+import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-price-range-filter',
@@ -7,14 +6,15 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./price-range-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PriceRangeFilterComponent {
+export class PriceRangeFilterComponent implements OnInit {
   @Input() public filter;
-  public rangeValue = 0;
-  public range = [0, 100];
+  public range = [];
+
+  ngOnInit() {
+    this.range = [...this.filter.range];
+  }
 
   valueChanged(e) {
-    this.rangeValue = e.target.value;
-
     if (this.range[0] > this.range[1]) {
       this.range.reverse();
     }
@@ -37,10 +37,10 @@ export class PriceRangeFilterComponent {
   }
 
   validateRange(e) {
-    if (e.target.value > 100) {
-      e.target.value = '100';
-    } else if (e.target.value < 0 || e.target.value === '') {
-      e.target.value = '0';
+    if (e.target.value >  this.range[1]) {
+      e.target.value =  this.range[1];
+    } else if (e.target.value <  this.range[0] || e.target.value === '') {
+      e.target.value =  this.range[0];
     }
   }
 }
