@@ -16,6 +16,9 @@
   text-align: center;
   user-select: none;
   padding: 8% 10% 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 
   h2 {
     font-family: $main-font-bold;
