@@ -1,5 +1,7 @@
 const productsMOCK = require('../assets/mocks/products.json');
 const filters = require('../assets/mocks/filters.json');
+const banners = require('../assets/mocks/banners.json');
+const slideshow = require('../assets/mocks/slideshow.json');
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const subscriptions = new Set();
@@ -47,22 +49,9 @@ function getHomepage(req, res) {
     }
 
     const homePageAggregated = {
-        slideshow: [
-            'assets/img/slideshow/banner-main1-1540x650.jpg',
-            'assets/img/slideshow/banner-main2-1540x650.jpg',
-            'assets/img/slideshow/forged-ground-featured-official-merch-es-1540x650',
-            'assets/img/slideshow/forged-ground-featured-official-merch-es-1540x650',
-        ],
+        slideshow,
         arrivals: Array.from(randomProducts),
-        banners: [{
-            height: 100,
-            width: 470,
-            htmlSnippet: '<img style="width:100%" src="../../../../assets/img/adv_area.png" >',
-        }, {
-            height: 100,
-            width: 470,
-            htmlSnippet: '<img style="width:100%" src="../../../../assets/img/adv_area.png" >',
-        }]
+        banners
     }
 
     res.json(homePageAggregated);
