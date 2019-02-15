@@ -8,7 +8,6 @@ import { SlideshowComponent } from '../slideshow/slideshow.component';
 import { WishListComponent } from '../wish-list/wish-list.component';
 import { RecentlyViewedComponent } from '../recently-viewed/recently-viewed.component';
 
-
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
   let fixture: ComponentFixture<HomePageComponent>;

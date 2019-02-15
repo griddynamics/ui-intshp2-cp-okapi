@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ProductItemComponent } from './product-item.component';
 import { ProductAvailabilityState, ProductSize } from '../../interfaces/product';
 import { HttpClientModule } from '@angular/common/http';
+import { LazyLoadComponent } from '../lazy-load/lazy-load.component';
 
 describe('ProductItemComponent', () => {
   const product = {
@@ -49,7 +50,7 @@ describe('ProductItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientModule],
-      declarations: [ProductItemComponent],
+      declarations: [ProductItemComponent, LazyLoadComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductItemComponent);

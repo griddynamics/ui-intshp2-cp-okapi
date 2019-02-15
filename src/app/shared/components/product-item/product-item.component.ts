@@ -1,21 +1,23 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
 import { ISwatch } from '../../interfaces/product';
 import { KillswitchService } from 'src/app/core/services/killswitch.service';
 
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.scss'],
+  styleUrls: ['./product-item.component.scss']
 })
 export class ProductItemComponent implements OnInit {
   @Input() public product;
   @Output() addItemToWishList = new EventEmitter();
+  @Output() addItemToCart = new EventEmitter();
 
   isHovered = false;
   _currentThumbnail;
-  private _currentSwatch;
-
   public wishListEnabled;
+  private _currentSwatch;
+  private _swatchThumbnail = '';
+
 
   constructor(private killswitchService: KillswitchService) {}
 
@@ -29,12 +31,12 @@ export class ProductItemComponent implements OnInit {
     this.resetDefaultThumbnail();
   }
 
-  get currentThumbnail(): String {
+  get currentThumbnail(): string {
     return this._currentThumbnail;
   }
 
-  set currentThumbnail(value: String) {
-    this._currentThumbnail = value ? `url(${value})` : '';
+  set currentThumbnail(value: string) {
+    this._currentThumbnail = value || '';
   }
 
   get isOutOfStock() {
@@ -50,7 +52,7 @@ export class ProductItemComponent implements OnInit {
       return;
     }
     this._currentSwatch = color;
-    this.currentThumbnail = this.currentSwatch.imgSrc;
+    this.swatchThumbnail = color.imgSrc;
   }
 
   hoverStateIn(): void {
@@ -72,6 +74,7 @@ export class ProductItemComponent implements OnInit {
   onMouseLeaveColor(): void {
     this._currentSwatch = null;
     this.resetDefaultThumbnail();
+    this.resetDefaultSwatch();
   }
 
   onSwatchChange(swatch: ISwatch): void {
@@ -85,12 +88,30 @@ export class ProductItemComponent implements OnInit {
     this.addItemToWishList.emit(this.product);
   }
 
+  addToCart(): void {
+    event.stopPropagation();
+    this.addItemToCart.emit(this.product);
+  }
+
+  set swatchThumbnail(value) {
+    this._swatchThumbnail = value;
+  }
+
+  get swatchThumbnail() {
+    return this._swatchThumbnail ? `url(${this._swatchThumbnail})` : '';
+  }
+
   public resetDefaultThumbnail(): void {
     this.currentThumbnail = this.product.thumbnailImageSrc;
+  }
+
+  private resetDefaultSwatch(): void {
+    this.swatchThumbnail = this.currentThumbnail;
   }
 
   protected handleImgView(isHovered ): void {
     this.isHovered  = isHovered;
     this.resetDefaultThumbnail();
+    this.resetDefaultSwatch();
   }
 }

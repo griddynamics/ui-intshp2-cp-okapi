@@ -12,8 +12,6 @@ import { RelatedProductsComponent } from './related-products/related-products.co
 import { ProductOrderComponent } from '../product-description/product-order/product-order.component';
 import { ProductAvailabilityState } from 'src/app/shared/interfaces/product';
 
-
-
 describe('ProductDetailsPageComponent', () => {
   let component: ProductDetailsPageComponent;
   let fixture: ComponentFixture<ProductDetailsPageComponent>;

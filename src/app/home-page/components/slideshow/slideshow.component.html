@@ -3,7 +3,9 @@
     <div class="slides-holder" #slidesHolder>
       <div class="slide-item" [ngClass]="{animate: selectedSlideIndex === i}" #item [style.width.%]="translateStep"
         *ngFor="let img of responseImgs; let i = index">
-        <img [src]=img alt="slide">
+        <app-lazy-load>
+            <img [attr.data-src]="img" class="lazy-load" alt="slide">
+        </app-lazy-load>
       </div>
     </div>
     <div class="bullets">

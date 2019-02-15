@@ -1,25 +1,28 @@
-<div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
-  <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
-  <div class="product-item"  [ngClass]="{'gray-scale': isOutOfStock, 'hovered': isHovered}" (mouseover)="onMouseOver()" (mouseleave)="onMouseLeave()">
-    <div class="product-item-img" [ngStyle]="{'background-image': currentThumbnail }"></div>
-    <h2>{{product.title}}</h2>
-    <div class="bottom-content">
-      <p *ngIf="!isHovered" class="price">{{product.price | currency:'USD'}}</p>
-      <div *ngIf="isHovered">
-        <div *ngIf="product.sizes.length">
-          <p class="sizes">sizes : <span *ngFor="let size of product.sizes">{{size}} <span>-</span></span></p>
-        </div>
-        <div class="colors" (mouseleave)="onMouseLeaveColor()">
-          <div class="swatch" *ngFor="let swatch of product.swatches" (mouseover)="onSwatchChange(swatch)">
-            <div class="color" [style.background-color]="swatch.color" ></div>
+<app-lazy-load>
+  <div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]">
+    <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div>
+    <div class="product-item" [ngClass]="{'gray-scale': isOutOfStock, 'hovered': isHovered}" (mouseover)="onMouseOver()"
+      (mouseleave)="onMouseLeave()">
+      <div class="product-item-img lazy-load" [attr.data-bg-src]="currentThumbnail" [ngStyle]="{'background-image': swatchThumbnail}"></div>
+      <h2>{{product.title}}</h2>
+      <div class="bottom-content">
+        <p *ngIf="!isHovered" class="price">{{product.price | currency:'USD'}}</p>
+        <div *ngIf="isHovered">
+          <div *ngIf="product.sizes.length">
+            <p class="sizes">sizes : <span *ngFor="let size of product.sizes">{{size}} <span>-</span></span></p>
           </div>
-        </div>
-        <hr>
-        <div class="icons">
-          <a href="#"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product.addedToCart}"></i></a>
-          <i *ngIf="wishListEnabled" class="to-wish-list" (click)="addToWishList()" [ngClass]="{ 'added-to-wishlist': product.addedToWishList}"></i>
+          <div class="colors" (mouseleave)="onMouseLeaveColor()">
+            <div class="swatch" *ngFor="let swatch of product.swatches" (mouseover)="onSwatchChange(swatch)">
+              <div class="color" [style.background-color]="swatch.color"></div>
+            </div>
+          </div>
+          <hr>
+          <div class="icons">
+            <a href="#"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product.addedToCart}"></i></a>
+            <i *ngIf="wishListEnabled" class="to-wish-list" (click)="addToWishList()" [ngClass]="{ 'added-to-wishlist': product.addedToWishList}"></i>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</app-lazy-load>

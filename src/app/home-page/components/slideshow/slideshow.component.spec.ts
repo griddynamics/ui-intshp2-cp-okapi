@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlideshowComponent } from './slideshow.component';
+import { LazyLoadComponent } from 'src/app/shared/components/lazy-load/lazy-load.component';
 import { ImgPlaceholderComponent } from 'src/app/shared/components/img-placeholder/img-placeholder.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -15,7 +16,7 @@ describe('SlideshowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SlideshowComponent, ImgPlaceholderComponent ],
+      declarations: [SlideshowComponent, ImgPlaceholderComponent, LazyLoadComponent],
       imports: [HttpClientTestingModule]
     })
     .compileComponents();

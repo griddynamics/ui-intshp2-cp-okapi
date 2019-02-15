@@ -4,7 +4,6 @@ import { CarouselComponent } from './carousel.component';
 import { SharedModule } from '../../shared.module';
 import { ProductDetailsPageModule } from 'src/app/product-details-page/product-details-page.module';
 
-
 describe('CarouselComponent', () => {
   let component: CarouselComponent;
   let fixture: ComponentFixture<CarouselComponent>;

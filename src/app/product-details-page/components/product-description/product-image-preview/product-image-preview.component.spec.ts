@@ -11,7 +11,10 @@ describe('ProductImagePreviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProductImagePreviewComponent, ProductDescriptionComponent, ProductOrderComponent, ZoomComponent],
+      declarations: [ProductImagePreviewComponent,
+                     ProductDescriptionComponent,
+                     ProductOrderComponent,
+                     ZoomComponent ],
       imports: [RouterTestingModule]
     })
       .compileComponents().then(() => {
