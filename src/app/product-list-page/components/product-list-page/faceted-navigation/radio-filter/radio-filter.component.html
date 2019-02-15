@@ -1,0 +1,9 @@
+<div *ngIf="filter" class="filter-item">
+  <span class="filter-title">{{filter.name}}</span>
+  <div class="filter-line">
+    <div *ngFor="let field of filter.fields" class="filter-line">
+      <input type="radio" name="filter-category" id="radio-{{field}}" (change)="toggleCheck($event)">
+      <label for="radio-{{field}}">{{field}}</label>
+    </div>
+  </div>
+</div>

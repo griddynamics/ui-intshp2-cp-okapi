@@ -1,0 +1,14 @@
+@import '../../../../../../scss/variables';
+@import '../../../../../../scss/fonts';
+@import '../../../../../../scss/reset';
+@import '../../../../../../scss/mixins';
+
+.filter-line {
+  input[type="radio"] {
+    display: none;
+    
+    &:checked+label {
+      color: $primary-color;
+    }
+  }
+}

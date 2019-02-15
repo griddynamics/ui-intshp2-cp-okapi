@@ -2,6 +2,7 @@ export interface IProduct {
   id: String;
   title: String;
   price: number;
+  brand?: String;
   description?: String;
   sex?: String;
   name?: String;
@@ -30,4 +31,16 @@ export enum ProductSize {
   M = 'm',
   L = 'l',
   XL = 'xl'
+}
+
+export interface IFilter {
+  type: String;
+  name: String;
+  fields?: Array<String>;
+  range?: Array<PriceRange>;
+}
+
+export enum PriceRange {
+  min = 0,
+  max = 1
 }

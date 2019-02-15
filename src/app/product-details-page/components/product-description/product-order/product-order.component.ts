@@ -30,7 +30,6 @@ export class ProductOrderComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    console.log(this.product);
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
     if (!this.product || !this.product.sizes && !this.product.price) {
       return;

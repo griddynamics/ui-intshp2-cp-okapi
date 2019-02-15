@@ -11,6 +11,7 @@ export class ProductListPageComponent implements OnInit {
   products: IProduct[] = [];
   private allProducts: IProduct[] = [];
   visibleItems = 9;
+
   constructor(
     private productService: ProductsService
   ) { }

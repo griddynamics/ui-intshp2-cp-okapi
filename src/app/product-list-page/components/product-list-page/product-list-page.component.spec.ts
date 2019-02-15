@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductListPageComponent } from './product-list-page.component';
+import { FacetedNavigationComponent } from './faceted-navigation/faceted-navigation.component';
+import { CheckboxFilterComponent } from './faceted-navigation/checkbox-filter/checkbox-filter.component';
+import { PriceRangeFilterComponent } from './faceted-navigation/price-range-filter/price-range-filter.component';
+import { RadioFilterComponent } from './faceted-navigation/radio-filter/radio-filter.component';
 
 describe('ProductListPageComponent', () => {
   let component: ProductListPageComponent;
@@ -9,7 +13,13 @@ describe('ProductListPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ SharedModule ],
-      declarations: [ ProductListPageComponent ]
+      declarations: [
+        ProductListPageComponent,
+        FacetedNavigationComponent,
+        CheckboxFilterComponent,
+        PriceRangeFilterComponent,
+        RadioFilterComponent
+      ]
     })
     .compileComponents();
   }));

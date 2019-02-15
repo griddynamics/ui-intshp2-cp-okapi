@@ -1,0 +1,7 @@
+<aside class="all-products-filter">
+  <div *ngFor="let filter of filters">
+    <app-radio-filter *ngIf="filter.type == 'radio'" [filter]="filter"></app-radio-filter>
+    <app-price-range-filter *ngIf="filter.type == 'range'" [filter]="filter"></app-price-range-filter>
+    <app-checkbox-filter *ngIf="filter.type == 'checkbox'" [filter]="filter"></app-checkbox-filter>
+  </div>
+</aside>
