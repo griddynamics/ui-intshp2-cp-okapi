@@ -11,6 +11,10 @@ export class PriceRangeFilterComponent implements OnInit {
   public range = [];
 
   ngOnInit() {
+    if (!this.filter) {
+      return;
+    }
+
     this.range = [...this.filter.range];
   }
 
