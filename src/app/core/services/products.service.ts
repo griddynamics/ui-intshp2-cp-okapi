@@ -23,34 +23,16 @@ export class ProductsService {
     this.wishListIds = wishListIds ? wishListIds : this.wishListIds;
   }
 
-  public getWishList(): Observable<IProduct[]> {
-    return this.wishListSource.asObservable();
-  }
-
-  public getProducts(): Observable<IProduct[]> {
-    return Observable.create((observer) => {
-
-      this.dataService.get(environment.productsURL).subscribe((data: IProduct[]) => {
-        this.prepareProductResponse(data);
-        this.wishListSource.next(this.wishList);
-        observer.next(this.products);
-      });
-
-    });
-  }
-
   public addToWishList(product: IProduct): void {
-
     product.addedToWishList = true;
     this.wishList.push(product);
     this.wishListIds.push(product.id);
-
     this.updateWishList();
   }
 
+
   public removeFromWishList(product: IProduct): void {
     product.addedToWishList = false;
-
     const indexOfCurrId = this.wishListIds.findIndex(el => el === product.id);
     this.wishListIds.splice(indexOfCurrId, 1);
     const indexOfCurrProduct = this.wishList.findIndex(el => el.id === product.id);
@@ -84,8 +66,25 @@ export class ProductsService {
     });
   }
 
+  public getProducts(): Observable<IProduct[]> {
+    return Observable.create((observer) => {
+
+      this.dataService.get(environment.productsURL).subscribe(({products}) => {
+        this.prepareProductResponse(products);
+        this.wishListSource.next(this.wishList);
+        observer.next(this.products);
+      });
+
+    });
+  }
+
+  public getWishList(): Observable<IProduct[]> {
+    return this.wishListSource.asObservable();
+  }
+
   private updateWishList(): void {
     localStorage.setItem('wishlist', JSON.stringify(this.wishListIds));
     this.wishListSource.next(this.wishList);
   }
+
 }

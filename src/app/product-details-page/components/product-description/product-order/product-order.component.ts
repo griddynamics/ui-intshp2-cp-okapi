@@ -5,6 +5,7 @@ import { KillswitchService } from 'src/app/core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
 
+
 @Component({
   selector: 'app-product-order',
   templateUrl: './product-order.component.html',
@@ -37,7 +38,7 @@ export class ProductOrderComponent implements OnInit {
     this.productConfiguration.price = this.product.price;
   }
 
-  addToCart() {
+  public addToCart() {
     this.dataService.create('add-to-cart/', this.productConfiguration).subscribe();
   }
 
