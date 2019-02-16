@@ -11,13 +11,13 @@
   grid-column-gap: 30px;
 }
 
-.products-grid {
-  background-color: gray;
-}
-
 app-product-grid {
   background-color: $bg-color;
   width: 100%;
 }
 
-
+@include tablet {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
+import { FacetedNavigationComponent } from '../faceted-navigation.component';
 
 @Component({
   selector: 'app-price-range-filter',
@@ -6,7 +7,7 @@ import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
   styleUrls: ['./price-range-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PriceRangeFilterComponent implements OnInit {
+export class PriceRangeFilterComponent extends FacetedNavigationComponent implements OnInit  {
   @Input() public filter;
   public range = [];
 
