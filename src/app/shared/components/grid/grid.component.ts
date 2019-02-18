@@ -32,6 +32,8 @@ export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewI
     this.resizeEvent = fromEvent(window, 'resize').pipe(
       debounceTime(100)
     ).subscribe(this.countItems.bind(this));
+    this.countItems();
+    this.cdRef.detectChanges();
   }
 
   ngAfterContentChecked(): void {
