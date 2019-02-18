@@ -73,6 +73,7 @@ export class ProductsService {
         this.prepareProductResponse(products);
         this.wishListSource.next(this.wishList);
         observer.next(this.products);
+        observer.complete();
       });
 
     });

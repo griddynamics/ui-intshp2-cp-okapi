@@ -5,6 +5,7 @@ import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { KillswitchService } from '../../../core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-home-page',
@@ -33,7 +34,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   constructor(
     public productsService: ProductsService,
-    private killswitchService: KillswitchService
+    private killswitchService: KillswitchService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +66,10 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   public wishListHandler(product: IProduct): void {
     this.productsService.toggleWishListProduct(product);
+  }
+
+  public cartHandler(product: IProduct) {
+    this.cartService.toggleCart(product);
   }
 
 }

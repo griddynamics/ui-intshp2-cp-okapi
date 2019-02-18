@@ -54,7 +54,7 @@ export class CartService {
     return product;
   }
 
-  private prepareProductResponseCart(products: IProduct[]): void {
+  private prepareCartResponse(products: IProduct[]): void {
     this.products = products.map(el => {
       const currentProduct = this.checkProductInCart(el);
       const isPresentInCart = this.cart.find(product => product.id === currentProduct.id);
@@ -70,15 +70,16 @@ export class CartService {
     return Observable.create((observer) => {
 
       this.dataService.get(environment.productsURL).subscribe(({products}) => {
-        this.prepareProductResponseCart(products);
+        this.prepareCartResponse(products);
         this.cartSource.next(this.cart);
         observer.next(this.products);
+        observer.complete();
       });
 
     });
   }
 
-  public getCartLength(): Observable<IProduct[]> {
+  public getCart(): Observable<IProduct[]> {
     return this.cartSource.asObservable();
   }
 
