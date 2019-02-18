@@ -42,12 +42,10 @@ export class FacetedNavigationComponent {
 
   closeNav() {
     this.isShowed = false;
-    console.log(this.isShowed);
   }
 
   openNav() {
     this.isShowed = true;
-    console.log(this.isShowed);
   }
 
   toggleCheck(event) {

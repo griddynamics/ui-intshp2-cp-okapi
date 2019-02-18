@@ -10,6 +10,7 @@ import { FacetedNavigationComponent } from '../faceted-navigation.component';
 export class PriceRangeFilterComponent extends FacetedNavigationComponent implements OnInit  {
   @Input() public filter;
   public range = [];
+  public step = 1;
 
   ngOnInit() {
     if (!this.filter) {
