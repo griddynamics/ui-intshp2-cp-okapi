@@ -3,6 +3,7 @@
     baseURL: 'http://localhost:3000',
     killswitchesPath: 'config/killswitches.json',
     productsURL: 'api/products',
+    homepageURL: 'api/homepage',
   };
 
   export const referenceLinks = {

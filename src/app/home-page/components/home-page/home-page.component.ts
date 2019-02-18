@@ -5,6 +5,8 @@ import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { KillswitchService } from '../../../core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
+import { DataService } from 'src/app/core/services/data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home-page',
@@ -17,38 +19,40 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
   public wishList: IProduct[] = [];
   public recentlyViewed: IProduct[] = [];
+  public slideShowImages: any[] = [];
 
-  banners: IBanner[] = [{
-    height: 100,
-    width: 470,
-    htmlSnippet: '<img style="width:100%" src="../../../../assets/img/adv_area.png" >',
-  }, {
-    height: 100,
-    width: 470,
-    htmlSnippet: '<img style="width:100%" src="../../../../assets/img/adv_area.png" >',
-  }];
+
+  public banners: IBanner[] = [];
 
   private subscriptions: Subscription[] = [];
   public wishListEnabled;
 
   constructor(
     public productsService: ProductsService,
-    private killswitchService: KillswitchService
+    private killswitchService: KillswitchService,
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void {
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
 
     this.subscriptions = [
-      this.productsService.getProducts().subscribe(data => {
-        this.products = data;
-        this.prepareRecentlyViewedItems();
+      this.dataService.get('api/homepage').subscribe(data => {
+        this.products = data.arrivals;
       }),
 
       this.productsService.getWishList().subscribe(data => {
         this.wishList = data;
-      })];
+      }),
 
+      this.dataService.get('api/homepage').subscribe(data => {
+        this.slideShowImages = data.slideshow;
+      }),
+
+      this.dataService.get('api/homepage').subscribe(data => {
+        this.banners = data.banners;
+      })
+  ];
   }
 
   private prepareRecentlyViewedItems() {

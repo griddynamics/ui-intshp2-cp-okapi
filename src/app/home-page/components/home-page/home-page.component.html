@@ -1,4 +1,4 @@
-<app-slideshow></app-slideshow>
+<app-slideshow *ngIf="slideShowImages.length" [slideShowImages]="slideShowImages"></app-slideshow>
 <app-heading [alertText]="'new'" [headingText]="'Arrivals'"></app-heading>
 <app-carousel *ngIf="products.length">
   <app-carousel-item *ngFor="let product of products">
@@ -6,8 +6,13 @@
   </app-carousel-item>
 </app-carousel>
 <div class="main-container">
-  <div class="row-sb">
-    <app-advertising-area *ngFor="let banner of banners" [content]="banner.htmlSnippet"></app-advertising-area>
+  <div class="row-sb" *ngIf="banners.length">
+    <app-advertising-area 
+      *ngFor="let banner of banners" 
+      [content]="banner.htmlSnippet" 
+      [height]="banner.height"
+      [width]="banner.width">
+    </app-advertising-area>
   </div>
 </div>
 
