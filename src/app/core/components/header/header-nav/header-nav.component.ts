@@ -9,7 +9,7 @@ import { CartService } from 'src/app/core/services/cart.service';
 export class HeaderNavComponent implements OnInit {
   isSearchOpen = false;
   showMenu: Boolean = false;
-  count = [];
+  cartLength: Number;
   onSearchBtnClick() {
     this.isSearchOpen = !this.isSearchOpen;
   }
@@ -19,7 +19,7 @@ export class HeaderNavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.cartService.getCart().subscribe(data => this.count = data);
+    this.cartService.getCart().subscribe(data => this.cartLength = data.length);
   }
 
 }
