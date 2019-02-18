@@ -1,12 +1,14 @@
-<div class="main-container">
-  <div class="filters">
-    <app-faceted-navigation></app-faceted-navigation>
-  </div>
-  <app-grid [showLoadMore]="showLoadMore" (loadMore)="onLoadMore($event)">
-    <div class="product" *ngFor="let product of products;">
-      <app-product-item (addItemToWishList)="wishListHandler($event)" [product]="product"></app-product-item>
+<div class="main-container-wrapper">
+  <div class="main-container">
+    <div class="filters">
+      <app-faceted-navigation></app-faceted-navigation>
     </div>
-  </app-grid>
+    <app-grid [showLoadMore]="showLoadMore" (loadMore)="onLoadMore($event)">
+      <div class="product" *ngFor="let product of products;">
+        <app-product-item (addItemToWishList)="wishListHandler($event)" [product]="product"></app-product-item>
+      </div>
+    </app-grid>
+  </div>
 </div>
 
 <app-join-us></app-join-us>

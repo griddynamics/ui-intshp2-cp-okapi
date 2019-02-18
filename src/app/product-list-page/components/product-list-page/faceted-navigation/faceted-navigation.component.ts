@@ -8,6 +8,9 @@ import { IFilter } from 'src/app/shared/interfaces/product';
   encapsulation: ViewEncapsulation.None
 })
 export class FacetedNavigationComponent {
+  public isShowed = false;
+  public isChecked = false;
+  public isDropped = false;
 
   filters: IFilter[] = [
     {
@@ -37,4 +40,19 @@ export class FacetedNavigationComponent {
     }
   ];
 
+  closeNav() {
+    this.isShowed = false;
+  }
+
+  openNav() {
+    this.isShowed = true;
+  }
+
+  toggleCheck(event) {
+    event.target.checked ? this.isChecked = true : this.isChecked = false;
+  }
+
+  dropdownToggle() {
+    this.isDropped = !this.isDropped;
+  }
 }
