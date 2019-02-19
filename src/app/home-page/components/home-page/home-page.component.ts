@@ -18,6 +18,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
   public wishList: IProduct[] = [];
   public recentlyViewed: IProduct[] = [];
+  public cart: IProduct[] = [];
 
   banners: IBanner[] = [{
     height: 100,
@@ -49,6 +50,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
       this.productsService.getWishList().subscribe(data => {
         this.wishList = data;
+      }),
+      this.cartService.getCart().subscribe(data => {
+        this.cart = data;
       })];
 
   }

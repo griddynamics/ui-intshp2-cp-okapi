@@ -19,7 +19,9 @@ export class HeaderNavComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.cartService.getCart().subscribe(data => this.cartLength = data.length);
+    this.cartService.getCart().subscribe((data) => {
+      this.cartLength = data.length;
+    });
   }
 
 }

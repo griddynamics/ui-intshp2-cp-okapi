@@ -26,12 +26,13 @@ export class ProductListPageComponent implements OnInit {
     );
     observable.subscribe((data) => {
       this.allProducts = data[0].map((el, i) => {
-        el.addedToCart = data[1][i].addedToCart;
+        if (data[1].some(e => e.id === el.id)) {
+          el.addedToCart = data[1][i].addedToCart;
+        }
         return el;
       });
       this.products = data[0].slice(0, this.visibleItems);
     });
-
   }
 
   public cartHandler(product: IProduct) {
@@ -42,7 +43,7 @@ export class ProductListPageComponent implements OnInit {
     this.productService.toggleWishListProduct(product);
   }
 
-  onLoadMore(loadAmount: number): void {
+   public onLoadMore(loadAmount: number): void {
     this.products = this.allProducts.slice(0, this.products.length + loadAmount);
   }
 

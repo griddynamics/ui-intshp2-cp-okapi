@@ -27,7 +27,7 @@ export class RelatedProductsComponent implements OnInit {
     this.productService.toggleWishListProduct(product);
   }
 
-    public cartHandler(product: IProduct) {
-      this.cartService.toggleCart(product);
-    }
+  public cartHandler(product: IProduct) {
+    this.cartService.toggleCart(product);
+  }
 }

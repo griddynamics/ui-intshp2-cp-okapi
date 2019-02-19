@@ -4,7 +4,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { DataService } from './data.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
 
-import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -68,13 +67,22 @@ export class CartService {
 
   public getProducts(): Observable<IProduct[]> {
     return Observable.create((observer) => {
-
-      this.dataService.get(environment.productsURL).subscribe(({products}) => {
-        this.prepareCartResponse(products);
-        this.cartSource.next(this.cart);
-        observer.next(this.products);
-        observer.complete();
-      });
+      const test = JSON.parse(localStorage.getItem('cart'));
+      if (!test) {
+        this.dataService.get(`api/products`).subscribe(({products}) => {
+          this.prepareCartResponse(products);
+          this.cartSource.next(this.cart);
+          observer.next(this.products);
+          observer.complete();
+        });
+      } else {
+        this.dataService.get(`api/products?ids=${test.join(',')}`).subscribe(({products}) => {
+          this.prepareCartResponse(products);
+          this.cartSource.next(this.cart);
+          observer.next(this.products);
+          observer.complete();
+        });
+      }
 
     });
   }
