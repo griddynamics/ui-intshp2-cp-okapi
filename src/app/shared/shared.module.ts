@@ -19,6 +19,7 @@ import { LazyLoadComponent } from './components/lazy-load/lazy-load.component';
 import { GridComponent } from './components/grid/grid.component';
 import { ImgPlaceholderComponent } from '../shared/components/img-placeholder/img-placeholder.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { SwipeIconComponent } from './components/swipe-icon/swipe-icon.component';
 
 const MODULES = [
   CommonModule,
@@ -44,6 +45,7 @@ const MODULES = [
     LoaderComponent,
     GridComponent,
     ImgPlaceholderComponent,
+    SwipeIconComponent,
   ],
   imports: [...MODULES],
   exports: [
@@ -61,6 +63,7 @@ const MODULES = [
     LoaderComponent,
     GridComponent,
     ImgPlaceholderComponent,
+    SwipeIconComponent,
   ],
 })
 export class SharedModule {
