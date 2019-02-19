@@ -5,7 +5,6 @@ import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { KillswitchService } from '../../../core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
-import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-home-page',
@@ -35,8 +34,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   constructor(
     public productsService: ProductsService,
-    private killswitchService: KillswitchService,
-    private cartService: CartService
+    private killswitchService: KillswitchService
   ) { }
 
   ngOnInit(): void {
@@ -50,11 +48,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
       this.productsService.getWishList().subscribe(data => {
         this.wishList = data;
-      }),
-      this.cartService.getCart().subscribe(data => {
-        this.cart = data;
-      })];
-
+      })
+    ];
   }
 
   private prepareRecentlyViewedItems() {
@@ -67,13 +62,4 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.map(subscription => subscription.unsubscribe());
   }
-
-  public wishListHandler(product: IProduct): void {
-    this.productsService.toggleWishListProduct(product);
-  }
-
-  public cartHandler(product: IProduct) {
-    this.cartService.toggleCart(product);
-  }
-
 }

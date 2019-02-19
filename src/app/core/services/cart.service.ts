@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { DataService } from './data.service';
-import { IProduct } from 'src/app/shared/interfaces/product';
+import { IProduct, ICartProduct } from 'src/app/shared/interfaces/product';
 
 
 @Injectable({
@@ -10,22 +10,20 @@ import { IProduct } from 'src/app/shared/interfaces/product';
 })
 
 export class CartService {
-  private cart: IProduct[] = [];
-  private cartIds: String[] = [];
-  private products: IProduct[] = [];
+  private cartIds: string[] = [];
 
-  private cartSource = new BehaviorSubject<IProduct[]>([]);
+  private cartAmountSource = new BehaviorSubject<number>(0);
 
   constructor(
     private dataService: DataService,
   ) {
-    const cartIds = JSON.parse(localStorage.getItem('cart'));
+    const cartIds = JSON.parse(localStorage.getItem('cartProductIds'));
     this.cartIds = cartIds ? cartIds : this.cartIds;
+    this.publish();
   }
 
   public addToCart(product: IProduct) {
     product.addedToCart = true;
-    this.cart.push(product);
     this.cartIds.push(product.id);
     this.updateCart();
   }
@@ -34,8 +32,6 @@ export class CartService {
     product.addedToCart = false;
     const indexOfCurrId = this.cartIds.findIndex(el => el === product.id);
     this.cartIds.splice(indexOfCurrId, 1);
-    const indexOfCurrProduct = this.cart.findIndex(el => el.id === product.id);
-    this.cart.splice(indexOfCurrProduct, 1);
 
     this.updateCart();
   }
@@ -48,51 +44,35 @@ export class CartService {
     this.removeFromCart(product);
   }
 
-  private checkProductInCart(product: IProduct): IProduct {
-    product.addedToCart = this.cartIds.includes(product.id);
-    return product;
-  }
-
-  private prepareCartResponse(products: IProduct[]): void {
-    this.products = products.map(el => {
-      const currentProduct = this.checkProductInCart(el);
-      const isPresentInCart = this.cart.find(product => product.id === currentProduct.id);
-      if (currentProduct.addedToCart && !isPresentInCart) {
-        this.cart.push(currentProduct);
-      }
-
-      return currentProduct;
-    });
-  }
 
   public getProducts(): Observable<IProduct[]> {
     return Observable.create((observer) => {
-      const test = JSON.parse(localStorage.getItem('cart'));
-      if (!test) {
-        this.dataService.get(`api/products`).subscribe(({products}) => {
-          this.prepareCartResponse(products);
-          this.cartSource.next(this.cart);
-          observer.next(this.products);
-          observer.complete();
-        });
-      } else {
-        this.dataService.get(`api/products?ids=${test.join(',')}`).subscribe(({products}) => {
-          this.prepareCartResponse(products);
-          this.cartSource.next(this.cart);
-          observer.next(this.products);
-          observer.complete();
-        });
+      const cartItems = JSON.parse(localStorage.getItem('cartProductIds'));
+      if (!cartItems) {
+        observer.next([]);
+        return observer.complete();
       }
-
+      this.dataService.get(`api/products?ids=${cartItems.join(',')}`).subscribe(({ products }) => {
+        observer.next(products);
+        observer.complete();
+      });
     });
   }
 
-  public getCart(): Observable<IProduct[]> {
-    return this.cartSource.asObservable();
+  public getCartAmount(): Observable<number> {
+    return this.cartAmountSource.asObservable();
+  }
+
+  public getCartIds(): string[] {
+    return this.cartIds;
   }
 
   private updateCart(): void {
-    localStorage.setItem('cart', JSON.stringify(this.cartIds));
-    this.cartSource.next(this.cart);
+    localStorage.setItem('cartProductIds', JSON.stringify(this.cartIds));
+    this.publish();
+  }
+
+  private publish(): void {
+    this.cartAmountSource.next(this.cartIds.length);
   }
 }

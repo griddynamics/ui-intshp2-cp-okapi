@@ -1,46 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { ProductsService } from 'src/app/core/services/products.service';
-import { CartService } from 'src/app/core/services/cart.service';
-import { forkJoin } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-list-page',
   templateUrl: './product-list-page.component.html',
   styleUrls: ['./product-list-page.component.scss']
 })
-export class ProductListPageComponent implements OnInit {
+export class ProductListPageComponent implements OnInit, OnDestroy {
   products: IProduct[] = [];
   private allProducts: IProduct[] = [];
   visibleItems = 9;
+  private productsSubscription: Subscription;
 
   constructor(
-    private productService: ProductsService,
-    private cartService: CartService
+    private productsService: ProductsService,
   ) { }
 
   ngOnInit() {
-    const observable = forkJoin(
-      this.productService.getProducts(),
-      this.cartService.getProducts()
-    );
-    observable.subscribe((data) => {
-      this.allProducts = data[0].map((el, i) => {
-        if (data[1].some(e => e.id === el.id)) {
-          el.addedToCart = data[1][i].addedToCart;
-        }
-        return el;
-      });
-      this.products = data[0].slice(0, this.visibleItems);
+    this.productsSubscription = this.productsService.getProducts().subscribe((products) => {
+      this.allProducts = products;
+      this.products = products.slice(0, this.visibleItems);
     });
   }
 
-  public cartHandler(product: IProduct) {
-    this.cartService.toggleCart(product);
-  }
-
-  public wishListHandler(product: IProduct): void {
-    this.productService.toggleWishListProduct(product);
+  ngOnDestroy(): void {
+    this.productsSubscription.unsubscribe();
   }
 
    public onLoadMore(loadAmount: number): void {

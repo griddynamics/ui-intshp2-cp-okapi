@@ -18,7 +18,7 @@
           </div>
           <hr>
           <div class="icons">
-            <a><i class="fas fa-cart-plus" (click)="addToCart()" [ngClass]="{ 'added-to-cart': product.addedToCart}"></i></a>
+            <a *ngIf="!product.addedToCart; else viewInCart"><i class="fas fa-cart-plus" (click)="addToCart()"></i></a>
             <i *ngIf="wishListEnabled" class="to-wish-list" (click)="addToWishList()" [ngClass]="{ 'added-to-wishlist': product.addedToWishList}"></i>
          </div>
         </div>
@@ -26,3 +26,9 @@
     </div>
   </div>
 </app-lazy-load>
+
+<ng-template #viewInCart>
+    <p class="cart added"><span><i class="fas fa-cart-plus"></i></span>
+      view in cart
+    </p>
+</ng-template>

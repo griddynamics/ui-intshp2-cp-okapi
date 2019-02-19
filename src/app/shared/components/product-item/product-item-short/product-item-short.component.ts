@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { ProductItemComponent } from '../product-item.component';
 
 @Component({
@@ -6,7 +6,6 @@ import { ProductItemComponent } from '../product-item.component';
   templateUrl: './product-item-short.component.html',
   styleUrls: ['./product-item-short.component.scss']
 })
-
 export class ProductItemShortComponent extends ProductItemComponent {
   @Input() product;
   starsArray = Array(4).fill(null).map((x, i) => i);

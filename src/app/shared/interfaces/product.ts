@@ -1,5 +1,5 @@
 export interface IProduct {
-  id: String;
+  id: string;
   title: String;
   price: number;
   brand?: String;
@@ -43,4 +43,11 @@ export interface IFilter {
 export enum PriceRange {
   min = 0,
   max = 1
+}
+
+export interface ICartProduct {
+  id: string;
+  quantity?: number;
+  swatch?: string;
+  size?: string;
 }

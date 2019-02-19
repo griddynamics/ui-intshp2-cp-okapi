@@ -14,8 +14,6 @@ import { CartService } from 'src/app/core/services/cart.service';
 })
 export class ProductOrderComponent implements OnInit {
   @Input() product: IProduct;
-  @Input() addedToCart: boolean;
-  @Input() addedToWishList: boolean;
   public selected: number;
 
   public productConfiguration = {

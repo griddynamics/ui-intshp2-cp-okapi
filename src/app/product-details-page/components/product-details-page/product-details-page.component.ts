@@ -22,9 +22,7 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
 
     this.markAsRecentlyViewed();
     this.productSubscription = this.route.params.pipe(
-      mergeMap(({ id }) => {
-        return this.productService.getProduct(id);
-      }
+      mergeMap(({ id }) => this.productService.getProduct(id)
       )).subscribe(product => {
         this.product = product;
       });
