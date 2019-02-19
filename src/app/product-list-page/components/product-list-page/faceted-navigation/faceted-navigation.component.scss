@@ -44,13 +44,24 @@
 }
 
 @include tablet {
-
+  .background {
+    z-index: 99;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    top:0;
+  }
   .all-products-filter {
     height: 100%;
     width: 0;
     z-index: 100;
     top: 0;
     left: 0;
+    background-image: url('../../../../../assets/img/logo.png');
+    background-position: top;
+    background-position-y: 10px;
+    background-repeat: no-repeat;
     background-color: $bg-color;
     overflow-x: hidden;
     transition: 0.5s;
@@ -58,7 +69,7 @@
     position: fixed;
     
     &.show {
-      width: 40%;
+      width: 60%;
     }
     
     &.hide {
@@ -107,7 +118,7 @@
 @include mobile {
   .all-products-filter {
     &.show {
-      width: 50%;
+      width: 100%;
     }
   }
   

@@ -113,10 +113,6 @@ hr {
 }
 
 @include tablet {
-  .product-item-wrapper {
-    pointer-events: none;
-  }
-  
   .product-item-short {
     margin: 10px auto;
     padding: 2% 4%;
