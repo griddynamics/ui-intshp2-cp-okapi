@@ -15,7 +15,7 @@ export class ProductImagePreviewComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const { thumbnailImageSrc, swatches } = changes;
-    if (!thumbnailImageSrc || !swatches) {
+    if (!thumbnailImageSrc || !swatches.currentValue || !swatches.currentValue.length) {
       return;
     }
     this.swatchesToArray = this.swatches.map(el => el.imgSrc);
