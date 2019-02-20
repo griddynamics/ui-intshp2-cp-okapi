@@ -7,15 +7,14 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 })
 export class ProductImagePreviewComponent implements OnChanges {
   @Input() thumbnailImageSrc: string;
-  @Input() swatches: any[];
+  @Input() swatches = [];
 
   public imageSrc;
   public selectedImg = 0;
   public swatchesToArray: string[] = [];
 
   ngOnChanges(changes: SimpleChanges) {
-    const { thumbnailImageSrc, swatches } = changes;
-    if (!thumbnailImageSrc || !swatches.currentValue || !swatches.currentValue.length) {
+    if (!this.thumbnailImageSrc || !this.swatches || !this.swatches.length) {
       return;
     }
     this.swatchesToArray = this.swatches.map(el => el.imgSrc);
