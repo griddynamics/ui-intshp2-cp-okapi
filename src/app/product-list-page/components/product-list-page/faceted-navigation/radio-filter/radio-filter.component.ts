@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { FacetedNavigationComponent } from '../faceted-navigation.component';
 
 @Component({
@@ -10,5 +10,13 @@ import { FacetedNavigationComponent } from '../faceted-navigation.component';
 export class RadioFilterComponent extends FacetedNavigationComponent {
 
   @Input() public filter;
+  @Output() public checkboxTriggered = new EventEmitter();
+  public isChecked: Boolean = false;
+
+  public toggleCheck(event, field, filterName) {
+    let isChecked = false;
+    event.target.checked ? isChecked = true : isChecked = false;
+    this.checkboxTriggered.emit({filterName, field, isChecked})
+  }
 
 }

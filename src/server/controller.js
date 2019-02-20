@@ -95,8 +95,11 @@ function getProducts(req, res) {
         }
     }
 
-    if (query.category) {
-        cleanedProducts = cleanedProducts.filter(el => el.category === query.category)
+    if (query.categories) {
+        const categoriesArr = query.categories.split(',');
+        cleanedProducts = cleanedProducts.filter(el => {
+            return categoriesArr.some(category => category === el.category)
+        })
     }
 
     if (query.gender) {

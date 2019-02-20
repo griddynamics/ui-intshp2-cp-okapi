@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { IFilter } from 'src/app/shared/interfaces/product';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-faceted-navigation',
@@ -7,38 +8,33 @@ import { IFilter } from 'src/app/shared/interfaces/product';
   styleUrls: ['./faceted-navigation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FacetedNavigationComponent {
+export class FacetedNavigationComponent implements OnInit {
   public isShowed = false;
-  public isChecked = false;
   public isDropped = false;
+  public filtersSubscriptions;
 
-  filters: IFilter[] = [
-    {
-      'type': 'radio',
-      'name': 'gender',
-      'fields': ['man', 'woman', 'children']
-    },
-    {
-      'type': 'checkbox',
-      'name': 'category',
-      'fields': ['coats', 'panties', 'shoes', 'underwear']
-    },
-    {
-      'type': 'checkbox',
-      'name': 'size',
-      'fields': ['s', 'm', 'l', 'xl']
-    },
-    {
-      'type': 'range',
-      'name': 'price',
-      'range': [25, 130]
-    },
-    {
-      'type': 'checkbox',
-      'name': 'brand',
-      'fields': ['reebock', 'addidas', 'nike', 'active']
-    }
-  ];
+  @Output () public filterChange = new EventEmitter();
+
+  filters: IFilter[] = [];
+
+  constructor(
+    private dataService: DataService
+  ) { }
+
+  checkboxEmiter(e) {
+    this.filterChange.emit(e);
+  }
+
+
+  ngOnInit() {
+    this.filtersSubscriptions = this.dataService.get('api/filters').subscribe(data => {
+        this.filters = data;
+      })
+  }
+
+  // ngOnDestroy(): void {
+  //   this.filtersSubscriptions.unsubscribe();
+  // }
 
   closeNav() {
     this.isShowed = false;
@@ -46,10 +42,6 @@ export class FacetedNavigationComponent {
 
   openNav() {
     this.isShowed = true;
-  }
-
-  toggleCheck(event) {
-    event.target.checked ? this.isChecked = true : this.isChecked = false;
   }
 
   dropdownToggle() {
