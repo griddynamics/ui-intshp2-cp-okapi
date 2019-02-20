@@ -18,6 +18,11 @@
 
 @include tablet {
   .product-grid-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@include mobile {
+  .product-grid-wrapper {
     grid-template-columns: 1fr;
   }
 }

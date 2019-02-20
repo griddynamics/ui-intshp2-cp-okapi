@@ -1,20 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-product-image-preview',
   templateUrl: './product-image-preview.component.html',
   styleUrls: ['./product-image-preview.component.scss']
 })
-export class ProductImagePreviewComponent implements OnInit {
+export class ProductImagePreviewComponent implements OnChanges {
   @Input() thumbnailImageSrc: string;
-  @Input() swatches: any[];
+  @Input() swatches = [];
 
   public imageSrc;
   public selectedImg = 0;
   public swatchesToArray: string[] = [];
 
-  ngOnInit() {
-    if (!this.swatches) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (!this.thumbnailImageSrc || !this.swatches || !this.swatches.length) {
       return;
     }
     this.swatchesToArray = this.swatches.map(el => el.imgSrc);

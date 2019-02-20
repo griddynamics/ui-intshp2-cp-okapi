@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { DataService } from 'src/app/core/services/data.service';
 import { KillswitchService } from 'src/app/core/services/killswitch.service';
@@ -10,7 +10,7 @@ import { IProduct } from 'src/app/shared/interfaces/product';
   templateUrl: './product-order.component.html',
   styleUrls: ['./product-order.component.scss']
 })
-export class ProductOrderComponent implements OnInit {
+export class ProductOrderComponent implements OnChanges {
   @Input() product: IProduct;
   @Input() addedToCart: boolean;
   @Input() addedToWishList: boolean;
@@ -29,12 +29,18 @@ export class ProductOrderComponent implements OnInit {
     private killswitchService: KillswitchService
     ) { }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
     if (!this.product || !this.product.sizes && !this.product.price) {
       return;
     }
-    this.productConfiguration.price = this.product.price;
+
+    const { product } = changes;
+    if (!product) {
+      return;
+    }
+    const { price } = product.currentValue;
+    this.productConfiguration.price = price;
   }
 
   addToCart() {

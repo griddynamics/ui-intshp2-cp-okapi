@@ -30,8 +30,8 @@ export class ProductsService {
   public getProducts(): Observable<IProduct[]> {
     return Observable.create((observer) => {
 
-      this.dataService.get(environment.productsURL).subscribe((data: IProduct[]) => {
-        this.prepareProductResponse(data);
+      this.dataService.get(environment.productsURL).subscribe(({products}) => {
+        this.prepareProductResponse(products);
         this.wishListSource.next(this.wishList);
         observer.next(this.products);
       });

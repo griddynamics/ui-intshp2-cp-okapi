@@ -5,6 +5,7 @@
     <app-product-item (addItemToWishList)="wishListHandler($event)" [product]="product"></app-product-item>
   </app-carousel-item>
 </app-carousel>
+<app-swipe-icon></app-swipe-icon>
 <div class="main-container">
   <div class="row-sb" *ngIf="banners.length">
     <app-advertising-area 
@@ -15,9 +16,8 @@
     </app-advertising-area>
   </div>
 </div>
-
 <app-recently-viewed *ngIf="recentlyViewed.length" [products]="recentlyViewed"></app-recently-viewed>
-
+<app-swipe-icon></app-swipe-icon>
 <ng-container *ngIf="wishListEnabled">
   <div class="main-container">
     <app-wish-list *ngIf="wishList.length" [products]="wishList"></app-wish-list>

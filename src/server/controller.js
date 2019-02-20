@@ -33,18 +33,11 @@ function deleteSubscription(req, res) {
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 
 
-// function cleanUpProductProperties(product) {
-//     PRODUCTS_REDUNDANT_PROPS.forEach(property => {
-//         delete product[property];
-//     });
-
-//     return product;
-// }
-
 function getHomepage(req, res) {
     const randomProducts = new Set();
+    const productClone = JSON.parse(JSON.stringify(productsMOCK))
     while (Array.from(randomProducts).length !== 6) {
-        const cleanedUpProduct = _cleanUpProductProperties(productsMOCK[Math.floor(Math.random() * productsMOCK.length)])
+        const cleanedUpProduct = _cleanUpProductProperties(productClone[Math.floor(Math.random() * productsMOCK.length)])
         randomProducts.add(cleanedUpProduct)
     }
 

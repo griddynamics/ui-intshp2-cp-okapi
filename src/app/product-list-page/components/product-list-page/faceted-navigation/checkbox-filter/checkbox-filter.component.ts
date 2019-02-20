@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { FacetedNavigationComponent } from '../faceted-navigation.component';
 
 @Component({
   selector: 'app-checkbox-filter',
@@ -6,12 +7,7 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
   styleUrls: ['./checkbox-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CheckboxFilterComponent {
+export class CheckboxFilterComponent extends FacetedNavigationComponent {
   @Input() public filter;
-  public isChecked = false;
-
-  toggleCheck(event) {
-    event.target.checked ? this.isChecked = true : this.isChecked = false;
-  }
 
 }

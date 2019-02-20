@@ -1,4 +1,7 @@
-<aside class="all-products-filter">
+<i class="fas fa-filter sidebar-open-arrow" (click)="openNav()"></i>
+<div class="background" *ngIf="isShowed"></div>
+<aside class="all-products-filter" [ngClass]="{'show': isShowed, 'hide': !isShowed}">
+  <a class="closebtn" (click)="closeNav()">&times;</a>
   <div *ngFor="let filter of filters">
     <app-radio-filter *ngIf="filter.type == 'radio'" [filter]="filter"></app-radio-filter>
     <app-price-range-filter *ngIf="filter.type == 'range'" [filter]="filter"></app-price-range-filter>

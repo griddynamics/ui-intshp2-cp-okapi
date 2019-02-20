@@ -42,6 +42,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
         this.banners = data.banners;
         this.slideShowImages = data.slideshow;
       }),
+      this.dataService.get('api/products').subscribe(data => {
+        this.products = data.products;
+        this.prepareRecentlyViewedItems()
+        console.log(this.products);
+      }),
 
       this.productsService.getWishList().subscribe(data => {
         this.wishList = data;

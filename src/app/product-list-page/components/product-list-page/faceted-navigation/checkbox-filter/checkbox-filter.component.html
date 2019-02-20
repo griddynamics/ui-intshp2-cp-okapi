@@ -1,6 +1,8 @@
 <div *ngIf="filter" class="filter-item">
-  <span class="filter-title">{{filter.name}}</span>
-  <div *ngFor="let field of filter.fields" class="filter-line">
+  <span class="filter-title" (click)="dropdownToggle()">{{filter.name}}
+    <i *ngIf="isDropped" class="fas fa-caret-up"></i>
+  </span>
+  <div *ngFor="let field of filter.fields" class="filter-line hidden" [ngClass]="{'dropped': isDropped}">
     <label for="checkbox-{{field}}" class="checkbox" (change)="toggleCheck($event)">{{field}}
       <input id="checkbox-{{field}}" type="checkbox"/>
       <span class="custom-checkbox"></span>

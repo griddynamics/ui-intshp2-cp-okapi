@@ -9,7 +9,7 @@ import { LazyLoadComponent } from '../lazy-load/lazy-load.component';
 describe('ProductItemComponent', () => {
   const product = {
     id: '1',
-    title: 'Reebock Track Jacket',
+    name: 'Reebock Track Jacket',
     price: 100,
     rating: 2,
     // tslint:disable-next-line
@@ -67,7 +67,7 @@ describe('ProductItemComponent', () => {
     component.product = product;
     const compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
-    expect(compiled.querySelector('h2').textContent).toContain(product.title);
+    expect(compiled.querySelector('h2').textContent).toContain(product.name);
   });
 
   it('renders a p with the provided label text', () => {
