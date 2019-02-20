@@ -12,9 +12,9 @@ export class ProductListPageComponent implements OnInit {
   products: IProduct[] = [];
   private allProducts: number;
   visibleItems = 9;
-  public link: string = `api/products?`;
+  public link = `api/products?`;
   public subLinksArr: string[] = [];
-  public subLinksStr: string = '';
+  public subLinksStr = '';
   public checkedItemLink = '';
 
   constructor(
@@ -24,8 +24,11 @@ export class ProductListPageComponent implements OnInit {
 
 
   brand: any[] = [];
-  testUrl = "api/products?"
+  testUrl = 'api/products?';
 
+  public prevRangeValue: string;
+  public prevGenderValue: string;
+  public urlArr = [];
 
   ngOnInit() {
     this.dataService.get('api/products?end=9').subscribe(data => {
@@ -49,17 +52,14 @@ export class ProductListPageComponent implements OnInit {
     return this.products.length >= this.visibleItems;
   }
 
-  public prevRangeValue: string;
-  public prevGenderValue: string;
 
 
-  public urlArr = [];
 
   public onFilterChange(event) {
     const filterNameArr = [];
     const fieldsArr = [];
- 
-      
+
+
     //   if(event.isChecked) {
     //     this..push(event.filterName)
     //     test.push(event.field);
@@ -68,7 +68,7 @@ export class ProductListPageComponent implements OnInit {
     //     console.log(this.brand)
     //   }
     // }
-    
+
     // // if(!this.brand.includes(event.filterName)) {
 
     //   if(event.isChecked) {
@@ -79,7 +79,7 @@ export class ProductListPageComponent implements OnInit {
     //     console.log(this.brand)
     //   }
     // }
-        
+
     // } else {
     //   const cat = this.brand.indexOf(event.filterName);
     //   // let idx;

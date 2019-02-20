@@ -29,7 +29,7 @@ export class FacetedNavigationComponent implements OnInit {
   ngOnInit() {
     this.filtersSubscriptions = this.dataService.get('api/filters').subscribe(data => {
         this.filters = data;
-      })
+      });
   }
 
   // ngOnDestroy(): void {

@@ -26,13 +26,13 @@ export class PriceRangeFilterComponent extends FacetedNavigationComponent implem
       this.range.reverse();
     }
   }
-  public toggleCheck(){
-    let isChecked = false;
-    let range0 = this.filter.range[0];
-    let range1 = this.filter.range[1];
-    
+  public toggleCheck() {
+    // let isChecked = false;
+    const range0 = this.filter.range[0];
+    const range1 = this.filter.range[1];
+
     if (range0 !== this.range[0] || range1 !== this.range[1]) {
-      let isChecked = true;
+      // let isChecked = true;
       // console.log(this.range[0], this.range[1], isChecked);
       // console.log(event);
     }

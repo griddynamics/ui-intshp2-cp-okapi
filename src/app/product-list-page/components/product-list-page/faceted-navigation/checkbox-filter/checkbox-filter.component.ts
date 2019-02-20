@@ -16,6 +16,6 @@ export class CheckboxFilterComponent extends FacetedNavigationComponent {
   public toggleCheck(event, field, filterName) {
     let isChecked = false;
     event.target.checked ? isChecked = true : isChecked = false;
-    this.checkboxTriggered.emit({filterName, field, isChecked})
+    this.checkboxTriggered.emit({filterName, field, isChecked});
   }
 }
