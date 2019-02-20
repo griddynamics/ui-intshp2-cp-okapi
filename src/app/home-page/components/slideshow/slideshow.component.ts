@@ -4,7 +4,8 @@ import {
   ElementRef,
   OnInit,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  Input
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
@@ -26,12 +27,7 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('back') back: ElementRef;
   @ViewChild('bullet') bullet: ElementRef;
 
-  responseImgs: any[] = [
-    'assets/img/slideshow/forged-ground-featured-official-merch-es-1540x650.jpg',
-    'assets/img/slideshow/viking-medieval-escudos-cascos-cuernos-espadass-accesorios-forgedground-1540x650.jpg',
-    'assets/img/slideshow/banner-main1-1540x650.jpg',
-    'assets/img/slideshow/banner-main2-1540x650.jpg'
-  ];
+  @Input() slideShowImages: any[];
 
   public isHovered = false;
   public selectedSlideIndex = 0;
@@ -52,7 +48,10 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.slidesLength = this.responseImgs.length;
+    if (!this.slideShowImages) {
+      return;
+    }
+    this.slidesLength = this.slideShowImages.length;
     this.totalSlidesSize = this.slidesLength * 100;
     this.slidesHolder.nativeElement.style.width = this.totalSlidesSize + '%';
     this.translateStep = 100 / this.slidesLength;
