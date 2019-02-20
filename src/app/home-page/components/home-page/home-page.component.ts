@@ -39,19 +39,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.subscriptions = [
       this.dataService.get('api/homepage').subscribe(data => {
         this.products = data.arrivals;
+        this.banners = data.banners;
+        this.slideShowImages = data.slideshow;
       }),
 
       this.productsService.getWishList().subscribe(data => {
         this.wishList = data;
       }),
-
-      this.dataService.get('api/homepage').subscribe(data => {
-        this.slideShowImages = data.slideshow;
-      }),
-
-      this.dataService.get('api/homepage').subscribe(data => {
-        this.banners = data.banners;
-      })
   ];
   }
 

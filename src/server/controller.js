@@ -33,13 +33,13 @@ function deleteSubscription(req, res) {
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 
 
-function cleanUpProductProperties(product) {
-    PRODUCTS_REDUNDANT_PROPS.forEach(property => {
-        delete product[property];
-    });
+// function cleanUpProductProperties(product) {
+//     PRODUCTS_REDUNDANT_PROPS.forEach(property => {
+//         delete product[property];
+//     });
 
-    return product;
-}
+//     return product;
+// }
 
 function getHomepage(req, res) {
     const randomProducts = new Set();
@@ -77,7 +77,7 @@ function getProducts(req, res) {
     }
 
     const query = req.query;
-    let cleanedProducts = productsArrCopy.map(cleanUpProductProperties);
+    let cleanedProducts = productsArrCopy.map(_cleanUpProductProperties);
 
     if (query.ids) {
         const idsArr = req.query.ids.split(',').map(el => parseInt(el));
@@ -142,9 +142,10 @@ function notFound(req, res) {
 }
 
 function _cleanUpProductProperties(product) {
+    const productClone = JSON.parse(JSON.stringify(product))
   PRODUCTS_REDUNDANT_PROPS.forEach(property => {
-      delete product[property];
+      delete productClone[property];
   });
 
-  return product;
+  return productClone;
 }
