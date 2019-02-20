@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { mergeMap } from 'rxjs/operators';
 
@@ -17,9 +17,15 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductDetailsPageService,
+    private router: Router,
     ) { }
   ngOnInit() {
-
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0);
+    });
     this.markAsRecentlyViewed();
     this.productSubscription = this.route.params.pipe(
       mergeMap(({ id }) => {
