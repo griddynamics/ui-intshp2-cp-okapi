@@ -26,7 +26,7 @@ add email to subscriptions
 ```json
 { email: 'example@domain.com' }
 ```
-**Response**
+***Response***
 
 *Status Code: 201* - in case subscription added
 
@@ -39,7 +39,7 @@ delete email from subscriptions
 ```json
 { email: 'example@domain.com' }
 ```
-**Response**
+***Response***
 
 *Status Code: 202* - Accepted
 
@@ -48,7 +48,7 @@ delete email from subscriptions
 ### GET api/products
 returns products list
 
-**Response**
+***Response***
 
 *Status Code: 200*
 
@@ -91,7 +91,8 @@ Example `api/products?gender=man&price=20,100`
 ### GET product/:id
 returns product details including related products, description etc.
 
-***Response**
+***Response***
+
 *Status Code: 200*
 ```ts
 IProduct
@@ -102,7 +103,8 @@ IProduct
 ### GET api/filters
 returns filters list
 
-***Response**
+***Response***
+
 *Status Code: 200*
 
 Example:
