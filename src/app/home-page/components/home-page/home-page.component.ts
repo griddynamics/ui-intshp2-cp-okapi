@@ -31,9 +31,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    
-    this.checkRecentlyViewedItems();
-    this.checkWishListItems();
 
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
 
@@ -42,17 +39,21 @@ export class HomePageComponent implements OnInit, OnDestroy {
       this.banners = data.banners;
       this.slideShowImages = data.slideshow;
     });
+    this.checkRecentlyViewedItems();
+    this.checkWishListItems();
   }
 
   private checkRecentlyViewedItems() {
-    this.recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewedIds'));
+    const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
+    this.recentlyViewed = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewed;
   }
   private checkWishListItems() {
-    this.wishList = JSON.parse(localStorage.getItem('wishlist'));
+    const wishlistIds = localStorage.getItem('wishlist')
+    this.wishList = wishlistIds ? JSON.parse(localStorage.getItem('wishlist')) : this.wishList;
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }

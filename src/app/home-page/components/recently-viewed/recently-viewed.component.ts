@@ -10,21 +10,23 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./recently-viewed.component.scss']
 })
 export class RecentlyViewedComponent implements OnInit, OnDestroy {
-
-  @Input() products: IProduct[] = [];
+  public products: IProduct[] = [];
   public subscription;
-  public recentlyViewedIds;
+  public recentlyViewedIds: string[] = [];
 
   constructor(
     private dataService: DataService
   ) { }
 
   ngOnInit() {
-    if (!this.products.length){
-      return
-    }
-    this.recentlyViewedIds = JSON.parse(localStorage.getItem('recentlyViewedIds')).join(',');
-    this.subscription = this.dataService.get(`${environment.productsURL}?ids=${this.recentlyViewedIds}`).subscribe(data => {
+    const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
+    this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : [];
+
+    if(!this.recentlyViewedIds.length) return;
+
+    const query = this.recentlyViewedIds.join(',');
+
+    this.subscription = this.dataService.get(`${environment.productsURL}?ids=${query}`).subscribe(data => {
       this.products = data.products;
     });
   }

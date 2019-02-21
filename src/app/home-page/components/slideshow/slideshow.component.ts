@@ -5,7 +5,9 @@ import {
   OnInit,
   AfterViewInit,
   OnDestroy,
-  Input
+  Input,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
@@ -21,7 +23,7 @@ enum SLIDE_DIRECTION {
   styleUrls: ['./slideshow.component.scss']
 })
 
-export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @ViewChild('slidesHolder') slidesHolder: ElementRef;
   @ViewChild('next') next: ElementRef;
   @ViewChild('back') back: ElementRef;
@@ -51,12 +53,20 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!this.slideShowImages) {
       return;
     }
+    this.calculateSizes();
+    this.slideshowTransitionEnabled = this.killswitchService.getKillswitch('slideshowTransitionEnabled');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.calculateSizes();
+  }
+
+  private calculateSizes(): void {
     this.slidesLength = this.slideShowImages.length;
     this.totalSlidesSize = this.slidesLength * 100;
     this.slidesHolder.nativeElement.style.width = this.totalSlidesSize + '%';
     this.translateStep = 100 / this.slidesLength;
     this.currentTranslatePosition = 0;
-    this.slideshowTransitionEnabled = this.killswitchService.getKillswitch('slideshowTransitionEnabled');
   }
 
   ngAfterViewInit(): void {

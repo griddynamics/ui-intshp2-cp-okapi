@@ -1,4 +1,4 @@
-<app-slideshow *ngIf="slideShowImages.length" [slideShowImages]="slideShowImages"></app-slideshow>
+<app-slideshow [slideShowImages]="slideShowImages"></app-slideshow>
 <app-heading [alertText]="'new'" [headingText]="'Arrivals'"></app-heading>
 <app-carousel *ngIf="products.length">
   <app-carousel-item *ngFor="let product of products">
@@ -16,7 +16,7 @@
     </app-advertising-area>
   </div>
 </div>
-<app-recently-viewed *ngIf="recentlyViewed.length" [products]="recentlyViewed"></app-recently-viewed>
+<app-recently-viewed></app-recently-viewed>
 <app-swipe-icon></app-swipe-icon>
 <ng-container *ngIf="wishListEnabled">
   <div class="main-container">
