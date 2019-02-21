@@ -62,3 +62,6 @@ content you want to toggle
   <ng-content *ngIf="killswitchName" >...</ng-content>
 ```
 <!-- todo add readme for env -->
+
+
+
