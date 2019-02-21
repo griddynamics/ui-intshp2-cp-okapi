@@ -1,73 +1,142 @@
-## IMPLEMENTED API
-
-## Supported next methods
-
-- get
-- post
-- delete
+# API
 
 ## Supported next endpoints
-get: 
-/api/homepage 
-/api/filters
-/api/products/:id
-/api/products
-"*" - not found response
+### GET api/homepage
+aggregated route which returns home-page data
 
-post:
-/api/subscriptions
+**Response**
 
-delete: 
-/api/subscriptions
+*Status Code: 200*
 
-## How to use queryParams
-
-/api/products?ids=1,2,3
-looks for items, that have ids from queryParams
-response:
+```ts
 {
-  total: number,
-  products: IProduct[] // length 3
+  slideshow: String[],
+  arrivals: IProduct[]  
+  banners: IBanner[]
 }
+```
 
-/api/products?price=10,200
-looks for items, that are in price sequence between 10 and 200
-response:
+- [product interface](https://github.com/griddynamics/ui-intshp2-cp-okapi/blob/development/src/app/shared/interfaces/product.ts)
+- [banner interface](https://github.com/griddynamics/ui-intshp2-cp-okapi/blob/development/src/app/shared/interfaces/index.ts)
+
+### POST api/subscriptions
+add email to subscriptions
+
+***Request body***
+```json
+{ email: 'example@domain.com' }
+```
+**Response**
+
+*Status Code: 201* - in case subscription added
+
+*Status Code: 400* - already added
+
+### DELETE api/subscriptions
+delete email from subscriptions
+
+***Request body***
+```json
+{ email: 'example@domain.com' }
+```
+**Response**
+
+*Status Code: 202* - Accepted
+
+*Status Code: 404* - email has not been found
+
+### GET api/products
+returns products list
+
+**Response**
+
+*Status Code: 200*
+
+```json
 {
-  total: number,
-  products: IProduct[]
+"total": number,
+"products": IProduct[]
 }
+```
 
-/api/products?categories=t-shirt,short
-returns products, that have t-shird or short category
-{
-  total: number,
-  products: IProduct[]
-}
+[product interface](https://github.com/griddynamics/ui-intshp2-cp-okapi/blob/development/src/app/shared/interfaces/product.ts)
 
-/api/products?gender=man
-returns only man's products
-{
-  total: number,
-  products: IProduct[]
-}
+#### Supported queries:
+`ids=1,2,3`
 
-/api/products?size=l,s
-returns products that have size l or s
-{
-  total: number,
-  products: IProduct[]
-}
+returns products list with passed id values;
 
-/api/products?brand=nike,adidas
-returns nike or adidas products
-{
-  total: number,
-  products: IProduct[]
-}
+`price=10,100`
 
-## How to combine queryParams? 
-/api/products?gender=man&price=20,100
+returns products list each item's price is satisfied by range condition. If only 1 value has passed, returns the products with specific price;
+
+`categories=t-shirt,shoes`
+
+returns products list with certain categories
+
+`gender=man`
+
+returns products list for certain gender
+
+`size=l,s`
+
+returns products with certain sizes
+
+`brand=nike,adidas`
+
+returns products by certain brands
+
+Example `api/products?gender=man&price=20,100`
+
+### GET product/:id
+returns product details including related products, description etc.
+
+***Response**
+*Status Code: 200*
+```ts
+IProduct
+```
+
+[product interface](https://github.com/griddynamics/ui-intshp2-cp-okapi/blob/development/src/app/shared/interfaces/product.ts)
+
+### GET api/filters
+returns filters list
+
+***Response**
+*Status Code: 200*
+
+Example:
+```ts
+[
+  {
+      "type": "radio",
+      "name": "gender",
+      "fields": ["man", "woman", "children"]
+  },
+  {
+      "type": "checkbox",
+      "name": "category",
+      "fields": ["t-shirts", "shoes", "shorts"]
+  },
+  {
+      "type": "checkbox",
+      "name": "size",
+      "fields": ["s", "m", "l", "xl"]
+  },
+  {
+      "type": "range",
+      "name": "price",
+      "range": []
+  },
+  {
+      "type": "checkbox",
+      "name": "brand",
+      "fields": ["nike", "adiddas", "reebok", "active"]
+  }
+]
+```
+
+[filter interface](https://github.com/griddynamics/ui-intshp2-cp-okapi/blob/development/src/app/shared/interfaces/product.ts#L36)
 
 
 
