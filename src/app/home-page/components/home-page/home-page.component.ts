@@ -20,11 +20,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public wishList: IProduct[] = [];
   public recentlyViewed: IProduct[] = [];
   public slideShowImages: any[] = [];
-
-
   public banners: IBanner[] = [];
-
-  private subscriptions: Subscription[] = [];
+  private subscription;
   public wishListEnabled;
 
   constructor(
@@ -34,34 +31,30 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    
+    this.checkRecentlyViewedItems();
+    this.checkWishListItems();
+
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
 
-    this.subscriptions = [
-      this.dataService.get(environment.homepageURL).subscribe(data => {
-        this.products = data.arrivals;
-        this.banners = data.banners;
-        this.slideShowImages = data.slideshow;
-      }),
-      this.dataService.get(environment.productsURL).subscribe(data => {
-        this.products = data.products;
-        this.prepareRecentlyViewedItems();
-      }),
-
-      this.productsService.getWishList().subscribe(data => {
-        this.wishList = data;
-      }),
-  ];
+    this.subscription = this.dataService.get(environment.homepageURL).subscribe(data => {
+      this.products = data.arrivals;
+      this.banners = data.banners;
+      this.slideShowImages = data.slideshow;
+    });
   }
 
-  private prepareRecentlyViewedItems() {
-    const recentlyViewIds = JSON.parse(localStorage.getItem('recentlyViewedIds'));
-    if (recentlyViewIds) {
-      this.recentlyViewed = this.products.filter( el => recentlyViewIds.some(e => e === el.id ));
-    }
+  private checkRecentlyViewedItems() {
+    this.recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewedIds'));
+  }
+  private checkWishListItems() {
+    this.wishList = JSON.parse(localStorage.getItem('wishlist'));
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.map(subscription => subscription.unsubscribe());
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   public wishListHandler(product: IProduct): void {
