@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { ProductsService } from 'src/app/core/services/products.service';
 
@@ -7,7 +7,8 @@ import { ProductsService } from 'src/app/core/services/products.service';
   templateUrl: './product-list-page.component.html',
   styleUrls: ['./product-list-page.component.scss']
 })
-export class ProductListPageComponent implements OnInit {
+export class ProductListPageComponent implements OnInit, OnDestroy {
+  public subscription;
   products: IProduct[] = [];
   private allProducts: IProduct[] = [];
   visibleItems = 9;
@@ -21,6 +22,12 @@ export class ProductListPageComponent implements OnInit {
       this.allProducts = data;
       this.products = data.slice(0, this.visibleItems);
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   public wishListHandler(product: IProduct): void {

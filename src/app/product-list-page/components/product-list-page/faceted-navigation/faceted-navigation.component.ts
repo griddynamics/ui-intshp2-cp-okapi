@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { IFilter } from 'src/app/shared/interfaces/product';
 import { DataService } from 'src/app/core/services/data.service';
 import { environment } from 'src/environments/environment';
@@ -28,7 +28,9 @@ export class FacetedNavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 
   closeNav() {
