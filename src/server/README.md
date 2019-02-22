@@ -86,6 +86,12 @@ returns products with certain sizes
 
 returns products by certain brands
 
+`start=0&end=9`
+
+returns first 9 products
+
+
+
 Example `api/products?gender=man&price=20,100`
 
 ### GET product/:id
