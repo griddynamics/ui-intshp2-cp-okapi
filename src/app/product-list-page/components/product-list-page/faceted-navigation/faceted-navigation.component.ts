@@ -17,9 +17,9 @@ export class FacetedNavigationComponent implements OnInit, OnDestroy {
 
   filters: IFilter[] = [];
 
-  constructor (
+  constructor(
     private dataService: DataService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.subscription = this.dataService.get(environment.filtersURL).subscribe(data =>
@@ -28,7 +28,7 @@ export class FacetedNavigationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.subscription){
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
