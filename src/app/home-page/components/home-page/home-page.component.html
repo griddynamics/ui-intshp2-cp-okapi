@@ -16,7 +16,7 @@
     </app-advertising-area>
   </div>
 </div>
-<app-recently-viewed></app-recently-viewed>
+<app-recently-viewed *ngIf="recentlyViewed.length"></app-recently-viewed>
 <app-swipe-icon></app-swipe-icon>
 <ng-container *ngIf="wishListEnabled">
   <div class="main-container">
