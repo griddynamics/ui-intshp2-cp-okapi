@@ -48,7 +48,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.recentlyViewed = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewed;
   }
   private checkWishListItems() {
-    const wishlistIds = localStorage.getItem('wishlist')
+    const wishlistIds = localStorage.getItem('wishlist');
     this.wishList = wishlistIds ? JSON.parse(localStorage.getItem('wishlist')) : this.wishList;
   }
 

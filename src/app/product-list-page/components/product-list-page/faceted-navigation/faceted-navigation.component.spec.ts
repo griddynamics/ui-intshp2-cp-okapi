@@ -5,6 +5,7 @@ import { FacetedNavigationComponent } from './faceted-navigation.component';
 import { RadioFilterComponent } from './radio-filter/radio-filter.component';
 import { CheckboxFilterComponent } from './checkbox-filter/checkbox-filter.component';
 import { PriceRangeFilterComponent } from './price-range-filter/price-range-filter.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 describe('FacetedNavigationComponent', () => {
@@ -19,7 +20,7 @@ describe('FacetedNavigationComponent', () => {
         PriceRangeFilterComponent,
         RadioFilterComponent
       ],
-      imports: [ FormsModule ]
+      imports: [ FormsModule, HttpClientTestingModule ]
     })
     .compileComponents();
   }));

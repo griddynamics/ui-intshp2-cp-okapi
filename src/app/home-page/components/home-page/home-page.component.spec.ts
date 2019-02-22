@@ -49,7 +49,7 @@ describe('HomePageComponent', () => {
       'addedToWishList': true,
       'relatedProducts': []
     }
-    ]
+    ];
     component.wishList = [{
       'id': '1',
       'title': 'String',

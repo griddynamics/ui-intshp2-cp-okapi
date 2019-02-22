@@ -23,8 +23,8 @@ export class WishListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    if (!this.products.length){
-      return
+    if (!this.products.length) {
+      return;
     }
     this.wishListIds = JSON.parse(localStorage.getItem('wishlist')).join(',');
     this.subscription = this.dataService.get(`${environment.productsURL}?ids=${this.wishListIds}`).subscribe(data => {
@@ -33,7 +33,7 @@ export class WishListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }

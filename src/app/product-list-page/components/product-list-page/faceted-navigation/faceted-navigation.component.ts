@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit, OnDestroy } from '@angular/core';
 import { IFilter } from 'src/app/shared/interfaces/product';
 import { DataService } from 'src/app/core/services/data.service';
 import { environment } from 'src/environments/environment';
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./faceted-navigation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FacetedNavigationComponent implements OnInit {
+export class FacetedNavigationComponent implements OnInit, OnDestroy {
   public isShowed = false;
   public isChecked = false;
   public isDropped = false;

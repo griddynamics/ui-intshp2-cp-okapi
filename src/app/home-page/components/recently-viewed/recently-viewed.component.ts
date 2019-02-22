@@ -22,7 +22,9 @@ export class RecentlyViewedComponent implements OnInit, OnDestroy {
     const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
     this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : [];
 
-    if(!this.recentlyViewedIds.length) return;
+    if (!this.recentlyViewedIds.length) {
+      return;
+    }
 
     const query = this.recentlyViewedIds.join(',');
 
