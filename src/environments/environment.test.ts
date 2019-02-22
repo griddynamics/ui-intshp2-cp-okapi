@@ -4,6 +4,7 @@
     killswitchesPath: 'config/killswitches.json',
     productsURL: 'api/products',
     homepageURL: 'api/homepage',
+    filtersURL: 'api/filters'
   };
 
   export const referenceLinks = {

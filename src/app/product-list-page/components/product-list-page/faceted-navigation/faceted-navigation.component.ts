@@ -1,5 +1,7 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 import { IFilter } from 'src/app/shared/interfaces/product';
+import { DataService } from 'src/app/core/services/data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-faceted-navigation',
@@ -7,38 +9,27 @@ import { IFilter } from 'src/app/shared/interfaces/product';
   styleUrls: ['./faceted-navigation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FacetedNavigationComponent {
+export class FacetedNavigationComponent implements OnInit {
   public isShowed = false;
   public isChecked = false;
   public isDropped = false;
+  public subscription;
 
-  filters: IFilter[] = [
-    {
-      'type': 'radio',
-      'name': 'gender',
-      'fields': ['man', 'woman', 'children']
-    },
-    {
-      'type': 'checkbox',
-      'name': 'category',
-      'fields': ['coats', 'panties', 'shoes', 'underwear']
-    },
-    {
-      'type': 'checkbox',
-      'name': 'size',
-      'fields': ['s', 'm', 'l', 'xl']
-    },
-    {
-      'type': 'range',
-      'name': 'price',
-      'range': [25, 130]
-    },
-    {
-      'type': 'checkbox',
-      'name': 'brand',
-      'fields': ['reebock', 'addidas', 'nike', 'active']
-    }
-  ];
+  filters: IFilter[] = [];
+
+  constructor (
+    private dataService: DataService
+  ) {}
+
+  ngOnInit(): void {
+    this.subscription = this.dataService.get(environment.filtersURL).subscribe(data =>
+      this.filters = data
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   closeNav() {
     this.isShowed = false;

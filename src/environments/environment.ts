@@ -8,7 +8,8 @@ export const environment = {
   killswitchesPath: 'assets/config/killswitches.json',
   productsURL: 'assets/mocks/products.json',
   pdpPath: 'assets/mocks/pdp.json',
-  homepageURL: 'assets/mocks/homepage.json'
+  homepageURL: 'assets/mocks/homepage.json',
+  filtersURL: 'assets/mocks/filters.json'
 };
 
 export const referenceLinks = {
