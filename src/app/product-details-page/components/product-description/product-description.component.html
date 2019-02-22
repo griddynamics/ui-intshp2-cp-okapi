@@ -1,18 +1,18 @@
 <div class="main-container">
-  <div class="main-container-wrapper">
-    <div class="image-container">
-      <app-product-image-preview [swatches]="product.swatches" [thumbnailImageSrc]="product.thumbnailImageSrc"></app-product-image-preview>
-    </div>
-    <div class="details-container">
-      <div class="details-container-info">
-        <h2>{{product.name}}</h2>
-        <h5>{{product.title}}</h5>
-        <p>{{product.description}}</p>
+    <div class="main-container-wrapper">
+      <div class="image-container">
+        <app-product-image-preview [selectedColorFromOrder]="selectedColorFromOrder" [swatches]="product.swatches" [thumbnailImageSrc]="product.thumbnailImageSrc"></app-product-image-preview>
       </div>
+      <div class="details-container">
+        <div class="details-container-info">
+          <h2>{{product.name}}</h2>
+          <h5>{{product.title}}</h5>
+          <p>{{product.description}}</p>
+        </div>
 
-      <div class="details-container-order">
-        <app-product-order [product]="product"></app-product-order>
+        <div class="details-container-order">
+          <app-product-order (selectedSwatchImg)="imgChanger($event)" [product]="product"></app-product-order>
+        </div>
       </div>
     </div>
   </div>
-</div>
