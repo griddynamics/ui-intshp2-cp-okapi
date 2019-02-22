@@ -27,13 +27,14 @@ export class ProductsService {
     return this.wishListSource.asObservable();
   }
 
-  public getProducts(): Observable<IProduct[]> {
+  public getProducts(): Observable<any> {
     return Observable.create((observer) => {
 
-      this.dataService.get(environment.productsURL).subscribe(({products}) => {
-        this.prepareProductResponse(products);
+      this.dataService.get(environment.productsURL).subscribe(productsResponse => {
+        this.prepareProductResponse(productsResponse.products);
         this.wishListSource.next(this.wishList);
-        observer.next(this.products);
+        observer.next(productsResponse);
+        observer.complete();
       });
 
     });

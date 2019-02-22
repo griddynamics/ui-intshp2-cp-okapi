@@ -1,7 +1,5 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { IFilter } from 'src/app/shared/interfaces/product';
-import { DataService } from 'src/app/core/services/data.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-faceted-navigation',
@@ -9,29 +7,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./faceted-navigation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FacetedNavigationComponent implements OnInit, OnDestroy {
+export class FacetedNavigationComponent {
   public isShowed = false;
   public isChecked = false;
   public isDropped = false;
   public subscription;
 
-  filters: IFilter[] = [];
-
-  constructor(
-    private dataService: DataService
-  ) { }
-
-  ngOnInit(): void {
-    this.subscription = this.dataService.get(environment.filtersURL).subscribe(data =>
-      this.filters = data
-    );
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
+  @Input() filters: IFilter[] = [];
 
   closeNav() {
     this.isShowed = false;
