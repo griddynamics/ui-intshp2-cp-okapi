@@ -94,7 +94,7 @@ returns first 9 products
 
 Example `api/products?gender=man&price=20,100`
 
-### GET product/:id
+### GET products/:id
 returns product details including related products, description etc.
 
 ***Response***
