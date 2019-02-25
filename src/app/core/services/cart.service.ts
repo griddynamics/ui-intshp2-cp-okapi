@@ -22,26 +22,25 @@ export class CartService {
     this.publish();
   }
 
-  public addToCart(product: IProduct) {
+  public addToCart(product: IProduct, view) {
     product.addedToCart = true;
-    this.cartIds.push(product.id);
+    this.cartIds.push(view);
     this.updateCart();
   }
 
-  public removeFromCart(product: IProduct): void {
+  public removeFromCart(product: IProduct, view): void {
     product.addedToCart = false;
-    const indexOfCurrId = this.cartIds.findIndex(el => el === product.id);
+    const indexOfCurrId = this.cartIds.findIndex(el => el === view.id );
     this.cartIds.splice(indexOfCurrId, 1);
-
     this.updateCart();
   }
 
-  public toggleCart(product: IProduct) {
+  public toggleCart(product: IProduct, view) {
     if (!product.addedToCart) {
-      this.addToCart(product);
+      this.addToCart(product, view);
       return;
     }
-    this.removeFromCart(product);
+    this.removeFromCart(product, view);
   }
 
 
@@ -65,6 +64,7 @@ export class CartService {
 
   public getCartIds(): string[] {
     return this.cartIds;
+
   }
 
   private updateCart(): void {

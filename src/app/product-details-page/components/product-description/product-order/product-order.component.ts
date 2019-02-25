@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { DataService } from 'src/app/core/services/data.service';
 import { KillswitchService } from 'src/app/core/services/killswitch.service';
@@ -19,7 +19,8 @@ export class ProductOrderComponent implements OnInit {
   public productConfiguration = {
     count: 1,
     size: '',
-    price: 0
+    price: 0,
+    swatch: '',
   };
   public wishListEnabled;
 
@@ -43,7 +44,13 @@ export class ProductOrderComponent implements OnInit {
   }
 
   public toggleCart(): void {
-    this.cartService.toggleCart(this.product);
+    const view = {
+      id: this.product.id,
+      quantity: this.productConfiguration.count,
+      swatch: this.productConfiguration.swatch,
+      size: this.productConfiguration.size,
+    };
+    this.cartService.toggleCart(this.product, view);
   }
 
   public toggleWishList(): void {
