@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+
 
 import { DataService } from 'src/app/core/services/data.service';
 import { KillswitchService } from 'src/app/core/services/killswitch.service';
@@ -15,11 +16,14 @@ export class ProductOrderComponent implements OnChanges {
   @Input() addedToCart: boolean;
   @Input() addedToWishList: boolean;
   public selected: number;
+  selectedSwatch: number;
+  @Output() swatchSelect = new EventEmitter();
 
   public productConfiguration = {
     count: 1,
     size: '',
-    price: 0
+    price: 0,
+    swatch: ''
   };
   public wishListEnabled;
 
@@ -66,5 +70,11 @@ export class ProductOrderComponent implements OnChanges {
   public onChooseSize(size: string, i: number): void {
     this.productConfiguration.size = size;
     this.selected = i;
+  }
+
+  public onChooseColor(swatch: string, i: number): void {
+    this.productConfiguration.swatch = swatch;
+    this.selectedSwatch = i;
+    this.swatchSelect.emit(swatch);
   }
 }
