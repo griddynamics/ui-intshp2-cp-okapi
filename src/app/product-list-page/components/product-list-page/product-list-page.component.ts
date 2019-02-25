@@ -20,7 +20,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   private total = 9;
 
   constructor(
-    private productService: ProductsService,
+    private productsService: ProductsService,
     private dataService: DataService
   ) { }
 
@@ -44,7 +44,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   }
 
   public wishListHandler(product: IProduct): void {
-    this.productService.toggleWishListProduct(product);
+    this.productsService.toggleWishListProduct(product);
   }
 
   get totalAmount(): number {
@@ -72,6 +72,6 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   }
 
   private loadProducts(from: number, to: number): Observable<any> {
-    return this.productService.getProducts(`start=${from}&end=${to}`);
+    return this.productsService.getProducts(`start=${from}&end=${to}`);
   }
 }

@@ -1,9 +1,9 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 
 import { IProduct } from 'src/app/shared/interfaces/product';
-import { DataService } from 'src/app/core/services/data.service';
 import { environment } from 'src/environments/environment';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { ProductsService } from 'src/app/core/services/products.service';
 
 @Component({
   selector: 'app-wish-list',
@@ -13,23 +13,23 @@ import { Subscription } from 'rxjs';
 export class WishListComponent implements OnInit, OnDestroy {
   @ViewChild('wrapper') wrapper: ElementRef;
   @Input() products: IProduct[] = [];
-  private allProducts: IProduct[] = [];
   public wishListIds;
   public subscription: Subscription;
 
   public visibleWishItems = 3;
+  private startFrom = 0;
+  private loadTo = 9;
   constructor(
-    private dataService: DataService
+    private productsService: ProductsService
   ) { }
 
   ngOnInit() {
+    this.getWishListIds();
+
     if (!this.products.length) {
       return;
     }
-    this.wishListIds = JSON.parse(localStorage.getItem('wishlist')).join(',');
-    this.subscription = this.dataService.get(`${environment.productsURL}?ids=${this.wishListIds}`).subscribe(data => {
-      this.products = data.products;
-    });
+    this.getProducts();
   }
 
   ngOnDestroy(): void {
@@ -38,13 +38,34 @@ export class WishListComponent implements OnInit, OnDestroy {
     }
   }
 
-  onLoadMore(loadAmount: number): void {
-    this.products = this.allProducts.slice(0, this.products.length + loadAmount);
+  public getWishListIds() {
+    const wishListIds = localStorage.getItem('wishlist');
+    this.wishListIds = wishListIds ? JSON.parse(wishListIds) : [];
   }
 
   get showLoadMore(): Boolean {
-    if (!this.allProducts.length) { return false; }
+    if (!this.visibleWishItems) { return false; }
+    return this.visibleWishItems < this.products.length;
+  }
 
-    return this.allProducts.length > this.products.length;
+  private getProducts(): void {
+    const query = this.wishListIds.join(',');
+
+    this.subscription = this.productsService.getProducts(`ids=${query}`).subscribe(data => {
+      this.products = data.products;
+    });
+  }
+
+  onLoadMore(loadAmount: number): void {
+    this.startFrom = this.loadTo;
+    this.loadTo = this.loadTo + loadAmount;
+
+    this.loadProducts(this.startFrom, this.loadTo).subscribe(({ products }) => {
+      this.products = this.products.concat(products);
+    });
+  }
+
+  private loadProducts(from: number, to: number): Observable<any> {
+    return this.productsService.getProducts(`start=${from}&end=${to}`);
   }
 }

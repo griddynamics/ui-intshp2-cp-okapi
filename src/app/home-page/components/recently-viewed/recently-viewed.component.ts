@@ -18,8 +18,7 @@ export class RecentlyViewedComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
-    this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : [];
+    this.getWishListIds();
 
     if (!this.recentlyViewedIds.length) {
       return;
@@ -32,6 +31,11 @@ export class RecentlyViewedComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  public getWishListIds () {
+    const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
+    this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : [];
   }
 
   private getProducts(): void {
