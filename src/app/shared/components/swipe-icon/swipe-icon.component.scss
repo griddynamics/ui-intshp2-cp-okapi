@@ -1,0 +1,72 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/fonts";
+@import "../../../../scss/reset";
+@import "../../../../scss/mixins";
+
+.stage {
+  display: none;
+}
+
+@include tablet {
+  .stage {
+    display: inline-block;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: -20px;
+  }
+
+  .swipe {
+    display: inline-block;
+    color: $black-color;
+    animation-name: swipe;
+    animation-duration: 2700ms;
+    animation-delay: 250ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    
+    .fa-long-arrow-alt-left,
+    .fa-long-arrow-alt-right {
+      font-size: 25px;
+      color: $primary-color;
+    }
+    
+    .fa-long-arrow-alt-left { 
+      transform: scaleX(0.75) skew(20deg) translateY(-0.9em) translateX(1.25em);
+    }
+
+    .fa-long-arrow-alt-right {
+      transform: scaleX(0.75) skew(20deg) translateY(-0.9em) translateX(-0.95em);
+    }
+    
+    .fa-hand-point-up {
+      transform: scaleY(1.2);
+      animation-name: swipe-rotate;
+      animation-duration: 2700ms;
+      animation-delay: 250ms;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  @keyframes swipe {
+      0%{ transform: translateX(0); }
+      10%{ transform: translateX(-(0.1em)); }
+      20%{ transform: translateX(0.1em); }
+      30%{ transform: translateX(-(0.1em)); }
+      40%{ transform: translateX(0.1em); }
+      50%{ transform: translateX(0); }
+      100%{ transform: translateX(0); }
+  }
+
+  @keyframes swipe-rotate {
+      0%{ transform: scaleY(1.2) skew(0); }
+      10%{ transform: scaleY(1.2) skew(5deg); }
+      20%{ transform: scaleY(1.2) skew(-5deg); }
+      30%{ transform: scaleY(1.2) skew(5deg); }
+      40%{transform: scaleY(1.2) skew(-5deg); }
+      50%{ transform: scaleY(1.2) skew(0); }
+      100%{ transform: scaleY(1.2) skew(0); }
+  }
+}

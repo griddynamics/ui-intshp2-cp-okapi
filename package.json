@@ -5,7 +5,7 @@
     "server": "node src/server/app.js",
     "server:watch": "nodemon node --inspect src/server/app.js",
     "server:debug": "node --inspect src/server/app.js",
-    "start": "npm run serve:dev",
+    "start": "npm run serve:dev --live-reload=false",
     "build:prod": "ng build --prod --aot",
     "serve:prod": "http-server dist/",
     "serve:dev": "ng serve -o --configuration=test",
