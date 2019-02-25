@@ -20,6 +20,8 @@ import { GridComponent } from './components/grid/grid.component';
 import { ImgPlaceholderComponent } from '../shared/components/img-placeholder/img-placeholder.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { SwipeIconComponent } from './components/swipe-icon/swipe-icon.component';
+// import { PopupWindowComponent } from './components/popup-window/popup-window.component';
+// import { ModalModule } from './components/modal/modal.module';
 
 const MODULES = [
   CommonModule,
@@ -28,6 +30,7 @@ const MODULES = [
   NgbModule,
   RouterModule,
   ReactiveFormsModule,
+  // ModalModule
 ];
 
 @NgModule({
@@ -46,6 +49,7 @@ const MODULES = [
     GridComponent,
     ImgPlaceholderComponent,
     SwipeIconComponent,
+    // PopupWindowComponent,
   ],
   imports: [...MODULES],
   exports: [
@@ -64,7 +68,9 @@ const MODULES = [
     GridComponent,
     ImgPlaceholderComponent,
     SwipeIconComponent,
+    // PopupWindowComponent,
   ],
+  // entryComponents: [PopupWindowComponent],
 })
 export class SharedModule {
   static forRoot() {

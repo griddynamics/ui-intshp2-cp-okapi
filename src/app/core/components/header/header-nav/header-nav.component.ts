@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// import { ModalService } from 'src/app/shared/components/modal/modal.service';
+// import { PopupWindowComponent } from 'src/app/shared/components/popup-window/popup-window.component';
 
 @Component({
   selector: 'app-header-nav',
@@ -12,9 +14,12 @@ export class HeaderNavComponent implements OnInit {
     this.isSearchOpen = !this.isSearchOpen;
   }
 
-  constructor() { }
+  // constructor(private modalService: ModalService) { }
 
   ngOnInit() {
   }
 
+  //  add() {
+  //   this.modalService.open(PopupWindowComponent);
+  //  }
 }
