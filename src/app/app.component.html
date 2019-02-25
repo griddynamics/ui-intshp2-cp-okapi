@@ -2,3 +2,7 @@
 <app-header *ngIf="!isEnvironmentRoute"></app-header>
 <router-outlet (activate)="onActivate($event)"></router-outlet>
 <app-footer *ngIf="!isEnvironmentRoute"></app-footer>
+<div appModalHolder></div>
+<!-- <div>
+  <button (click)="add()">Add</button>
+</div> -->
