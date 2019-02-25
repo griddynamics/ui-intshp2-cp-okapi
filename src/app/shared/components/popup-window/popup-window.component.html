@@ -1,1 +1,5 @@
-<!-- Hello <button (click)="context.resolve()">close</button> -->
+ <button (click)="context.resolve()">x</button>
+ <div class="product" *ngFor="let product of products;">
+      <app-product-item-short [product]="product"></app-product-item-short>
+ </div> 
+  

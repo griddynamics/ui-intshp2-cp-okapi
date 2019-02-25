@@ -1,7 +1,7 @@
-// import { ModalContext } from './modal-context';
+import { ModalContext } from './modal-context';
 
-// describe('ModalContext', () => {
-//   it('should create an instance', () => {
-//     expect(new ModalContext()).toBeTruthy();
-//   });
-// });
+describe('ModalContext', () => {
+  it('should create an instance', () => {
+    expect(new ModalContext()).toBeTruthy();
+  });
+});
