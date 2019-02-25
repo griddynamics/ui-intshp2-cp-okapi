@@ -8,7 +8,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 export class ProductImagePreviewComponent implements OnInit, OnChanges {
   @Input() thumbnailImageSrc: string;
   @Input() swatches: any[];
-  @Input() selectedColorFromOrder;
+  @Input() selectedSwatch;
 
   public imageSrc;
   public selectedImg = 0;
@@ -24,11 +24,11 @@ export class ProductImagePreviewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    if (!this.selectedColorFromOrder) {
+    if (!this.selectedSwatch) {
       return;
     }
 
-    const { imgSrc } = this.selectedColorFromOrder;
+    const { imgSrc } = this.selectedSwatch;
     const currImgIdx = this.swatchesToArray.findIndex(el => el === imgSrc);
     this.setSelectedImg(imgSrc, currImgIdx);
   }

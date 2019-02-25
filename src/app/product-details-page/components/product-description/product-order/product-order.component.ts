@@ -16,7 +16,7 @@ export class ProductOrderComponent implements OnInit {
   @Input() addedToWishList: boolean;
   public selected: number;
   selectedSwatch: number;
-  @Output() selectedSwatchImg = new EventEmitter();
+  @Output() swatchSelect = new EventEmitter();
 
   public productConfiguration = {
     count: 1,
@@ -68,6 +68,6 @@ export class ProductOrderComponent implements OnInit {
   public onChooseColor(swatch: string, i: number): void {
     this.productConfiguration.swatch = swatch;
     this.selectedSwatch = i;
-    this.selectedSwatchImg.emit(swatch);
+    this.swatchSelect.emit(swatch);
   }
 }

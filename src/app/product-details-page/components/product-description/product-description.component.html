@@ -1,7 +1,7 @@
 <div class="main-container">
     <div class="main-container-wrapper">
       <div class="image-container">
-        <app-product-image-preview [selectedColorFromOrder]="selectedColorFromOrder" [swatches]="product.swatches" [thumbnailImageSrc]="product.thumbnailImageSrc"></app-product-image-preview>
+        <app-product-image-preview [selectedSwatch]="selectedSwatch" [swatches]="product.swatches" [thumbnailImageSrc]="product.thumbnailImageSrc"></app-product-image-preview>
       </div>
       <div class="details-container">
         <div class="details-container-info">
@@ -11,7 +11,7 @@
         </div>
 
         <div class="details-container-order">
-          <app-product-order (selectedSwatchImg)="imgChanger($event)" [product]="product"></app-product-order>
+          <app-product-order (swatchSelect)="onSwatchSelect($event)" [product]="product"></app-product-order>
         </div>
       </div>
     </div>

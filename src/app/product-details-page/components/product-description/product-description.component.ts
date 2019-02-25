@@ -7,9 +7,9 @@ import { IProduct } from 'src/app/shared/interfaces/product';
 })
 export class ProductDescriptionComponent {
   @Input() product: IProduct;
-  selectedColorFromOrder;
+  selectedSwatch;
 
-  imgChanger(e) {
-    this.selectedColorFromOrder = e;
+  onSwatchSelect(e) {
+    this.selectedSwatch = e;
   }
 }
