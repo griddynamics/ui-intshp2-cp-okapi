@@ -2,11 +2,11 @@
   {
     "id": "1",
     "category": "shoes",
-    "name": "WORKOUT PLUS ATI 90S",
+    "name": "ADIDAS WORKOUT PLUS ATI 90S",
     "brand": "adidas",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE.",
     "description": "This item is excluded from all promotions.",
-    "sex": "children",
+    "sex": "man",
     "price": 90,
     "rating": 5,
     "swatches": [
@@ -44,7 +44,12 @@
       "4",
       "5",
       "6",
-      "7"
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
     ]
   },
   {
@@ -54,7 +59,7 @@
     "brand": "nike",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "children",
+    "sex": "man",
     "price": 85,
     "rating": 5,
     "swatches": [
@@ -92,7 +97,12 @@
       "4",
       "5",
       "6",
-      "7"
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
     ]
   },
   {
@@ -102,7 +112,7 @@
     "brand": "reebok",
     "title": "This item is excluded from all promotions.",
     "description": "This item is excluded from all promotions.",
-    "sex": "children",
+    "sex": "man",
     "price": 130,
     "rating": 5,
     "swatches": [
@@ -136,22 +146,27 @@
       "4",
       "5",
       "6",
-      "7"
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
     ]
   },
   {
     "id": "4",
     "category": "shoes",
-    "name": "CLUB C 85",
+    "name": "ADIDAS CLUB C 85",
     "brand": "adidas",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "children",
+    "sex": "man",
     "price": 70,
     "rating": 5,
     "swatches": [
       {
-        "color": "black",
+        "color": "grey",
         "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/a36a0f3fd35d41a9ae01a5ed0126a8a4_9366/Club_C_85_White_AR0455_01_standard.jpg"
       }
     ],
@@ -171,25 +186,25 @@
       "3",
       "5",
       "6",
-      "7"
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
     ]
   },
   {
     "id": "5",
     "category": "shoes",
-    "name": "REEBOK AZTREK",
+    "name": "NIKE AZTREK",
     "brand": "nike",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "children",
+    "sex": "man",
     "price": 80,
     "rating": 5,
-    "swatches": [
-      {
-        "color": "blue",
-        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/bfe8bb63369045caa8a2a997013c7740_9366/Reebok_Aztrek_Blue_DV8816_01_standard.jpg"
-      }
-    ],
+    "swatches": [],
     "availability": [
       1,
       2
@@ -206,7 +221,12 @@
       "3",
       "4",
       "6",
-      "7"
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
     ]
   },
   {
@@ -216,7 +236,7 @@
     "brand": "nike",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "children",
+    "sex": "man",
     "price": 70,
     "rating": 5,
     "swatches": [
@@ -245,17 +265,22 @@
       "3",
       "4",
       "5",
-      "7"
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
     ]
   },
   {
     "id": "7",
     "category": "shoes",
-    "name": "AZTREK",
+    "name": "AIR AZTREK",
     "brand": "air",
     "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
     "description": "This item is excluded from all promotions.",
-    "sex": "children",
+    "sex": "man",
     "price": 80,
     "rating": 5,
     "swatches": [
@@ -285,16 +310,21 @@
       "3",
       "4",
       "5",
-      "6"
+      "6",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
     ]
   },
   {
     "id": "8",
-    "name": "LEFT CHEST STACKED LOGO TEE",
+    "name": "ADIDAS LEFT CHEST STACKED LOGO TEE",
     "brand": "adidas",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "children",
+    "sex": "man",
     "price": 25,
     "rating": 5,
     "swatches": [
@@ -329,7 +359,7 @@
     "brand": "air",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "children",
+    "sex": "man",
     "price": 25,
     "rating": 5,
     "swatches": [
@@ -365,7 +395,7 @@
     "brand": "reebok",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "children",
+    "sex": "man",
     "price": 35,
     "rating": 5,
     "swatches": [
@@ -408,7 +438,7 @@
     "brand": "air",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "children",
+    "sex": "man",
     "price": 25,
     "rating": 5,
     "swatches": [
@@ -443,7 +473,7 @@
   {
     "id": "12",
     "category": "t-shirts",
-    "name": "REEBOK CROSSFIT® OPEN TESTED TEE",
+    "name": "ADIDAS CROSSFIT® OPEN TESTED TEE",
     "brand": "adidas",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
@@ -482,7 +512,7 @@
   {
     "id": "13",
     "category": "t-shirts",
-    "name": "REEBOK CROSSFIT® OPEN TESTED TEE",
+    "name": "NIKE CROSSFIT® OPEN TESTED TEE",
     "brand": "nike",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
@@ -526,11 +556,11 @@
   {
     "id": "14",
     "category": "t-shirts",
-    "name": "REEBOK CROSSFIT SPEEDWICK F.E.F. GRAPHIC T-SHIRT",
+    "name": "NIKE CROSSFIT SPEEDWICK F.E.F. GRAPHIC T-SHIRT",
     "brand": "nike",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "children",
+    "sex": "man",
     "price": 28,
     "rating": 5,
     "swatches": [
@@ -578,7 +608,7 @@
     "brand": "air",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "children",
+    "sex": "man",
     "price": 35,
     "rating": 5,
     "swatches": [
@@ -648,7 +678,7 @@
     "brand": "adidas",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "woman",
+    "sex": "man",
     "price": 65,
     "rating": 5,
     "swatches": [
@@ -767,11 +797,11 @@
   {
     "id": "20",
     "category": "shorts",
-    "name": "REEBOK CROSSFIT® SPEEDWICK SHORTS",
+    "name": "NIKE CROSSFIT® SPEEDWICK SHORTS",
     "brand": "nike",
     "title": "MEN TRAINING",
     "description": "lorem lorem lorem",
-    "sex": "woman",
+    "sex": "man",
     "price": 55,
     "rating": 5,
     "swatches": [
@@ -836,6 +866,204 @@
       "18",
       "19",
       "20"
+    ]
+  },
+  {
+    "id": "22",
+    "category": "shoes",
+    "name": "REEBOK LEGACY LIFTE",
+    "brand": "reebok",
+    "title": "WOMEN TRAINING",
+    "description": "This item is excluded from all promotions.",
+    "sex": "woman",
+    "price": 200,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "lightgray",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/06f944bfbdfb4cc4bf08a9880015bad7_9366/Reebok_Legacy_Lifter_White_DV4397_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/d42eb1b2394748b9bdf5a6b90114ab5e_9366/Reebok_Legacy_Lifter_White_BD4730_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "23",
+      "25",
+      "24",
+      "26"
+    ]
+  },
+  {
+    "id": "23",
+    "category": "shoes",
+    "name": "REEBOK CROSSFIT GRACE",
+    "brand": "reebok",
+    "title": "WOMEN TRAINING",
+    "description": "This item is excluded from all promotions.",
+    "sex": "woman",
+    "price": 100,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "red",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/56fdf458bdb04131baa6a92201047cd8_9366/Reebok_CrossFit_Grace_Cfg-Ruggedrose_CN8385_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/90da4ecf0c064774b0f7a9d70166d506_9366/Reebok_CrossFit_Grace_White_CN7194_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "24",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "24",
+    "category": "shoes",
+    "name": "CLUB C 85 FVS",
+    "brand": "reebok",
+    "title": "WOMEN TRAINING",
+    "description": "This item is excluded from all promotions.",
+    "sex": "woman",
+    "price": 80,
+    "rating": 5,
+    "swatches": [],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/9be0f33d891b45e8ac75a8430020523f_9366/Club_C_85_FVS_White_CN2188_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "25",
+    "category": "shoes",
+    "name": "CLASSIC NYLON",
+    "brand": "reebok",
+    "title": "KIDS CLASSICS",
+    "description": "This item is excluded from all promotions.",
+    "sex": "children",
+    "price": 40,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/d8fe08a375c941cdb5f5a9c40175a513_9366/Classic_Nylon_Multicolor_CN7633_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/a03f3f6a445c464e97eba9a900128674_9366/Classic_Nylon_Multicolor_CN7621_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "24",
+      "26"
+    ]
+  },
+  {
+    "id": "26",
+    "category": "shoes",
+    "name": "CLASSIC LEATHER - TODDLER",
+    "brand": "reebok",
+    "title": "KIDS CLASSICS",
+    "description": "This item is excluded from all promotions.",
+    "sex": "children",
+    "price": 40,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/0ba8d886971b4e3dbceca8d3012ae84f_9366/Classic_Leather_-_Toddler_Green_CN5615_01_standard.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/617213672a4b466f916ba98b016e5d63_9366/Classic_Leather_-_Toddler_Multicolor_DV4573_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/a05fbe830df64329bcb4a8d3012002e8_9366/Classic_Leather_-_Toddler_Beige_CN5612_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "24",
+      "25"
     ]
   }
 ]

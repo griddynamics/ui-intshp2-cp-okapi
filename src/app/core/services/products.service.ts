@@ -27,13 +27,16 @@ export class ProductsService {
     return this.wishListSource.asObservable();
   }
 
-  public getProducts(): Observable<IProduct[]> {
-    return Observable.create((observer) => {
+  public getProducts(queryString?: string): Observable<any> {
+    const { productsURL } = environment;
 
-      this.dataService.get(environment.productsURL).subscribe(({products}) => {
-        this.prepareProductResponse(products);
+    const url = queryString ? `${productsURL}?${queryString}` : productsURL;
+    return Observable.create((observer) => {
+      this.dataService.get(url).subscribe(productsResponse => {
+        this.prepareProductResponse(productsResponse.products);
         this.wishListSource.next(this.wishList);
-        observer.next(this.products);
+        observer.next(productsResponse);
+        observer.complete();
       });
 
     });

@@ -1,40 +1,77 @@
-import { Component, OnInit } from '@angular/core';
-import { IProduct } from 'src/app/shared/interfaces/product';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { IProduct, IFilter } from 'src/app/shared/interfaces/product';
 import { ProductsService } from 'src/app/core/services/products.service';
+import { forkJoin, Observable } from 'rxjs';
+
+import { environment } from 'src/environments/environment.test';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'app-product-list-page',
   templateUrl: './product-list-page.component.html',
   styleUrls: ['./product-list-page.component.scss']
 })
-export class ProductListPageComponent implements OnInit {
-  products: IProduct[] = [];
-  private allProducts: IProduct[] = [];
-  visibleItems = 9;
+export class ProductListPageComponent implements OnInit, OnDestroy {
+  public subscription;
+  public filters: IFilter[] = [];
+  public products: IProduct[] = [];
+  private startFrom = 0;
+  private loadTo = 9;
+  private total = 9;
 
   constructor(
-    private productService: ProductsService
+    private productsService: ProductsService,
+    private dataService: DataService
   ) { }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(data => {
-      this.allProducts = data;
-      this.products = data.slice(0, this.visibleItems);
+    this.subscription = forkJoin(
+      this.loadProducts(this.startFrom, this.loadTo),
+      this.dataService.get(environment.filtersURL)
+    ).subscribe(([productsResponse, filters]) => {
+      const { products, total } = productsResponse;
+
+      this.filters = filters;
+      this.products = products;
+      this.total = total;
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   public wishListHandler(product: IProduct): void {
-    this.productService.toggleWishListProduct(product);
+    this.productsService.toggleWishListProduct(product);
+  }
+
+  get totalAmount(): number {
+    return this.total;
+  }
+
+  set totalAmount(value: number) {
+    this.total = value;
   }
 
   onLoadMore(loadAmount: number): void {
-    this.products = this.allProducts.slice(0, this.products.length + loadAmount);
+    this.startFrom = this.loadTo;
+    this.loadTo = this.loadTo + loadAmount;
+
+    this.loadProducts(this.startFrom, this.loadTo).subscribe(({ total, products }) => {
+      this.products = this.products.concat(products);
+      this.total = total;
+    });
   }
 
   get showLoadMore(): Boolean {
-    if (!this.allProducts.length) { return false; }
+    if (this.total === this.products.length) { return false; }
 
-    return this.allProducts.length > this.products.length;
+    return this.total > this.products.length;
   }
 
+  private loadProducts(from: number, to: number): Observable<any> {
+    return this.productsService.getProducts(`start=${from}&end=${to}`);
+  }
 }

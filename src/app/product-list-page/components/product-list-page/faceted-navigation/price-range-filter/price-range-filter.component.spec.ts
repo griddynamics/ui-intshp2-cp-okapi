@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { PriceRangeFilterComponent } from './price-range-filter.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PriceRangeFilterComponent', () => {
   let component: PriceRangeFilterComponent;
@@ -10,7 +11,7 @@ describe('PriceRangeFilterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PriceRangeFilterComponent ],
-      imports: [ FormsModule ]
+      imports: [ FormsModule, HttpClientTestingModule ]
     })
     .compileComponents();
   }));

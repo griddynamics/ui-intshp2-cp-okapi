@@ -1,8 +1,10 @@
   export const environment = {
     production: false,
     baseURL: 'http://localhost:3000',
-    killswitchesPath: 'config/killswitches.json',
+    killswitchesURL: 'config/killswitches.json',
     productsURL: 'api/products',
+    homepageURL: 'api/homepage',
+    filtersURL: 'api/filters'
   };
 
   export const referenceLinks = {
