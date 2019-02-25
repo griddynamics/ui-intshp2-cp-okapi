@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class AdvertisingAreaComponent {
 
   @Input() content: string;
-  @Input() height?: number;
-  @Input() width?: number;
+  @Input() height ? = 100;
+  @Input() width ? = 470;
 
 }

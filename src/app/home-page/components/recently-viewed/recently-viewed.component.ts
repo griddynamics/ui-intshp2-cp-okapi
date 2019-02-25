@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProduct } from 'src/app/shared/interfaces/product';
-import { DataService } from 'src/app/core/services/data.service';
-import { environment } from 'src/environments/environment';
+import { ProductsService } from 'src/app/core/services/products.service';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class RecentlyViewedComponent implements OnInit, OnDestroy {
   public recentlyViewedIds: string[] = [];
 
   constructor(
-    private dataService: DataService
+    private productsService: ProductsService
   ) { }
 
   ngOnInit() {
@@ -26,11 +25,7 @@ export class RecentlyViewedComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const query = this.recentlyViewedIds.join(',');
-
-    this.subscription = this.dataService.get(`${environment.productsURL}?ids=${query}`).subscribe(data => {
-      this.products = data.products;
-    });
+    this.getProducts();
   }
 
   ngOnDestroy(): void {
@@ -39,6 +34,13 @@ export class RecentlyViewedComponent implements OnInit, OnDestroy {
     }
   }
 
+  private getProducts(): void {
+    const query = this.recentlyViewedIds.join(',');
+
+    this.subscription = this.productsService.getProducts(`ids=${query}`).subscribe(data => {
+      this.products = data.products;
+    });
+  }
 }
 
 
