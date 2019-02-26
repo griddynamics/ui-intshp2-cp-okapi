@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class ProductImagePreviewComponent implements OnInit, OnChanges {
   public selectedImg = 0;
   public swatchesToArray: string[] = [];
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnInit() {
     if (!this.thumbnailImageSrc || !this.swatches || !this.swatches.length) {
       return;
     }
