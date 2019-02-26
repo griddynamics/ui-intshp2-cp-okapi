@@ -7,6 +7,7 @@ import { KillswitchService } from '../../../core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { environment } from 'src/environments/environment';
+import { LoaderService } from 'src/app/core/services/loader.service';
 
 @Component({
   selector: 'app-home-page',
@@ -27,17 +28,19 @@ export class HomePageComponent implements OnInit, OnDestroy {
   constructor(
     public productsService: ProductsService,
     private killswitchService: KillswitchService,
-    private dataService: DataService
+    private dataService: DataService,
+    private loaderService: LoaderService,
   ) { }
 
   ngOnInit(): void {
-
+    this.loaderService.displayLoader();
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
 
     this.subscription = this.dataService.get(environment.homepageURL).subscribe(data => {
       this.products = data.arrivals;
       this.banners = data.banners;
       this.slideShowImages = data.slideshow;
+      this.loaderService.hideLoader();
     });
     this.checkRecentlyViewedItems();
     this.checkWishListItems();

@@ -5,6 +5,7 @@ import { FacetedNavigationComponent } from './faceted-navigation/faceted-navigat
 import { CheckboxFilterComponent } from './faceted-navigation/checkbox-filter/checkbox-filter.component';
 import { PriceRangeFilterComponent } from './faceted-navigation/price-range-filter/price-range-filter.component';
 import { RadioFilterComponent } from './faceted-navigation/radio-filter/radio-filter.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProductListPageComponent', () => {
   let component: ProductListPageComponent;
@@ -12,7 +13,7 @@ describe('ProductListPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ SharedModule ],
+      imports: [ SharedModule, HttpClientTestingModule ],
       declarations: [
         ProductListPageComponent,
         FacetedNavigationComponent,

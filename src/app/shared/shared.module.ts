@@ -18,7 +18,6 @@ import { SafePipe } from './pipes/safe.pipe';
 import { LazyLoadComponent } from './components/lazy-load/lazy-load.component';
 import { GridComponent } from './components/grid/grid.component';
 import { ImgPlaceholderComponent } from '../shared/components/img-placeholder/img-placeholder.component';
-import { LoaderComponent } from './components/loader/loader.component';
 import { SwipeIconComponent } from './components/swipe-icon/swipe-icon.component';
 
 const MODULES = [
@@ -42,7 +41,6 @@ const MODULES = [
     HeadingComponent,
     LoadMoreComponent,
     LazyLoadComponent,
-    LoaderComponent,
     GridComponent,
     ImgPlaceholderComponent,
     SwipeIconComponent,
@@ -60,7 +58,6 @@ const MODULES = [
     HeadingComponent,
     LoadMoreComponent,
     LazyLoadComponent,
-    LoaderComponent,
     GridComponent,
     ImgPlaceholderComponent,
     SwipeIconComponent,
