@@ -5,6 +5,7 @@ import { forkJoin, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment.test';
 import { DataService } from 'src/app/core/services/data.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
 
 @Component({
   selector: 'app-product-list-page',
@@ -21,19 +22,23 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private productsService: ProductsService,
-    private dataService: DataService
+    private dataService: DataService,
+    private loaderService: LoaderService,
   ) { }
 
   ngOnInit() {
+    this.loaderService.displayLoader();
     this.subscription = forkJoin(
       this.loadProducts(this.startFrom, this.loadTo),
       this.dataService.get(environment.filtersURL)
-    ).subscribe(([productsResponse, filters]) => {
+      ).subscribe(([productsResponse, filters]) => {
+
       const { products, total } = productsResponse;
 
       this.filters = filters;
       this.products = products;
       this.total = total;
+      this.loaderService.hideLoader();
     });
   }
 
