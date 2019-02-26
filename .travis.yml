@@ -9,10 +9,16 @@ cache:
     - node_modules
 
 addons:
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+install:
+  - npm install
 
 script:
   - npm run lint
-  - npm run test:headless
   - npm run build
-  - xvfb-run npm run e2e
+  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
