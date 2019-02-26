@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
-import { FacetedNavigationComponent } from '../faceted-navigation.component';
+import { ProductListPageComponent } from '../../product-list-page.component';
 
 @Component({
   selector: 'app-checkbox-filter',
@@ -7,7 +7,7 @@ import { FacetedNavigationComponent } from '../faceted-navigation.component';
   styleUrls: ['./checkbox-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class CheckboxFilterComponent extends FacetedNavigationComponent {
+export class CheckboxFilterComponent extends ProductListPageComponent {
   @Input() public filter;
 
 }

@@ -7,7 +7,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
   styleUrls: ['./product-image-preview.component.scss']
 })
 
-export class ProductImagePreviewComponent implements OnInit, OnChanges {
+export class ProductImagePreviewComponent implements OnChanges {
   @Input() thumbnailImageSrc: string;
   @Input() swatches: any[];
   @Input() selectedSwatch;
@@ -24,9 +24,7 @@ export class ProductImagePreviewComponent implements OnInit, OnChanges {
     this.swatchesToArray = this.swatches.map(el => el.imgSrc);
     this.swatchesToArray.unshift(this.thumbnailImageSrc);
     this.imageSrc = this.thumbnailImageSrc;
-  }
 
-  ngOnChanges(): void {
     if (!this.selectedSwatch) {
       return;
     }
@@ -35,7 +33,6 @@ export class ProductImagePreviewComponent implements OnInit, OnChanges {
     const currImgIdx = this.swatchesToArray.findIndex(el => el === imgSrc);
     this.setSelectedImg(imgSrc, currImgIdx);
   }
-
   setSelectedImg(swatch, i) {
     this.imageSrc = swatch;
     this.selectedImg = i;

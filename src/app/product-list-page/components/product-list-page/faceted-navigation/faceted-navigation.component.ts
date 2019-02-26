@@ -23,10 +23,6 @@ export class FacetedNavigationComponent {
     this.isShowed = true;
   }
 
-  toggleCheck(event) {
-    event.target.checked ? this.isChecked = true : this.isChecked = false;
-  }
-
   dropdownToggle() {
     this.isDropped = !this.isDropped;
   }

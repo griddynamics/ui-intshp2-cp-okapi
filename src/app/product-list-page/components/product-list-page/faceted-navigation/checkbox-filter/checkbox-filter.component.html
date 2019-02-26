@@ -3,7 +3,7 @@
     <i *ngIf="isDropped" class="fas fa-caret-up"></i>
   </span>
   <div *ngFor="let field of filter.fields" class="filter-line hidden" [ngClass]="{'dropped': isDropped}">
-    <label for="checkbox-{{field}}" class="checkbox" (change)="toggleCheck($event)">{{field}}
+    <label for="checkbox-{{field}}" class="checkbox" (change)="toggleCheck($event, filter.name, field)">{{field}}
       <input id="checkbox-{{field}}" type="checkbox"/>
       <span class="custom-checkbox"></span>
     </label>

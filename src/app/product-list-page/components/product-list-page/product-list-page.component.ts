@@ -19,6 +19,8 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   private loadTo = 9;
   private total = 9;
 
+  public isChecked = false;
+
   constructor(
     private productsService: ProductsService,
     private dataService: DataService
@@ -73,5 +75,16 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
 
   private loadProducts(from: number, to: number): Observable<any> {
     return this.productsService.getProducts(`start=${from}&end=${to}`);
+  }
+
+  toggleCheck(event, fieldName, field) {
+    event.target.checked ? this.isChecked = true : this.isChecked = false;
+    let res;
+    if(typeof field === 'object') {
+      res = `${fieldName}=${field.join(',')}`;
+      console.log(res)
+    } else {
+      console.log(`${fieldName}=${field}`)
+    }
   }
 }

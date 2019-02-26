@@ -6,17 +6,17 @@
     <div class="filter-line filter-line-range">
       <span class="range-values left">${{range[0]}}</span>
       <span class="range-values right">${{range[1]}}</span>
-      <input type="range" [value]="range[0]" min="{{filter.range[0]}}" max="{{filter.range[1]}}" [step]="step" [(ngModel)]="range[0]" (change)="valueChanged($event)"/>
-      <input type="range" [value]="range[1]" min="{{filter.range[0]}}" max="{{filter.range[1]}}" [step]="step" [(ngModel)]="range[1]" (change)="valueChanged($event)"/>
+      <input type="range" [value]="range[0]" min="{{filter.range[0]}}" max="{{filter.range[1]}}" [step]="step" [(ngModel)]="range[0]" (change)="valueChanged($event)" (change)="toggleCheck($event,filter.name, range)"/>
+      <input type="range" [value]="range[1]" min="{{filter.range[0]}}" max="{{filter.range[1]}}" [step]="step" [(ngModel)]="range[1]" (change)="valueChanged($event)" (change)="toggleCheck($event,filter.name, range)"/>
     </div>
     <div class="filter-line filter-line-price">
       <div class="filter-line filter-price-from">
         <span>From</span>
-        <input type="number" min="{{filter.range[0]}}" max="{{filter.range[1]}}" (blur)="validateMin($event)" [max]="range[1]" required value="{{range[0]}}" [(ngModel)]="range[0]"/>
+        <input type="number" min="{{filter.range[0]}}" max="{{filter.range[1]}}" (blur)="validateMin($event)" [max]="range[1]" required value="{{range[0]}}" [(ngModel)]="range[0]" (change)="toggleCheck($event,filter.name, range)"/>
       </div>
       <div class="filter-line filter-price-to">
         <span>To</span>
-        <input type="number" min="{{filter.range[0]}}" max="{{filter.range[1]}}" (blur)="validateMax($event)" [min]="range[0]" required value="{{range[1]}}" [(ngModel)]="range[1]"/>
+        <input type="number" min="{{filter.range[0]}}" max="{{filter.range[1]}}" (blur)="validateMax($event)" [min]="range[0]" required value="{{range[1]}}" [(ngModel)]="range[1]" (change)="toggleCheck($event,filter.name, range)"/>
       </div>
     </div>
   </div>
