@@ -20,5 +20,6 @@ install:
 
 script:
   - npm run lint
-  - npm run build
+  - npm run build:prod
+  - npm run coverage
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
