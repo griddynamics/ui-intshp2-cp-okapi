@@ -22,6 +22,7 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
     private loaderService: LoaderService,
     ) { }
   ngOnInit() {
+    this.loaderService.displayLoader();
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
           return;
@@ -35,12 +36,11 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
       }
       )).subscribe(product => {
         this.product = product;
-        this.loaderService.stopLoading();
+        this.loaderService.hideLoader();
       });
     }
 
     ngOnDestroy() {
-      this.loaderService.stopLoading();
       if (this.productSubscription) {
         this.productSubscription.unsubscribe();
       }

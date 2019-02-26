@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoaderService {
-  startLoading() {
-    document.getElementById('spinner').style.display = 'block';
+  private spinner = document.getElementById('spinner');
+
+  hideLoader() {
+    this.spinner.style.display = 'none';
   }
 
-  stopLoading() {
-    document.getElementById('spinner').style.display = 'none';
+  displayLoader() {
+    this.spinner.style.display = '';
   }
 }

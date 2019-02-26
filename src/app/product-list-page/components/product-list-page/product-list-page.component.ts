@@ -27,21 +27,22 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.loaderService.displayLoader();
     this.subscription = forkJoin(
       this.loadProducts(this.startFrom, this.loadTo),
       this.dataService.get(environment.filtersURL)
       ).subscribe(([productsResponse, filters]) => {
-      this.loaderService.stopLoading();
+
       const { products, total } = productsResponse;
 
       this.filters = filters;
       this.products = products;
       this.total = total;
+      this.loaderService.hideLoader();
     });
   }
 
   ngOnDestroy(): void {
-    this.loaderService.startLoading();
     if (this.subscription) {
       this.subscription.unsubscribe();
     }

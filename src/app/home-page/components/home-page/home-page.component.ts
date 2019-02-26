@@ -33,14 +33,14 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-
+    this.loaderService.displayLoader();
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
 
     this.subscription = this.dataService.get(environment.homepageURL).subscribe(data => {
       this.products = data.arrivals;
       this.banners = data.banners;
       this.slideShowImages = data.slideshow;
-      this.loaderService.stopLoading();
+      this.loaderService.hideLoader();
     });
     this.checkRecentlyViewedItems();
     this.checkWishListItems();
@@ -56,7 +56,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.loaderService.startLoading();
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
