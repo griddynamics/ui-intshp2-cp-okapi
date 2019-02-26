@@ -4,6 +4,7 @@ import { mergeMap } from 'rxjs/operators';
 
 import { ProductDetailsPageService } from 'src/app/core/services/product-details-page.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
+import { LoaderService } from 'src/app/core/services/loader.service';
 
 @Component({
   selector: 'app-product-details-page',
@@ -18,6 +19,7 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private productService: ProductDetailsPageService,
     private router: Router,
+    private loaderService: LoaderService,
     ) { }
   ngOnInit() {
     this.router.events.subscribe((evt) => {
@@ -33,15 +35,19 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
       }
       )).subscribe(product => {
         this.product = product;
+        this.loaderService.stopLoading();
       });
-  }
+    }
 
-  ngOnDestroy() {
-    this.productSubscription.unsubscribe();
-  }
+    ngOnDestroy() {
+      this.loaderService.stopLoading();
+      if (this.productSubscription) {
+        this.productSubscription.unsubscribe();
+      }
+    }
 
-  markAsRecentlyViewed() {
-    const recentlyViewedIds = JSON.parse(localStorage.getItem('recentlyViewedIds')) || [];
+    markAsRecentlyViewed() {
+      const recentlyViewedIds = JSON.parse(localStorage.getItem('recentlyViewedIds')) || [];
     this.route.params.subscribe(data => {
       if (!recentlyViewedIds.includes(data.id)) {
         recentlyViewedIds.push(data.id);

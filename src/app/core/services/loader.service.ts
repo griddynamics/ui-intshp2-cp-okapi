@@ -6,24 +6,11 @@ import { Subject } from 'rxjs';
 })
 
 export class LoaderService {
-  private _loading = false;
-  loadingStatus = new Subject();
-  loadingState = this.loadingStatus.asObservable();
-
-  get loading() {
-    return this._loading;
-  }
-
-  set loading(value) {
-    this._loading = value;
-    this.loadingStatus.next(value);
-  }
-
   startLoading() {
-    this.loading = true;
+    document.getElementById('spinner').style.display = 'block';
   }
 
   stopLoading() {
-    this.loading = false;
+    document.getElementById('spinner').style.display = 'none';
   }
 }

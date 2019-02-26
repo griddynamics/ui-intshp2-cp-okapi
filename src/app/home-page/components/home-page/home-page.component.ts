@@ -7,6 +7,7 @@ import { KillswitchService } from '../../../core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { DataService } from 'src/app/core/services/data.service';
 import { environment } from 'src/environments/environment';
+import { LoaderService } from 'src/app/core/services/loader.service';
 
 @Component({
   selector: 'app-home-page',
@@ -27,7 +28,8 @@ export class HomePageComponent implements OnInit, OnDestroy {
   constructor(
     public productsService: ProductsService,
     private killswitchService: KillswitchService,
-    private dataService: DataService
+    private dataService: DataService,
+    private loaderService: LoaderService,
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
       this.products = data.arrivals;
       this.banners = data.banners;
       this.slideShowImages = data.slideshow;
+      this.loaderService.stopLoading();
     });
     this.checkRecentlyViewedItems();
     this.checkWishListItems();
@@ -53,6 +56,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.loaderService.startLoading();
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
