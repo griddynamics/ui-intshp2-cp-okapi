@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/dnistrova/ui-intshp2-cp-okapi.svg?branch=master)](https://travis-ci.com/dnistrova/ui-intshp2-cp-okapi)
+[![Build Status](https://travis-ci.com/dnistrova/ui-intshp2-cp-okapi.svg?branch=master)](https://travis-ci.com/dnistrova/ui-intshp2-cp-okapi?branch=master)
 
 # CapstoneAngularProject
 
