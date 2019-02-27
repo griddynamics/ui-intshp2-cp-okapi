@@ -100,7 +100,7 @@ hr {
   align-items: center;
   margin-top: 20px;
   margin-right: 50px;
-  
+
   p {
     font-family: $main-font-bold;
     color: $black-color;
@@ -115,11 +115,23 @@ hr {
   width: 250px;
   margin-top: 20px;
 
+  a {
+
+    &.disabled {
+      pointer-events: none;
+      opacity: .5;
+    }
+
+    &.abled {
+      pointer-events: all;
+      opacity: 1;
+    }
+  }
+
   i {
     font-family: "Font Awesome 5 Free";
     font-style: normal;
     font-size: 20px;
-    cursor: pointer;
 
     &:active, &:visited {
       color: $primary-color;

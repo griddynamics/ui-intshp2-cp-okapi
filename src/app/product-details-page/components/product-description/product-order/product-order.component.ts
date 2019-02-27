@@ -53,6 +53,10 @@ export class ProductOrderComponent implements OnInit {
     this.cartService.toggleCart(this.product, view);
   }
 
+  disableButton() {
+    return this.productConfiguration.size && this.productConfiguration.swatch;
+  }
+
   public toggleWishList(): void {
     this.productsService.toggleWishListProduct(this.product);
   }

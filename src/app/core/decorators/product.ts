@@ -1,7 +1,8 @@
 import { IProduct } from 'src/app/shared/interfaces/product';
 
-export function addToCartDecorator(product: IProduct, ids: String[]): IProduct {
-  product.addedToCart = ids.includes(product.id);
+export function addToCartDecorator(product: IProduct, ids): IProduct {
+  const res = ids.findIndex(el => el.id === product.id);
+  product.addedToCart = res === -1 ? false : true;
   return product;
 }
 
