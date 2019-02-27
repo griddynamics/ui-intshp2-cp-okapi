@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { IFilter } from 'src/app/shared/interfaces/product';
 
 @Component({
@@ -9,9 +9,11 @@ import { IFilter } from 'src/app/shared/interfaces/product';
 })
 export class FacetedNavigationComponent {
   public isShowed = false;
-  public isChecked = false;
   public isDropped = false;
   public subscription;
+  private currentFilters = {};
+
+  @Output() filterChange = new EventEmitter();
 
   @Input() filters: IFilter[] = [];
 
@@ -25,5 +27,18 @@ export class FacetedNavigationComponent {
 
   dropdownToggle() {
     this.isDropped = !this.isDropped;
+  }
+
+  onFilterChange({ name, value }) {
+    this.currentFilters[name] = value;
+    for (let key in this.currentFilters) {
+      if (!this.currentFilters[key].length) {
+        delete this.currentFilters[key]
+      }
+      if(typeof this.currentFilters[key] === 'object') {
+        this.currentFilters[key] = this.currentFilters[key].join(',')
+      }
+    }
+    this.filterChange.emit(this.currentFilters);
   }
 }

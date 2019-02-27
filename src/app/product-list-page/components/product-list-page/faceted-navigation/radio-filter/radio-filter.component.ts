@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
-import { ProductListPageComponent } from '../../product-list-page.component';
+import { FacetedNavigationComponent } from '../faceted-navigation.component';
+
+import { BaseFilter } from '../filterBase';
 
 @Component({
   selector: 'app-radio-filter',
@@ -7,8 +9,8 @@ import { ProductListPageComponent } from '../../product-list-page.component';
   styleUrls: ['./radio-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RadioFilterComponent extends ProductListPageComponent {
-
+export class RadioFilterComponent extends BaseFilter {
   @Input() public filter;
 
+  
 }

@@ -5,6 +5,7 @@ import { forkJoin, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment.test';
 import { DataService } from 'src/app/core/services/data.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-product-list-page',
@@ -18,12 +19,13 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   private startFrom = 0;
   private loadTo = 9;
   private total = 9;
-
-  public isChecked = false;
+  public currentFilters;
+  public route;
 
   constructor(
     private productsService: ProductsService,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
       this.total = total;
     });
   }
+
 
   ngOnDestroy(): void {
     if (this.subscription) {
@@ -77,14 +80,20 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
     return this.productsService.getProducts(`start=${from}&end=${to}`);
   }
 
-  toggleCheck(event, fieldName, field) {
-    event.target.checked ? this.isChecked = true : this.isChecked = false;
-    let res;
-    if(typeof field === 'object') {
-      res = `${fieldName}=${field.join(',')}`;
-      console.log(res)
-    } else {
-      console.log(`${fieldName}=${field}`)
-    }
+  public onFilterChange(currentFilters) {
+    this.router.navigate(['/products'], { queryParams: currentFilters });
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.route = event.url;
+        this.getFilteredProducts(this.route);
+      }
+    });
   }
+
+  public getFilteredProducts(route) {
+    this.dataService.get(`api${route}`).subscribe(filteredProducts => {
+      this.products = filteredProducts.products;
+    });
+  }
+
 }

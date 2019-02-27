@@ -2,8 +2,8 @@
 <aside class="all-products-filter" [ngClass]="{'show': isShowed, 'hide': !isShowed}">
   <a class="closebtn" (click)="closeNav()">&times;</a>
   <div *ngFor="let filter of filters">
-    <app-radio-filter *ngIf="filter.type == 'radio'" [filter]="filter"></app-radio-filter>
-    <app-price-range-filter *ngIf="filter.type == 'range'" [filter]="filter"></app-price-range-filter>
-    <app-checkbox-filter *ngIf="filter.type == 'checkbox'" [filter]="filter"></app-checkbox-filter>
+    <app-radio-filter *ngIf="filter.type == 'radio'" [filter]="filter" (filterChange)="onFilterChange($event)"></app-radio-filter>
+    <app-price-range-filter *ngIf="filter.type == 'range'" [filter]="filter" (filterChange)="onFilterChange($event)"></app-price-range-filter>
+    <app-checkbox-filter *ngIf="filter.type == 'checkbox'" [filter]="filter" (filterChange)="onFilterChange($event)"></app-checkbox-filter>
   </div>
 </aside>
