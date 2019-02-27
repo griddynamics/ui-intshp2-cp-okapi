@@ -8,7 +8,12 @@
 body {
   background: $bg-color;
   font-family: $main-font-regular;
+//  overflow: hidden;
 }
+
+// body.modal-open {
+//   overflow: hidden;
+// }
 
 a {
   text-decoration: none;

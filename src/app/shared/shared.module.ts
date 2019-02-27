@@ -22,6 +22,9 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { SwipeIconComponent } from './components/swipe-icon/swipe-icon.component';
 import { PopupWindowComponent } from './components/popup-window/popup-window.component';
 import { ModalModule } from './components/modal/modal.module';
+// import { ItemForCartComponent } from './components/item-for-cart/item-for-cart.component';
+import { ProductItemForCartComponent } from './components/product-item/product-item-for-cart/product-item-for-cart.component';
+ import { CounterComponent } from './components/counter/counter.component';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const MODULES = [
@@ -52,6 +55,9 @@ const MODULES = [
     ImgPlaceholderComponent,
     SwipeIconComponent,
     PopupWindowComponent,
+    // ItemForCartComponent,
+    ProductItemForCartComponent,
+    CounterComponent,
   ],
   imports: [...MODULES],
   exports: [
@@ -71,6 +77,9 @@ const MODULES = [
     ImgPlaceholderComponent,
     SwipeIconComponent,
     PopupWindowComponent,
+    // ItemForCartComponent,
+    ProductItemForCartComponent,
+    CounterComponent,
   ],
   entryComponents: [PopupWindowComponent],
 })

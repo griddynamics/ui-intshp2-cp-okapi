@@ -8,6 +8,7 @@
     left:0;
     right:0;
     bottom:0;
+    z-index: 10;
   }
   
   h1 { font-family: Lato; }  
@@ -22,6 +23,7 @@
     left:0;
     right:0;
     bottom:0;
+    z-index: 10;
   }
   
   .box{
@@ -29,6 +31,14 @@
     background:white;
   //  overflow: hidden; 
    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+   border-radius: 1px;
+   z-index: 10;
   }
 
+
+  body {
+    // background: $bg-color;
+    // font-family: $main-font-regular;
+  overflow: hidden;
+  }
   

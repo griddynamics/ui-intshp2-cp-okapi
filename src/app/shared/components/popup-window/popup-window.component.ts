@@ -9,27 +9,29 @@ import { ProductsService } from 'src/app/core/services/products.service';
   styleUrls: ['./popup-window.component.scss']
 })
 export class PopupWindowComponent implements OnInit {
-    @ViewChild('wrapper') wrapper: ElementRef;
-    @Input() products: IProduct[] = [];
-    private allProducts: IProduct[] = [];
-    public visibleWishItems = 3;
-    constructor(
-      private productService: ProductsService,
-      public context: ModalContext
-    ) { }
-    ngOnInit() {
-      this.productService.getWishList().subscribe(data => {
-        this.allProducts = data;
-        this.products = data.slice(0, this.visibleWishItems);
-      });
-    }
-    onLoadMore(loadAmount: number): void {
-      this.products = this.allProducts.slice(0, this.products.length + loadAmount);
-    }
-    get showLoadMore(): Boolean {
-      if (!this.allProducts.length) { return false; }
-      return this.allProducts.length > this.products.length;
-    }
+
+  @Input() products: IProduct[] = [];
+  private allProducts: IProduct[] = [];
+  constructor(
+    private productService: ProductsService,
+    public context: ModalContext
+   ) { }
+  ngOnInit() {
+    this.productService.getWishList().subscribe(data => {
+      this.allProducts = data;
+      this.products = data;
+      console.log(this.products);
+    });
+  }
+    // @ViewChild('wrapper') wrapper: ElementRef;
+    // @Input() products: IProduct[] = [];
+    // private allProducts: IProduct[] = [];
+    // constructor(
+    //   public context: ModalContext
+    // ) { }
+    // ngOnInit() {
+
+    // }
 //   constructor(public context: ModalContext) {}
 
 //   ngOnInit() {

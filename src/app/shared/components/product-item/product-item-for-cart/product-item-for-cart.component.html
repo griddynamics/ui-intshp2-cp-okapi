@@ -1,0 +1,43 @@
+<app-lazy-load>
+    <!-- <div *ngIf="product" class="product-item-wrapper" [routerLink]="['/products/',product.id]"> -->
+      <!-- <div *ngIf="isOutOfStock" class="out-of-stock-logo"></div> -->
+      <div class="product-item-short">
+        <div class="prod">
+          <div class="img-prod">Product</div>
+             <div *ngFor ="let product of products" class="preview-img-short lazy-load" [attr.data-bg-src]="currentThumbnail" [ngStyle]="{'background-image': swatchThumbnail}"></div> 
+        </div>
+          <div class="prod">
+            <div>Name</div>
+          <h2 *ngFor ="let product of products">{{product.name}}</h2>
+          </div> 
+          <div class="prod">
+              <div>Color</div>
+            <h2>Blue</h2>
+            </div> 
+         <div class="prod">
+            <div>Price</div>
+            <h2 class="price" *ngFor ="let product of products">{{product.price | currency:'USD'}}</h2> 
+          </div>
+          <div class="prod">
+              <div>Quantity</div>
+              <div  *ngFor ="let product of products; let index = index" class="select-quantity">
+                  <!-- <app-counter [quantity]="quantity"></app-counter> -->
+                  <h2>{{clicks}}</h2>
+              <app-counter (onChanged)="onChanged($event)"></app-counter>
+            </div>
+            </div>
+            <div class="prod">
+                <div>Remove</div>
+               <h2>Remove</h2> 
+               </div>
+              <div class="prod">
+                  <div>Total</div>
+              <h2 class="price" *ngFor ="let product of products">{{product.price | currency:'USD'}}</h2>  
+        </div>
+      <!-- </div>  -->
+     </div> 
+     </app-lazy-load>
+  
+     <!-- <h2 *ngFor = "let product of products">
+       {{product.name}}
+     </h2> -->

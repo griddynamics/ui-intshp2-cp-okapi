@@ -1,5 +1,7 @@
- <button (click)="context.resolve()">x</button>
- <div class="product" *ngFor="let product of products;">
-      <app-product-item-short [product]="product"></app-product-item-short>
- </div> 
-  
+ <button class="close" (click)="context.resolve()">x</button>
+ <div class="heading-wrapper">
+        <h2><span class="first-word">YOUR</span>CART</h2>
+        </div>
+            <app-product-item-for-cart></app-product-item-for-cart>
+    
+        
