@@ -4,7 +4,10 @@ import {
   ElementRef,
   OnInit,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  Input,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
@@ -20,18 +23,13 @@ enum SLIDE_DIRECTION {
   styleUrls: ['./slideshow.component.scss']
 })
 
-export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @ViewChild('slidesHolder') slidesHolder: ElementRef;
   @ViewChild('next') next: ElementRef;
   @ViewChild('back') back: ElementRef;
   @ViewChild('bullet') bullet: ElementRef;
 
-  responseImgs: any[] = [
-    'assets/img/slideshow/forged-ground-featured-official-merch-es-1540x650.jpg',
-    'assets/img/slideshow/viking-medieval-escudos-cascos-cuernos-espadass-accesorios-forgedground-1540x650.jpg',
-    'assets/img/slideshow/banner-main1-1540x650.jpg',
-    'assets/img/slideshow/banner-main2-1540x650.jpg'
-  ];
+  @Input() slideShowImages: any[];
 
   public isHovered = false;
   public selectedSlideIndex = 0;
@@ -52,12 +50,23 @@ export class SlideshowComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.slidesLength = this.responseImgs.length;
+    if (!this.slideShowImages) {
+      return;
+    }
+    this.calculateSizes();
+    this.slideshowTransitionEnabled = this.killswitchService.getKillswitch('slideshowTransitionEnabled');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.calculateSizes();
+  }
+
+  private calculateSizes(): void {
+    this.slidesLength = this.slideShowImages.length;
     this.totalSlidesSize = this.slidesLength * 100;
     this.slidesHolder.nativeElement.style.width = this.totalSlidesSize + '%';
     this.translateStep = 100 / this.slidesLength;
     this.currentTranslatePosition = 0;
-    this.slideshowTransitionEnabled = this.killswitchService.getKillswitch('slideshowTransitionEnabled');
   }
 
   ngAfterViewInit(): void {

@@ -2,14 +2,14 @@
   <div class="wrapper" (click)="stop()" (mouseleave)='continue()' (mouseenter)='pause()'>
     <div class="slides-holder" #slidesHolder>
       <div class="slide-item" [ngClass]="{animate: selectedSlideIndex === i}" #item [style.width.%]="translateStep"
-        *ngFor="let img of responseImgs; let i = index">
+        *ngFor="let img of slideShowImages; let i = index">
         <app-lazy-load>
             <img [attr.data-src]="img" class="lazy-load" alt="slide">
         </app-lazy-load>
       </div>
     </div>
     <div class="bullets">
-      <div [ngClass]="{orange: selectedSlideIndex === index}" *ngFor="let i of responseImgs; let index=index" (click)="bulletHandler(index)"></div>
+      <div [ngClass]="{orange: selectedSlideIndex === index}" *ngFor="let i of slideShowImages; let index=index" (click)="bulletHandler(index)"></div>
     </div>
     <button #back id="buttonBack"><i class="fas fa-chevron-left"></i></button>
     <button #next id="buttonNext"><i class="fas fa-chevron-right"></i></button>

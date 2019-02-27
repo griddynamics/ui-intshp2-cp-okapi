@@ -8,33 +8,26 @@ import { IFilter } from 'src/app/shared/interfaces/product';
   encapsulation: ViewEncapsulation.None
 })
 export class FacetedNavigationComponent {
+  public isShowed = false;
+  public isChecked = false;
+  public isDropped = false;
+  public subscription;
 
-  filters: IFilter[] = [
-    {
-      'type': 'radio',
-      'name': 'gender',
-      'fields': ['man', 'woman', 'children']
-    },
-    {
-      'type': 'checkbox',
-      'name': 'category',
-      'fields': ['coats', 'panties', 'shoes', 'underwear']
-    },
-    {
-      'type': 'checkbox',
-      'name': 'size',
-      'fields': ['s', 'm', 'l', 'xl']
-    },
-    {
-      'type': 'range',
-      'name': 'price',
-      'range': [25, 130]
-    },
-    {
-      'type': 'checkbox',
-      'name': 'brand',
-      'fields': ['reebock', 'addidas', 'nike', 'active']
-    }
-  ];
+  @Input() filters: IFilter[] = [];
 
+  closeNav() {
+    this.isShowed = false;
+  }
+
+  openNav() {
+    this.isShowed = true;
+  }
+
+  toggleCheck(event) {
+    event.target.checked ? this.isChecked = true : this.isChecked = false;
+  }
+
+  dropdownToggle() {
+    this.isDropped = !this.isDropped;
+  }
 }

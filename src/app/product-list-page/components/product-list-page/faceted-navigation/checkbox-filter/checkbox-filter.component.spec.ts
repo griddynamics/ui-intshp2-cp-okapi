@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { CheckboxFilterComponent } from './checkbox-filter.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CheckboxFilterComponent', () => {
   let component: CheckboxFilterComponent;
@@ -10,7 +11,7 @@ describe('CheckboxFilterComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CheckboxFilterComponent ],
-      imports: [ FormsModule ]
+      imports: [ FormsModule, HttpClientTestingModule ]
     })
     .compileComponents();
   }));

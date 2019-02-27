@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   baseURL: 'http://localhost:4200',
-  killswitchesPath: 'assets/config/killswitches.json',
+  killswitchesURL: 'assets/config/killswitches.json',
   productsURL: 'assets/mocks/products.json',
-  pdpPath: 'assets/mocks/pdp.json'
+  pdpURL: 'assets/mocks/pdp.json',
+  homepageURL: 'assets/mocks/homepage.json'
 };
 
 export const referenceLinks = {

@@ -32,12 +32,12 @@ function deleteSubscription(req, res) {
 
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 
+
 function getHomepage(req, res) {
     const randomProducts = new Set();
-    const productMockCopy = JSON.parse(JSON.stringify(productsMOCK.find((({ id }) => id === req.params.id))));
-
+    const productClone = JSON.parse(JSON.stringify(productsMOCK))
     while (Array.from(randomProducts).length !== 6) {
-        const cleanedUpProduct = _cleanUpProductProperties(productMockCopy[Math.floor(Math.random() * productsMOCK.length)])
+        const cleanedUpProduct = _cleanUpProductProperties(productClone[Math.floor(Math.random() * productsMOCK.length)])
         randomProducts.add(cleanedUpProduct)
     }
 
@@ -95,8 +95,11 @@ function getProducts(req, res) {
         }
     }
 
-    if (query.category) {
-        cleanedProducts = cleanedProducts.filter(el => el.category === query.category)
+    if (query.categories) {
+        const categoriesArr = query.categories.split(',');
+        cleanedProducts = cleanedProducts.filter(el => {
+            return categoriesArr.some(category => category === el.category)
+        })
     }
 
     if (query.gender) {
@@ -135,9 +138,10 @@ function notFound(req, res) {
 }
 
 function _cleanUpProductProperties(product) {
+    const productClone = JSON.parse(JSON.stringify(product))
   PRODUCTS_REDUNDANT_PROPS.forEach(property => {
-      delete product[property];
+      delete productClone[property];
   });
 
-  return product;
+  return productClone;
 }

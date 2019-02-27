@@ -29,6 +29,24 @@ export class ProductsService {
   public getWishListIds(): string[] {
     return this.wishListIds;
   }
+  public getWishList(): Observable<IProduct[]> {
+    return this.wishListSource.asObservable();
+  }
+
+  public getProducts(queryString?: string): Observable<any> {
+    const { productsURL } = environment;
+
+    const url = queryString ? `${productsURL}?${queryString}` : productsURL;
+    return Observable.create((observer) => {
+      this.dataService.get(url).subscribe(productsResponse => {
+        this.prepareProductResponse(productsResponse.products);
+        this.wishListSource.next(this.wishList);
+        observer.next(productsResponse);
+        observer.complete();
+      });
+
+    });
+  }
 
   public addToWishList(product: IProduct): void {
     product.addedToWishList = true;
@@ -66,22 +84,6 @@ export class ProductsService {
 
       return currentProduct;
     });
-  }
-
-  public getProducts(): Observable<IProduct[]> {
-    return Observable.create((observer) => {
-
-      this.dataService.get(environment.productsURL).subscribe(({products}) => {
-        this.prepareProductResponse(products);
-        this.wishListSource.next(this.wishList);
-        observer.next(this.products);
-        observer.complete();
-      });
-    });
-  }
-
-  public getWishList(): Observable<IProduct[]> {
-    return this.wishListSource.asObservable();
   }
 
   private updateWishList(): void {

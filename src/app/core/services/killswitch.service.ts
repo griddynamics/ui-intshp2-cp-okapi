@@ -13,7 +13,7 @@ export class KillswitchService {
     constructor(private dataService: DataService) {}
 
     public loadConfig(): Promise<void> {
-        return this.dataService.get(environment.killswitchesPath)
+        return this.dataService.get(environment.killswitchesURL)
             .toPromise()
             .then(response => {
                 this.killswitches = response;
