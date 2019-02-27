@@ -30,7 +30,7 @@
         <p>Price : {{productConfiguration.price | currency:'USD':true}}</p>
       </div>
       <div class="order">
-          <a *ngIf="!disableButton(); else ableAddToCard" class="disabled" (click)="toggleCart()"><i class="fas fa-cart-plus" [ngClass]="{'added-to-cart': product?.addedToCart}"></i></a>
+          <div *ngIf="!product.addedToCart; else viewInCart"><button disabled="true" *ngIf="!disableButton(); else ableAddToCard" class="disabled" (click)="toggleCart()"><i class="fas fa-cart-plus" [ngClass]="{'added-to-cart': product?.addedToCart}"></i><span class="tooltiptext">Choose size and color</span></button></div>
           <i *ngIf="wishListEnabled" class="to-wish-list" (click)="toggleWishList()" [ngClass]="{ 'added-to-wishlist': product?.addedToWishList}"></i>
           <button [routerLink]="['/order-page']" class="order-button">
             <span>
@@ -42,5 +42,8 @@
   </div>
 
 <ng-template #ableAddToCard>
-  <a class="abled" (click)="toggleCart()"><i class="fas fa-cart-plus" [ngClass]="{'added-to-cart': product?.addedToCart}"></i></a>
+  <button (click)="toggleCart()"><i class="fas fa-cart-plus" [ngClass]="{'added-to-cart': product?.addedToCart}"></i></button>
+</ng-template>
+<ng-template #viewInCart>
+    <p (click)="addToCart()" class="cart added"><span>view in cart</span><i class="fas fa-cart-plus"></i></p>
 </ng-template>

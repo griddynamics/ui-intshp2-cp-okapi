@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 
 
 import { DataService } from 'src/app/core/services/data.service';
@@ -13,7 +13,7 @@ import { CartService } from 'src/app/core/services/cart.service';
   templateUrl: './product-order.component.html',
   styleUrls: ['./product-order.component.scss']
 })
-export class ProductOrderComponent implements OnChanges {
+export class ProductOrderComponent implements OnChanges, OnInit {
   @Input() product: IProduct;
   public selected: number;
   selectedSwatch: number;
@@ -32,7 +32,24 @@ export class ProductOrderComponent implements OnChanges {
     private dataService: DataService,
     private cartService: CartService,
     private killswitchService: KillswitchService
-    ) { }
+  ) { }
+
+  ngOnInit(): void {
+    const lsArr = JSON.parse(localStorage.getItem('cartProductIds'));
+
+    if (lsArr) {
+      const currItemInLs = lsArr.find(el => el.id === this.product.id);
+      if (!currItemInLs) {
+        return;
+      }
+      this.productConfiguration.count = currItemInLs.quantity;
+      this.productConfiguration.size = currItemInLs.size;
+      this.productConfiguration.price = currItemInLs.price;
+      this.productConfiguration.swatch = currItemInLs.swatch;
+      this.selectedSwatch = this.product.swatches.findIndex(el => el.color === currItemInLs.swatch.color);
+      this.selected = this.product.sizes.indexOf(currItemInLs.size);
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
@@ -49,6 +66,10 @@ export class ProductOrderComponent implements OnChanges {
   }
 
   public addToCart() {
+    if (this.product.addedToCart) {
+      alert('Open add to cart popup here');
+      return;
+    }
     this.dataService.create('add-to-cart/', this.productConfiguration).subscribe();
   }
 
@@ -57,6 +78,7 @@ export class ProductOrderComponent implements OnChanges {
       id: this.product.id,
       quantity: this.productConfiguration.count,
       swatch: this.productConfiguration.swatch,
+      price: this.productConfiguration.price,
       size: this.productConfiguration.size,
     };
     this.cartService.toggleCart(this.product, view);
