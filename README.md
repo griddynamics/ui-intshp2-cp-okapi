@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.com/dnistrova/ui-intshp2-cp-okapi.svg?branch=master)](https://travis-ci.com/dnistrova/ui-intshp2-cp-okapi)
 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e20e1dbba17476d746bd/test_coverage)](https://codeclimate.com/github/dnistrova/ui-intshp2-cp-okapi/test_coverage)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/e20e1dbba17476d746bd/maintainability)](https://codeclimate.com/github/dnistrova/ui-intshp2-cp-okapi/maintainability)
+
 # CapstoneAngularProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
