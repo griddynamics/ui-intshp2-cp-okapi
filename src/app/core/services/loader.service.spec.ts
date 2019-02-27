@@ -29,7 +29,9 @@ describe('LoaderService', () => {
     const spinner = document.getElementById('spinner');
     const service: LoaderService = TestBed.get(LoaderService);
     service.hideLoader();
-    expect(spinner.style.display).toEqual('none');
+    setTimeout(() => {
+      expect(spinner.style.display).toEqual('none');
+    }, 200);
   });
 
   it('should show spinner', () => {
