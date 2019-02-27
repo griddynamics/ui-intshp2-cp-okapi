@@ -8,7 +8,9 @@ export class LoaderService {
   private spinner = document.getElementById('spinner');
 
   hideLoader() {
-    this.spinner.style.display = 'none';
+    setTimeout(() => {
+      this.spinner.style.display = 'none';
+    }, 200);
   }
 
   displayLoader() {
