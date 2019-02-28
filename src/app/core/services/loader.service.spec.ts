@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -25,13 +25,14 @@ describe('LoaderService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should hide spinner', <any>fakeAsync((): void => {
+  it('should hide spinner', () => {
     const spinner = document.getElementById('spinner');
     const service: LoaderService = TestBed.get(LoaderService);
     service.hideLoader();
-    tick(200);
-    expect(spinner.style.display).toEqual('none');
-  }));
+    setTimeout(() => {
+      expect(spinner.style.display).toEqual('none');
+    }, 200);
+  });
 
   it('should show spinner', () => {
     const spinner = document.getElementById('spinner');
