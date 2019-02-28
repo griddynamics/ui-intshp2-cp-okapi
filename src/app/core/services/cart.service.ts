@@ -17,7 +17,7 @@ export class CartService {
   constructor(
     private dataService: DataService,
   ) {
-    const cartProducts = JSON.parse(localStorage.getItem('cartProductIds'));
+    const cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
     this.cartProducts = cartProducts ? cartProducts : this.cartProducts;
     this.publish();
   }
@@ -46,7 +46,7 @@ export class CartService {
 
   public getProducts(): Observable<IProduct[]> {
     return Observable.create((observer) => {
-      const cartItems = JSON.parse(localStorage.getItem('cartProductIds'));
+      const cartItems = JSON.parse(localStorage.getItem('cartProduct'));
       if (!cartItems) {
         observer.next([]);
         return observer.complete();
@@ -68,7 +68,7 @@ export class CartService {
   }
 
   private updateCart(): void {
-    localStorage.setItem('cartProductIds', JSON.stringify(this.cartProducts));
+    localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
     this.publish();
   }
 

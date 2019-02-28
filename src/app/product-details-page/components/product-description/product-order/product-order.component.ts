@@ -38,7 +38,7 @@ export class ProductOrderComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     this.productConfiguration.id = this.product.id;
-    const cartProducts = JSON.parse(localStorage.getItem('cartProductIds'));
+    const cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
 
     if (cartProducts) {
       const currentCartProduct = cartProducts.find(el => el.id === this.product.id);
