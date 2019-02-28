@@ -1,63 +1,86 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterContentChecked } from '@angular/core';
 import { ProductItemComponent } from '../product-item.component';
 import { ProductsService } from 'src/app/core/services/products.service';
-import { IProduct } from 'src/app/shared/interfaces/product';
+import { IProduct, ICart } from 'src/app/shared/interfaces/product';
+import { throwIfAlreadyLoaded } from 'src/app/core/guard/module-import-guard';
 
 @Component({
   selector: 'app-product-item-for-cart',
   templateUrl: './product-item-for-cart.component.html',
   styleUrls: ['./product-item-for-cart.component.scss']
 })
-export class ProductItemForCartComponent implements OnInit {
-
-  // @Input() product;
-  // starsArray = Array(4).fill(null).map((x, i) => i);
-  // isHovered = false;
-  quantity = 2;
-  clicks = 0;
+export class ProductItemForCartComponent implements OnInit, AfterContentChecked {
 
 
-  @Input() products: IProduct[] = [];
-  private allProducts: IProduct[] = [];
-  constructor ( private productService: ProductsService) { }
-  ngOnInit() {
-    this.productService.getWishList().subscribe(data => {
-      this.allProducts = data;
-      this.products = data;
-      console.log(this.products);
-    });
-  }
+  items: ICart[] = [{
+    id: 1,
+    name: 'Nike 9000',
+    color: 'blue',
+    price: 100,
+    quantity: 1,
+    // sum: 0
+  },
+  {
+    id: 2,
+    name: 'Nike 20000',
+    color: 'black',
+    price: 100,
+    quantity: 1,
+    // sum: 0
+  },
+  {
+    id: 3,
+    name: 'Nike 9000',
+    color: 'red',
+    price: 200,
+    quantity: 1,
+    // sum: 0
+  },
+  {
+    id: 4,
+    name: 'Nike 20000',
+    color: 'yellow',
+    price: 175,
+    quantity: 2,
+    // sum: 0
+  },
+];
 
-  onChanged(increased) {
-      increased === true ? this.clicks++ : this.clicks--;
-  }
+total = 0;
+sum = 0;
+// total: number;
 
-  // @Input() product;
-  // _currentThumbnail;
-  // starsArray = Array(4).fill(null).map((x, i) => i);
-  // isHovered = false;
+ngOnInit( )  {
+  this.totalPrice ();
+}
 
   plus(index) {
-  this.quantity ++;
-  // console.log(this.price);
+  this.items[index].quantity ++;
+  this.sum += this.items[index].price;
+  this.total += this.sum;
+  // this.totalPrice();
   }
 
   minus(index) {
-    if (this.quantity > 1) {
-      this.quantity --;
+    if (this.items[index].quantity > 1) {
+      this.items[index].quantity --;
+      this.sum -= this.items[index].price;
+      this.total -= this.sum;
     }
   }
 
-  // handleImgView(isHovered): void {
-  //   this.isHovered = isHovered;
-  // }
+  delete(index) {
+    this.total -= this.items[index].price;
+    this.items.splice(index, 1);
+    this.totalPrice();
+  }
 
-  // get currentThumbnail(): string {
-  //   return this._currentThumbnail;
-  // }
-
-  // set currentThumbnail(value: string) {
-  //   this._currentThumbnail = value || '';
-  // }
-
+  totalPrice () {
+   // this.total = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      this.total  += this.items[i].price * this.items[i].quantity;
+        // this.total = sumItem + this.items[i].price;
+      }
+      return this.total;
+    }
 }

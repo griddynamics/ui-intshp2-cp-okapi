@@ -8,36 +8,32 @@
         </div>
           <div class="prod">
             <div>Name</div>
-          <h2 *ngFor ="let product of products">{{product.name}}</h2>
+          <h2 *ngFor ="let item of items">{{item.name}}</h2>
           </div> 
           <div class="prod">
               <div>Color</div>
-            <h2>Blue</h2>
+            <h2 *ngFor ="let item of items">{{item.color}}</h2>
             </div> 
+            <div class="prod">
+                <div>Quantity</div>
+                <h2 *ngFor ="let item of items;  let i = index" class="select-quantity">
+                    <button (click)="minus(i)">-</button>
+                    {{item.quantity}}
+                    <button (click)="plus(i)">+</button>
+                </h2>
+              </div>
          <div class="prod">
             <div>Price</div>
-            <h2 class="price" *ngFor ="let product of products">{{product.price | currency:'USD'}}</h2> 
+            <h2 class="price" *ngFor ="let item of items">{{item.price * item.quantity | currency:'USD'}}</h2> 
           </div>
-          <div class="prod">
-              <div>Quantity</div>
-              <div  *ngFor ="let product of products; let index = index" class="select-quantity">
-                  <!-- <app-counter [quantity]="quantity"></app-counter> -->
-                  <h2>{{clicks}}</h2>
-              <app-counter (onChanged)="onChanged($event)"></app-counter>
-            </div>
-            </div>
             <div class="prod">
                 <div>Remove</div>
-               <h2>Remove</h2> 
+               <h2 *ngFor ="let item of items; let i = index" (click)="delete(i)">Remove</h2> 
                </div>
               <div class="prod">
                   <div>Total</div>
-              <h2 class="price" *ngFor ="let product of products">{{product.price | currency:'USD'}}</h2>  
-        </div>
-      <!-- </div>  -->
-     </div> 
+              <h2 class="price">{{total | currency:'USD'}}</h2>  
+        </div> 
+       </div> 
+     <!-- </div>  -->
      </app-lazy-load>
-  
-     <!-- <h2 *ngFor = "let product of products">
-       {{product.name}}
-     </h2> -->

@@ -44,3 +44,12 @@ export enum PriceRange {
   min = 0,
   max = 1
 }
+
+export interface ICart {
+  id: number;
+  name: String;
+  color: String;
+  price: number;
+  quantity: number;
+  // sum: number;
+}
