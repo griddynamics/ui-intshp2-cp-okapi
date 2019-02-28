@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/dnistrova/ui-intshp2-cp-okapi.svg?branch=master)](https://travis-ci.com/dnistrova/ui-intshp2-cp-okapi?branch=master)
-
 # CapstoneAngularProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
