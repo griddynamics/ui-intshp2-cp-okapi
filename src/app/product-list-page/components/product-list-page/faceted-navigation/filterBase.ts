@@ -4,7 +4,7 @@ export class BaseFilter {
   @Output() filterChange: EventEmitter<{}> = new EventEmitter();
 
   onFilterChange(name, value): void {
-    this.filterChange.emit({name, value: this.getFilterValue(value)})
+    this.filterChange.emit({ name, value: this.getFilterValue(value) });
   }
 
   getFilterValue(value: string): any {

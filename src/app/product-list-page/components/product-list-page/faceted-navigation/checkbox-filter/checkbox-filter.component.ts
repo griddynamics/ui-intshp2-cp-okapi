@@ -14,15 +14,11 @@ export class CheckboxFilterComponent extends BaseFilter {
   private filterValue: string[] = [];
 
   getFilterValue(value: string): any {
-    if(!this.filterValue.includes(value))
+    if (!this.filterValue.includes(value)) {
       this.filterValue.push(value);
-    else {
+    } else {
       this.filterValue = this.filterValue.filter(val => val !== value);
     }
-
     return this.filterValue;
   }
-
-  
-
 }

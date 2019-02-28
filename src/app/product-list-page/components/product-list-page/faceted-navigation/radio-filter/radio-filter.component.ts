@@ -12,5 +12,4 @@ import { BaseFilter } from '../filterBase';
 export class RadioFilterComponent extends BaseFilter {
   @Input() public filter;
 
-  
 }

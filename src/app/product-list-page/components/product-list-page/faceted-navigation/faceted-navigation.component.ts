@@ -31,12 +31,12 @@ export class FacetedNavigationComponent {
 
   onFilterChange({ name, value }) {
     this.currentFilters[name] = value;
-    for (let key in this.currentFilters) {
+    for (const key of Object.keys(this.currentFilters)) {
       if (!this.currentFilters[key].length) {
-        delete this.currentFilters[key]
+        delete this.currentFilters[key];
       }
-      if(typeof this.currentFilters[key] === 'object') {
-        this.currentFilters[key] = this.currentFilters[key].join(',')
+      if (typeof this.currentFilters[key] === 'object') {
+        this.currentFilters[key] = this.currentFilters[key].join(',');
       }
     }
     this.filterChange.emit(this.currentFilters);
