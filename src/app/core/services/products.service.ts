@@ -55,7 +55,6 @@ export class ProductsService {
     this.updateWishList();
   }
 
-
   public removeFromWishList(product: IProduct): void {
     product.addedToWishList = false;
     const indexOfCurrId = this.wishListIds.findIndex(el => el === product.id);
@@ -76,7 +75,7 @@ export class ProductsService {
 
   private prepareProductResponse(products: IProduct[]): void {
     this.products = products.map(el => {
-      const currentProduct = addToCartDecorator(wishListDecorator(el, this.wishListIds), this.cartService.getCartIds());
+      const currentProduct = addToCartDecorator(wishListDecorator(el, this.wishListIds), this.cartService.getCartProducts());
       if (currentProduct.addedToWishList) {
         this.wishList.push(currentProduct);
       }

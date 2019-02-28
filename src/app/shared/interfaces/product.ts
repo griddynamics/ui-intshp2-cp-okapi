@@ -49,5 +49,6 @@ export interface ICartProduct {
   id: string;
   quantity?: number;
   swatch?: string;
+  price?: number;
   size?: string;
 }

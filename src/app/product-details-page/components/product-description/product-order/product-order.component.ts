@@ -38,17 +38,17 @@ export class ProductOrderComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     this.productConfiguration.id = this.product.id;
-    const cartProductsArr = JSON.parse(localStorage.getItem('cartProductIds'));
+    const cartProducts = JSON.parse(localStorage.getItem('cartProductIds'));
 
-    if (cartProductsArr) {
-      const currItemInCart = cartProductsArr.find(el => el.id === this.product.id);
-      if (!currItemInCart) {
+    if (cartProducts) {
+      const currentCartProduct = cartProducts.find(el => el.id === this.product.id);
+      if (!currentCartProduct) {
         return;
       }
 
-      this.productConfiguration = { ...currItemInCart };
-      this.selectedSwatch = this.product.swatches.findIndex(el => el.color === currItemInCart.swatch.color);
-      this.selected = this.product.sizes.indexOf(currItemInCart.size);
+      this.productConfiguration = { ...currentCartProduct };
+      this.selectedSwatch = this.product.swatches.findIndex(el => el.color === currentCartProduct.swatch.color);
+      this.selected = this.product.sizes.indexOf(currentCartProduct.size);
     }
   }
 
@@ -66,7 +66,7 @@ export class ProductOrderComponent implements OnChanges, OnInit {
     this.productConfiguration.price = price;
   }
 
-  public addToCart() {
+  public addToCart(): void {
     if (this.product.addedToCart) {
       alert('Open add to cart popup here');
       return;

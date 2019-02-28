@@ -20,7 +20,7 @@ export class ProductDetailsPageService {
     return Observable.create((observer) => {
       this.dataService.get(`${environment.productsURL}/${id}`).subscribe((product: IProduct ) => {
         observer.next(
-          addToCartDecorator(wishListDecorator(product, this.productsService.getWishListIds()), this.cartService.getCartIds())
+          addToCartDecorator(wishListDecorator(product, this.productsService.getWishListIds()), this.cartService.getCartProducts())
         );
         observer.complete();
       });

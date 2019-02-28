@@ -10,37 +10,37 @@ import { IProduct, ICartProduct } from 'src/app/shared/interfaces/product';
 })
 
 export class CartService {
-  private cartIds: ICartProduct[] = [];
+  private cartProducts: ICartProduct[] = [];
 
   private cartAmountSource = new BehaviorSubject<number>(0);
 
   constructor(
     private dataService: DataService,
   ) {
-    const cartIds = JSON.parse(localStorage.getItem('cartProductIds'));
-    this.cartIds = cartIds ? cartIds : this.cartIds;
+    const cartProducts = JSON.parse(localStorage.getItem('cartProductIds'));
+    this.cartProducts = cartProducts ? cartProducts : this.cartProducts;
     this.publish();
   }
 
-  public addToCart(product: IProduct, view) {
+  public addToCart(product: IProduct, cartProduct: ICartProduct): void {
     product.addedToCart = true;
-    this.cartIds.push(view);
+    this.cartProducts.push(cartProduct);
     this.updateCart();
   }
 
-  public removeFromCart(product: IProduct, view): void {
+  public removeFromCart(product: IProduct, cartProduct: ICartProduct): void {
     product.addedToCart = false;
-    const indexOfCurrId = this.cartIds.findIndex(el => el === view.id );
-    this.cartIds.splice(indexOfCurrId, 1);
+    const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id );
+    this.cartProducts.splice(indexOfCurrId, 1);
     this.updateCart();
   }
 
-  public toggleCart(product: IProduct, view) {
+  public toggleCart(product: IProduct, cartProduct: ICartProduct): void {
     if (!product.addedToCart) {
-      this.addToCart(product, view);
+      this.addToCart(product, cartProduct);
       return;
     }
-    this.removeFromCart(product, view);
+    this.removeFromCart(product, cartProduct);
   }
 
 
@@ -62,17 +62,17 @@ export class CartService {
     return this.cartAmountSource.asObservable();
   }
 
-  public getCartIds(): ICartProduct[] {
-    return this.cartIds;
+  public getCartProducts(): ICartProduct[] {
+    return this.cartProducts;
 
   }
 
   private updateCart(): void {
-    localStorage.setItem('cartProductIds', JSON.stringify(this.cartIds));
+    localStorage.setItem('cartProductIds', JSON.stringify(this.cartProducts));
     this.publish();
   }
 
   private publish(): void {
-    this.cartAmountSource.next(this.cartIds.length);
+    this.cartAmountSource.next(this.cartProducts.length);
   }
 }
