@@ -30,7 +30,7 @@
         <p>Price : {{productConfiguration.price | currency:'USD':true}}</p>
       </div>
       <div class="order">
-          <a (click)="toggleCart()"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product?.addedToCart}"></i></a>
+          <a><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product?.addedToCart}"></i></a>
           <i *ngIf="wishListEnabled" class="to-wish-list" (click)="toggleWishList()" [ngClass]="{ 'added-to-wishlist': product?.addedToWishList}"></i>
           <button [routerLink]="['/order-page']" class="order-button">
             <span>
