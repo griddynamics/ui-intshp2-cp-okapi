@@ -1,8 +1,7 @@
-import { IProduct } from 'src/app/shared/interfaces/product';
+import { IProduct, ICartProduct } from 'src/app/shared/interfaces/product';
 
-export function addToCartDecorator(product: IProduct, ids): IProduct {
-  const res = ids.findIndex(el => el.id === product.id);
-  product.addedToCart = res === -1 ? false : true;
+export function addToCartDecorator(product: IProduct, cartProducts: ICartProduct[]): IProduct {
+  product.addedToCart = !!cartProducts.find(({id}) => product.id === id);
   return product;
 }
 

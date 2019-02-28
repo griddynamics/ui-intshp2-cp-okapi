@@ -4,6 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { ProductOrderComponent } from './product-order.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductAvailabilityState } from 'src/app/shared/interfaces/product';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProductOrderComponent', () => {
   let component: ProductOrderComponent;
@@ -12,7 +13,7 @@ describe('ProductOrderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductOrderComponent ],
-      imports: [ RouterTestingModule, HttpClientModule ]
+      imports: [ RouterTestingModule, HttpClientModule, HttpClientTestingModule ]
     })
     .compileComponents();
   }));
@@ -42,23 +43,49 @@ describe('ProductOrderComponent', () => {
   });
 
   it('should call increaseQuantity on click', (() => {
-    const prevValue = component.productConfiguration.count;
+    const prevValue = component.productConfiguration.quantity;
     spyOn(component, 'increaseQuantity').and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector('.button-plus');
     button.click();
     fixture.detectChanges();
     expect(component.increaseQuantity).toHaveBeenCalled();
-    expect(prevValue).toBeLessThan(component.productConfiguration.count);
+    expect(prevValue).toBeLessThan(component.productConfiguration.quantity);
   }));
 
   it('should call decreaseQuantity on click', (() => {
-    const prevValue = component.productConfiguration.count;
+    const prevValue = component.productConfiguration.quantity;
     spyOn(component, 'decreaseQuantity').and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector('.button-minus');
     button.click();
     fixture.detectChanges();
     expect(component.decreaseQuantity).toHaveBeenCalled();
-    expect(prevValue).toBeGreaterThanOrEqual(component.productConfiguration.count);
+    expect(prevValue).toBeGreaterThanOrEqual(component.productConfiguration.quantity);
+  }));
+  it('should change quantity when if statement true', (() => {
+    component.productConfiguration.quantity = 2;
+    component.decreaseQuantity();
+    expect(component.productConfiguration.quantity).toBe(1);
+  }));
+  it('should not change quantity when if statement false', (() => {
+    component.productConfiguration.quantity = 0;
+    component.decreaseQuantity();
+    expect(component.productConfiguration.quantity).toBe(0);
+  }));
+
+  it('should call addToCart on click if addedToCart = true', (() => {
+    component.product.addedToCart = true;
+    spyOn(component, 'addToCart').and.callThrough();
+    component.addToCart();
+    fixture.detectChanges();
+    expect(component.product.addedToCart).toBe(true);
+  }));
+
+  it('should call addToCart on click if addedToCart = false', (() => {
+    component.product.addedToCart = false;
+    spyOn(component, 'addToCart').and.callThrough();
+    component.addToCart();
+    fixture.detectChanges();
+    expect(component.product.addedToCart).toBe(false);
   }));
 
   describe('sizes buttons', () => {
@@ -71,7 +98,6 @@ describe('ProductOrderComponent', () => {
     });
 
     it('should not render buttons if sizes.length = 0', () => {
-      sizes = [];
       component.product.sizes = sizes;
       fixture.detectChanges();
       const buttons = fixture.debugElement.nativeElement.querySelectorAll('.chose-container-sizes button');

@@ -10,7 +10,7 @@ import { IProduct, ICartProduct } from 'src/app/shared/interfaces/product';
 })
 
 export class CartService {
-  private cartIds: string[] = [];
+  private cartIds: ICartProduct[] = [];
 
   private cartAmountSource = new BehaviorSubject<number>(0);
 
@@ -62,7 +62,7 @@ export class CartService {
     return this.cartAmountSource.asObservable();
   }
 
-  public getCartIds(): string[] {
+  public getCartIds(): ICartProduct[] {
     return this.cartIds;
 
   }

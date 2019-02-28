@@ -77,11 +77,9 @@ export class ProductsService {
   private prepareProductResponse(products: IProduct[]): void {
     this.products = products.map(el => {
       const currentProduct = addToCartDecorator(wishListDecorator(el, this.wishListIds), this.cartService.getCartIds());
-      const isPresentInWishList = this.wishList.find(product => product.id === currentProduct.id);
-      if (currentProduct.addedToWishList && !isPresentInWishList) {
+      if (currentProduct.addedToWishList) {
         this.wishList.push(currentProduct);
       }
-
       return currentProduct;
     });
   }

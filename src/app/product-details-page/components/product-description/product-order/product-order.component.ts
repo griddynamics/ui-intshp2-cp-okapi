@@ -20,11 +20,13 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   @Output() swatchSelect = new EventEmitter();
 
   public productConfiguration = {
-    count: 1,
+    id: '',
+    quantity: 1,
     size: '',
     price: 0,
     swatch: ''
   };
+
   public wishListEnabled;
 
   constructor(
@@ -35,19 +37,18 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   ) { }
 
   ngOnInit(): void {
-    const lsArr = JSON.parse(localStorage.getItem('cartProductIds'));
+    this.productConfiguration.id = this.product.id;
+    const cartProductsArr = JSON.parse(localStorage.getItem('cartProductIds'));
 
-    if (lsArr) {
-      const currItemInLs = lsArr.find(el => el.id === this.product.id);
-      if (!currItemInLs) {
+    if (cartProductsArr) {
+      const currItemInCart = cartProductsArr.find(el => el.id === this.product.id);
+      if (!currItemInCart) {
         return;
       }
-      this.productConfiguration.count = currItemInLs.quantity;
-      this.productConfiguration.size = currItemInLs.size;
-      this.productConfiguration.price = currItemInLs.price;
-      this.productConfiguration.swatch = currItemInLs.swatch;
-      this.selectedSwatch = this.product.swatches.findIndex(el => el.color === currItemInLs.swatch.color);
-      this.selected = this.product.sizes.indexOf(currItemInLs.size);
+
+      this.productConfiguration = { ...currItemInCart };
+      this.selectedSwatch = this.product.swatches.findIndex(el => el.color === currItemInCart.swatch.color);
+      this.selected = this.product.sizes.indexOf(currItemInCart.size);
     }
   }
 
@@ -74,17 +75,11 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   public toggleCart(): void {
-    const view = {
-      id: this.product.id,
-      quantity: this.productConfiguration.count,
-      swatch: this.productConfiguration.swatch,
-      price: this.productConfiguration.price,
-      size: this.productConfiguration.size,
-    };
-    this.cartService.toggleCart(this.product, view);
+    const { id, quantity, swatch, price, size } = this.productConfiguration;
+    this.cartService.toggleCart(this.product, { id, quantity, swatch, price, size });
   }
 
-  disableButton() {
+  get isDisabledAddToCartBtn() {
     return this.productConfiguration.size && this.productConfiguration.swatch;
   }
 
@@ -93,13 +88,13 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   public increaseQuantity(): void {
-    this.productConfiguration.count++;
+    this.productConfiguration.quantity++;
     this.productConfiguration.price += this.product.price;
   }
 
   public decreaseQuantity(): void {
-    if (this.productConfiguration.count > 1) {
-      this.productConfiguration.count--;
+    if (this.productConfiguration.quantity > 1) {
+      this.productConfiguration.quantity--;
       this.productConfiguration.price -= this.product.price;
     }
   }
