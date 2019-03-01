@@ -44,7 +44,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
         return addToCartDecorator(wishListDecorator(product, this.productsService.getWishListIds()), this.cartService.getCartProducts());
       });
 
-
       this.banners = data.banners;
       this.slideShowImages = data.slideshow;
       this.loaderService.hideLoader();
