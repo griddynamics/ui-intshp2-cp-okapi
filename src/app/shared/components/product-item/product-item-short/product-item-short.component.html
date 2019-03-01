@@ -11,10 +11,15 @@
             <i *ngFor="let rating of starsArray; let i = index" class="fas fa-star" [ngClass]="{'rating': i + 1 <= product.rating}"></i>
           </div>
           <p *ngIf="!isHovered" class="price">{{product.price | currency:'USD'}}</p>
-          <a *ngIf="isHovered" href="#">
+          <a *ngIf="isHovered" (click)="addToCart()">
             <p class="cart" [ngClass]="{'added': product.addedToCart}"><span><i class="fas fa-cart-plus"></i></span>
-              add
-              to cart</p>
+              <ng-container *ngIf="product.addedToCart">
+                  view in cart
+              </ng-container>
+              <ng-container *ngIf="!product.addedToCart">
+                  add to cart
+              </ng-container>
+            </p>
           </a>
         </div>
       </div>

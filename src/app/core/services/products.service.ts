@@ -5,24 +5,30 @@ import { DataService } from './data.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
 
 import { environment } from '../../../environments/environment';
+import { CartService } from './cart.service';
+import { addToCartDecorator, wishListDecorator } from '../decorators/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   private wishList: IProduct[] = [];
-  private wishListIds: String[] = [];
+  private wishListIds: string[] = [];
   private products: IProduct[] = [];
 
   private wishListSource = new BehaviorSubject<IProduct[]>([]);
 
   constructor(
     private dataService: DataService,
+    private cartService: CartService
   ) {
     const wishListIds = JSON.parse(localStorage.getItem('wishlist'));
     this.wishListIds = wishListIds ? wishListIds : this.wishListIds;
   }
 
+  public getWishListIds(): string[] {
+    return this.wishListIds;
+  }
   public getWishList(): Observable<IProduct[]> {
     return this.wishListSource.asObservable();
   }
@@ -43,17 +49,14 @@ export class ProductsService {
   }
 
   public addToWishList(product: IProduct): void {
-
     product.addedToWishList = true;
     this.wishList.push(product);
     this.wishListIds.push(product.id);
-
     this.updateWishList();
   }
 
   public removeFromWishList(product: IProduct): void {
     product.addedToWishList = false;
-
     const indexOfCurrId = this.wishListIds.findIndex(el => el === product.id);
     this.wishListIds.splice(indexOfCurrId, 1);
     const indexOfCurrProduct = this.wishList.findIndex(el => el.id === product.id);
@@ -70,19 +73,12 @@ export class ProductsService {
     this.removeFromWishList(product);
   }
 
-  private checkProductInWishList(product: IProduct): IProduct {
-    product.addedToWishList = this.wishListIds.includes(product.id);
-    return product;
-  }
-
   private prepareProductResponse(products: IProduct[]): void {
     this.products = products.map(el => {
-      const currentProduct = this.checkProductInWishList(el);
-      const isPresentInWishList = this.wishList.find(product => product.id === currentProduct.id);
-      if (currentProduct.addedToWishList && !isPresentInWishList) {
+      const currentProduct = addToCartDecorator(wishListDecorator(el, this.wishListIds), this.cartService.getCartProducts());
+      if (currentProduct.addedToWishList) {
         this.wishList.push(currentProduct);
       }
-
       return currentProduct;
     });
   }
@@ -91,4 +87,5 @@ export class ProductsService {
     localStorage.setItem('wishlist', JSON.stringify(this.wishListIds));
     this.wishListSource.next(this.wishList);
   }
+
 }

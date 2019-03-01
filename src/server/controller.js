@@ -127,7 +127,7 @@ function getProductById(req, res) {
         notFound(req, res);
         return;
     };
-    
+
     product.relatedProducts = productsMOCK.filter(item => product.relatedProducts.some(id => id === item.id));
 
     res.json(product);
