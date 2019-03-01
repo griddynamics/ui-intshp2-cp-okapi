@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
-import { IFilter } from 'src/app/shared/interfaces/product';
+import { IFilter } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-faceted-navigation',

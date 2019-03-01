@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IProduct, IFilter } from 'src/app/shared/interfaces/product';
-import { ProductsService } from 'src/app/core/services/products.service';
 import { forkJoin, Observable } from 'rxjs';
 
+import { IProduct } from 'src/app/shared/interfaces/product';
+import { IFilter } from 'src/app/shared/interfaces';
+import { ProductsService } from 'src/app/core/services/products.service';
 import { environment } from 'src/environments/environment.test';
 import { DataService } from 'src/app/core/services/data.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
