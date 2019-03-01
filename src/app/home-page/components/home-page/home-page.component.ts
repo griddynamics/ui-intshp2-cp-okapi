@@ -9,6 +9,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { environment } from 'src/environments/environment';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { CartService } from 'src/app/core/services/cart.service';
+import { addToCartDecorator, wishListDecorator } from 'src/app/core/decorators/product';
 
 @Component({
   selector: 'app-home-page',
@@ -39,10 +40,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
 
     this.subscription = this.dataService.get(environment.homepageURL).subscribe(data => {
-      this.products = data.arrivals.map(el => {
-        el.addedToCart = this.cartService.getCartProducts().some(({id}) => el.id === id);
-        return el;
+      this.products = data.arrivals.map(product => {
+        return addToCartDecorator(wishListDecorator(product, this.productsService.getWishListIds()), this.cartService.getCartProducts());
       });
+
+
       this.banners = data.banners;
       this.slideShowImages = data.slideshow;
       this.loaderService.hideLoader();
