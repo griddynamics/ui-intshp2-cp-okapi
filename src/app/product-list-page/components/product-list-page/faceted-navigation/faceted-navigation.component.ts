@@ -17,19 +17,19 @@ export class FacetedNavigationComponent {
 
   @Input() filters: IFilter[] = [];
 
-  closeNav() {
+  public closeNav() {
     this.isShowed = false;
   }
 
-  openNav() {
+  public openNav() {
     this.isShowed = true;
   }
 
-  dropdownToggle() {
+  public dropdownToggle() {
     this.isDropped = !this.isDropped;
   }
 
-  onFilterChange({ name, value }) {
+  public onFilterChange({ name, value }) {
     this.currentFilters[name] = value;
     for (const key of Object.keys(this.currentFilters)) {
       if (!this.currentFilters[key].length) {

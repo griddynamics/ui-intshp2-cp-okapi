@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
-import { FacetedNavigationComponent } from '../faceted-navigation.component';
-import { BaseFilter } from '../filterBase';
+import { BaseFilter } from '../base-filter';
 
 @Component({
   selector: 'app-checkbox-filter',
@@ -13,7 +12,7 @@ export class CheckboxFilterComponent extends BaseFilter {
 
   private filterValue: string[] = [];
 
-  getFilterValue(value: string): any {
+  public getFilterValue(value: string): any {
     if (!this.filterValue.includes(value)) {
       this.filterValue.push(value);
     } else {

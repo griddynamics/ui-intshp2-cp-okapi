@@ -5,7 +5,7 @@ import { forkJoin, Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment.test';
 import { DataService } from 'src/app/core/services/data.service';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list-page',
@@ -16,11 +16,11 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   public subscription;
   public filters: IFilter[] = [];
   public products: IProduct[] = [];
-  private startFrom = 0;
-  private loadTo = 9;
-  private total = 9;
   public currentFilters;
   public route;
+  public startFrom = 0;
+  public loadTo = 9;
+  public total = 9;
 
   constructor(
     private productsService: ProductsService,
@@ -41,15 +41,10 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
     });
   }
 
-
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-  }
-
-  public wishListHandler(product: IProduct): void {
-    this.productsService.toggleWishListProduct(product);
   }
 
   get totalAmount(): number {
@@ -60,7 +55,17 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
     this.total = value;
   }
 
-  onLoadMore(loadAmount: number): void {
+  get showLoadMore(): Boolean {
+    if (this.total === this.products.length) { return false; }
+
+    return this.total > this.products.length;
+  }
+
+  public wishListHandler(product: IProduct): void {
+    this.productsService.toggleWishListProduct(product);
+  }
+
+  public onLoadMore(loadAmount: number): void {
     this.startFrom = this.loadTo;
     this.loadTo = this.loadTo + loadAmount;
 
@@ -70,30 +75,21 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  get showLoadMore(): Boolean {
-    if (this.total === this.products.length) { return false; }
-
-    return this.total > this.products.length;
-  }
-
-  private loadProducts(from: number, to: number): Observable<any> {
-    return this.productsService.getProducts(`start=${from}&end=${to}`);
-  }
-
   public onFilterChange(currentFilters) {
-    this.router.navigate(['/products'], { queryParams: currentFilters });
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.route = event.url;
-        this.getFilteredProducts(this.route);
-      }
+    this.router.navigate(['/products'], { queryParams: currentFilters }).then(() => {
+      this.route = this.router.url;
+      this.getFilteredProducts(this.route);
     });
   }
 
   public getFilteredProducts(route) {
     this.dataService.get(`api${route}`).subscribe(filteredProducts => {
       this.products = filteredProducts.products;
+      this.total = filteredProducts.total;
     });
   }
 
+  private loadProducts(from: number, to: number): Observable<any> {
+    return this.productsService.getProducts(`start=${from}&end=${to}`);
+  }
 }

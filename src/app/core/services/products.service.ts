@@ -10,9 +10,9 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class ProductsService {
+  public products: IProduct[] = [];
   private wishList: IProduct[] = [];
   private wishListIds: String[] = [];
-  private products: IProduct[] = [];
 
   private wishListSource = new BehaviorSubject<IProduct[]>([]);
 
@@ -38,7 +38,6 @@ export class ProductsService {
         observer.next(productsResponse);
         observer.complete();
       });
-
     });
   }
 

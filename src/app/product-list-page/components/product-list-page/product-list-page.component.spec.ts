@@ -33,6 +33,15 @@ describe('ProductListPageComponent', () => {
   });
 
   it('should create', () => {
+    component.subscription = true;
     expect(component).toBeTruthy();
   });
+
+  it('should create when there is subscription', () => {
+    component.subscription = true;
+    expect(component).toBeTruthy();
+    component.subscription = false;
+    expect(component).toBeTruthy();
+  });
+
 });

@@ -1,7 +1,5 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
-import { FacetedNavigationComponent } from '../faceted-navigation.component';
-
-import { BaseFilter } from '../filterBase';
+import { BaseFilter } from '../base-filter';
 
 @Component({
   selector: 'app-radio-filter',

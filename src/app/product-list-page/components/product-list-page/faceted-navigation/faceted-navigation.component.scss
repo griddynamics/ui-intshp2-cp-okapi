@@ -43,7 +43,14 @@
   display: none;
 }
 
-@include tablet {
+.fa-caret-up {
+  display: none;
+ }
+ 
+ @include tablet {
+   .fa-caret-up {
+    display: inline-block;
+   }
 
   .all-products-filter {
     height: 100%;
