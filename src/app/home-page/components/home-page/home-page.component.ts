@@ -4,8 +4,8 @@ import { Subscription } from 'rxjs';
 import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { KillswitchService } from '../../../core/services/killswitch.service';
-import { ProductsService } from 'src/app/core/services/products.service';
-import { DataService } from 'src/app/core/services/data.service';
+import { ProductsService } from '../../../core/services/products.service';
+import { DataService } from '../../../core/services/data.service';
 import { environment } from 'src/environments/environment';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { CartService } from 'src/app/core/services/cart.service';
@@ -24,11 +24,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public recentlyViewed: IProduct[] = [];
   public slideShowImages: any[] = [];
   public banners: IBanner[] = [];
-  private subscription;
+  private subscription: Subscription;
   public wishListEnabled;
 
   constructor(
-    public productsService: ProductsService,
+    private productsService: ProductsService,
     private cartService: CartService,
     private killswitchService: KillswitchService,
     private dataService: DataService,

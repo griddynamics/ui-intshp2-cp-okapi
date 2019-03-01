@@ -1,10 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 
 
-import { DataService } from 'src/app/core/services/data.service';
 import { KillswitchService } from 'src/app/core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
-import { IProduct } from 'src/app/shared/interfaces/product';
+import { IProduct, ICartProduct, ProductSize } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/core/services/cart.service';
 
 
@@ -19,10 +18,11 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   selectedSwatch: number;
   @Output() swatchSelect = new EventEmitter();
 
-  public productConfiguration = {
+  public productConfiguration: ICartProduct = {
     id: '',
+    name: '',
     quantity: 1,
-    size: '',
+    size: ProductSize.M,
     price: 0,
     swatch: ''
   };
@@ -31,14 +31,17 @@ export class ProductOrderComponent implements OnChanges, OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private dataService: DataService,
     private cartService: CartService,
     private killswitchService: KillswitchService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.productConfiguration.id = this.product.id;
-    const cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
+    const { id, name } = this.product;
+    this.productConfiguration.id = id;
+    this.productConfiguration.name = name;
+
+    const cartProducts = this.cartService.getCartProducts();
 
     if (cartProducts) {
       const currentCartProduct = cartProducts.find(el => el.id === this.product.id);
@@ -47,7 +50,7 @@ export class ProductOrderComponent implements OnChanges, OnInit {
       }
 
       this.productConfiguration = { ...currentCartProduct };
-      this.selectedSwatch = this.product.swatches.findIndex(el => el.color === currentCartProduct.swatch.color);
+      this.selectedSwatch = this.product.swatches.findIndex(el => el.color === currentCartProduct.swatch);
       this.selected = this.product.sizes.indexOf(currentCartProduct.size);
     }
   }
@@ -66,17 +69,16 @@ export class ProductOrderComponent implements OnChanges, OnInit {
     this.productConfiguration.price = price;
   }
 
-  public addToCart(): void {
+  public openInCart(): void {
     if (this.product.addedToCart) {
       alert('Open add to cart popup here');
       return;
     }
-    this.dataService.create('add-to-cart/', this.productConfiguration).subscribe();
   }
 
   public toggleCart(): void {
-    const { id, quantity, swatch, price, size } = this.productConfiguration;
-    this.cartService.toggleCart(this.product, { id, quantity, swatch, price, size });
+    const { id, name, quantity, swatch, price, size } = this.productConfiguration;
+    this.cartService.toggleCart(this.product, { id, name, quantity, swatch, price, size });
   }
 
   get isDisabledAddToCartBtn() {
@@ -99,7 +101,7 @@ export class ProductOrderComponent implements OnChanges, OnInit {
     }
   }
 
-  public onChooseSize(size: string, i: number): void {
+  public onChooseSize(size: ProductSize, i: number): void {
     this.productConfiguration.size = size;
     this.selected = i;
   }

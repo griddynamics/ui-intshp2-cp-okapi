@@ -45,5 +45,5 @@
   <button (click)="toggleCart()"><i class="fas fa-cart-plus" [ngClass]="{'added-to-cart': product?.addedToCart}"></i></button>
 </ng-template>
 <ng-template #viewInCart>
-    <p (click)="addToCart()" class="cart added"><span>view in cart</span><i class="fas fa-cart-plus"></i></p>
+    <p (click)="openInCart()" class="cart added"><span>view in cart</span><i class="fas fa-cart-plus"></i></p>
 </ng-template>

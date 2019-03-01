@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { DataService } from './data.service';
 import { IProduct, ICartProduct } from 'src/app/shared/interfaces/product';
 
 
@@ -14,9 +13,7 @@ export class CartService {
 
   private cartAmountSource = new BehaviorSubject<number>(0);
 
-  constructor(
-    private dataService: DataService,
-  ) {
+  constructor() {
     const cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
     this.cartProducts = cartProducts ? cartProducts : this.cartProducts;
     this.publish();
@@ -30,7 +27,7 @@ export class CartService {
 
   public removeFromCart(product: IProduct, cartProduct: ICartProduct): void {
     product.addedToCart = false;
-    const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id );
+    const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
     this.cartProducts.splice(indexOfCurrId, 1);
     this.updateCart();
   }
@@ -41,21 +38,6 @@ export class CartService {
       return;
     }
     this.removeFromCart(product, cartProduct);
-  }
-
-
-  public getProducts(): Observable<IProduct[]> {
-    return Observable.create((observer) => {
-      const cartItems = JSON.parse(localStorage.getItem('cartProduct'));
-      if (!cartItems) {
-        observer.next([]);
-        return observer.complete();
-      }
-      this.dataService.get(`api/products?ids=${cartItems.join(',')}`).subscribe(({ products }) => {
-        observer.next(products);
-        observer.complete();
-      });
-    });
   }
 
   public getCartAmount(): Observable<number> {
