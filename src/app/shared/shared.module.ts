@@ -19,6 +19,7 @@ import { LazyLoadComponent } from './components/lazy-load/lazy-load.component';
 import { GridComponent } from './components/grid/grid.component';
 import { ImgPlaceholderComponent } from '../shared/components/img-placeholder/img-placeholder.component';
 import { SwipeIconComponent } from './components/swipe-icon/swipe-icon.component';
+import { ModalModule } from './modal/modal.module';
 
 const MODULES = [
   CommonModule,
@@ -27,6 +28,7 @@ const MODULES = [
   NgbModule,
   RouterModule,
   ReactiveFormsModule,
+  ModalModule
 ];
 
 @NgModule({

@@ -1,0 +1,51 @@
+<!-- <button (click)="context.resolve()">close</button> -->
+<div class="header-for-cart">
+  <div class="heading-wrapper">
+    <h2><span class="first-word">MY</span>CART</h2>
+  </div>
+  <i class="fas fa-times" (click)="context.resolve()"></i>
+
+</div>
+<div *ngIf="!cartProducts" class="empty-cart">
+  <img class = "pic-empty-cart" src="../../../../assets/empty-bag2.gif" alt="girl" width="100%">
+  <div class="empty-cart-title">Your cart is empty</div>
+   <div class="empty-cart-subtitle" routerLink="/products">Please continue shopping</div> 
+</div>
+<div class="block">
+  <div *ngFor="let product of cartProducts; let i = index">
+    <hr>
+    <div class='item-for-cart'>
+      <div>
+        <img class='pic-for-cart' src="{{product.swatch.imgSrc}}">
+      </div>
+      <div class="main-info">
+        <div class="price">{{product.defaultPrice * product.quantity | currency:'USD'}}</div>
+        <div class="title"> {{product.name}}</div>
+        <div class="info-block">
+          <div class="add-info">
+            <div class="info color">{{product.swatch.color | uppercase }}</div>
+            <!-- <hr class="divide-add-info"> -->
+            <div class="info size">{{product.size | uppercase}}</div>
+            <div class="info quantity">
+              <div class="minus" (click)="minus(i)"> - </div>
+              <div>{{product.quantity}}</div>
+              <div class="plus" (click)="plus(i)"> + </div>
+            </div>
+          </div>
+
+          <div class="delete">
+            <i class="far fa-trash-alt" (click)="delete(i)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div *ngIf="cartProducts" class="footer-for-cart">
+    <div class="heading-wrapper">
+      <h2><span class="first-word">Sub-total</span>200 $</h2>
+    </div>
+    <button class="checkout">checkout</button>
+
+  </div>

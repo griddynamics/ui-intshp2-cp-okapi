@@ -8,6 +8,9 @@
 body {
   background: $bg-color;
   font-family: $main-font-regular;
+  margin: 0; 
+  height: 100%; 
+  //overflow: hidden;
 }
 
 a {

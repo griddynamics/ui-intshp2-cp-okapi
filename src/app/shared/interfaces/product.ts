@@ -39,5 +39,6 @@ export interface ICartProduct {
   quantity?: number;
   swatch?: string;
   price?: number;
+  defaultPrice?: number;
   size?: ProductSize;
 }
