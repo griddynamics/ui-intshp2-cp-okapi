@@ -6,10 +6,10 @@
   <i class="fas fa-times" (click)="context.resolve()"></i>
 
 </div>
-<div *ngIf="!cartProducts" class="empty-cart">
+<div *ngIf="!cartProducts.length" class="empty-cart">
   <img class = "pic-empty-cart" src="../../../../assets/empty-bag2.gif" alt="girl" width="100%">
   <div class="empty-cart-title">Your cart is empty</div>
-   <div class="empty-cart-subtitle" routerLink="/products">Please continue shopping</div> 
+   <div class="empty-cart-subtitle">Please continue shopping</div> 
 </div>
 <div class="block">
   <div *ngFor="let product of cartProducts; let i = index">
@@ -42,9 +42,9 @@
   </div>
 </div>
 
-  <div *ngIf="cartProducts" class="footer-for-cart">
+  <div *ngIf="cartProducts.length" class="footer-for-cart">
     <div class="heading-wrapper">
-      <h2><span class="first-word">Sub-total</span>200 $</h2>
+      <h2><span class="first-word">Sub-total</span>{{total | currency:'USD'}}</h2>
     </div>
     <button class="checkout">checkout</button>
 
