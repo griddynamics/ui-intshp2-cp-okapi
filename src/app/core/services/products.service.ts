@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class ProductsService {
-  public products: IProduct[] = [];
+  private products: IProduct[] = [];
   private wishList: IProduct[] = [];
   private wishListIds: String[] = [];
 

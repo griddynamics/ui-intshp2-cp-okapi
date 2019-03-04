@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 import { BaseFilter } from '../base-filter';
 
 @Component({
@@ -7,7 +7,11 @@ import { BaseFilter } from '../base-filter';
   styleUrls: ['./radio-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RadioFilterComponent extends BaseFilter {
+export class RadioFilterComponent extends BaseFilter implements OnInit {
   @Input() public filter;
+  public checked;
 
+  ngOnInit(): void {
+    this.checked = this.defaultParams;
+  }
 }

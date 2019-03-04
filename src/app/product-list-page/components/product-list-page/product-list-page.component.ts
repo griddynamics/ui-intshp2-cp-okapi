@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IProduct, IFilter } from 'src/app/shared/interfaces/product';
-import { ProductsService } from 'src/app/core/services/products.service';
+import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 
+import { IProduct, IFilter } from 'src/app/shared/interfaces/product';
+import { ProductsService } from 'src/app/core/services/products.service';
 import { environment } from 'src/environments/environment.test';
 import { DataService } from 'src/app/core/services/data.service';
-import { Router } from '@angular/router';
+
+const AMOUNT_TO_DISPLAY = 9;
 
 @Component({
   selector: 'app-product-list-page',
@@ -17,27 +19,27 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   public filters: IFilter[] = [];
   public products: IProduct[] = [];
   public currentFilters;
-  public route;
   public startFrom = 0;
-  public loadTo = 9;
-  public total = 9;
+  public loadTo = AMOUNT_TO_DISPLAY;
+  public total = AMOUNT_TO_DISPLAY;
+  public queryParams: any = null;
 
   constructor(
     private productsService: ProductsService,
     private dataService: DataService,
-    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.subscription = forkJoin(
-      this.loadProducts(this.startFrom, this.loadTo),
-      this.dataService.get(environment.filtersURL)
-    ).subscribe(([productsResponse, filters]) => {
-      const { products, total } = productsResponse;
+    this.subscription = this.dataService
+      .get(environment.filtersURL)
+      .subscribe((filters) => this.filters = filters);
 
-      this.filters = filters;
-      this.products = products;
-      this.total = total;
+    this.route.queryParams.subscribe(queryParams => {
+      this.queryParams = queryParams;
+      this.resetLimit();
+      this.getProductsByQuery()
+        .subscribe(this.setProductsResponse.bind(this));
     });
   }
 
@@ -69,27 +71,23 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
     this.startFrom = this.loadTo;
     this.loadTo = this.loadTo + loadAmount;
 
-    this.loadProducts(this.startFrom, this.loadTo).subscribe(({ total, products }) => {
-      this.products = this.products.concat(products);
-      this.total = total;
+    this.getProductsByQuery().subscribe(({ products, total }) => {
+      this.setProductsResponse({ total, products: this.products.concat(products) });
     });
   }
 
-  public onFilterChange(currentFilters) {
-    this.router.navigate(['/products'], { queryParams: currentFilters }).then(() => {
-      this.route = this.router.url;
-      this.getFilteredProducts(this.route);
-    });
+  private getProductsByQuery(): Observable<any> {
+    const searchString = location.search ? `${location.search}&`.substring(1) : '';
+    return this.productsService.getProducts(`${searchString}start=${this.startFrom}&end=${this.loadTo}`);
   }
 
-  public getFilteredProducts(route) {
-    this.dataService.get(`api${route}`).subscribe(filteredProducts => {
-      this.products = filteredProducts.products;
-      this.total = filteredProducts.total;
-    });
+  private setProductsResponse({ products, total }): void {
+    this.products = products;
+    this.total = total;
   }
 
-  private loadProducts(from: number, to: number): Observable<any> {
-    return this.productsService.getProducts(`start=${from}&end=${to}`);
+  private resetLimit(): void {
+    this.startFrom = 0;
+    this.loadTo = AMOUNT_TO_DISPLAY;
   }
 }

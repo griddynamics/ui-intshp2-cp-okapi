@@ -4,7 +4,7 @@
   </span>
   <div *ngFor="let field of filter.fields" class="filter-line hidden" [ngClass]="{'dropped': isDropped}">
     <label for="checkbox-{{field}}" class="checkbox" (change)="onFilterChange(filter.name, field)">{{field}}
-      <input id="checkbox-{{field}}" type="checkbox"/>
+      <input id="checkbox-{{field}}" type="checkbox" [checked]="checkField(field)"/>
       <span class="custom-checkbox"></span>
     </label>
   </div>

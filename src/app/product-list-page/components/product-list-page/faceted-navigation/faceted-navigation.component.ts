@@ -1,5 +1,12 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { IFilter } from 'src/app/shared/interfaces/product';
+import { Router } from '@angular/router';
+
+const enum FILTER_TYPE {
+  RADIO = 'radio',
+  CHECKBOX = 'checkbox',
+  RANGE = 'range'
+}
 
 @Component({
   selector: 'app-faceted-navigation',
@@ -7,7 +14,7 @@ import { IFilter } from 'src/app/shared/interfaces/product';
   styleUrls: ['./faceted-navigation.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class FacetedNavigationComponent {
+export class FacetedNavigationComponent implements OnInit {
   public isShowed = false;
   public isDropped = false;
   public subscription;
@@ -16,6 +23,23 @@ export class FacetedNavigationComponent {
   @Output() filterChange = new EventEmitter();
 
   @Input() filters: IFilter[] = [];
+  @Input() defaultParams: any;
+
+  public checkedRadioArr = [];
+  public checkedCheckboxArr = [];
+  public checkedRangeArr = [];
+
+  constructor(
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.currentFilters = { ...this.defaultParams };
+  }
+
+  public getDefaultParams(filter: IFilter): any {
+    return this.defaultParams[filter.name];
+  }
 
   public closeNav() {
     this.isShowed = false;
@@ -39,6 +63,6 @@ export class FacetedNavigationComponent {
         this.currentFilters[key] = this.currentFilters[key].join(',');
       }
     }
-    this.filterChange.emit(this.currentFilters);
+    this.router.navigate(['/products'], { queryParams: this.currentFilters });
   }
 }

@@ -13,9 +13,38 @@ describe('ProductsService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call removeFromWishList method', () => {
+  it('should call addToFromWishList method', (done) => {
     const service: ProductsService = TestBed.get(ProductsService);
-    service.products = [{
+
+    const product = {
+        'id': '1',
+        'title': 'String',
+        'price': 1,
+        'brand': 'String',
+        'description': 'String',
+        'sex': 'String',
+        'name': 'String',
+        'rating': 1,
+        'swatches': [],
+        'availability': [],
+        'thumbnailImageSrc': 'string',
+        'sizes': [],
+        'addedToCart': true,
+        'addedToWishList': false,
+        'relatedProducts': [],
+    };
+
+    service.toggleWishListProduct(product);
+
+    service.getWishList().subscribe(products => {
+      expect(products[0].addedToWishList).toBe(true);
+      done();
+    });
+  });
+
+  it('should call removeToWishList method', (done) => {
+    const service: ProductsService = TestBed.get(ProductsService);
+    const product = {
       'id': '1',
       'title': 'String',
       'price': 1,
@@ -31,33 +60,12 @@ describe('ProductsService', () => {
       'addedToCart': true,
       'addedToWishList': true,
       'relatedProducts': []
-    }
-    ];
-    service.toggleWishListProduct(service.products[0]);
-    expect(service.products[0].addedToWishList).toBe(false);
-  });
+    };
 
-  it('should call addToWishList method', () => {
-    const service: ProductsService = TestBed.get(ProductsService);
-    service.products = [{
-      'id': '1',
-      'title': 'String',
-      'price': 1,
-      'brand': 'String',
-      'description': 'String',
-      'sex': 'String',
-      'name': 'String',
-      'rating': 1,
-      'swatches': [],
-      'availability': [],
-      'thumbnailImageSrc': 'string',
-      'sizes': [],
-      'addedToCart': true,
-      'addedToWishList': false,
-      'relatedProducts': []
-    }
-    ];
-    service.toggleWishListProduct(service.products[0]);
-    expect(service.products[0].addedToWishList).toBe(true);
+    service.toggleWishListProduct(product);
+    service.getWishList().subscribe(products => {
+      expect(products.length).toBe(0);
+      done();
+    });
   });
 });

@@ -9,6 +9,7 @@ import { BaseFilter } from '../base-filter';
 })
 export class PriceRangeFilterComponent extends BaseFilter implements OnInit {
   @Input() public filter;
+  @Input() public defaultValue?: number[];
   public range = [];
   public step = 1;
 
@@ -16,7 +17,7 @@ export class PriceRangeFilterComponent extends BaseFilter implements OnInit {
     if (!this.filter) {
       return;
     }
-    this.range = [...this.filter.range];
+    this.range = this.defaultParams ? this.parseParams(this.defaultParams) : [...this.filter.range];
   }
 
   public valueChanged(e) {

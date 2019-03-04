@@ -34,9 +34,9 @@ export enum ProductSize {
 }
 
 export interface IFilter {
-  type: String;
-  name: String;
-  fields?: Array<String>;
+  type: string;
+  name: string;
+  fields?: Array<string>;
   range?: Array<PriceRange>;
 }
 
