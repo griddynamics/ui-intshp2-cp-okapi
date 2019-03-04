@@ -16,7 +16,6 @@ const enum FILTER_TYPE {
 })
 export class FacetedNavigationComponent implements OnInit {
   public isShowed = false;
-  public isDropped = false;
   public subscription;
   private currentFilters = {};
 
@@ -24,10 +23,6 @@ export class FacetedNavigationComponent implements OnInit {
 
   @Input() filters: IFilter[] = [];
   @Input() defaultParams: any;
-
-  public checkedRadioArr = [];
-  public checkedCheckboxArr = [];
-  public checkedRangeArr = [];
 
   constructor(
     private router: Router
@@ -47,10 +42,6 @@ export class FacetedNavigationComponent implements OnInit {
 
   public openNav() {
     this.isShowed = true;
-  }
-
-  public dropdownToggle() {
-    this.isDropped = !this.isDropped;
   }
 
   public onFilterChange({ name, value }) {
