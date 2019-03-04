@@ -1,29 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoaderService {
-  private _loading = false;
-  loadingStatus = new Subject();
-  loadingState = this.loadingStatus.asObservable();
+  private spinner = document.getElementById('spinner');
 
-  get loading() {
-    return this._loading;
+  hideLoader() {
+    setTimeout(() => {
+      this.spinner.style.display = 'none';
+    }, 200);
   }
 
-  set loading(value) {
-    this._loading = value;
-    this.loadingStatus.next(value);
-  }
-
-  startLoading() {
-    this.loading = true;
-  }
-
-  stopLoading() {
-    this.loading = false;
+  displayLoader() {
+    this.spinner.style.display = '';
   }
 }

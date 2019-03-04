@@ -15,6 +15,7 @@ describe('ProductListPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ SharedModule, HttpClientTestingModule, RouterTestingModule ],
+
       declarations: [
         ProductListPageComponent,
         FacetedNavigationComponent,

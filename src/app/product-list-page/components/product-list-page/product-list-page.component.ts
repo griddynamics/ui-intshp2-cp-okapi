@@ -3,9 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 
 import { IProduct, IFilter } from 'src/app/shared/interfaces/product';
+
 import { ProductsService } from 'src/app/core/services/products.service';
 import { environment } from 'src/environments/environment.test';
 import { DataService } from 'src/app/core/services/data.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
 
 const AMOUNT_TO_DISPLAY = 9;
 

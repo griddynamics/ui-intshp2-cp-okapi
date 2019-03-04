@@ -1,37 +1,58 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 
 
-import { DataService } from 'src/app/core/services/data.service';
 import { KillswitchService } from 'src/app/core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
-import { IProduct } from 'src/app/shared/interfaces/product';
+import { IProduct, ICartProduct, ProductSize } from 'src/app/shared/interfaces/product';
+import { CartService } from 'src/app/core/services/cart.service';
+
 
 @Component({
   selector: 'app-product-order',
   templateUrl: './product-order.component.html',
   styleUrls: ['./product-order.component.scss']
 })
-export class ProductOrderComponent implements OnChanges {
+export class ProductOrderComponent implements OnChanges, OnInit {
   @Input() product: IProduct;
-  @Input() addedToCart: boolean;
-  @Input() addedToWishList: boolean;
   public selected: number;
   selectedSwatch: number;
   @Output() swatchSelect = new EventEmitter();
 
-  public productConfiguration = {
-    count: 1,
-    size: '',
+  public productConfiguration: ICartProduct = {
+    id: '',
+    name: '',
+    quantity: 1,
+    size: ProductSize.M,
     price: 0,
     swatch: ''
   };
+
   public wishListEnabled;
 
   constructor(
     private productsService: ProductsService,
-    private dataService: DataService,
+    private cartService: CartService,
     private killswitchService: KillswitchService
-    ) { }
+  ) {
+  }
+
+  ngOnInit(): void {
+    const { id, name } = this.product;
+    this.productConfiguration.id = id;
+    this.productConfiguration.name = name;
+    const cartProducts = this.cartService.getCartProducts();
+
+    if (cartProducts) {
+      const currentCartProduct = cartProducts.find(el => el.id === this.product.id);
+      if (!currentCartProduct) {
+        return;
+      }
+
+      this.productConfiguration = { ...currentCartProduct };
+      this.selectedSwatch = this.product.swatches.findIndex(el => el.color === currentCartProduct.swatch);
+      this.selected = this.product.sizes.indexOf(currentCartProduct.size);
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
@@ -47,8 +68,20 @@ export class ProductOrderComponent implements OnChanges {
     this.productConfiguration.price = price;
   }
 
-  addToCart() {
-    this.dataService.create('add-to-cart/', this.productConfiguration).subscribe();
+  public openInCart(): void {
+    if (this.product.addedToCart) {
+      alert('Open add to cart popup here');
+      return;
+    }
+  }
+
+  public toggleCart(): void {
+    const { id, name, quantity, swatch, price, size } = this.productConfiguration;
+    this.cartService.toggleCart(this.product, { id, name, quantity, swatch, price, size });
+  }
+
+  get isDisabledAddToCartBtn() {
+    return this.productConfiguration.size && this.productConfiguration.swatch;
   }
 
   public toggleWishList(): void {
@@ -56,18 +89,25 @@ export class ProductOrderComponent implements OnChanges {
   }
 
   public increaseQuantity(): void {
-    this.productConfiguration.count++;
+    const { quantity } = this.productConfiguration;
+    const { amount: onStockAmount } = this.product;
+
+    if (quantity === onStockAmount) {
+      return;
+    }
+
+    this.productConfiguration.quantity++;
     this.productConfiguration.price += this.product.price;
   }
 
   public decreaseQuantity(): void {
-    if (this.productConfiguration.count > 1) {
-      this.productConfiguration.count--;
+    if (this.productConfiguration.quantity > 1) {
+      this.productConfiguration.quantity--;
       this.productConfiguration.price -= this.product.price;
     }
   }
 
-  public onChooseSize(size: string, i: number): void {
+  public onChooseSize(size: ProductSize, i: number): void {
     this.productConfiguration.size = size;
     this.selected = i;
   }

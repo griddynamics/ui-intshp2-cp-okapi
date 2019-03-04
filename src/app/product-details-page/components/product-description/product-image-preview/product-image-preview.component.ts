@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class ProductImagePreviewComponent implements OnChanges {
   public selectedImg = 0;
   public swatchesToArray: string[] = [];
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (!this.thumbnailImageSrc || !this.swatches || !this.swatches.length) {
       return;
     }
@@ -32,6 +32,7 @@ export class ProductImagePreviewComponent implements OnChanges {
     const { imgSrc } = this.selectedSwatch;
     const currImgIdx = this.swatchesToArray.findIndex(el => el === imgSrc);
     this.setSelectedImg(imgSrc, currImgIdx);
+
   }
   setSelectedImg(swatch, i) {
     this.imageSrc = swatch;

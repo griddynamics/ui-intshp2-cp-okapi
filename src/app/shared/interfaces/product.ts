@@ -1,11 +1,12 @@
 export interface IProduct {
-  id: String;
-  title: String;
+  id: string;
+  title?: string;
   price: number;
-  brand?: String;
-  description?: String;
-  sex?: String;
-  name?: String;
+  amount?: number;
+  brand?: string;
+  description?: string;
+  sex?: string;
+  name: string;
   rating?: Number;
   swatches?: Array<ISwatch>;
   availability: Array<ProductAvailabilityState>;
@@ -17,8 +18,8 @@ export interface IProduct {
 }
 
 export interface ISwatch {
-  color: String;
-  imgSrc?: String;
+  color: string;
+  imgSrc?: string;
 }
 
 export enum ProductAvailabilityState {
@@ -43,4 +44,11 @@ export interface IFilter {
 export enum PriceRange {
   min = 0,
   max = 1
+export interface ICartProduct {
+  id: string;
+  name: string;
+  quantity?: number;
+  swatch?: string;
+  price?: number;
+  size?: ProductSize;
 }
