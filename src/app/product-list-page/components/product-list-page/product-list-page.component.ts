@@ -28,6 +28,9 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    if (window.innerWidth < 1024 && window.innerWidth > 425) {
+      this.loadTo = 8;
+    }
     this.loaderService.displayLoader();
     this.subscription = forkJoin(
       this.loadProducts(this.startFrom, this.loadTo),
