@@ -20,24 +20,41 @@ export class PopUpComponent implements OnInit {
   ngOnInit() {
     this.cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
     this.totalPrice();
+    // const lsArr = JSON.parse(localStorage.getItem('cartProductIds'));
+
+    // if (lsArr) {
+    //   const currItemInLs = lsArr.find(el => el.id === this.product.id);
+    //   if (!currItemInLs) {
+    //     return;
+    //   }
+    //   this.productConfiguration.count = currItemInLs.quantity;
+    //   this.productConfiguration.size = currItemInLs.size;
+    //   // this.productConfiguration.price = currItemInLs.price;
+    //   this.productConfiguration.swatch = currItemInLs.swatch;
+    //   this.selectedSwatch = this.product.swatches.findIndex(el => el.color === currItemInLs.swatch.color);
+    //   this.selected = this.product.sizes.indexOf(currItemInLs.size);
+    // }
   }
 
   plus(index) {
     this.cartProducts[index].quantity++;
     this.total += this.cartProducts[index].defaultPrice;
+    localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
     }
 
     minus(index) {
       if (this.cartProducts[index].quantity > 1) {
         this. cartProducts[index].quantity --;
         this.total -= this.cartProducts[index].defaultPrice;
+        localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
       }
     }
 
-    delete(index) {
+    delete(index, product) {
       this.total -= this.cartProducts[index].defaultPrice * this.cartProducts[index].quantity;
       this.cartProducts.splice(index, 1);
       localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
+      this.cartService.remove(product);
       // this.cartService.updateCart();
     //  localStorage.removeItem('cartProduct');
       // this.cartService.removeFromCart(this.product, this.cartProducts)
