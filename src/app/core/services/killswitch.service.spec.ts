@@ -13,7 +13,7 @@ describe('KillswitchService', () => {
       imports: [
         HttpClientTestingModule
       ]
-    })
+    });
   });
 
   it('should be created', () => {

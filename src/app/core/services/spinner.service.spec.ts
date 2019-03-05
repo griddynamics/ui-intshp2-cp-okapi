@@ -15,7 +15,7 @@ describe('SpinnerService', () => {
         HttpClientModule,
         HttpClientTestingModule
       ]
-    })
+    });
   });
 
   it('should be created', () => {

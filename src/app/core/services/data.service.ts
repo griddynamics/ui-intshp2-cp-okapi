@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { RequestOptions } from '@angular/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -23,7 +22,7 @@ export class DataService {
     return this.sendRequest('post', path, options);
   }
 
-  public delete(path: string, options?: RequestOptions): Observable<any> {
+  public delete(path: string, options?): Observable<any> {
     return this.sendRequest('delete', path, options);
   }
 
@@ -39,7 +38,7 @@ export class DataService {
     return this.sendRequest('get', path, options);
   }
 
-  public update(path: string, options?: RequestOptions): Observable<any> {
+  public update(path: string, options?): Observable<any> {
     return this.sendRequest('put', path, options);
   }
 
@@ -59,7 +58,7 @@ export class DataService {
       'Something bad happened; please try again later.');
   }
 
-  private sendRequest(method: string, path: string, options?: RequestOptions): Observable<any> {
+  private sendRequest(method: string, path: string, options?): Observable<any> {
     if (!this.http[method]) {
       throw new Error('Method does\'nt supported in HTTPClient');
     }
