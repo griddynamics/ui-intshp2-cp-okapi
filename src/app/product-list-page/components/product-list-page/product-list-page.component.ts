@@ -30,9 +30,11 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
     private productsService: ProductsService,
     private dataService: DataService,
     private route: ActivatedRoute,
+    private loaderService: LoaderService
   ) { }
 
   ngOnInit() {
+    this.loaderService.displayLoader();
     this.subscription = this.dataService
       .get(environment.filtersURL)
       .subscribe((filters) => this.filters = filters);
@@ -42,6 +44,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
       this.resetLimit();
       this.getProductsByQuery()
         .subscribe(this.setProductsResponse.bind(this));
+      this.loaderService.hideLoader();
     });
   }
 
