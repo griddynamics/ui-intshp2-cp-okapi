@@ -17,10 +17,10 @@ import { addToCartDecorator, wishListDecorator } from 'src/app/core/decorators/p
   styleUrls: ['./home-page.component.scss']
 })
 
-
 export class HomePageComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
-  public wishList: IProduct[] = [];
+  public wishListIds: string[] = [];
+  public wishListArray: IProduct[] = [];
   public recentlyViewed: IProduct[] = [];
   public slideShowImages: any[] = [];
   public banners: IBanner[] = [];
@@ -36,6 +36,19 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+
+      const wishListIds = this.productsService.getWishListIds();
+      if (wishListIds.join(',').length) {
+      this.productsService.getProducts(`ids=${wishListIds.join(',')}`).subscribe(data => {
+        this.wishListArray = data.products;
+      });
+    }
+    this.productsService.getWishList().subscribe(data => {
+      if (data.length) {
+        this.wishListArray = data;
+      }
+    });
+
     this.loaderService.displayLoader();
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
 
@@ -58,7 +71,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
   private checkWishListItems() {
     const wishlistIds = localStorage.getItem('wishlist');
-    this.wishList = wishlistIds ? JSON.parse(localStorage.getItem('wishlist')) : this.wishList;
+    this.wishListIds = wishlistIds ? JSON.parse(localStorage.getItem('wishlist')) : this.wishListIds;
   }
 
   ngOnDestroy(): void {

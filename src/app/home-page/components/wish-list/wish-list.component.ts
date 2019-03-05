@@ -1,8 +1,7 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 
 import { IProduct } from 'src/app/shared/interfaces/product';
-import { Subscription, Observable } from 'rxjs';
-import { ProductsService } from 'src/app/core/services/products.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-wish-list',
@@ -11,22 +10,14 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 export class WishListComponent implements OnInit, OnDestroy {
   @ViewChild('wrapper') wrapper: ElementRef;
-  @Input() products: IProduct[] = [];
-  public wishListIds;
+  @Input() wishListArray: IProduct[] = [];
   public subscription: Subscription;
   public visibleWishItems = 3;
 
-  constructor(
-    private productsService: ProductsService
-  ) { }
-
   ngOnInit() {
-    this.getWishListIds();
-
-    if (!this.products.length) {
+    if (!this.wishListArray.length) {
       return;
     }
-    this.getProducts();
   }
 
   ngOnDestroy(): void {
@@ -35,35 +26,12 @@ export class WishListComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getWishListIds() {
-    const wishListIds = localStorage.getItem('wishlist');
-    this.wishListIds = wishListIds ? JSON.parse(wishListIds) : [];
-  }
-
   get showLoadMore(): Boolean {
     if (!this.visibleWishItems) { return false; }
-    return this.visibleWishItems < this.wishListIds.length;
-  }
-
-  private getProducts(): void {
-    const query = this.wishListIds.slice(0, this.visibleWishItems).join(',');
-
-    this.subscription = this.productsService.getProducts(`ids=${query}`).subscribe(data => {
-      this.products = data.products;
-    });
+    return this.visibleWishItems < this.wishListArray.length;
   }
 
   onLoadMore(loadAmount: number): void {
-    const productsAmount = this.products.length;
-    const newItemsWishList = this.wishListIds.slice(productsAmount, productsAmount + loadAmount).join(',');
-
-    this.loadProducts(newItemsWishList).subscribe(({ products }) => {
-      this.products = this.products.concat(products);
-      this.visibleWishItems = this.products.length;
-    });
-  }
-
-  private loadProducts(ids): Observable<any> {
-    return this.productsService.getProducts(`ids=${ids}`);
+    this.visibleWishItems += loadAmount;
   }
 }

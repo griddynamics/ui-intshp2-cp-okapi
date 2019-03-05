@@ -50,7 +50,7 @@ describe('HomePageComponent', () => {
       'relatedProducts': []
     }
     ];
-    component.wishList = [{
+    component.wishListArray = [{
       'id': '1',
       'title': 'String',
       'price': 1,
