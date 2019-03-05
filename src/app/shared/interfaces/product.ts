@@ -44,6 +44,7 @@ export interface IFilter {
 export enum PriceRange {
   min = 0,
   max = 1
+}
 export interface ICartProduct {
   id: string;
   name: string;
