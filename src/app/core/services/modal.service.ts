@@ -1,4 +1,4 @@
-import { Injectable, Type, ComponentRef, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver, ElementRef } from '@angular/core';
+import { Injectable, Type, ComponentRef, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { ModalContainer } from '../../shared/modal/modal-container';
 import { ModalContext } from '../../shared/modal/modal-context';
 import { ModalContainerComponent } from '../../shared/modal/modal-container/modal-container.component';
@@ -10,9 +10,7 @@ export class ModalService {
 
   private viewContainerRef: ViewContainerRef;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver,
-           //   public element: ElementRef
-              ) {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   registerViewContainer(vcf: ViewContainerRef) {
@@ -27,8 +25,6 @@ export class ModalService {
     if (!this.viewContainerRef) {
       return Promise.reject('No view container');
     }
-   // const body = this.element.nativeElement.querySelector('body');
-   // body.style.overflow = 'hidden';
     const container = <ComponentRef<ModalContainer>> this.container(options.containerType);
     const injector = ReflectiveInjector.resolveAndCreate([ModalContext], container.instance.container.injector);
     const context = injector.get(ModalContext);
