@@ -40,7 +40,6 @@ export class ProductOrderComponent implements OnChanges, OnInit {
     const { id, name } = this.product;
     this.productConfiguration.id = id;
     this.productConfiguration.name = name;
-
     const cartProducts = this.cartService.getCartProducts();
 
     if (cartProducts) {
@@ -90,6 +89,13 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   public increaseQuantity(): void {
+    const { quantity } = this.productConfiguration;
+    const { amount: onStockAmount } = this.product;
+
+    if (quantity === onStockAmount) {
+      return;
+    }
+
     this.productConfiguration.quantity++;
     this.productConfiguration.price += this.product.price;
   }
