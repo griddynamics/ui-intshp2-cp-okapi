@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 
 import { IProduct } from 'src/app/shared/interfaces/product';
@@ -7,16 +7,18 @@ import { ProductsService } from 'src/app/core/services/products.service';
 import { environment } from 'src/environments/environment.test';
 import { DataService } from 'src/app/core/services/data.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
+import { KillswitchService } from 'src/app/core/services/killswitch.service';
 
 @Component({
   selector: 'app-product-list-page',
   templateUrl: './product-list-page.component.html',
   styleUrls: ['./product-list-page.component.scss']
 })
-export class ProductListPageComponent implements OnInit, OnDestroy {
+export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewInit {
   public subscription;
   public filters: IFilter[] = [];
   public products: IProduct[] = [];
+  public loadMoreScrollEnabled: Boolean;
   private startFrom = 0;
   private loadTo = 9;
   private total = 9;
@@ -25,9 +27,11 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
     private productsService: ProductsService,
     private dataService: DataService,
     private loaderService: LoaderService,
-  ) { }
+    private killswitchService: KillswitchService
+  ) { this.onScroll = this.onScroll.bind(this); }
 
   ngOnInit() {
+    this.loadMoreScrollEnabled = this.killswitchService.getKillswitch('loadMoreScrollEnabled');
     this.loaderService.displayLoader();
     this.subscription = forkJoin(
       this.loadProducts(this.startFrom, this.loadTo),
@@ -41,6 +45,12 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
       this.total = total;
       this.loaderService.hideLoader();
     });
+  }
+
+  ngAfterViewInit(): void {
+    if (this.loadMoreScrollEnabled) {
+      window.addEventListener('scroll', this.onScroll);
+    }
   }
 
   ngOnDestroy(): void {
@@ -79,5 +89,16 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
 
   private loadProducts(from: number, to: number): Observable<any> {
     return this.productsService.getProducts(`start=${from}&end=${to}`);
+  }
+
+  public onScroll() {
+    const btnLoadMore = document.querySelector('.load-more');
+    let btnRect;
+    if (btnLoadMore) {
+      btnRect =  btnLoadMore.getBoundingClientRect();
+      if (btnRect.top < window.innerHeight - 200) {
+        this.onLoadMore(3);
+      }
+    }
   }
 }
