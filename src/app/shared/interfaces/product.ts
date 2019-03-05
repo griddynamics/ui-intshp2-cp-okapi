@@ -34,6 +34,16 @@ export enum ProductSize {
   XL = 'xl'
 }
 
+export interface IFilter {
+  type: string;
+  name: string;
+  fields?: Array<string>;
+  range?: Array<PriceRange>;
+}
+
+export enum PriceRange {
+  min = 0,
+  max = 1
 export interface ICartProduct {
   id: string;
   name: string;

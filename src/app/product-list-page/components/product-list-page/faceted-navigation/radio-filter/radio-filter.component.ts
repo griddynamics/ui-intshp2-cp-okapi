@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
-import { FacetedNavigationComponent } from '../faceted-navigation.component';
+import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
+import { BaseFilter } from '../base-filter';
 
 @Component({
   selector: 'app-radio-filter',
@@ -7,8 +7,11 @@ import { FacetedNavigationComponent } from '../faceted-navigation.component';
   styleUrls: ['./radio-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RadioFilterComponent extends FacetedNavigationComponent {
-
+export class RadioFilterComponent extends BaseFilter implements OnInit {
   @Input() public filter;
+  public checked;
 
+  ngOnInit(): void {
+    this.checked = this.defaultParams;
+  }
 }
