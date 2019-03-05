@@ -1,4 +1,4 @@
-import { ViewContainerRef, ComponentRef, Type } from '@angular/core';
+import { ViewContainerRef, ComponentRef } from '@angular/core';
 
 export class ModalContext {
   private componentRef: ComponentRef<any>;

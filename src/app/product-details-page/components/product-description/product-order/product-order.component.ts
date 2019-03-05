@@ -5,7 +5,8 @@ import { KillswitchService } from 'src/app/core/services/killswitch.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { IProduct, ICartProduct, ProductSize } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/core/services/cart.service';
-
+import { PopUpComponent } from 'src/app/shared/modal/pop-up/pop-up.component';
+import { ModalService } from 'src/app/core/services/modal.service';
 
 @Component({
   selector: 'app-product-order',
@@ -33,7 +34,8 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   constructor(
     private productsService: ProductsService,
     private cartService: CartService,
-    private killswitchService: KillswitchService
+    private killswitchService: KillswitchService,
+    private modalService: ModalService
   ) {
   }
 
@@ -73,7 +75,7 @@ export class ProductOrderComponent implements OnChanges, OnInit {
 
   public openInCart(): void {
     if (this.product.addedToCart) {
-      alert('Open add to cart popup here');
+      this.modalService.open(PopUpComponent);
       return;
     }
   }

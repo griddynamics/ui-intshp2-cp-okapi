@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/services/cart.service';
-import { ModalService } from 'src/app/shared/modal/modal.service';
+import { ModalService } from 'src/app/core/services/modal.service';
 import { PopUpComponent } from 'src/app/shared/modal/pop-up/pop-up.component';
 
 @Component({
@@ -25,7 +25,7 @@ export class HeaderNavComponent implements OnInit {
     this.cartService.getCartAmount().subscribe((cartAmount) => this.cartAmount = cartAmount);
   }
 
-  add() {
+   public popup() {
     this.modalService.open(PopUpComponent);
  }
 }

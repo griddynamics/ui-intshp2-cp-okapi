@@ -4,6 +4,8 @@ import { KillswitchService } from 'src/app/core/services/killswitch.service';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
+import { ModalService } from '../../../core/services/modal.service';
+import { PopUpComponent } from '../../modal/pop-up/pop-up.component';
 
 @Component({
   selector: 'app-product-item',
@@ -24,7 +26,8 @@ export class ProductItemComponent implements OnInit {
     private killswitchService: KillswitchService,
     private router: Router,
     private cartService: CartService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit() {
@@ -98,7 +101,7 @@ export class ProductItemComponent implements OnInit {
     event.stopPropagation();
 
     if (this.product.addedToCart) {
-      alert('Open add to cart popup here');
+      this.modalService.open(PopUpComponent);
       return;
     }
     this.router.navigate(['/products', this.product.id]);

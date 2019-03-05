@@ -1,8 +1,5 @@
-// @import "../../../../scss/mixins";
 @import "../../../../scss/variables";
 @import "../../../../scss/fonts";
-// @import "../../../../scss/reset";
-
 
 :host{
     display:block;
@@ -28,7 +25,6 @@
 
   .footer-for-cart {
     margin-top: 40px;
-   // justify-content: space-evenly;
   }
 
   .block {
@@ -65,7 +61,7 @@ i, .minus, .plus {
 }
 
 .item-for-cart {
-    display: flex;
+  display: flex;
     i {
       opacity: 0;
       transition: opacity 0.5s;
@@ -102,8 +98,7 @@ height:  1px;
   top: 3px;
   width: 1px;
   margin-left: 20px;
-}
-
+   }
 }
 
 .info-block {
@@ -134,21 +129,22 @@ h2, .empty-cart-title {
   text-transform: uppercase;
   
 }
-    .first-word, .empty-cart-subtitle {
-      font-family: $main-font-bold;
-      font-size: 20px;
-      margin-right: 5px;
-      color: $primary-color;
-      text-transform: uppercase;
-    }
 
-    .empty-cart-subtitle {
-      cursor: pointer;
-    }
+.first-word, .empty-cart-subtitle {
+  font-family: $main-font-bold;
+  font-size: 20px;
+  margin-right: 5px;
+  color: $primary-color;
+  text-transform: uppercase;
+}
 
-    .empty-cart {
-      text-align: center;
-    }
+.empty-cart-subtitle {
+  cursor: pointer;
+}
+
+.empty-cart {
+  text-align: center;
+}
 
 .checkout{
   width: 100px;

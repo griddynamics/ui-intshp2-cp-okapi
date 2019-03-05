@@ -19,7 +19,9 @@ import { LazyLoadComponent } from './components/lazy-load/lazy-load.component';
 import { GridComponent } from './components/grid/grid.component';
 import { ImgPlaceholderComponent } from '../shared/components/img-placeholder/img-placeholder.component';
 import { SwipeIconComponent } from './components/swipe-icon/swipe-icon.component';
-import { ModalModule } from './modal/modal.module';
+import { ModalContainerComponent } from './modal/modal-container/modal-container.component';
+import { ModalHolderDirective } from './modal/modal-holder.directive';
+import { PopUpComponent } from './modal/pop-up/pop-up.component';
 
 const MODULES = [
   CommonModule,
@@ -28,7 +30,6 @@ const MODULES = [
   NgbModule,
   RouterModule,
   ReactiveFormsModule,
-  ModalModule
 ];
 
 @NgModule({
@@ -46,6 +47,9 @@ const MODULES = [
     GridComponent,
     ImgPlaceholderComponent,
     SwipeIconComponent,
+    ModalContainerComponent,
+    ModalHolderDirective,
+    PopUpComponent,
   ],
   imports: [...MODULES],
   exports: [
@@ -63,7 +67,11 @@ const MODULES = [
     GridComponent,
     ImgPlaceholderComponent,
     SwipeIconComponent,
+    ModalContainerComponent,
+    ModalHolderDirective,
+    PopUpComponent
   ],
+  entryComponents: [ModalContainerComponent, PopUpComponent],
 })
 export class SharedModule {
   static forRoot() {
