@@ -34,7 +34,6 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.loaderService.displayLoader();
     this.subscription = this.dataService
       .get(environment.filtersURL)
       .subscribe((filters) => this.filters = filters);
@@ -44,7 +43,6 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
       this.resetLimit();
       this.getProductsByQuery()
         .subscribe(this.setProductsResponse.bind(this));
-      this.loaderService.hideLoader();
     });
   }
 
@@ -82,6 +80,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   }
 
   private getProductsByQuery(): Observable<any> {
+    this.loaderService.displayLoader();
     const searchString = location.search ? `${location.search}&`.substring(1) : '';
     return this.productsService.getProducts(`${searchString}start=${this.startFrom}&end=${this.loadTo}`);
   }
@@ -89,6 +88,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   private setProductsResponse({ products, total }): void {
     this.products = products;
     this.total = total;
+    this.loaderService.hideLoader();
   }
 
   private resetLimit(): void {

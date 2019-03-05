@@ -48,8 +48,8 @@ export enum PriceRange {
 export interface ICartProduct {
   id: string;
   name: string;
-  quantity ?: number;
-  swatch ?: string;
-  price ?: number;
-  size ?: ProductSize;
+  quantity?: number;
+  swatch?: string;
+  price?: number;
+  size?: ProductSize;
 }
