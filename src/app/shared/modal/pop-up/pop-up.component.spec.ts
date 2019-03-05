@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PopUpComponent } from './pop-up.component';
+import { ModalContext } from '../modal-context';
+
 
 describe('PopUpComponent', () => {
   let component: PopUpComponent;
@@ -8,7 +10,7 @@ describe('PopUpComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PopUpComponent ]
+      declarations: [ PopUpComponent, ModalContext]
     })
     .compileComponents();
   }));

@@ -26,7 +26,7 @@ export class ModalContext {
     this._reject(reason);
   }
 
-  private promise(componentRef: ComponentRef<any>, containerRef: ViewContainerRef):Promise<any> {
+  private promise(componentRef: ComponentRef<any>, containerRef: ViewContainerRef): Promise<any> {
     return this._promise || (this._promise = new Promise((resolve, reject) => {
       this.componentRef = componentRef;
       this.containerRef = containerRef;
