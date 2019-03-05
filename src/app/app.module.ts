@@ -2,11 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { KillswitchService } from './core/services/killswitch.service';
 import { SharedModule } from './shared/shared.module';
+
+import { AppComponent } from './app.component';
+
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+import { KillswitchService } from './core/services';
 
 @NgModule({
   declarations: [

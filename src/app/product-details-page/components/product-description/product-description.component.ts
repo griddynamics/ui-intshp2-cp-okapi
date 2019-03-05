@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from 'src/app/shared/interfaces/product';
+
+import { IProduct, ISwatch } from '../../../shared/interfaces/product';
+
 @Component({
   selector: 'app-product-description',
   templateUrl: './product-description.component.html',
@@ -7,7 +9,8 @@ import { IProduct } from 'src/app/shared/interfaces/product';
 })
 export class ProductDescriptionComponent {
   @Input() product: IProduct;
-  selectedSwatch;
+
+  public selectedSwatch: ISwatch;
 
   onSwatchSelect(e) {
     this.selectedSwatch = e;

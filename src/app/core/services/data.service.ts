@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+
+import { SpinnerService } from './spinner.service';
 
 import { environment } from '../../../environments/environment';
 
@@ -16,7 +17,7 @@ export class DataService {
     'Content-Type': 'application/json'
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private spinner: SpinnerService) { }
 
   public create(path: string, options?): Observable<any> {
     return this.sendRequest('post', path, options);
@@ -63,9 +64,13 @@ export class DataService {
       throw new Error('Method does\'nt supported in HTTPClient');
     }
 
+    this.spinner.show();
     return this.http[method](this.getUrl(path), {
       headers: this.headers,
       ...options
-    }).pipe(catchError(this.handleError));
+    }).pipe(
+      tap(() => this.spinner.hide()),
+      catchError(this.handleError)
+    );
   }
 }

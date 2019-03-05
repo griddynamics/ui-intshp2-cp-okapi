@@ -7,7 +7,6 @@ import { Component, AfterViewInit, ElementRef, ViewEncapsulation } from '@angula
   encapsulation: ViewEncapsulation.None,
 })
 export class LazyLoadComponent implements AfterViewInit {
-
   private observer: IntersectionObserver;
 
   constructor(public element: ElementRef) { }

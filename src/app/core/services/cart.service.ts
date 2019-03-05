@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { IProduct, ICartProduct } from 'src/app/shared/interfaces/product';
-
+import { IProduct, ICartProduct } from '../../shared/interfaces/product';
 
 @Injectable({
   providedIn: 'root'

@@ -1,12 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { SharedModule } from 'src/app/shared/shared.module';
-
-import { HomePageComponent } from './home-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SlideshowComponent } from '../slideshow/slideshow.component';
-import { WishListComponent } from '../wish-list/wish-list.component';
-import { RecentlyViewedComponent } from '../recently-viewed/recently-viewed.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { SharedModule } from '../../../shared/shared.module';
+
+import { HomePageComponent, SlideshowComponent, WishListComponent, RecentlyViewedComponent } from '../';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
