@@ -1,7 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 
 import { IProduct } from 'src/app/shared/interfaces/product';
-import { environment } from 'src/environments/environment';
 import { Subscription, Observable } from 'rxjs';
 import { ProductsService } from 'src/app/core/services/products.service';
 
@@ -15,10 +14,8 @@ export class WishListComponent implements OnInit, OnDestroy {
   @Input() products: IProduct[] = [];
   public wishListIds;
   public subscription: Subscription;
-
   public visibleWishItems = 3;
-  private startFrom = 0;
-  private loadTo = 9;
+
   constructor(
     private productsService: ProductsService
   ) { }
@@ -45,11 +42,11 @@ export class WishListComponent implements OnInit, OnDestroy {
 
   get showLoadMore(): Boolean {
     if (!this.visibleWishItems) { return false; }
-    return this.visibleWishItems < this.products.length;
+    return this.visibleWishItems < this.wishListIds.length;
   }
 
   private getProducts(): void {
-    const query = this.wishListIds.join(',');
+    const query = this.wishListIds.slice(0, this.visibleWishItems).join(',');
 
     this.subscription = this.productsService.getProducts(`ids=${query}`).subscribe(data => {
       this.products = data.products;
@@ -57,15 +54,16 @@ export class WishListComponent implements OnInit, OnDestroy {
   }
 
   onLoadMore(loadAmount: number): void {
-    this.startFrom = this.loadTo;
-    this.loadTo = this.loadTo + loadAmount;
+    const productsAmount = this.products.length;
+    const newItemsWishList = this.wishListIds.slice(productsAmount, productsAmount + loadAmount).join(',');
 
-    this.loadProducts(this.startFrom, this.loadTo).subscribe(({ products }) => {
+    this.loadProducts(newItemsWishList).subscribe(({ products }) => {
       this.products = this.products.concat(products);
+      this.visibleWishItems = this.products.length;
     });
   }
 
-  private loadProducts(from: number, to: number): Observable<any> {
-    return this.productsService.getProducts(`start=${from}&end=${to}`);
+  private loadProducts(ids): Observable<any> {
+    return this.productsService.getProducts(`ids=${ids}`);
   }
 }
