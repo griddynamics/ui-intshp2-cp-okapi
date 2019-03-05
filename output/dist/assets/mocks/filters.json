@@ -1,0 +1,27 @@
+[
+  {
+      "type": "radio",
+      "name": "gender",
+      "fields": ["man", "woman", "children"]
+  },
+  {
+      "type": "checkbox",
+      "name": "category",
+      "fields": ["t-shirts", "shoes", "shorts"]
+  },
+  {
+      "type": "checkbox",
+      "name": "size",
+      "fields": ["s", "m", "l", "xl"]
+  },
+  {
+      "type": "range",
+      "name": "price",
+      "range": []
+  },
+  {
+      "type": "checkbox",
+      "name": "brand",
+      "fields": ["nike", "adiddas", "reebok", "active"]
+  }
+]

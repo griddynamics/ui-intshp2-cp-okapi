@@ -1,0 +1,1095 @@
+[
+  {
+    "id": "1",
+    "category": "shoes",
+    "name": "ADIDAS WORKOUT PLUS ATI 90S",
+    "brand": "adidas",
+    "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE.",
+    "description": "This item is excluded from all promotions.",
+    "sex": "man",
+    "price": 90,
+    "amount": 20,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "lightgray",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/be70507ba2214aedbe54a984011e860a_9366/Workout_Plus_ATI_90s_Multicolor_DV5494_01_standard.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/b333365fc6784c5893b7a984011ec330_9366/Workout_Plus_ATI_90s_Multicolor_DV5495_01_standard.jpg"
+      },
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/e11c8e3c0a854e48a1d9a984011fe4b4_9366/Workout_Plus_ATI_90s_Multicolor_DV5497_01_standard.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": ""
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/6e8e3e5e2c564121ad40a984011eae9c_9366/Workout_Plus_ATI_90s_Multicolor_DV5493_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "2",
+    "category": "shoes",
+    "name": "CLUB C 1985 TV",
+    "brand": "nike",
+    "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
+    "description": "This item is excluded from all promotions.",
+    "sex": "man",
+    "price": 85,
+    "amount": 14,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "lightgray",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/c17df820d45741d394c8a9840129eeb8_9366/Club_C_1985_TV_Multicolor_DV6434_01_standard.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": ""
+      },
+      {
+        "color": "black",
+        "imgSrc": ""
+      },
+      {
+        "color": "grey",
+        "imgSrc": ""
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/c17df820d45741d394c8a9840129eeb8_9366/Club_C_1985_TV_Multicolor_DV6434_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "3",
+    "category": "shoes",
+    "name": "REEBOK CROSSFIT NANO 8 FLEXWEAVE",
+    "brand": "reebok",
+    "title": "This item is excluded from all promotions.",
+    "description": "This item is excluded from all promotions.",
+    "sex": "man",
+    "price": 130,
+    "amount": 11,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "lightgray",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/9b8216a068ba4470a62aa83f005cd42c_9366/Reebok_CrossFit_Nano_8_Flexweave__White_CN1020_01_standard.jpg"
+      },
+      {
+        "color": "red",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/5b20efd923c343258261a8d500901702_9366/Reebok_CrossFit_Nano_8_Flexweave__Black_CN5656_01_standard.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/4021a46ba05b476a8014a99801073e1d_9366/Reebok_CrossFit_Nano_8_Flexweave__Multicolor_DV5331_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/ec1e447276304286b0a5a83f005e0f8f_9366/Reebok_CrossFit_Nano_8_Flexweave__Black_CN1022_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "4",
+    "category": "shoes",
+    "name": "ADIDAS CLUB C 85",
+    "brand": "adidas",
+    "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
+    "description": "This item is excluded from all promotions.",
+    "sex": "man",
+    "price": 70,
+    "amount": 8,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "grey",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/a36a0f3fd35d41a9ae01a5ed0126a8a4_9366/Club_C_85_White_AR0455_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/789fbd5c1c4048edb672a5cb0152b3ba_9366/Club_C_85_Black_AR0454_01_standard.jpg",
+    "sizes": [
+      "S",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "5",
+    "category": "shoes",
+    "name": "NIKE AZTREK",
+    "brand": "nike",
+    "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
+    "description": "This item is excluded from all promotions.",
+    "sex": "man",
+    "price": 80,
+    "amount": 13,
+    "rating": 5,
+    "swatches": [],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/bfe8bb63369045caa8a2a997013c7740_9366/Reebok_Aztrek_Blue_DV8816_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "6",
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "6",
+    "category": "shoes",
+    "name": "FLOATRIDE RUN SMOOTH",
+    "brand": "nike",
+    "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
+    "description": "This item is excluded from all promotions.",
+    "sex": "man",
+    "price": 70,
+    "amount": 14,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/149e8620d3ba42129f2ea8f2000e6341_9366/Floatride_Run_Smooth_Black_CN4646_01_standard.jpg"
+      },
+      {
+        "color": "green",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/3f4d947ecca545c58c49a9920135aa1e_9366/Floatride_Run_Smooth_Black_DV4788_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/c3ca0f2c36cf48b584eea9a7002a5a16_9366/Floatride_Run_Smooth_Blue_DV4787_01_standard.jpg",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "7",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "7",
+    "category": "shoes",
+    "name": "AIR AZTREK",
+    "brand": "air",
+    "title": "THIS PRODUCT IS OFFERED IN UNISEX SIZE. ",
+    "description": "This item is excluded from all promotions.",
+    "sex": "man",
+    "price": 80,
+    "amount": 44,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "lightgray",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/d6894bd5d7214916a213a9730109d129_9366/Aztrek_Multicolor_DV3900_01_standard.jpg"
+      },
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/327afc34a26941ec80e7a9a9001727df_9366/Aztrek_Multicolor_DV3913_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/17869a46e4b44365a352a9a60009b3b5_9366/Aztrek_Multicolor_DV3911_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "8",
+    "name": "ADIDAS LEFT CHEST STACKED LOGO TEE",
+    "brand": "adidas",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 25,
+    "amount": 4,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "red",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/0d7ebaccdbed435fae80a9ae012e3484_9366/Left_Chest_Stacked_Logo_Tee_Red_FP8014_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/59d247dd41b6437bbf5fa9ae012e3b43_9366/Left_Chest_Stacked_Logo_Tee_Grey_FP8015_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ]
+  },
+  {
+    "id": "9",
+    "category": "t-shirts",
+    "name": "REEBOK LINEAR READ TEE",
+    "brand": "air",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 25,
+    "amount": 4,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "yellow",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/b8d3ba5bff464948a07fa9ae012e58a9_9366/Reebok_Linear_Read_Tee_Sand_As_FP8012_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/df57831b026f432898b2a9ae012e133b_9366/Reebok_Linear_Read_Tee_Green_FP8013_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "8",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ]
+  },
+  {
+    "id": "10",
+    "category": "t-shirts",
+    "name": "TRAINING ACTIVCHILL MOVE TEE",
+    "brand": "reebok",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 35,
+    "amount": 5,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/a951d20352de4195a2bfa9760155038b_9366/Training_ACTIVCHILL_Move_Tee_Blue_DU3945_21_model.jpg"
+      },
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/dba39527fad04f0589d5a98a0005b90f_9366/Training_ACTIVCHILL_Move_Tee_Black_DU3946_21_model.jpg"
+      },
+      {
+        "color": "red",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/eabeeb782b76436ebc35a97401447383_9366/Training_ACTIVCHILL_Move_Tee_Purple_DU3950_21_model.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/a2714a4b3e5a4f6bb7bca974013e9160_9366/Training_ACTIVCHILL_Move_Tee_Grey_DP6554_21_model.jpg",
+    "sizes": [
+      "S",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "8",
+      "9",
+      "11",
+      "12",
+      "13",
+      "14"
+    ]
+  },
+  {
+    "id": "11",
+    "category": "t-shirts",
+    "name": "CLASSIC LOGO TEE",
+    "brand": "air",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 25,
+    "amount": 8,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "lightgray",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/32ecada41f004e02b72fa9ae012e3efd_9366/Classic_Logo_Tee_White_FP6946_01_standard.jpg"
+      },
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/f0a7ed38c3494280ba54a9ae012e5d39_9366/Classic_Logo_Tee_Black_FP6947_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/7b04f8ee868e4077a3baa9ae012e255d_9366/Classic_Logo_Tee_Blue_FP6945_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "relatedProducts": [
+      "8",
+      "9",
+      "10",
+      "12",
+      "13",
+      "14"
+    ]
+  },
+  {
+    "id": "12",
+    "category": "t-shirts",
+    "name": "ADIDAS CROSSFIT® OPEN TESTED TEE",
+    "brand": "adidas",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 25,
+    "amount": 24,
+    "rating": 7,
+    "swatches": [
+      {
+        "color": "yellow",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/5cc257dc2f454e618223a99e0021cd9a_9366/Reebok_CrossFit__Open_Tested_Tee_Beige_DY0484_01_standard.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/06e8f45320b449e2ba93a99e0023ba25_9366/Reebok_CrossFit__Open_Tested_Tee_Grey_DY0485_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/71a2da8cbd1640b8a048a99e0022f74d_9366/Reebok_CrossFit__Open_Tested_Tee_Black_DY0483_01_standard.jpg",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "8",
+      "9",
+      "10",
+      "11",
+      "13",
+      "14"
+    ]
+  },
+  {
+    "id": "13",
+    "category": "t-shirts",
+    "name": "NIKE CROSSFIT® OPEN TESTED TEE",
+    "brand": "nike",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 20,
+    "amount": 24,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/8c8734205e28474ab9e1a8c001804f29_9366/Reebok_Linear_Read_Tee_Black_CW5376_01_standard.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/db4e31b525774502a980a84d015929a8_9366/Reebok_Linear_Read_Tee_Grey_CW5375_01_standard.jpg"
+      },
+      {
+        "color": "red",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/ab3b8a60d02641c2adb5a94c015df636_9366/Reebok_Linear_Read_Tee_Purple_DU4702_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/5585baf8f10644278a3ba94c015b7964_9366/Reebok_Linear_Read_Tee_Yellow_DU4683_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "14"
+    ]
+  },
+  {
+    "id": "14",
+    "category": "t-shirts",
+    "name": "NIKE CROSSFIT SPEEDWICK F.E.F. GRAPHIC T-SHIRT",
+    "brand": "nike",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 28,
+    "amount": 8,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/5331fd125f584607a9d5a94c01319c59_9366/Reebok_CrossFit_Speedwick_F_E_F__Graphic_T-Shirt_Black_DT2772_01_standard.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/64f6ae784add44dba282a9bd0111bb07_9366/Reebok_CrossFit_Speedwick_F_E_F__Graphic_T-Shirt_Grey_DP6220_24_model.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/196c9763507347ad9629a9ce00b58e75_9366/Reebok_CrossFit_Speedwick_F_E_F__Graphic_T-Shirt_Blue_DZ7570_21_model.jpg"
+      },
+      {
+        "color": "red",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/26e65d282aa84365a03ea94c0131c15b_9366/Reebok_CrossFit_Speedwick_F_E_F__Graphic_T-Shirt_Red_DT2773_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/c59a5a01a88046889bcea8c6015d7d7b_9366/Reebok_CrossFit_Speedwick_F_E_F__Graphic_T-Shirt_Green_DH3705_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13"
+    ]
+  },
+  {
+    "id": "15",
+    "category": "shorts",
+    "name": "WOR MÉLANGE DOUBLEKNIT SHORTS",
+    "brand": "air",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 35,
+    "amount": 14,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/9f19c06309d340df98a2a9b20107e6d7_9366/WOR_Melange_Doubleknit_Shorts_Blue_DU2204_01_standard.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/e0111b2d6abb47f78cbfa94c0138bdc2_9366/WOR_Melange_Doubleknit_Shorts_Grey_DP6153_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/75675ce278fd4a419b73a94d0000ec2f_9366/WOR_Melange_Doubleknit_Shorts_Black_DU2210_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21"
+    ]
+  },
+  {
+    "id": "16",
+    "category": "shorts",
+    "name": "REEBOK CROSSFIT® SPEED PRINT SHORTS",
+    "brand": "air",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 65,
+    "amount": 24,
+    "rating": 5,
+    "swatches": [],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/0b94814292ee48728bfea98c012d2022_9366/Reebok_CrossFit__Speed_Print_Shorts_Turquoise_DP4575_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "15",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21"
+    ]
+  },
+  {
+    "id": "17",
+    "category": "shorts",
+    "name": "REEBOK CROSSFIT® SPEED PRINT SHORTS",
+    "brand": "adidas",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 65,
+    "amount": 3,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/813a12e9121345ccb519a94d00f666f2_9366/WOR_Woven_Shorts_Blue_DU2153_01_standard.jpg"
+      },
+      {
+        "color": "grey",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/23b14065d1fc4f139427a94c01892707_9366/WOR_Woven_Shorts_Grey_DU2175_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/5da05b056cdd45029866a94c01408994_9366/WOR_Woven_Shorts_Black_DP6173_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "15",
+      "16",
+      "18",
+      "19",
+      "20",
+      "21"
+    ]
+  },
+  {
+    "id": "18",
+    "category": "shorts",
+    "name": "RUNNING EPIC TWO-IN-ONE SHORTS",
+    "brand": "adidas",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 55,
+    "amount": 24,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "lightgray",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/656a8a59ff874556ab86a94d0007598b_9366/Running_Epic_Two-in-One_Shorts_Grey_DU4285_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/51fb7b6cccfa446c8431a94c013e2751_9366/Running_Epic_Two-in-One_Shorts_Black_DP6736_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "15",
+      "16",
+      "17",
+      "19",
+      "20",
+      "21"
+    ]
+  },
+  {
+    "id": "19",
+    "category": "shorts",
+    "name": "REEBOK SPEED SHORT",
+    "brand": "adidas",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 40,
+    "amount": 3,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/9c068a5c159b40be8345a76e016dd816_9366/Reebok_Speed_Short_Black_BQ3522_01_standard.jpg"
+      },
+      {
+        "color": "lightgray",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/4ad0ce91015d45cdb936a94c012be99b_9366/Reebok_Speed_Short_Grey_DU3912_01_standard.jpg"
+      },
+      {
+        "color": "green",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/d54e4c66d28f4611ac8aa94c017d810d_9366/Reebok_Speed_Short_Green_DX0478_01_standard.jpg"
+      },
+      {
+        "color": "yellow",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/38c9546f338e47a789daa8d9013cbc93_9366/Reebok_Speed_Short_Gold_DN9396_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/bfef867858324026810da94c012bc2a7_9366/Reebok_Speed_Short_Red_DU3911_01_standard.jpg",
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "relatedProducts": [
+      "15",
+      "16",
+      "17",
+      "18",
+      "20",
+      "21"
+    ]
+  },
+  {
+    "id": "20",
+    "category": "shorts",
+    "name": "NIKE CROSSFIT® SPEEDWICK SHORTS",
+    "brand": "nike",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 55,
+    "amount": 24,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/550d6d0408814a19ac22a94c015451ee_9366/Reebok_CrossFit__Speedwick_Shorts_Black_DU5070_01_standard.jpg"
+      },
+      {
+        "color": "red",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/927a5ea7df8043d4920da94c0154b749_9366/Reebok_CrossFit__Speedwick_Shorts_Black_DU5072_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/72477751acb24e8a8b6ea94c015bcd5b_9366/Reebok_CrossFit__Speedwick_Shorts_Red_DP4567_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "21"
+    ]
+  },
+  {
+    "id": "21",
+    "category": "shorts",
+    "name": "TRAINING SPEEDWICK SHORTS",
+    "brand": "reebok",
+    "title": "MEN TRAINING",
+    "description": "lorem lorem lorem",
+    "sex": "man",
+    "price": 55,
+    "amount": 3,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/658839b63d5545459c07a94c01536db8_9366/Training_Speedwick_Shorts_Black_DP6559_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/0f136cebf653432382a0a98b018944e0_9366/Training_Speedwick_Shorts_Black_DY8561_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20"
+    ]
+  },
+  {
+    "id": "22",
+    "category": "shoes",
+    "name": "REEBOK LEGACY LIFTE",
+    "brand": "reebok",
+    "title": "WOMEN TRAINING",
+    "description": "This item is excluded from all promotions.",
+    "sex": "woman",
+    "price": 200,
+    "amount": 4,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "lightgray",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/06f944bfbdfb4cc4bf08a9880015bad7_9366/Reebok_Legacy_Lifter_White_DV4397_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/d42eb1b2394748b9bdf5a6b90114ab5e_9366/Reebok_Legacy_Lifter_White_BD4730_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "23",
+      "25",
+      "24",
+      "26"
+    ]
+  },
+  {
+    "id": "23",
+    "category": "shoes",
+    "name": "REEBOK CROSSFIT GRACE",
+    "brand": "reebok",
+    "title": "WOMEN TRAINING",
+    "description": "This item is excluded from all promotions.",
+    "sex": "woman",
+    "price": 100,
+    "amount": 14,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "red",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/56fdf458bdb04131baa6a92201047cd8_9366/Reebok_CrossFit_Grace_Cfg-Ruggedrose_CN8385_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/90da4ecf0c064774b0f7a9d70166d506_9366/Reebok_CrossFit_Grace_White_CN7194_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "24",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "24",
+    "category": "shoes",
+    "name": "CLUB C 85 FVS",
+    "brand": "reebok",
+    "title": "WOMEN TRAINING",
+    "description": "This item is excluded from all promotions.",
+    "sex": "woman",
+    "price": 80,
+    "amount": 24,
+    "rating": 5,
+    "swatches": [],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/9be0f33d891b45e8ac75a8430020523f_9366/Club_C_85_FVS_White_CN2188_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "25",
+      "26"
+    ]
+  },
+  {
+    "id": "25",
+    "category": "shoes",
+    "name": "CLASSIC NYLON",
+    "brand": "reebok",
+    "title": "KIDS CLASSICS",
+    "description": "This item is excluded from all promotions.",
+    "sex": "children",
+    "price": 40,
+    "amount": 12,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/d8fe08a375c941cdb5f5a9c40175a513_9366/Classic_Nylon_Multicolor_CN7633_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/a03f3f6a445c464e97eba9a900128674_9366/Classic_Nylon_Multicolor_CN7621_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "24",
+      "26"
+    ]
+  },
+  {
+    "id": "26",
+    "category": "shoes",
+    "name": "CLASSIC LEATHER - TODDLER",
+    "brand": "reebok",
+    "title": "KIDS CLASSICS",
+    "description": "This item is excluded from all promotions.",
+    "sex": "children",
+    "price": 40,
+    "amount": 11,
+    "rating": 5,
+    "swatches": [
+      {
+        "color": "black",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/0ba8d886971b4e3dbceca8d3012ae84f_9366/Classic_Leather_-_Toddler_Green_CN5615_01_standard.jpg"
+      },
+      {
+        "color": "blue",
+        "imgSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/617213672a4b466f916ba98b016e5d63_9366/Classic_Leather_-_Toddler_Multicolor_DV4573_01_standard.jpg"
+      }
+    ],
+    "availability": [
+      1,
+      2
+    ],
+    "thumbnailImageSrc": "https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/a05fbe830df64329bcb4a8d3012002e8_9366/Classic_Leather_-_Toddler_Beige_CN5612_01_standard.jpg",
+    "sizes": [
+      "S",
+      "M",
+      "XL"
+    ],
+    "relatedProducts": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "22",
+      "23",
+      "24",
+      "25"
+    ]
+  }
+]

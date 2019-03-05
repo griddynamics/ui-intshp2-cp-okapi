@@ -14,7 +14,7 @@ import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.scss']
+  styleUrls: ['./grid.component.scss'],
 })
 export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewInit {
   @ViewChild('wrapper') wrapper: ElementRef;
@@ -24,7 +24,7 @@ export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewI
   private itemStep = 1;
   private wrapperWidth: number;
   private resizeEvent: Subscription;
-
+  gridWrapperShort;
   constructor(private cdRef: ChangeDetectorRef) { }
 
 
@@ -33,6 +33,7 @@ export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewI
       debounceTime(100)
     ).subscribe(this.countItems.bind(this));
     this.countItems();
+    this.gridWrapperShort = document.querySelector('app-product-item-short');
     this.cdRef.detectChanges();
   }
 
