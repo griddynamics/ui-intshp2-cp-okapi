@@ -6,6 +6,7 @@ import { CheckboxFilterComponent } from './faceted-navigation/checkbox-filter/ch
 import { PriceRangeFilterComponent } from './faceted-navigation/price-range-filter/price-range-filter.component';
 import { RadioFilterComponent } from './faceted-navigation/radio-filter/radio-filter.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProductListPageComponent', () => {
   let component: ProductListPageComponent;
@@ -13,7 +14,8 @@ describe('ProductListPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ SharedModule, HttpClientTestingModule ],
+      imports: [ SharedModule, HttpClientTestingModule, RouterTestingModule ],
+
       declarations: [
         ProductListPageComponent,
         FacetedNavigationComponent,
@@ -32,6 +34,15 @@ describe('ProductListPageComponent', () => {
   });
 
   it('should create', () => {
+    component.subscription = true;
     expect(component).toBeTruthy();
   });
+
+  it('should create when there is subscription', () => {
+    component.subscription = true;
+    expect(component).toBeTruthy();
+    component.subscription = false;
+    expect(component).toBeTruthy();
+  });
+
 });

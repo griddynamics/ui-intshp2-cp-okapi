@@ -12,6 +12,7 @@ import { addToCartDecorator, wishListDecorator } from '../decorators/product';
   providedIn: 'root'
 })
 export class ProductsService {
+  private products: IProduct[] = [];
   private wishList: IProduct[] = [];
   private wishListIds: string[] = [];
   private products: IProduct[] = [];
@@ -44,7 +45,6 @@ export class ProductsService {
         observer.next(productsResponse);
         observer.complete();
       });
-
     });
   }
 

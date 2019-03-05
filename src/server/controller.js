@@ -95,11 +95,9 @@ function getProducts(req, res) {
         }
     }
 
-    if (query.categories) {
-        const categoriesArr = query.categories.split(',');
-        cleanedProducts = cleanedProducts.filter(el => {
-            return categoriesArr.some(category => category === el.category)
-        })
+    if (query.category) {
+        const categoriesArr = query.category.split(',');
+        cleanedProducts = cleanedProducts.filter(el => categoriesArr.some(category => category === el.category))
     }
 
     if (query.gender) {
@@ -112,7 +110,8 @@ function getProducts(req, res) {
     }
 
     if (query.brand) {
-        cleanedProducts = cleanedProducts.filter(el => el.brand === query.brand);
+        const brandsArr = query.brand.split(',');
+        cleanedProducts = cleanedProducts.filter(el => brandsArr.some(brand => brand === el.brand));
     }
 
     cleanedProducts = cleanedProducts.slice(+query.start || 0, +query.end || cleanedProducts.length);

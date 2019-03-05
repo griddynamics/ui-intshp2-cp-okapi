@@ -34,7 +34,6 @@ export class ProductImagePreviewComponent implements OnChanges {
     this.setSelectedImg(imgSrc, currImgIdx);
 
   }
-
   setSelectedImg(swatch, i) {
     this.imageSrc = swatch;
     this.selectedImg = i;

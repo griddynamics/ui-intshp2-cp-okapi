@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
-import { FacetedNavigationComponent } from '../faceted-navigation.component';
+import { BaseFilter } from '../base-filter';
 
 @Component({
   selector: 'app-price-range-filter',
@@ -7,8 +7,9 @@ import { FacetedNavigationComponent } from '../faceted-navigation.component';
   styleUrls: ['./price-range-filter.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PriceRangeFilterComponent extends FacetedNavigationComponent implements OnInit  {
+export class PriceRangeFilterComponent extends BaseFilter implements OnInit {
   @Input() public filter;
+  @Input() public defaultValue?: number[];
   public range = [];
   public step = 1;
 
@@ -16,17 +17,16 @@ export class PriceRangeFilterComponent extends FacetedNavigationComponent implem
     if (!this.filter) {
       return;
     }
-
-    this.range = [...this.filter.range];
+    this.range = this.defaultParams ? this.parseParams(this.defaultParams) : [...this.filter.range];
   }
 
-  valueChanged(e) {
+  public valueChanged(e) {
     if (this.range[0] > this.range[1]) {
       this.range.reverse();
     }
   }
 
-  validateMin(e) {
+  public validateMin(e) {
     this.validateRange(e);
     if (e.target.value >= this.range[1]) {
       e.preventDefault();
@@ -34,7 +34,7 @@ export class PriceRangeFilterComponent extends FacetedNavigationComponent implem
     }
   }
 
-  validateMax(e) {
+  public validateMax(e) {
     this.validateRange(e);
     if (e.target.value <= this.range[0]) {
       e.preventDefault();
@@ -42,13 +42,13 @@ export class PriceRangeFilterComponent extends FacetedNavigationComponent implem
     }
   }
 
-  validateRange(e) {
-    if (e.target.value >  this.range[1]) {
-      e.target.value =  this.range[1];
+  public validateRange(e) {
+    if (e.target.value > this.range[1]) {
+      e.target.value = this.range[1];
       return;
     }
-    if (e.target.value <  this.range[0] || e.target.value === '') {
-      e.target.value =  this.range[0];
+    if (e.target.value < this.range[0] || e.target.value === '') {
+      e.target.value = this.range[0];
     }
   }
 }
