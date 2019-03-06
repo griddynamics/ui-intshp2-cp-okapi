@@ -28,7 +28,7 @@
   }
 
   .block {
-    max-height: 400px;
+    max-height: 410px;
     overflow: scroll;
   }
 
@@ -51,6 +51,23 @@ i, .minus, .plus {
 .minus {
   margin-right: 10px;
   cursor: pointer;
+}
+
+.tooltiptext {
+  width: 155px;
+  background-color: #5555555e;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0px 2px;
+  position: absolute;
+  margin-top: 30px;
+  margin-left: -170px;
+  transition: opacity 0.5s;
+}
+
+.tooltiptext-visible {
+  opacity: 1;
 }
 
 .pic-for-cart {
@@ -88,7 +105,7 @@ height:  1px;
 .info{
   font-family: $main-font-bold;
   font-size: $font-size-regular;
-  margin-right: 20px;
+  margin-right: 18px;
 &:after {
   background-color: #eee;
   content: '';

@@ -22,7 +22,8 @@ export class ProductOrderComponent implements OnChanges, OnInit {
     size: ProductSize.M,
     price: 0,
     defaultPrice: 0,
-    swatch: ''
+    swatch: '',
+    amount: 0,
   };
 
   public wishListEnabled;
@@ -36,10 +37,11 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
-    const { id, name, price } = this.product;
+    const { id, name, price, amount } = this.product;
     this.productConfiguration.id = id;
     this.productConfiguration.name = name;
     this.productConfiguration.defaultPrice = price;
+    this.productConfiguration.amount = amount;
 
     const cartProducts = this.cartService.getCartProducts();
 
@@ -77,8 +79,8 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   public toggleCart(): void {
-    const { id, name, quantity, swatch, size, defaultPrice } = this.productConfiguration;
-    this.cartService.toggleCart(this.product, { id, name, quantity, swatch, size, defaultPrice });
+    const { id, name, quantity, swatch, size, defaultPrice, amount } = this.productConfiguration;
+    this.cartService.toggleCart(this.product, { id, name, quantity, swatch, size, defaultPrice, amount });
   }
 
   get isDisabledAddToCartBtn() {

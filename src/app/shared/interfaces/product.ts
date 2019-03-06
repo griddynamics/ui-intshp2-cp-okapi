@@ -53,4 +53,5 @@ export interface ICartProduct {
   price?: number;
   defaultPrice?: number;
   size?: ProductSize;
+  amount?: number;
 }

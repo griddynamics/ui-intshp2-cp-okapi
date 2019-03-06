@@ -12,8 +12,10 @@ import { CartService } from 'src/app/core/services/cart.service';
 export class PopUpComponent implements OnInit {
   cartProducts: ICartProduct[] = [];
   total = 0;
+  outOfStock = false;
   constructor(public context: ModalContext,
-              private cartService: CartService) {}
+              private cartService: CartService,
+              private element: ElementRef) {}
 
   ngOnInit() {
     if (!this.cartProducts) {
@@ -24,6 +26,11 @@ export class PopUpComponent implements OnInit {
   }
 
   private plus(index) {
+    if (this.cartProducts[index].quantity === this.cartProducts[index].amount) {
+    this.outOfStock = true;
+     return;
+    }
+    this.outOfStock = false;
     this.cartProducts[index].quantity++;
     this.total += this.cartProducts[index].defaultPrice;
     localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
@@ -31,6 +38,7 @@ export class PopUpComponent implements OnInit {
 
   private minus(index) {
       if (this.cartProducts[index].quantity > 1) {
+        this.outOfStock = false;
         this. cartProducts[index].quantity --;
         this.total -= this.cartProducts[index].defaultPrice;
         localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
