@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, fromEvent } from 'rxjs';
 
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { IFilter } from 'src/app/shared/interfaces';
@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment.test';
 import { DataService } from 'src/app/core/services/data.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { KillswitchService } from 'src/app/core/services/killswitch.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list-page',
@@ -19,8 +20,8 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
   public filters: IFilter[] = [];
   public products: IProduct[] = [];
   public loadMoreScrollEnabled: Boolean;
+  public loadTo = 9;
   private startFrom = 0;
-  private loadTo = 9;
   private total = 9;
 
   constructor(
@@ -28,7 +29,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
     private dataService: DataService,
     private loaderService: LoaderService,
     private killswitchService: KillswitchService
-  ) { this.onScroll = this.onScroll.bind(this); }
+  ) { }
 
   ngOnInit() {
     this.loadMoreScrollEnabled = this.killswitchService.getKillswitch('loadMoreScrollEnabled');
@@ -36,7 +37,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
     this.subscription = forkJoin(
       this.loadProducts(this.startFrom, this.loadTo),
       this.dataService.get(environment.filtersURL)
-      ).subscribe(([productsResponse, filters]) => {
+    ).subscribe(([productsResponse, filters]) => {
 
       const { products, total } = productsResponse;
 
@@ -47,9 +48,10 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
     });
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     if (this.loadMoreScrollEnabled) {
-      window.addEventListener('scroll', this.onScroll);
+      fromEvent(window, 'scroll')
+        .pipe(debounceTime(100)).subscribe(this.onScroll.bind(this));
     }
   }
 
@@ -74,6 +76,9 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
   onLoadMore(loadAmount: number): void {
     this.startFrom = this.loadTo;
     this.loadTo = this.loadTo + loadAmount;
+    if (this.loadTo > this.totalAmount) {
+      this.loadTo = this.totalAmount;
+    }
 
     this.loadProducts(this.startFrom, this.loadTo).subscribe(({ total, products }) => {
       this.products = this.products.concat(products);
@@ -92,11 +97,10 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
   }
 
   public onScroll() {
-    const btnLoadMore = document.querySelector('.load-more');
-    let btnRect;
-    if (btnLoadMore) {
-      btnRect =  btnLoadMore.getBoundingClientRect();
-      if (btnRect.top < window.innerHeight - 200) {
+    const { body } = document;
+
+    if (body.scrollHeight - body.scrollTop === body.clientHeight) {
+      if (this.total !== this.products.length) {
         this.onLoadMore(3);
       }
     }
