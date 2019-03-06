@@ -20,7 +20,7 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.resizeEvent = fromEvent(window, 'resize')
       .pipe(debounceTime(400))
-      .subscribe(evt => {
+      .subscribe(() => {
         this.handleResize();
         this.slidesContainer.nativeElement.style.transition = 'none';
         this.slidesContainer.nativeElement.style.transform = 'translate(0%)';

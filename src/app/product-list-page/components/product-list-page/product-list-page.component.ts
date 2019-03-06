@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { IProduct, IFilter } from 'src/app/shared/interfaces/product';
 
-import { ProductsService } from 'src/app/core/services/products.service';
 import { environment } from 'src/environments/environment.test';
-import { DataService } from 'src/app/core/services/data.service';
-import { LoaderService } from 'src/app/core/services/loader.service';
+
+import { DataService, ProductsService } from 'src/app/core/services';
 
 const AMOUNT_TO_DISPLAY = 9;
 
@@ -17,7 +16,7 @@ const AMOUNT_TO_DISPLAY = 9;
   styleUrls: ['./product-list-page.component.scss']
 })
 export class ProductListPageComponent implements OnInit, OnDestroy {
-  public subscription;
+  public subscriptions: Subscription[];
   public filters: IFilter[] = [];
   public products: IProduct[] = [];
   public currentFilters;
@@ -29,26 +28,19 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   constructor(
     private productsService: ProductsService,
     private dataService: DataService,
-    private route: ActivatedRoute,
-    private loaderService: LoaderService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.subscription = this.dataService
-      .get(environment.filtersURL)
-      .subscribe((filters) => this.filters = filters);
-
-    this.route.queryParams.subscribe(queryParams => {
-      this.queryParams = queryParams;
-      this.resetLimit();
-      this.getProductsByQuery()
-        .subscribe(this.setProductsResponse.bind(this));
-    });
+    this.subscriptions = [
+      this.dataService.get(environment.filtersURL).subscribe((filters) => this.filters = filters),
+      this.route.queryParams.subscribe(this.handleQueryParams.bind(this))
+    ];
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.subscriptions) {
+      this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
   }
 
@@ -79,8 +71,13 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
     });
   }
 
+  private handleQueryParams(queryParams: Object): void {
+    this.queryParams = queryParams;
+    this.resetLimit();
+    this.getProductsByQuery().subscribe(this.setProductsResponse.bind(this));
+  }
+
   private getProductsByQuery(): Observable<any> {
-    this.loaderService.displayLoader();
     const searchString = location.search ? `${location.search}&`.substring(1) : '';
     return this.productsService.getProducts(`${searchString}start=${this.startFrom}&end=${this.loadTo}`);
   }
@@ -88,7 +85,6 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   private setProductsResponse({ products, total }): void {
     this.products = products;
     this.total = total;
-    this.loaderService.hideLoader();
   }
 
   private resetLimit(): void {

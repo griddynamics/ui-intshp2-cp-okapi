@@ -1,9 +1,9 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
-
-import { IProduct } from 'src/app/shared/interfaces/product';
-import { environment } from 'src/environments/environment';
 import { Subscription, Observable } from 'rxjs';
-import { ProductsService } from 'src/app/core/services/products.service';
+
+import { IProduct } from '../../../shared/interfaces/product';
+
+import { ProductsService } from '../../../core/services';
 
 @Component({
   selector: 'app-wish-list',

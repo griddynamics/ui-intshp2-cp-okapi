@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SlideshowComponent } from './slideshow.component';
-import { LazyLoadComponent } from 'src/app/shared/components/lazy-load/lazy-load.component';
-import { ImgPlaceholderComponent } from 'src/app/shared/components/img-placeholder/img-placeholder.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { LazyLoadComponent, ImgPlaceholderComponent } from '../../../shared/components';
+import { SlideshowComponent } from './slideshow.component';
 
 enum SLIDE_DIRECTION {
   RIGHT = 'RIGHT',
