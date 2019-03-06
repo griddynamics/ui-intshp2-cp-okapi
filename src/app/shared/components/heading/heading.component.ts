@@ -9,6 +9,7 @@ export class HeadingComponent implements OnInit {
 
   @Input() alertText;
   @Input() headingText;
+  @Input() messageText ? = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry';
 
   constructor() { }
 

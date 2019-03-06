@@ -24,6 +24,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   public loadTo = AMOUNT_TO_DISPLAY;
   public total = AMOUNT_TO_DISPLAY;
   public queryParams: any = null;
+  public itemsAre: Boolean;
 
   constructor(
     private productsService: ProductsService,
