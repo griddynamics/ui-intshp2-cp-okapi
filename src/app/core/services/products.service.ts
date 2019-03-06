@@ -5,8 +5,10 @@ import { DataService } from './data.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
 
 import { environment } from '../../../environments/environment';
+
 import { CartService } from './cart.service';
-import { addToCartDecorator, wishListDecorator } from '../decorators/product';
+
+import { addToCartDecorator, wishListDecorator } from '../../shared/decorators/product';
 
 @Injectable({
   providedIn: 'root'

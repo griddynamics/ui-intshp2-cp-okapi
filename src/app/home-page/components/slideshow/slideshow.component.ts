@@ -11,7 +11,8 @@ import {
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
-import { KillswitchService } from 'src/app/core/services/killswitch.service';
+
+import { KillswitchService } from '../../../core/services';
 
 enum SLIDE_DIRECTION {
   RIGHT = 'RIGHT',
