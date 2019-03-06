@@ -20,7 +20,7 @@ import { addToCartDecorator, wishListDecorator } from '../../../shared/decorator
 export class HomePageComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
   public wishList: IProduct[] = [];
-  public recentlyViewed: IProduct[] = [];
+  public recentlyViewedIds: string[] = [];
   public slideShowImages: any[] = [];
   public banners: IBanner[] = [];
   private subscription: Subscription;
@@ -44,13 +44,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
       this.banners = data.banners;
       this.slideShowImages = data.slideshow;
     });
-    this.checkRecentlyViewedItems();
+    this.prepareRecentlyViewed();
     this.checkWishListItems();
   }
 
-  private checkRecentlyViewedItems() {
+  private prepareRecentlyViewed() {
     const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
-    this.recentlyViewed = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewed;
+    this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewedIds;
   }
   private checkWishListItems() {
     const wishlistIds = localStorage.getItem('wishlist');

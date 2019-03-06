@@ -8,15 +8,15 @@
 <app-swipe-icon></app-swipe-icon>
 <div class="main-container">
   <div class="row-sb">
-    <app-advertising-area 
-      *ngFor="let banner of banners" 
-      [content]="banner.htmlSnippet" 
+    <app-advertising-area
+      *ngFor="let banner of banners"
+      [content]="banner.htmlSnippet"
       [height]="banner.height"
       [width]="banner.width">
     </app-advertising-area>
   </div>
 </div>
-<app-recently-viewed *ngIf="recentlyViewed.length"></app-recently-viewed>
+<app-recently-viewed *ngIf="recentlyViewedIds.length" [ids]="recentlyViewedIds"></app-recently-viewed>
 <app-swipe-icon></app-swipe-icon>
 <ng-container *ngIf="wishListEnabled">
   <div class="main-container">
