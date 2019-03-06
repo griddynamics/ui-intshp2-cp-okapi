@@ -63,9 +63,8 @@ function getFilters(req, res) {
 
 function getProducts(req, res) {
     const productsArrCopy = JSON.parse(JSON.stringify(productsMOCK));
-    const total = productsArrCopy.length;
     const responseProducts = {
-        total,
+        total: productsArrCopy.length,
         products: productsArrCopy
     }
 
@@ -113,6 +112,10 @@ function getProducts(req, res) {
         const brandsArr = query.brand.split(',');
         cleanedProducts = cleanedProducts.filter(el => brandsArr.some(brand => brand === el.brand));
     }
+
+    const total = cleanedProducts.length;
+    responseProducts.total = total
+
 
     cleanedProducts = cleanedProducts.slice(+query.start || 0, +query.end || cleanedProducts.length);
     responseProducts.products = cleanedProducts
