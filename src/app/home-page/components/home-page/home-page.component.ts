@@ -3,13 +3,12 @@ import { Subscription } from 'rxjs';
 
 import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
-import { KillswitchService } from '../../../core/services/killswitch.service';
-import { ProductsService } from '../../../core/services/products.service';
-import { DataService } from '../../../core/services/data.service';
+
 import { environment } from 'src/environments/environment';
-import { LoaderService } from 'src/app/core/services/loader.service';
-import { CartService } from 'src/app/core/services/cart.service';
-import { addToCartDecorator, wishListDecorator } from 'src/app/core/decorators/product';
+
+import { CartService, DataService, ProductsService, KillswitchService } from '../../../core/services';
+
+import { addToCartDecorator, wishListDecorator } from '../../../shared/decorators/product';
 
 @Component({
   selector: 'app-home-page',
@@ -21,7 +20,7 @@ import { addToCartDecorator, wishListDecorator } from 'src/app/core/decorators/p
 export class HomePageComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
   public wishList: IProduct[] = [];
-  public recentlyViewed: IProduct[] = [];
+  public recentlyViewedIds: string[] = [];
   public slideShowImages: any[] = [];
   public banners: IBanner[] = [];
   private subscription: Subscription;
@@ -31,12 +30,10 @@ export class HomePageComponent implements OnInit, OnDestroy {
     private productsService: ProductsService,
     private cartService: CartService,
     private killswitchService: KillswitchService,
-    private dataService: DataService,
-    private loaderService: LoaderService
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void {
-    this.loaderService.displayLoader();
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
 
     this.subscription = this.dataService.get(environment.homepageURL).subscribe(data => {
@@ -46,15 +43,14 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
       this.banners = data.banners;
       this.slideShowImages = data.slideshow;
-      this.loaderService.hideLoader();
     });
-    this.checkRecentlyViewedItems();
+    this.prepareRecentlyViewed();
     this.checkWishListItems();
   }
 
-  private checkRecentlyViewedItems() {
+  private prepareRecentlyViewed() {
     const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
-    this.recentlyViewed = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewed;
+    this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewedIds;
   }
   private checkWishListItems() {
     const wishlistIds = localStorage.getItem('wishlist');

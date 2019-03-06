@@ -2,9 +2,9 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { mergeMap } from 'rxjs/operators';
 
-import { ProductDetailsPageService } from 'src/app/core/services/product-details-page.service';
+import { ProductDetailsPageService } from '../../product-details-page.service';
+
 import { IProduct } from 'src/app/shared/interfaces/product';
-import { LoaderService } from 'src/app/core/services/loader.service';
 
 @Component({
   selector: 'app-product-details-page',
@@ -18,11 +18,9 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductDetailsPageService,
-    private router: Router,
-    private loaderService: LoaderService,
+    private router: Router
     ) { }
   ngOnInit() {
-    this.loaderService.displayLoader();
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
           return;
@@ -34,7 +32,6 @@ export class ProductDetailsPageComponent implements OnInit, OnDestroy {
       mergeMap(({ id }) => this.productService.getProduct(id)
       )).subscribe(product => {
         this.product = product;
-        this.loaderService.hideLoader();
       });
     }
 
