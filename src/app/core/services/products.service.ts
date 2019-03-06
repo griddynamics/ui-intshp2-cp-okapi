@@ -15,7 +15,6 @@ export class ProductsService {
   private products: IProduct[] = [];
   private wishList: IProduct[] = [];
   private wishListIds: string[] = [];
-  private products: IProduct[] = [];
 
   private wishListSource = new BehaviorSubject<IProduct[]>([]);
 
