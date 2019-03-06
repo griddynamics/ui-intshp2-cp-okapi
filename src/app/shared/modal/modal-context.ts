@@ -19,6 +19,8 @@ export class ModalContext {
   resolve(...args: any[]) {
     this.hide();
     this._resolve(...args);
+    const body = document.querySelector('body');
+    body.classList.remove('noscroll');
   }
 
   reject(reason: any) {

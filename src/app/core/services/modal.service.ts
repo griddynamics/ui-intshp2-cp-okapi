@@ -21,10 +21,12 @@ export class ModalService {
   }
 
   // tslint:disable-next-line:max-line-length
-  open(type: any, data?: any, options: { hideOnBackdropClick?: boolean, containerType: Type<any> } = {containerType: ModalContainerComponent}): Promise<any> {
+  open(type: any, data?: any, options: { hideOnBackdropClick?: boolean, containerType: any } = {containerType: ModalContainerComponent}): Promise<any> {
     if (!this.viewContainerRef) {
       return Promise.reject('No view container');
     }
+    const body = document.querySelector('body');
+    body.classList.add('noscroll');
     const container = <ComponentRef<ModalContainer>> this.container(options.containerType);
     const injector = ReflectiveInjector.resolveAndCreate([ModalContext], container.instance.container.injector);
     const context = injector.get(ModalContext);
@@ -39,6 +41,6 @@ export class ModalService {
 
   container(containerType: any): ComponentRef<any> {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(containerType);
-    return this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length);
+    return this.viewContainerRef.createComponent(componentFactory);
   }
 }
