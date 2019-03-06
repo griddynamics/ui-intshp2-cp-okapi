@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GridComponent } from './grid.component';
-import { LoadMoreComponent } from '../load-more/load-more.component';
+import { GridComponent, LoadMoreComponent } from '../';
 
 describe('GridComponent', () => {
   let component: GridComponent;

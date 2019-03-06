@@ -5,16 +5,18 @@ import { DataService } from './data.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
 
 import { environment } from '../../../environments/environment';
+
 import { CartService } from './cart.service';
-import { addToCartDecorator, wishListDecorator } from '../decorators/product';
+
+import { addToCartDecorator, wishListDecorator } from '../../shared/decorators/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+  private products: IProduct[] = [];
   private wishList: IProduct[] = [];
   private wishListIds: string[] = [];
-  private products: IProduct[] = [];
 
   private wishListSource = new BehaviorSubject<IProduct[]>([]);
 
@@ -44,7 +46,6 @@ export class ProductsService {
         observer.next(productsResponse);
         observer.complete();
       });
-
     });
   }
 
