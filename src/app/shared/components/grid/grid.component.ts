@@ -8,7 +8,7 @@ import {
   Output,
   EventEmitter,
   AfterContentChecked,
-  AfterViewInit
+  AfterViewInit,
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -20,6 +20,7 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewInit {
   @ViewChild('wrapper') wrapper: ElementRef;
+  @Input() wrapperClassName?: string;
   @Output() loadMore = new EventEmitter();
   @Input() showLoadMore;
 
