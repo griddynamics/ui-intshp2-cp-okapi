@@ -62,15 +62,4 @@ describe('ProductListPageComponent', () => {
     fixture.detectChanges();
     component.ngAfterViewInit();
   });
-
-  it('should not unsubscribe if subscription is false', () => {
-    component.subscription = false;
-    fixture.detectChanges();
-    component.ngOnDestroy();
-  });
-  it('should unsubscribe if subscription is true', () => {
-    component.subscription = true;
-    fixture.detectChanges();
-    component.ngOnDestroy();
-  });
 });
