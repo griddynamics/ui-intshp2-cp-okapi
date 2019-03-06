@@ -1,5 +1,5 @@
 <app-load-more [showLoadMore]="showLoadMore" (loadMore)="onLoadMore()">
-  <div [ngClass]="{'product-grid-wrapper': true, 'product-grid-wrapper-short': gridWrapperShort}" #wrapper>
+  <div class="product-grid-wrapper" [ngClass]="{'product-grid-wrapper-short': gridWrapperShort}" #wrapper>
     <ng-content></ng-content>
   </div>
 </app-load-more>
