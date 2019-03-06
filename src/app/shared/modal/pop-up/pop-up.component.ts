@@ -16,6 +16,9 @@ export class PopUpComponent implements OnInit {
               private cartService: CartService) {}
 
   ngOnInit() {
+    if (!this.cartProducts) {
+      return;
+    }
     this.cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
     this.getTotalPrice();
   }
@@ -42,6 +45,9 @@ export class PopUpComponent implements OnInit {
     }
 
   private getTotalPrice () {
+    if (!this.cartProducts) {
+         return;
+       }
        for (let i = 0; i < this.cartProducts.length; i++) {
          this.total += this.cartProducts[i].defaultPrice * this.cartProducts[i].quantity;
         }

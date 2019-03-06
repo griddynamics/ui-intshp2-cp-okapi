@@ -10,7 +10,8 @@ describe('PopUpComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PopUpComponent, ModalContext]
+      declarations: [ PopUpComponent ],
+      providers: [ ModalContext ]
     })
     .compileComponents();
   }));
