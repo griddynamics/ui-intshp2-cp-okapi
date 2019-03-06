@@ -28,7 +28,7 @@ describe('ProductListPageComponent', () => {
         RadioFilterComponent
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -39,6 +39,34 @@ describe('ProductListPageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call function onLoadMore when if statement is false', () => {
+    component.loadTo = 1;
+    component.totalAmount = 2;
+    component.onLoadMore(0);
+    fixture.detectChanges();
+    expect(component.loadTo).not.toBe(component.totalAmount);
+  });
+
+  it('should call function onLoadMore when if statement is true', () => {
+    component.loadTo = 2;
+    component.totalAmount = 1;
+    component.onLoadMore(2);
+    fixture.detectChanges();
+    expect(component.loadTo).toBe(component.totalAmount);
+  });
+
+  it('should enable scroll if loadMoreScrollEnabled is true', () => {
+    component.loadMoreScrollEnabled = true;
+    fixture.detectChanges();
+    component.ngAfterViewInit();
+  });
+
+  it('should disable scroll if loadMoreScrollEnabled is false', () => {
+    component.loadMoreScrollEnabled = false;
+    fixture.detectChanges();
+    component.ngAfterViewInit();
   });
 
   it('should have 2 subscriptions', () => {

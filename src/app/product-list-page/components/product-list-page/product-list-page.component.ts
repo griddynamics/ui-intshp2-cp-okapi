@@ -1,12 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import {  Observable, fromEvent, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+
 
 import { IProduct, IFilter } from 'src/app/shared/interfaces/product';
 
 import { environment } from 'src/environments/environment.test';
+import { DataService, ProductsService, KillswitchService } from 'src/app/core/services';
+// import { LoaderService } from 'src/app/core/services/loader.service';
+// import { KillswitchService } from 'src/app/core/services/killswitch.service';
+import { debounceTime } from 'rxjs/operators';
 
-import { DataService, ProductsService } from 'src/app/core/services';
 
 const AMOUNT_TO_DISPLAY = 9;
 
@@ -15,12 +19,14 @@ const AMOUNT_TO_DISPLAY = 9;
   templateUrl: './product-list-page.component.html',
   styleUrls: ['./product-list-page.component.scss']
 })
-export class ProductListPageComponent implements OnInit, OnDestroy {
-  public subscriptions: Subscription[];
+export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewInit {
+  public subscription;
   public filters: IFilter[] = [];
   public products: IProduct[] = [];
+  public loadMoreScrollEnabled: Boolean;
+  private startFrom = 0;
+  public subscriptions: Subscription[];
   public currentFilters;
-  public startFrom = 0;
   public loadTo = AMOUNT_TO_DISPLAY;
   public total = AMOUNT_TO_DISPLAY;
   public queryParams: any = null;
@@ -29,14 +35,24 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   constructor(
     private productsService: ProductsService,
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private killswitchService: KillswitchService
   ) { }
 
   ngOnInit() {
+    this.loadMoreScrollEnabled = this.killswitchService.getKillswitch('loadMoreScrollEnabled');
+
     this.subscriptions = [
       this.dataService.get(environment.filtersURL).subscribe((filters) => this.filters = filters),
       this.route.queryParams.subscribe(this.handleQueryParams.bind(this))
     ];
+  }
+
+  ngAfterViewInit() {
+    if (this.loadMoreScrollEnabled) {
+      fromEvent(window, 'scroll')
+        .pipe(debounceTime(100)).subscribe(this.onScroll.bind(this));
+    }
   }
 
   ngOnDestroy(): void {
@@ -66,6 +82,9 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   public onLoadMore(loadAmount: number): void {
     this.startFrom = this.loadTo;
     this.loadTo = this.loadTo + loadAmount;
+    if (this.loadTo > this.totalAmount) {
+      this.loadTo = this.totalAmount;
+    }
 
     this.getProductsByQuery().subscribe(({ products, total }) => {
       this.setProductsResponse({ total, products: this.products.concat(products) });
@@ -91,5 +110,15 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   private resetLimit(): void {
     this.startFrom = 0;
     this.loadTo = AMOUNT_TO_DISPLAY;
+  }
+
+  public onScroll() {
+    const { body } = document;
+
+    if (body.scrollHeight - body.scrollTop === body.clientHeight) {
+      if (this.total !== this.products.length) {
+        this.onLoadMore(3);
+      }
+    }
   }
 }
