@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 
 import { DataService } from './data.service';
 import { IProduct } from 'src/app/shared/interfaces/product';
@@ -14,56 +14,50 @@ import { addToCartDecorator, wishListDecorator } from '../../shared/decorators/p
   providedIn: 'root'
 })
 export class ProductsService {
-  private products: IProduct[] = [];
-  private wishList: IProduct[] = [];
   private wishListIds: string[] = [];
 
-  private wishListSource = new BehaviorSubject<IProduct[]>([]);
+  public wishListProductSource = new Subject<IProduct>();
+  public wishListIdsSource = new BehaviorSubject<string[]>([]);
 
   constructor(
     private dataService: DataService,
     private cartService: CartService
   ) {
-    const wishListIds = JSON.parse(localStorage.getItem('wishlist'));
-    this.wishListIds = wishListIds ? wishListIds : this.wishListIds;
+    this.wishListIds = this.getWishListIds();
+
+    this.updateWishListIds();
   }
 
   public getWishListIds(): string[] {
-    return this.wishListIds;
-  }
-  public getWishList(): Observable<IProduct[]> {
-    return this.wishListSource.asObservable();
+    const wishListIds = JSON.parse(localStorage.getItem('wishlist'));
+    return wishListIds ? wishListIds : this.wishListIds;
   }
 
   public getProducts(queryString?: string): Observable<any> {
     const { productsURL } = environment;
 
     const url = queryString ? `${productsURL}?${queryString}` : productsURL;
+
     return Observable.create((observer) => {
-      this.dataService.get(url).subscribe(productsResponse => {
-        this.prepareProductResponse(productsResponse.products);
-        this.wishListSource.next(this.wishList);
-        observer.next(productsResponse);
+      this.dataService.get(url).subscribe(({ total, products }) => {
+        observer.next({ total, products: this.prepareProductResponse(products) });
         observer.complete();
       });
     });
   }
 
   public addToWishList(product: IProduct): void {
-    product.addedToWishList = true;
-    this.wishList.push(product);
+    wishListDecorator(product, [product.id]);
     this.wishListIds.push(product.id);
-    this.updateWishList();
+    this.publishWishList(product);
   }
 
   public removeFromWishList(product: IProduct): void {
-    product.addedToWishList = false;
+    wishListDecorator(product);
     const indexOfCurrId = this.wishListIds.findIndex(el => el === product.id);
     this.wishListIds.splice(indexOfCurrId, 1);
-    const indexOfCurrProduct = this.wishList.findIndex(el => el.id === product.id);
-    this.wishList.splice(indexOfCurrProduct, 1);
 
-    this.updateWishList();
+    this.publishWishList(product);
   }
 
   public toggleWishListProduct(product: IProduct) {
@@ -74,19 +68,19 @@ export class ProductsService {
     this.removeFromWishList(product);
   }
 
-  private prepareProductResponse(products: IProduct[]): void {
-    this.products = products.map(el => {
-      const currentProduct = addToCartDecorator(wishListDecorator(el, this.wishListIds), this.cartService.getCartProducts());
-      if (currentProduct.addedToWishList) {
-        this.wishList.push(currentProduct);
-      }
-      return currentProduct;
+  private prepareProductResponse(products: IProduct[]): IProduct[] {
+    return products.map(el => {
+      return addToCartDecorator(wishListDecorator(el, this.wishListIds), this.cartService.getCartProducts());
     });
   }
 
-  private updateWishList(): void {
+  private updateWishListIds(): void {
     localStorage.setItem('wishlist', JSON.stringify(this.wishListIds));
-    this.wishListSource.next(this.wishList);
+    this.wishListIdsSource.next(this.wishListIds);
   }
 
+  private publishWishList(product: IProduct): void {
+    this.updateWishListIds();
+    this.wishListProductSource.next(product);
+  }
 }
