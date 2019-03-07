@@ -35,12 +35,12 @@ export class ProductsService {
     return this.wishListSource.asObservable();
   }
 
-  public getProducts(queryString?: string): Observable<any> {
+  public getProducts(queryString?: string, spinner?: boolean): Observable<any> {
     const { productsURL } = environment;
 
     const url = queryString ? `${productsURL}?${queryString}` : productsURL;
     return Observable.create((observer) => {
-      this.dataService.get(url).subscribe(productsResponse => {
+      this.dataService.get(url, null, spinner).subscribe(productsResponse => {
         this.prepareProductResponse(productsResponse.products);
         this.wishListSource.next(this.wishList);
         observer.next(productsResponse);

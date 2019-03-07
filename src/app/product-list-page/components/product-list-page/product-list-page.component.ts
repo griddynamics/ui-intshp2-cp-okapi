@@ -1,16 +1,12 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import {  Observable, fromEvent, Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 
 import { IProduct, IFilter } from 'src/app/shared/interfaces/product';
 
 import { environment } from 'src/environments/environment.test';
-import { DataService, ProductsService, KillswitchService } from 'src/app/core/services';
-// import { LoaderService } from 'src/app/core/services/loader.service';
-// import { KillswitchService } from 'src/app/core/services/killswitch.service';
-import { debounceTime } from 'rxjs/operators';
-
+import { DataService, ProductsService } from 'src/app/core/services';
 
 const AMOUNT_TO_DISPLAY = 9;
 
@@ -19,7 +15,7 @@ const AMOUNT_TO_DISPLAY = 9;
   templateUrl: './product-list-page.component.html',
   styleUrls: ['./product-list-page.component.scss']
 })
-export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ProductListPageComponent implements OnInit, OnDestroy {
   public subscription;
   public filters: IFilter[] = [];
   public products: IProduct[] = [];
@@ -35,24 +31,14 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
   constructor(
     private productsService: ProductsService,
     private dataService: DataService,
-    private route: ActivatedRoute,
-    private killswitchService: KillswitchService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.loadMoreScrollEnabled = this.killswitchService.getKillswitch('loadMoreScrollEnabled');
-
     this.subscriptions = [
       this.dataService.get(environment.filtersURL).subscribe((filters) => this.filters = filters),
-      this.route.queryParams.subscribe(this.handleQueryParams.bind(this))
+      this.route.queryParams.subscribe(this.handleQueryParams.bind(this)),
     ];
-  }
-
-  ngAfterViewInit() {
-    if (this.loadMoreScrollEnabled) {
-      fromEvent(window, 'scroll')
-        .pipe(debounceTime(100)).subscribe(this.onScroll.bind(this));
-    }
   }
 
   ngOnDestroy(): void {
@@ -72,7 +58,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
   get showLoadMore(): Boolean {
     if (this.total === this.products.length) { return false; }
 
-    return this.total > this.products.length;
+    return this.products.length && this.total > this.products.length;
   }
 
   public wishListHandler(product: IProduct): void {
@@ -86,7 +72,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
       this.loadTo = this.totalAmount;
     }
 
-    this.getProductsByQuery().subscribe(({ products, total }) => {
+    this.getProductsByQuery(false).subscribe(({ products, total }) => {
       this.setProductsResponse({ total, products: this.products.concat(products) });
     });
   }
@@ -97,9 +83,9 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
     this.getProductsByQuery().subscribe(this.setProductsResponse.bind(this));
   }
 
-  private getProductsByQuery(): Observable<any> {
+  private getProductsByQuery(spinner?: boolean): Observable<any> {
     const searchString = location.search ? `${location.search}&`.substring(1) : '';
-    return this.productsService.getProducts(`${searchString}start=${this.startFrom}&end=${this.loadTo}`);
+    return this.productsService.getProducts(`${searchString}start=${this.startFrom}&end=${this.loadTo}`, spinner);
   }
 
   private setProductsResponse({ products, total }): void {
@@ -110,15 +96,5 @@ export class ProductListPageComponent implements OnInit, OnDestroy, AfterViewIni
   private resetLimit(): void {
     this.startFrom = 0;
     this.loadTo = AMOUNT_TO_DISPLAY;
-  }
-
-  public onScroll() {
-    const { body } = document;
-
-    if (body.scrollHeight - body.scrollTop === body.clientHeight) {
-      if (this.total !== this.products.length) {
-        this.onLoadMore(3);
-      }
-    }
   }
 }

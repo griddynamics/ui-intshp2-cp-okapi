@@ -4,6 +4,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SharedModule } from '../../../shared/shared.module';
 
 import { RelatedProductsComponent } from './related-products.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('RelatedProductsComponent', () => {
   let component: RelatedProductsComponent;
@@ -11,7 +13,7 @@ describe('RelatedProductsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule, HttpClientTestingModule],
+      imports: [SharedModule, HttpClientTestingModule, HttpClientModule, RouterTestingModule],
       declarations: [RelatedProductsComponent],
       providers: []
     }).compileComponents().then(() => {
@@ -23,4 +25,34 @@ describe('RelatedProductsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('if component get products continue work with component', () => {
+    component.products = [{
+      'id': '1',
+      'title': 'String',
+      'price': 1,
+      'brand': 'String',
+      'description': 'String',
+      'sex': 'String',
+      'name': 'String',
+      'rating': 1,
+      'swatches': [],
+      'availability': [],
+      'thumbnailImageSrc': 'string',
+      'sizes': [],
+      'addedToCart': true,
+      'addedToWishList': true,
+      'relatedProducts': []
+    }
+    ];
+    component.ngOnInit();
+    expect(component).toBeTruthy();
+
+  });
+
+  it('if component don`t get products don`t continue work with component', () => {
+    component.products = undefined;
+    component.ngOnInit();
+  });
+
 });
