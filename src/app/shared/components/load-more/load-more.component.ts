@@ -34,7 +34,9 @@ export class LoadMoreComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.io.disconnect();
+    if (this.io) {
+      this.io.disconnect();
+    }
   }
 
   public onLoadmore(): void {

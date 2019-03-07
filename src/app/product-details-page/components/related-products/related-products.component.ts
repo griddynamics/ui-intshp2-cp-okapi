@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { IProduct } from '../../../shared/interfaces/product';
 
@@ -6,16 +6,7 @@ import { IProduct } from '../../../shared/interfaces/product';
   selector: 'app-related-products',
   templateUrl: './related-products.component.html'
 })
-export class RelatedProductsComponent implements OnInit {
+export class RelatedProductsComponent {
 
   @Input() products: IProduct[] = [];
-
-  constructor() { }
-
-  ngOnInit(): void {
-
-    if (this.products) {
-      this.products = this.products;
-    }
-  }
 }
