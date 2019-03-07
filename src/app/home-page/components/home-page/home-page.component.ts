@@ -16,50 +16,49 @@ import { addToCartDecorator, wishListDecorator } from '../../../shared/decorator
   styleUrls: ['./home-page.component.scss']
 })
 
-
 export class HomePageComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
-  public wishList: IProduct[] = [];
   public recentlyViewedIds: string[] = [];
+  public wishListIds: string[] = [];
   public slideShowImages: any[] = [];
   public banners: IBanner[] = [];
-  private subscription: Subscription;
   public wishListEnabled;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private productsService: ProductsService,
     private cartService: CartService,
     private killswitchService: KillswitchService,
     private dataService: DataService
-  ) { }
+  ) {
+    this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
+  }
 
   ngOnInit(): void {
-    this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
+    this.subscriptions = [
+      this.productsService.wishListIdsSource.subscribe(ids => this.wishListIds = ids),
+      this.dataService.get(environment.homepageURL).subscribe(this.handleResponse.bind(this))
+    ];
 
-    this.subscription = this.dataService.get(environment.homepageURL).subscribe(data => {
-      this.products = data.arrivals.map(product => {
-        return addToCartDecorator(wishListDecorator(product, this.productsService.getWishListIds()), this.cartService.getCartProducts());
-      });
-
-      this.banners = data.banners;
-      this.slideShowImages = data.slideshow;
-    });
-    this.prepareRecentlyViewed();
-    this.checkWishListItems();
-  }
-
-  private prepareRecentlyViewed() {
-    const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
-    this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewedIds;
-  }
-  private checkWishListItems() {
-    const wishlistIds = localStorage.getItem('wishlist');
-    this.wishList = wishlistIds ? JSON.parse(localStorage.getItem('wishlist')) : this.wishList;
+    this.prepareRecentlyViewedIds();
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  private handleResponse({arrivals, banners, slideshow}): void {
+    this.products = arrivals.map(product => {
+      return addToCartDecorator(wishListDecorator(product, this.wishListIds), this.cartService.getCartProducts());
+    });
+
+    this.banners = banners;
+    this.slideShowImages = slideshow;
+  }
+
+  private prepareRecentlyViewedIds() {
+    const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
+    this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewedIds;
   }
 }
