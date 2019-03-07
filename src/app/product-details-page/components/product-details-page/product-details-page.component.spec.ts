@@ -2,15 +2,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { ZoomComponent } from '../product-description/product-image-preview/zoom/zoom.component';
-import { ProductImagePreviewComponent } from '../product-description/product-image-preview/product-image-preview.component';
-import { SlideshowComponent } from 'src/app/home-page/components/slideshow/slideshow.component';
-import { ProductDetailsPageComponent } from './product-details-page.component';
-import { ProductDescriptionComponent } from '../product-description/product-description.component';
-import { RelatedProductsComponent } from './related-products/related-products.component';
-import { ProductOrderComponent } from '../product-description/product-order/product-order.component';
-import { ProductAvailabilityState } from 'src/app/shared/interfaces/product';
+
+import { SharedModule } from '../../../shared/shared.module';
+
+import {
+  ZoomComponent,
+  ProductImagePreviewComponent,
+  ProductDetailsPageComponent,
+  ProductDescriptionComponent,
+  RelatedProductsComponent,
+  ProductOrderComponent
+} from '../';
+
+import { ProductAvailabilityState } from '../../../shared/interfaces/product';
+
+import { ProductDetailsPageService } from '../../product-details-page.service';
 
 describe('ProductDetailsPageComponent', () => {
   let component: ProductDetailsPageComponent;
@@ -26,13 +32,13 @@ describe('ProductDetailsPageComponent', () => {
       ],
       declarations: [
         ProductDetailsPageComponent,
-        SlideshowComponent,
         ProductDescriptionComponent,
         ProductImagePreviewComponent,
         RelatedProductsComponent,
         ProductOrderComponent,
         ZoomComponent
       ],
+      providers: [ProductDetailsPageService]
     })
       .compileComponents();
   }));

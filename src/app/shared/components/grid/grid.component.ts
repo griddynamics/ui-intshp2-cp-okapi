@@ -1,13 +1,15 @@
-import { Component,
-        ViewChild,
-        ElementRef,
-        OnDestroy,
-        ChangeDetectorRef,
-        Input,
-        Output,
-        EventEmitter,
-        AfterContentChecked,
-        AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+  ChangeDetectorRef,
+  Input,
+  Output,
+  EventEmitter,
+  AfterContentChecked,
+  AfterViewInit
+} from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 

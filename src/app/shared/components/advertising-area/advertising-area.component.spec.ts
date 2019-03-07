@@ -1,10 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { SafePipe } from '../../pipes/safe.pipe';
-import { AdvertisingAreaComponent } from './advertising-area.component';
-import { ImgPlaceholderComponent } from '../img-placeholder/img-placeholder.component';
-
+import { AdvertisingAreaComponent, ImgPlaceholderComponent } from '../';
 
 describe('AdvertisingAreaComponent', () => {
   let component: AdvertisingAreaComponent;

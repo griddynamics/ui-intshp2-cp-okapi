@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ProductDescriptionComponent } from './product-description.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ZoomComponent } from './product-image-preview/zoom/zoom.component';
-import { ProductImagePreviewComponent } from './product-image-preview/product-image-preview.component';
-import { ProductOrderComponent } from './product-order/product-order.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { ProductDescriptionComponent, ZoomComponent, ProductImagePreviewComponent, ProductOrderComponent } from '../';
 
 describe('ProductDescriptionComponent', () => {
   const productInfo = {
