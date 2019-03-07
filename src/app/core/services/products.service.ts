@@ -33,7 +33,7 @@ export class ProductsService {
     return wishListIds ? wishListIds : this.wishListIds;
   }
 
-  public getProducts(queryString?: string): Observable<any> {
+  public getProducts(queryString?: string, spinner?: boolean): Observable<any> {
     const { productsURL } = environment;
 
     const url = queryString ? `${productsURL}?${queryString}` : productsURL;

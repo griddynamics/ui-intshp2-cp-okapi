@@ -1,7 +1,7 @@
 <app-slideshow *ngIf="slideShowImages.length" [slideShowImages]="slideShowImages"></app-slideshow>
 <app-heading [alertText]="'new'" [headingText]="'Arrivals'"></app-heading>
 <app-carousel *ngIf="products.length">
-  <app-carousel-item *ngFor="let product of products">
+  <app-carousel-item *ngFor="let product of products; trackBy: product?.id">
     <app-product-item (addItemToCart)="cartHandler($event)" [product]="product"></app-product-item>
   </app-carousel-item>
 </app-carousel>
