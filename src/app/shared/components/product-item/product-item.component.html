@@ -9,20 +9,26 @@
         <p *ngIf="!isHovered" class="price">{{product.price | currency:'USD'}}</p>
         <div *ngIf="isHovered">
           <div *ngIf="product.sizes.length">
-            <p class="sizes">sizes : <span *ngFor="let size of product.sizes">{{size}} <span>-</span></span></p>
+            <p class="sizes">sizes : <span *ngFor="let size of product.sizes; trackBy: size">{{size}} <span>-</span></span></p>
           </div>
           <div class="colors" (mouseleave)="onMouseLeaveColor()">
-            <div class="swatch" *ngFor="let swatch of product.swatches" (mouseover)="onSwatchChange(swatch)">
+            <div class="swatch" *ngFor="let swatch of product.swatches; trackBy: swatch?.color" (mouseover)="onSwatchChange(swatch)">
               <div class="color" [style.background-color]="swatch.color"></div>
             </div>
           </div>
           <hr>
           <div class="icons">
-            <a href="#"><i class="fas fa-cart-plus" [ngClass]="{ 'added-to-cart': product.addedToCart}"></i></a>
+            <a *ngIf="!product.addedToCart; else viewInCart"><i class="fas fa-cart-plus" (click)="addToCart()"></i></a>
             <i *ngIf="wishListEnabled" class="to-wish-list" (click)="addToWishList()" [ngClass]="{ 'added-to-wishlist': product.addedToWishList}"></i>
-          </div>
+         </div>
         </div>
       </div>
     </div>
   </div>
 </app-lazy-load>
+
+<ng-template #viewInCart>
+    <p class="cart added"><span><i class="fas fa-cart-plus"></i></span>
+      view in cart
+    </p>
+</ng-template>

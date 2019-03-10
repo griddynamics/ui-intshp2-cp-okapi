@@ -1,6 +1,8 @@
-import { Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { KillswitchService, CartService, ProductsService } from 'src/app/core/services';
 import { ISwatch } from '../../interfaces/product';
-import { KillswitchService } from 'src/app/core/services/killswitch.service';
 
 @Component({
   selector: 'app-product-item',
@@ -9,8 +11,6 @@ import { KillswitchService } from 'src/app/core/services/killswitch.service';
 })
 export class ProductItemComponent implements OnInit {
   @Input() public product;
-  @Output() addItemToWishList = new EventEmitter();
-  @Output() addItemToCart = new EventEmitter();
 
   isHovered = false;
   _currentThumbnail;
@@ -19,7 +19,12 @@ export class ProductItemComponent implements OnInit {
   private _swatchThumbnail = '';
 
 
-  constructor(private killswitchService: KillswitchService) {}
+  constructor(
+    private killswitchService: KillswitchService,
+    private router: Router,
+    private cartService: CartService,
+    private productsService: ProductsService
+  ) { }
 
   ngOnInit() {
     this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
@@ -85,12 +90,17 @@ export class ProductItemComponent implements OnInit {
 
   addToWishList(): void {
     event.stopPropagation();
-    this.addItemToWishList.emit(this.product);
+    this.productsService.toggleWishListProduct(this.product);
   }
 
   addToCart(): void {
     event.stopPropagation();
-    this.addItemToCart.emit(this.product);
+
+    if (this.product.addedToCart) {
+      alert('Open add to cart popup here');
+      return;
+    }
+    this.router.navigate(['/products', this.product.id]);
   }
 
   set swatchThumbnail(value) {
@@ -109,8 +119,8 @@ export class ProductItemComponent implements OnInit {
     this.swatchThumbnail = this.currentThumbnail;
   }
 
-  protected handleImgView(isHovered ): void {
-    this.isHovered  = isHovered;
+  protected handleImgView(isHovered): void {
+    this.isHovered = isHovered;
     this.resetDefaultThumbnail();
     this.resetDefaultSwatch();
   }

@@ -3,11 +3,12 @@ import { Subscription } from 'rxjs';
 
 import { IBanner } from 'src/app/shared/interfaces';
 import { IProduct } from 'src/app/shared/interfaces/product';
-import { KillswitchService } from '../../../core/services/killswitch.service';
-import { ProductsService } from 'src/app/core/services/products.service';
-import { DataService } from 'src/app/core/services/data.service';
+
 import { environment } from 'src/environments/environment';
-import { LoaderService } from 'src/app/core/services/loader.service';
+
+import { CartService, DataService, ProductsService, KillswitchService } from '../../../core/services';
+
+import { addToCartDecorator, wishListDecorator } from '../../../shared/decorators/product';
 
 @Component({
   selector: 'app-home-page',
@@ -15,54 +16,49 @@ import { LoaderService } from 'src/app/core/services/loader.service';
   styleUrls: ['./home-page.component.scss']
 })
 
-
 export class HomePageComponent implements OnInit, OnDestroy {
   public products: IProduct[] = [];
-  public wishList: IProduct[] = [];
-  public recentlyViewed: IProduct[] = [];
+  public recentlyViewedIds: string[] = [];
+  public wishListIds: string[] = [];
   public slideShowImages: any[] = [];
   public banners: IBanner[] = [];
-  private subscription;
   public wishListEnabled;
 
+  private subscriptions: Subscription[] = [];
+
   constructor(
-    public productsService: ProductsService,
+    private productsService: ProductsService,
+    private cartService: CartService,
     private killswitchService: KillswitchService,
-    private dataService: DataService,
-    private loaderService: LoaderService,
-  ) { }
+    private dataService: DataService
+  ) {
+    this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
+  }
 
   ngOnInit(): void {
-    this.loaderService.displayLoader();
-    this.wishListEnabled = this.killswitchService.getKillswitch('wishListEnabled');
+    this.subscriptions = [
+      this.productsService.wishListIdsSource.subscribe(ids => this.wishListIds = ids),
+      this.dataService.get(environment.homepageURL).subscribe(this.handleResponse.bind(this))
+    ];
 
-    this.subscription = this.dataService.get(environment.homepageURL).subscribe(data => {
-      this.products = data.arrivals;
-      this.banners = data.banners;
-      this.slideShowImages = data.slideshow;
-      this.loaderService.hideLoader();
-    });
-    this.checkRecentlyViewedItems();
-    this.checkWishListItems();
-  }
-
-  private checkRecentlyViewedItems() {
-    const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
-    this.recentlyViewed = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewed;
-  }
-  private checkWishListItems() {
-    const wishlistIds = localStorage.getItem('wishlist');
-    this.wishList = wishlistIds ? JSON.parse(localStorage.getItem('wishlist')) : this.wishList;
+    this.prepareRecentlyViewedIds();
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  public wishListHandler(product: IProduct): void {
-    this.productsService.toggleWishListProduct(product);
+  private handleResponse({arrivals, banners, slideshow}): void {
+    this.products = arrivals.map(product => {
+      return addToCartDecorator(wishListDecorator(product, this.wishListIds), this.cartService.getCartProducts());
+    });
+
+    this.banners = banners;
+    this.slideShowImages = slideshow;
   }
 
+  private prepareRecentlyViewedIds() {
+    const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
+    this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : this.recentlyViewedIds;
+  }
 }

@@ -8,6 +8,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "man",
     "price": 90,
+    "amount": 20,
     "rating": 5,
     "swatches": [
       {
@@ -61,6 +62,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "man",
     "price": 85,
+    "amount": 14,
     "rating": 5,
     "swatches": [
       {
@@ -114,6 +116,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "man",
     "price": 130,
+    "amount": 11,
     "rating": 5,
     "swatches": [
       {
@@ -163,6 +166,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "man",
     "price": 70,
+    "amount": 8,
     "rating": 5,
     "swatches": [
       {
@@ -203,6 +207,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "man",
     "price": 80,
+    "amount": 13,
     "rating": 5,
     "swatches": [],
     "availability": [
@@ -238,6 +243,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "man",
     "price": 70,
+    "amount": 14,
     "rating": 5,
     "swatches": [
       {
@@ -282,6 +288,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "man",
     "price": 80,
+    "amount": 44,
     "rating": 5,
     "swatches": [
       {
@@ -326,6 +333,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 25,
+    "amount": 4,
     "rating": 5,
     "swatches": [
       {
@@ -361,6 +369,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 25,
+    "amount": 4,
     "rating": 5,
     "swatches": [
       {
@@ -397,6 +406,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 35,
+    "amount": 5,
     "rating": 5,
     "swatches": [
       {
@@ -440,6 +450,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 25,
+    "amount": 8,
     "rating": 5,
     "swatches": [
       {
@@ -479,7 +490,8 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 25,
-    "rating": 5,
+    "amount": 24,
+    "rating": 7,
     "swatches": [
       {
         "color": "yellow",
@@ -518,6 +530,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 20,
+    "amount": 24,
     "rating": 5,
     "swatches": [
       {
@@ -562,6 +575,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 28,
+    "amount": 8,
     "rating": 5,
     "swatches": [
       {
@@ -610,6 +624,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 35,
+    "amount": 14,
     "rating": 5,
     "swatches": [
       {
@@ -649,6 +664,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 65,
+    "amount": 24,
     "rating": 5,
     "swatches": [],
     "availability": [
@@ -680,6 +696,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 65,
+    "amount": 3,
     "rating": 5,
     "swatches": [
       {
@@ -720,6 +737,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 55,
+    "amount": 24,
     "rating": 5,
     "swatches": [
       {
@@ -756,6 +774,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 40,
+    "amount": 3,
     "rating": 5,
     "swatches": [
       {
@@ -803,6 +822,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 55,
+    "amount": 24,
     "rating": 5,
     "swatches": [
       {
@@ -842,6 +862,7 @@
     "description": "lorem lorem lorem",
     "sex": "man",
     "price": 55,
+    "amount": 3,
     "rating": 5,
     "swatches": [
       {
@@ -877,6 +898,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "woman",
     "price": 200,
+    "amount": 4,
     "rating": 5,
     "swatches": [
       {
@@ -916,6 +938,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "woman",
     "price": 100,
+    "amount": 14,
     "rating": 5,
     "swatches": [
       {
@@ -956,6 +979,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "woman",
     "price": 80,
+    "amount": 24,
     "rating": 5,
     "swatches": [],
     "availability": [
@@ -991,6 +1015,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "children",
     "price": 40,
+    "amount": 12,
     "rating": 5,
     "swatches": [
       {
@@ -1031,6 +1056,7 @@
     "description": "This item is excluded from all promotions.",
     "sex": "children",
     "price": 40,
+    "amount": 11,
     "rating": 5,
     "swatches": [
       {

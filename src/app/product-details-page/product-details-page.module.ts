@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
+
 import { SharedModule } from '../shared/shared.module';
-
-import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 import { ProductDetailsPageRoutingModule } from './product-details-page-routing.module';
-import { ProductDescriptionComponent } from './components/product-description/product-description.component';
-import { ProductImagePreviewComponent } from './components/product-description/product-image-preview/product-image-preview.component';
-import { RelatedProductsComponent } from './components/product-details-page/related-products/related-products.component';
-import { ProductOrderComponent } from './components/product-description/product-order/product-order.component';
-import { ZoomComponent } from './components/product-description/product-image-preview/zoom/zoom.component';
 
+import { ProductDetailsPageService } from './product-details-page.service';
+
+import {
+  ProductDetailsPageComponent,
+  ProductDescriptionComponent,
+  ProductImagePreviewComponent,
+  RelatedProductsComponent,
+  ProductOrderComponent,
+  ZoomComponent
+} from './components';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,7 @@ import { ZoomComponent } from './components/product-description/product-image-pr
   imports: [
     ProductDetailsPageRoutingModule,
     SharedModule
-  ]
+  ],
+  providers: [ProductDetailsPageService]
 })
 export class ProductDetailsPageModule { }

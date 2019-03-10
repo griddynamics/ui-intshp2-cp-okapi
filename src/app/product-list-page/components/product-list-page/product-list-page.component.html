@@ -1,10 +1,14 @@
 <div class="main-container-wrapper">
   <div class="main-container">
     <div class="filters">
-      <app-faceted-navigation *ngIf="filters.length" [filters]="filters"></app-faceted-navigation>
+      <app-faceted-navigation *ngIf="filters.length" [filters]="filters" [defaultParams]="queryParams"></app-faceted-navigation>
+    </div>
+    <div *ngIf="!total">
+      <img src="assets/coolio_dribbble.gif" alt="girl" width="100%">
+      <app-heading id="wish-list" [alertText]="'There are no items to show'" [messageText]="'please, try changing the filter...'"></app-heading>
     </div>
     <app-grid [showLoadMore]="showLoadMore" (loadMore)="onLoadMore($event)">
-      <div class="product" *ngFor="let product of products;">
+      <div class="product" *ngFor="let product of products">
         <app-product-item (addItemToWishList)="wishListHandler($event)" [product]="product"></app-product-item>
       </div>
     </app-grid>

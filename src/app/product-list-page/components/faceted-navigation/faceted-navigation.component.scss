@@ -1,0 +1,121 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+@import '../../../../scss/mixins';
+
+.all-products-filter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.filter-item {
+  background: $white-color;
+  padding: 32px 40px;
+  margin-bottom: 30px;
+}
+
+.filter-title {
+  text-transform: capitalize;
+  display: block;
+  margin-bottom: 30px;
+  color: $primary-color;
+  font-size: $font-size-large;
+  font-family: $main-font-bold;
+}
+
+.filter-line {
+  margin-bottom: 22px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    text-transform: capitalize;
+    font-size: $font-size-medium;
+    cursor: pointer;
+  }
+}
+
+.sidebar-open-arrow,
+.closebtn {
+  display: none;
+}
+
+.fa-caret-up {
+  display: none;
+ }
+
+ @include tablet {
+   .fa-caret-up {
+    display: inline-block;
+   }
+
+  .all-products-filter {
+    height: 100%;
+    width: 0;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: $bg-color;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    position: fixed;
+
+    &.show {
+      width: 40%;
+    }
+
+    &.hide {
+      width: 0;
+    }
+  }
+
+  .sidebar-open-arrow {
+    display: block;
+    position: fixed;
+    top: 5vh;
+    left: 5%;
+    font-size: $font-size-large;
+    cursor: pointer;
+  }
+
+  .closebtn {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  .filter-item {
+    margin-bottom: 0;
+    padding: 20px 40px;
+  }
+  .filter-title {
+    margin-bottom: 10px;
+  }
+  .filter-line {
+    margin-bottom: 0;
+  }
+
+  .hidden {
+    display: none;
+
+    &.dropped {
+      display: block;
+    }
+  };
+
+}
+
+@include mobile {
+  .all-products-filter {
+    &.show {
+      width: 50%;
+    }
+  }
+
+}

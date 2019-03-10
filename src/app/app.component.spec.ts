@@ -1,9 +1,11 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
+
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;

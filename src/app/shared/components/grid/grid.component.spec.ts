@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GridComponent } from './grid.component';
-import { LoadMoreComponent } from '../load-more/load-more.component';
+import { GridComponent, LoadMoreComponent } from '../';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('GridComponent', () => {
   let component: GridComponent;
@@ -9,7 +11,8 @@ describe('GridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GridComponent , LoadMoreComponent]
+      declarations: [ GridComponent , LoadMoreComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule, HttpClientModule]
     })
     .compileComponents();
   }));

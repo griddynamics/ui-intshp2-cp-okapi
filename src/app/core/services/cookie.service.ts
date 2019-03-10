@@ -4,10 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CookieService {
-
-  constructor() { }
-
-  set(name: string, value: string, expires?: number | Date, path?: string, domain?: string, secure?: boolean) {
+  public set(name: string, value: string, expires?: number | Date, path?: string, domain?: string, secure?: boolean): void {
     let cookieString = `${name}=${value};`;
     if (expires) {
       let expireTerm = expires;
@@ -30,16 +27,18 @@ export class CookieService {
     document.cookie = cookieString;
   }
 
-  get(name: string) {
+  public get(name: string): string {
     const value = '; ' + document.cookie;
     const parts = value.split('; ' + name + '=');
 
     if (parts.length === 2) {
       return parts.pop().split(';').shift();
     }
+
+    return '';
   }
 
-  delete(name) {
+  public delete(name): void {
     this.set(name, '', new Date('Thu, 01 Jan 1970 00:00:01 GMT'));
   }
 }
