@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../services';
-import { ModalService } from 'src/app/core/services/modal.service';
-import { PopUpComponent } from 'src/app/shared/modal/pop-up/pop-up.component';
+import { CartService, ModalService  } from '../../services';
+import { ShoppingCartComponent } from 'src/app/shared/components';
 
 
 @Component({
@@ -23,8 +22,8 @@ export class HeaderNavComponent implements OnInit {
     this.cartService.getCartAmount().subscribe((cartAmount) => this.cartAmount = cartAmount);
   }
 
-   public popup() {
-    this.modalService.open(PopUpComponent);
+  public toggleCartPopup() {
+    this.modalService.open(ShoppingCartComponent);
  }
   public onSearchBtnClick(): void {
     this.isSearchOpen = !this.isSearchOpen;

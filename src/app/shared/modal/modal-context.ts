@@ -1,10 +1,10 @@
 import { ViewContainerRef, ComponentRef } from '@angular/core';
 
 export class ModalContext {
+  public data: any;
+
   private componentRef: ComponentRef<any>;
   private containerRef: ViewContainerRef;
-
-  data;
 
   private _resolve: Function;
   private _reject: Function;
@@ -12,20 +12,21 @@ export class ModalContext {
 
   constructor() { }
 
-  private hide() {
-    this.containerRef.remove(this.containerRef.indexOf(this.componentRef.hostView));
-  }
-
+  
   resolve(...args: any[]) {
     this.hide();
     this._resolve(...args);
     const body = document.querySelector('body');
     body.classList.remove('noscroll');
   }
-
+  
   reject(reason: any) {
     this.hide();
     this._reject(reason);
+  }
+  
+  private hide() {
+    this.containerRef.remove(this.containerRef.indexOf(this.componentRef.hostView));
   }
 
   private promise(componentRef: ComponentRef<any>, containerRef: ViewContainerRef): Promise<any> {

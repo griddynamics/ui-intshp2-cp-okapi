@@ -1,0 +1,184 @@
+@import "../../../../scss/variables";
+@import "../../../../scss/fonts";
+@import "../../../../scss/mixins";
+
+:host{
+    display:block;
+    padding:20px;
+    max-width: 500px;
+  }
+
+  .title {
+    font-family: $main-font-bold;
+    font-size: 14px;
+  }
+
+  .pic-empty-cart {
+    padding: 10px;
+  }
+
+  .header-for-cart, .footer-for-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-for-cart {
+    margin-top: 40px;
+  }
+
+  .block {
+    max-height: 410px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+i, .minus, .plus {
+  cursor: pointer;
+  color: #34404b57;
+  &:hover {
+    color: $font-color;
+  }
+}
+
+.quantity {
+  display: flex;
+}
+
+.plus {
+  margin-left: 10px;
+}
+
+.minus {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.tooltiptext {
+  width: 155px;
+  background-color: #5555555e;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0px 2px;
+  position: absolute;
+  margin-top: 30px;
+  margin-left: -170px;
+  transition: opacity 0.5s;
+}
+
+.tooltiptext-visible {
+  opacity: 1;
+}
+
+.pic-for-cart {
+  width: 100px;
+  height: 100px;
+  margin-right: 50px;
+  margin-left: 40px;
+}
+
+.item-for-cart {
+  display: flex;
+    i {
+      opacity: 0;
+      transition: opacity 0.5s;
+      padding-left: 60px;
+      padding-top: 4px;
+    }
+    &:hover {
+      i {
+        opacity: 1;
+      }
+   }
+}
+
+hr {
+color: grey;
+width: 100%;
+height:  1px;   
+}  
+
+.add-info {
+  display: flex;
+}
+
+.info{
+  font-family: $main-font-bold;
+  font-size: $font-size-regular;
+  margin-right: 18px;
+&:after {
+  background-color: #eee;
+  content: '';
+  display: inline-block;
+  height: 15px;
+  position: relative;
+  top: 3px;
+  width: 1px;
+  margin-left: 20px;
+   }
+}
+
+.info-block {
+  display: flex;
+  width: 330px;
+  justify-content: space-between;
+}
+
+.price {
+  font-family: $main-font-bold;
+  font-size: $font-size-regular;
+  color: $primary-color;
+}
+
+.main-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 50px;
+  margin-left: 30px;
+
+}
+
+h2, .empty-cart-title {
+  color: $black-color;
+  font-family: $main-font-bold;
+  font-size: 20px;
+  text-transform: uppercase;
+  
+}
+
+.first-word, .empty-cart-subtitle {
+  font-family: $main-font-bold;
+  font-size: 20px;
+  margin-right: 5px;
+  color: $primary-color;
+  text-transform: uppercase;
+}
+
+.empty-cart-subtitle {
+  cursor: pointer;
+}
+
+.empty-cart {
+  text-align: center;
+}
+
+.checkout{
+  width: 100px;
+  height: 40px;
+  color: $white-color;
+  background-color: $disabled-color;
+  font-family: $main-font-bold;
+  cursor: pointer;
+  &:hover {
+    background-color: $primary-color;
+  }
+
+}
+
+@include mobile {
+  :host{
+     width: 425px;
+  }
+}

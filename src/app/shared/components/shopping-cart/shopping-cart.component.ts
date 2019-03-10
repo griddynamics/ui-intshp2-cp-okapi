@@ -1,15 +1,14 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ModalContext } from '../modal-context';
 import { ICartProduct } from '../../interfaces/product';
 import { CartService } from 'src/app/core/services/cart.service';
+import { ModalContext } from '../../modal/modal-context';
 
 @Component({
-  selector: 'app-pop-up',
-  templateUrl: './pop-up.component.html',
-  styleUrls: ['./pop-up.component.scss']
+  selector: 'app-shopping-cart',
+  templateUrl: './shopping-cart.component.html',
+  styleUrls: ['./shopping-cart.component.scss']
 })
-
-export class PopUpComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit {
   cartProducts: ICartProduct[] = [];
   total = 0;
   outOfStock = false;
@@ -26,7 +25,7 @@ export class PopUpComponent implements OnInit {
   }
 
   private plus(index) {
-    if (this.cartProducts[index].quantity === this.cartProducts[index].amount) {
+    if (this.cartProducts[index].quantity === this.cartProducts[index].amountInStock) {
     this.outOfStock = true;
      return;
     }
@@ -56,10 +55,6 @@ export class PopUpComponent implements OnInit {
     if (!this.cartProducts) {
          return;
        }
-       for (let i = 0; i < this.cartProducts.length; i++) {
-         this.total += this.cartProducts[i].defaultPrice * this.cartProducts[i].quantity;
-        }
-        return this.total;
+       this.total = this.cartProducts.reduce((total,{defaultPrice, quantity}) => total + (defaultPrice * quantity), 0)
        }
-
 }

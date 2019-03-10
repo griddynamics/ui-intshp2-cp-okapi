@@ -1,8 +1,11 @@
+import { ModalContext } from '../modal/modal-context';
+import { ViewContainerRef } from '@angular/core';
+
 export interface IProduct {
   id: string;
   title?: string;
   price: number;
-  amount?: number;
+  amountInStock?: number;
   brand?: string;
   description?: string;
   sex?: string;
@@ -53,5 +56,15 @@ export interface ICartProduct {
   price?: number;
   defaultPrice?: number;
   size?: ProductSize;
-  amount?: number;
+  amountInStock?: number;
+}
+
+export interface ModalContainer {
+  context: ModalContext;
+  container: ViewContainerRef;
+}
+
+export interface Options {
+  hideOnBackdropClick?: boolean; 
+  containerType: any;
 }

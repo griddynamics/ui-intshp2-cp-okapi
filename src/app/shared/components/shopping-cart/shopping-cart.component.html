@@ -24,7 +24,6 @@
             <div class="info color">{{product.swatch.color | uppercase }}</div>
             <div class="info size">{{product.size | uppercase}}</div>
             <div class="info quantity">
-              <!-- <span class="tooltiptext" *ngIf="outOfStock">We have only {{product.quantity}} items</span> -->
               <div class="minus" (click)="minus(i)">-</div>
               <div>{{product.quantity}}</div>
               <div class="plus" (click)="plus(i)">+</div>
