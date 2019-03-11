@@ -1,8 +1,6 @@
 import { Injectable, ComponentRef, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { ModalWindowComponent } from 'src/app/shared/components';
+import { ModalWindowComponent, ModalContext } from 'src/app/shared/components/modal-window/modal-window.component';
 import { Options, ModalContainer } from 'src/app/shared/interfaces';
-import { ModalContext } from 'src/app/shared/components/modal-window/modal-context';
-
 
 @Injectable({
   providedIn: 'root'

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { KillswitchService, CartService, ProductsService, ModalService } from 'src/app/core/services';
+import { KillswitchService, ProductsService, ModalService } from 'src/app/core/services';
 import { ISwatch } from '../../interfaces/product';
-import { ShoppingCartComponent } from 'src/app/shared/components';
+import { ShoppingCartComponent } from 'src/app/shared/components/shopping-cart/shopping-cart.component';
 
 
 @Component({
@@ -13,17 +13,15 @@ import { ShoppingCartComponent } from 'src/app/shared/components';
 export class ProductItemComponent implements OnInit {
   @Input() public product;
 
-  isHovered = false;
-  _currentThumbnail;
+  public isHovered = false;
   public wishListEnabled;
+  private _currentThumbnail;
   private _currentSwatch;
   private _swatchThumbnail = '';
-
 
   constructor(
     private killswitchService: KillswitchService,
     private router: Router,
-    private cartService: CartService,
     private productsService: ProductsService,
     private modalService: ModalService
   ) { }
