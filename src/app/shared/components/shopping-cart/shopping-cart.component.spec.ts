@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShoppingCartComponent } from './shopping-cart.component';
-import { ModalContext } from '../../modal/modal-context';
+import { ModalContext } from '../modal-window/modal-context';
+
 
 describe('ShoppingCartComponent', () => {
   let component: ShoppingCartComponent;
