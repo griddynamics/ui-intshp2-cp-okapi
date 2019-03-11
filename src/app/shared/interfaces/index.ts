@@ -1,3 +1,6 @@
+import { ViewContainerRef } from '@angular/core';
+import { ModalContext } from '../components/modal-window/modal-context';
+
 export interface IBanner {
   height?: number;
   width?: number;
@@ -14,4 +17,14 @@ export interface IFilter {
 export enum PriceRange {
   min = 0,
   max = 1
+}
+
+export interface ModalContainer {
+  context: ModalContext;
+  container: ViewContainerRef;
+}
+
+export interface Options {
+  hideOnBackdropClick?: boolean;
+  containerType: any;
 }
