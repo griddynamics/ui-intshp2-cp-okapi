@@ -33,6 +33,7 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
+    this.onChooseSize(ProductSize[Object.keys(ProductSize)[0]], 0);
     const { id, name } = this.product;
     this.productConfiguration.id = id;
     this.productConfiguration.name = name;
@@ -77,6 +78,9 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   get isDisabledAddToCartBtn() {
+    if (!this.product.swatches.length) {
+      return this.productConfiguration.size;
+    }
     return this.productConfiguration.size && this.productConfiguration.swatch;
   }
 
