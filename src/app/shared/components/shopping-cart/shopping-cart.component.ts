@@ -13,8 +13,8 @@ export class ShoppingCartComponent implements OnInit {
   cartProducts: ICartProduct[] = [];
   total = 0;
   constructor(public context: ModalContext,
-              private cartService: CartService,
-              private element: ElementRef) {}
+    private cartService: CartService,
+    private element: ElementRef) { }
 
   ngOnInit() {
     if (!this.cartProducts) {
@@ -27,32 +27,32 @@ export class ShoppingCartComponent implements OnInit {
 
   private plus(index) {
     if (this.cartProducts[index].quantity === this.cartProducts[index].amountInStock) {
-     return;
+      return;
     }
     this.cartProducts[index].quantity++;
     this.total += this.cartProducts[index].defaultPrice;
     localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
-    }
+  }
 
   private minus(index) {
-      if (this.cartProducts[index].quantity > 1) {
-        this. cartProducts[index].quantity --;
-        this.total -= this.cartProducts[index].defaultPrice;
-        localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
-      }
+    if (this.cartProducts[index].quantity > 1) {
+      this.cartProducts[index].quantity--;
+      this.total -= this.cartProducts[index].defaultPrice;
+      localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
     }
+  }
 
   private delete(index, product) {
-      this.total -= this.cartProducts[index].defaultPrice * this.cartProducts[index].quantity;
-      this.cartProducts.splice(index, 1);
-      localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
-      this.cartService.remove(product);
-    }
+    this.total -= this.cartProducts[index].defaultPrice * this.cartProducts[index].quantity;
+    this.cartProducts.splice(index, 1);
+    localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
+    this.cartService.remove(product);
+  }
 
-  private getTotalPrice () {
+  private getTotalPrice() {
     if (!this.cartProducts) {
-         return;
-       }
-    this.total = this.cartProducts.reduce((total, {defaultPrice, quantity}) => total + (defaultPrice * quantity), 0);
-       }
+      return;
+    }
+    this.total = this.cartProducts.reduce((total, { defaultPrice, quantity }) => total + (defaultPrice * quantity), 0);
+  }
 }
