@@ -8,7 +8,7 @@
         <h2>{{product.name}}</h2>
         <div class="item-details">
           <div *ngIf="!isHovered" class="stars">
-            <i *ngFor="let rating of starsArray; let i = index" class="fas fa-star" [ngClass]="{'rating': i + 1 <= product.rating}"></i>
+            <i *ngFor="let rating of starsArray; let i = index; trackBy: index" class="fas fa-star" [ngClass]="{'rating': i + 1 <= product.rating}"></i>
           </div>
           <p *ngIf="!isHovered" class="price">{{product.price | currency:'USD'}}</p>
           <a *ngIf="isHovered" (click)="addToCart()">

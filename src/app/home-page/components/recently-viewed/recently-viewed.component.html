@@ -1,6 +1,6 @@
 <app-heading [alertText]="'recently'" [headingText]="'viewed'"></app-heading>
 <app-carousel *ngIf="products.length">
-  <app-carousel-item *ngFor="let product of products">
+  <app-carousel-item *ngFor="let product of products; trackBy: product?.id">
       <app-product-item-short [product]="product"></app-product-item-short>
   </app-carousel-item>
 </app-carousel>

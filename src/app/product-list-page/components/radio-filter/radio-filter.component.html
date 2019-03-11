@@ -3,7 +3,7 @@
     <i *ngIf="isDropped" class="fas fa-caret-up"></i>
   </span>
   <div class="filter-line">
-    <div *ngFor="let field of filter.fields" class="filter-line hidden" [ngClass]="{'dropped': isDropped}">
+    <div *ngFor="let field of filter.fields; trackBy: field" class="filter-line hidden" [ngClass]="{'dropped': isDropped}">
       <input type="radio" name="filter-category" id="radio-{{field}}" (change)="onFilterChange(filter.name, field)" [checked]="field === checked">
       <label for="radio-{{field}}">{{field}}</label>
     </div>

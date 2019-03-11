@@ -8,10 +8,14 @@
   cursor: pointer;
   padding: 5px 10px;
   color: $primary-color;
-  display: block;
+  display: none;
   margin: 15px auto;
   transition: .4s;
   border-radius: 4px;
+
+  &.visible {
+    display: block;
+  }
 
   &:hover {
     transform: scale(1.1);

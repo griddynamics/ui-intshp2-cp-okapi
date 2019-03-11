@@ -31,6 +31,12 @@ export class CartService {
     this.updateCart();
   }
 
+  remove(cartProduct: ICartProduct) {
+    const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
+    this.cartProducts.splice(indexOfCurrId, 1);
+    this.updateCart();
+  }
+
   public toggleCart(product: IProduct, cartProduct: ICartProduct): void {
     if (!product.addedToCart) {
       this.addToCart(product, cartProduct);

@@ -2,7 +2,7 @@ export interface IProduct {
   id: string;
   title?: string;
   price: number;
-  amount?: number;
+  amountInStock?: number;
   brand?: string;
   description?: string;
   sex?: string;
@@ -51,5 +51,7 @@ export interface ICartProduct {
   quantity?: number;
   swatch?: string;
   price?: number;
+  defaultPrice?: number;
   size?: ProductSize;
+  amountInStock?: number;
 }

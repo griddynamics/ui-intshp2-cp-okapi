@@ -1,15 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadMoreComponent } from './load-more.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LoadMoreComponent', () => {
   let component: LoadMoreComponent;
   let fixture: ComponentFixture<LoadMoreComponent>;
-  let spy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoadMoreComponent ]
+      declarations: [ LoadMoreComponent ],
+      imports: [ HttpClientTestingModule, RouterTestingModule, HttpClientModule ]
     })
     .compileComponents();
   }));
@@ -21,8 +24,15 @@ describe('LoadMoreComponent', () => {
   }));
 
   it('should create', () => {
-    spy = spyOn(component, 'onLoadMore');
-    component.onLoadMore();
-    expect(spy).toHaveBeenCalled();
+    expect(component).toBeTruthy();
+  });
+
+  it('should run IntersectionObserver when if statement is true', () => {
+    component.loadMoreScrollEnabled = true;
+    component.ngOnInit();
+  });
+  it('should not run IntersectionObserver when if statement is false', () => {
+    component.loadMoreScrollEnabled = false;
+    component.ngOnInit();
   });
 });
