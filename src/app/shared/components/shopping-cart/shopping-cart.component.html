@@ -41,5 +41,5 @@
     <div class="heading-wrapper">
       <h2><span class="first-word">Sub-total</span>{{total | currency:'USD'}}</h2>
     </div>
-    <button class="checkout">checkout</button>
+    <button routerLink="/checkout" class="checkout" (click)="context.resolve()">checkout</button>
   </div>
