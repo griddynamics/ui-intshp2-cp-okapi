@@ -11,7 +11,6 @@ import { ModalContext } from '../../modal/modal-context';
 export class ShoppingCartComponent implements OnInit {
   cartProducts: ICartProduct[] = [];
   total = 0;
-  outOfStock = false;
   constructor(public context: ModalContext,
               private cartService: CartService,
               private element: ElementRef) {}
@@ -21,15 +20,14 @@ export class ShoppingCartComponent implements OnInit {
       return;
     }
     this.cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
+    console.log(this.cartProducts);
     this.getTotalPrice();
   }
 
   private plus(index) {
     if (this.cartProducts[index].quantity === this.cartProducts[index].amountInStock) {
-    this.outOfStock = true;
      return;
     }
-    this.outOfStock = false;
     this.cartProducts[index].quantity++;
     this.total += this.cartProducts[index].defaultPrice;
     localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
@@ -37,7 +35,6 @@ export class ShoppingCartComponent implements OnInit {
 
   private minus(index) {
       if (this.cartProducts[index].quantity > 1) {
-        this.outOfStock = false;
         this. cartProducts[index].quantity --;
         this.total -= this.cartProducts[index].defaultPrice;
         localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
@@ -55,6 +52,6 @@ export class ShoppingCartComponent implements OnInit {
     if (!this.cartProducts) {
          return;
        }
-       this.total = this.cartProducts.reduce((total,{defaultPrice, quantity}) => total + (defaultPrice * quantity), 0)
+       this.total = this.cartProducts.reduce((total, {defaultPrice, quantity}) => total + (defaultPrice * quantity), 0);
        }
 }

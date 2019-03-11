@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { KillswitchService, CartService, ProductsService, ModalService } from 'src/app/core/services';
 import { Router } from '@angular/router';
+import { KillswitchService, CartService, ProductsService, ModalService } from 'src/app/core/services';
 import { ISwatch } from '../../interfaces/product';
 import { ShoppingCartComponent } from 'src/app/shared/components';
 

@@ -65,6 +65,6 @@ export interface ModalContainer {
 }
 
 export interface Options {
-  hideOnBackdropClick?: boolean; 
+  hideOnBackdropClick?: boolean;
   containerType: any;
 }

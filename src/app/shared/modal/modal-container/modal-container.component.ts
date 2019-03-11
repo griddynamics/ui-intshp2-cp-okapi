@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, ViewChild, ViewContainerRef } from '@angular/core';
 import { animate, state, style, transition, trigger, animateChild, query } from '@angular/animations';
-import { ModalContainer } from '../modal-container';
 import { ModalContext } from '../modal-context';
+import { ModalContainer } from '../../interfaces/product';
 
 @Component({
   selector: 'app-modal-container',

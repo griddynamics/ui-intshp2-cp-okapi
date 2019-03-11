@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +16,6 @@ import { KillswitchService } from './core/services';
     PageNotFoundComponent,
   ],
   imports: [
-    BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
     SharedModule

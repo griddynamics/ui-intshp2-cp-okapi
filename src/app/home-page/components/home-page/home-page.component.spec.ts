@@ -48,24 +48,7 @@ describe('HomePageComponent', () => {
       'relatedProducts': []
     }
     ];
-    component.wishList = [{
-      'id': '1',
-      'title': 'String',
-      'price': 1,
-      'brand': 'String',
-      'description': 'String',
-      'sex': 'String',
-      'name': 'String',
-      'rating': 1,
-      'swatches': [],
-      'availability': [],
-      'thumbnailImageSrc': 'string',
-      'sizes': [],
-      'addedToCart': true,
-      'addedToWishList': true,
-      'relatedProducts': []
-    }
-    ];
+    component.wishListIds = ['1'];
     component.recentlyViewedIds = ['1', '2', '3'];
     expect(component).toBeTruthy();
   });

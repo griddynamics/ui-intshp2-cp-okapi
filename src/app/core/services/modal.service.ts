@@ -8,7 +8,7 @@ import { ModalContainer, Options } from 'src/app/shared/interfaces/product';
 })
 export class ModalService {
 
-  private options = {containerType: ModalContainerComponent}
+  private options = {containerType: ModalContainerComponent};
   private body = document.querySelector('body');
 
   private viewContainerRef: ViewContainerRef;

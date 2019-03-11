@@ -12,19 +12,16 @@ export class ModalContext {
 
   constructor() { }
 
-  
   resolve(...args: any[]) {
     this.hide();
     this._resolve(...args);
     const body = document.querySelector('body');
     body.classList.remove('noscroll');
   }
-  
   reject(reason: any) {
     this.hide();
     this._reject(reason);
   }
-  
   private hide() {
     this.containerRef.remove(this.containerRef.indexOf(this.componentRef.hostView));
   }
