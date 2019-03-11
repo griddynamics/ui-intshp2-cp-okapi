@@ -1,14 +1,15 @@
-import { Injectable, Type, ComponentRef, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { ModalContext } from '../../shared/modal/modal-context';
-import { ModalContainerComponent } from '../../shared/modal/modal-container/modal-container.component';
-import { ModalContainer, Options } from 'src/app/shared/interfaces/product';
+import { Injectable, ComponentRef, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { ModalWindowComponent } from 'src/app/shared/components';
+import { Options, ModalContainer } from 'src/app/shared/interfaces';
+import { ModalContext } from 'src/app/shared/components/modal-window/modal-context';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
 
-  private options = {containerType: ModalContainerComponent};
+  private options = {containerType: ModalWindowComponent};
   private body = document.querySelector('body');
 
   private viewContainerRef: ViewContainerRef;

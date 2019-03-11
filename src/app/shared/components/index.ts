@@ -11,4 +11,5 @@ export { ProductItemComponent } from './product-item/product-item.component';
 export { ProductItemShortComponent } from './product-item-short/product-item-short.component';
 export { SwipeIconComponent } from './swipe-icon/swipe-icon.component';
 export { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+export { ModalWindowComponent } from './modal-window/modal-window.component';
 

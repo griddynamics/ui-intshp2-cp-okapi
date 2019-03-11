@@ -1,12 +1,12 @@
-import { Component, OnInit, HostBinding, ViewChild, ViewContainerRef } from '@angular/core';
-import { animate, state, style, transition, trigger, animateChild, query } from '@angular/animations';
-import { ModalContext } from '../modal-context';
-import { ModalContainer } from '../../interfaces/product';
+import { Component, HostBinding, ViewChild, ViewContainerRef } from '@angular/core';
+import { animate, style, transition, trigger, animateChild, query } from '@angular/animations';
+import { ModalContainer } from '../../interfaces';
+import { ModalContext } from './modal-context';
 
 @Component({
-  selector: 'app-modal-container',
-  templateUrl: './modal-container.component.html',
-  styleUrls: ['./modal-container.component.scss'],
+  selector: 'app-modal-window',
+  templateUrl: './modal-window.component.html',
+  styleUrls: ['./modal-window.component.scss'],
   animations: [
     trigger('host', [
       transition(':leave', [
@@ -64,7 +64,7 @@ import { ModalContainer } from '../../interfaces/product';
     ])
   ]
 })
-export class ModalContainerComponent  implements ModalContainer {
+export class ModalWindowComponent implements ModalContainer {
   @HostBinding('@host') host;
   @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
   context: ModalContext;

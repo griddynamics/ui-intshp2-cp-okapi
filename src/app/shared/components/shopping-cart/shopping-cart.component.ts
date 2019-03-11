@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ICartProduct } from '../../interfaces/product';
 import { CartService } from 'src/app/core/services/cart.service';
-import { ModalContext } from '../../modal/modal-context';
+import { ModalContext } from '../modal-window/modal-context';
+
 
 @Component({
   selector: 'app-shopping-cart',
@@ -52,6 +53,6 @@ export class ShoppingCartComponent implements OnInit {
     if (!this.cartProducts) {
          return;
        }
-       this.total = this.cartProducts.reduce((total, {defaultPrice, quantity}) => total + (defaultPrice * quantity), 0);
+    this.total = this.cartProducts.reduce((total, {defaultPrice, quantity}) => total + (defaultPrice * quantity), 0);
        }
 }

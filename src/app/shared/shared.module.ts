@@ -19,12 +19,13 @@ import {
   GridComponent,
   ImgPlaceholderComponent,
   SwipeIconComponent,
-  ShoppingCartComponent
+  ShoppingCartComponent,
+  ModalWindowComponent
 } from './components';
 
 import { SafePipe } from './pipes/safe.pipe';
-import { ModalContainerComponent } from './modal/modal-container/modal-container.component';
-import { ModalHolderDirective } from './modal/modal-holder.directive';
+import { ModalHolderDirective } from './directives/modal-holder.directive';
+
 
 const MODULES = [
   CommonModule,
@@ -49,9 +50,9 @@ const DECLARATIONS = [
   GridComponent,
   ImgPlaceholderComponent,
   SwipeIconComponent,
-  ModalContainerComponent,
   ModalHolderDirective,
   ShoppingCartComponent,
+  ModalWindowComponent,
 ];
 
 @NgModule({
@@ -64,7 +65,7 @@ const DECLARATIONS = [
     ...MODULES,
     ...DECLARATIONS,
   ],
-  entryComponents: [ModalContainerComponent, ShoppingCartComponent],
+  entryComponents: [ModalWindowComponent, ShoppingCartComponent],
 })
 export class SharedModule {
   static forRoot() {
