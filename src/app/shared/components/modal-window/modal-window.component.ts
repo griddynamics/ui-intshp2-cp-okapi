@@ -2,6 +2,7 @@ import { Component, HostBinding, ViewChild, ViewContainerRef } from '@angular/co
 import { animate, style, transition, trigger, animateChild, query } from '@angular/animations';
 import { ModalContainer } from '../../interfaces';
 import { ModalContext } from './modal-context';
+export { ModalContext } from './modal-context';
 
 @Component({
   selector: 'app-modal-window',
