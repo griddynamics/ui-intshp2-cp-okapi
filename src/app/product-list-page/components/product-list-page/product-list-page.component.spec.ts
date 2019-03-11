@@ -1,12 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { ProductListPageComponent } from './product-list-page.component';
-import { FacetedNavigationComponent } from './faceted-navigation/faceted-navigation.component';
-import { CheckboxFilterComponent } from './faceted-navigation/checkbox-filter/checkbox-filter.component';
-import { PriceRangeFilterComponent } from './faceted-navigation/price-range-filter/price-range-filter.component';
-import { RadioFilterComponent } from './faceted-navigation/radio-filter/radio-filter.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { SharedModule } from '../../../shared/shared.module';
+
+import {
+  ProductListPageComponent,
+  FacetedNavigationComponent,
+  CheckboxFilterComponent,
+  PriceRangeFilterComponent,
+  RadioFilterComponent
+} from '../';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ProductListPageComponent', () => {
   let component: ProductListPageComponent;
@@ -14,7 +19,7 @@ describe('ProductListPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ SharedModule, HttpClientTestingModule, RouterTestingModule ],
+      imports: [ SharedModule, HttpClientTestingModule, RouterTestingModule, HttpClientModule ],
 
       declarations: [
         ProductListPageComponent,
@@ -24,7 +29,7 @@ describe('ProductListPageComponent', () => {
         RadioFilterComponent
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -34,15 +39,27 @@ describe('ProductListPageComponent', () => {
   });
 
   it('should create', () => {
-    component.subscription = true;
     expect(component).toBeTruthy();
   });
 
-  it('should create when there is subscription', () => {
-    component.subscription = true;
-    expect(component).toBeTruthy();
-    component.subscription = false;
-    expect(component).toBeTruthy();
+  it('should call function onLoadMore when if statement is false', () => {
+    component.loadTo = 1;
+    component.totalAmount = 2;
+    component.onLoadMore(0);
+    fixture.detectChanges();
+    expect(component.loadTo).not.toBe(component.totalAmount);
+  });
+
+  it('should call function onLoadMore when if statement is true', () => {
+    component.loadTo = 2;
+    component.totalAmount = 1;
+    component.onLoadMore(2);
+    fixture.detectChanges();
+    expect(component.loadTo).toBe(component.totalAmount);
+  });
+
+  it('should have 2 subscriptions', () => {
+    expect(component.subscriptions.length).toBe(2);
   });
 
 });

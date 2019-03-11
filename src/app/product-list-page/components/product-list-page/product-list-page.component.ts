@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
+
 
 import { IProduct, IFilter } from 'src/app/shared/interfaces/product';
 
-import { ProductsService } from 'src/app/core/services/products.service';
 import { environment } from 'src/environments/environment.test';
-import { DataService } from 'src/app/core/services/data.service';
-import { LoaderService } from 'src/app/core/services/loader.service';
+import { DataService, ProductsService } from 'src/app/core/services';
 
 const AMOUNT_TO_DISPLAY = 9;
 
@@ -20,35 +19,31 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   public subscription;
   public filters: IFilter[] = [];
   public products: IProduct[] = [];
+  public loadMoreScrollEnabled: Boolean;
+  private startFrom = 0;
+  public subscriptions: Subscription[];
   public currentFilters;
-  public startFrom = 0;
   public loadTo = AMOUNT_TO_DISPLAY;
   public total = AMOUNT_TO_DISPLAY;
   public queryParams: any = null;
+  public itemsAre: Boolean;
 
   constructor(
     private productsService: ProductsService,
     private dataService: DataService,
-    private route: ActivatedRoute,
-    private loaderService: LoaderService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.subscription = this.dataService
-      .get(environment.filtersURL)
-      .subscribe((filters) => this.filters = filters);
-
-    this.route.queryParams.subscribe(queryParams => {
-      this.queryParams = queryParams;
-      this.resetLimit();
-      this.getProductsByQuery()
-        .subscribe(this.setProductsResponse.bind(this));
-    });
+    this.subscriptions = [
+      this.dataService.get(environment.filtersURL).subscribe((filters) => this.filters = filters),
+      this.route.queryParams.subscribe(this.handleQueryParams.bind(this)),
+    ];
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.subscriptions) {
+      this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
   }
 
@@ -63,7 +58,7 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   get showLoadMore(): Boolean {
     if (this.total === this.products.length) { return false; }
 
-    return this.total > this.products.length;
+    return this.products.length && this.total > this.products.length;
   }
 
   public wishListHandler(product: IProduct): void {
@@ -73,22 +68,29 @@ export class ProductListPageComponent implements OnInit, OnDestroy {
   public onLoadMore(loadAmount: number): void {
     this.startFrom = this.loadTo;
     this.loadTo = this.loadTo + loadAmount;
+    if (this.loadTo > this.totalAmount) {
+      this.loadTo = this.totalAmount;
+    }
 
-    this.getProductsByQuery().subscribe(({ products, total }) => {
+    this.getProductsByQuery(false).subscribe(({ products, total }) => {
       this.setProductsResponse({ total, products: this.products.concat(products) });
     });
   }
 
-  private getProductsByQuery(): Observable<any> {
-    this.loaderService.displayLoader();
+  private handleQueryParams(queryParams: Object): void {
+    this.queryParams = queryParams;
+    this.resetLimit();
+    this.getProductsByQuery().subscribe(this.setProductsResponse.bind(this));
+  }
+
+  private getProductsByQuery(spinner?: boolean): Observable<any> {
     const searchString = location.search ? `${location.search}&`.substring(1) : '';
-    return this.productsService.getProducts(`${searchString}start=${this.startFrom}&end=${this.loadTo}`);
+    return this.productsService.getProducts(`${searchString}start=${this.startFrom}&end=${this.loadTo}`, spinner);
   }
 
   private setProductsResponse({ products, total }): void {
     this.products = products;
     this.total = total;
-    this.loaderService.hideLoader();
   }
 
   private resetLimit(): void {

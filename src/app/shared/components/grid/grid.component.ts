@@ -1,13 +1,15 @@
-import { Component,
-        ViewChild,
-        ElementRef,
-        OnDestroy,
-        ChangeDetectorRef,
-        Input,
-        Output,
-        EventEmitter,
-        AfterContentChecked,
-        AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+  ChangeDetectorRef,
+  Input,
+  Output,
+  EventEmitter,
+  AfterContentChecked,
+  AfterViewInit
+} from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -21,7 +23,7 @@ export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewI
   @Output() loadMore = new EventEmitter();
   @Input() showLoadMore;
 
-  private itemStep = 1;
+  private itemStep = 3;
   private wrapperWidth: number;
   private resizeEvent: Subscription;
 

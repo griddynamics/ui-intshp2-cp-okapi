@@ -1,9 +1,8 @@
-import { Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
-import { ISwatch } from '../../interfaces/product';
-import { KillswitchService } from 'src/app/core/services/killswitch.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from 'src/app/core/services/cart.service';
-import { ProductsService } from 'src/app/core/services/products.service';
+
+import { KillswitchService, CartService, ProductsService } from 'src/app/core/services';
+import { ISwatch } from '../../interfaces/product';
 
 @Component({
   selector: 'app-product-item',

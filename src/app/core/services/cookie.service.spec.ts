@@ -27,7 +27,6 @@ describe('CookieService', () => {
     cookieService.set(mockCookieName, mockCookieValue);
     cookieService.delete(mockCookieName);
     cookie = cookieService.get(mockCookieName);
-    expect(cookie).not.toBeDefined();
+    expect(cookie).toBe('');
   });
-
 });
