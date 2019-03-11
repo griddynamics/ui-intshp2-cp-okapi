@@ -1,12 +1,15 @@
 import { Injectable, Type, ComponentRef, ReflectiveInjector, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { ModalContainer } from '../../shared/modal/modal-container';
 import { ModalContext } from '../../shared/modal/modal-context';
 import { ModalContainerComponent } from '../../shared/modal/modal-container/modal-container.component';
+import { ModalContainer, Options } from 'src/app/shared/interfaces/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
+
+  private options = {containerType: ModalContainerComponent}
+  private body = document.querySelector('body');
 
   private viewContainerRef: ViewContainerRef;
 
@@ -20,14 +23,12 @@ export class ModalService {
     this.viewContainerRef = vcf;
   }
 
-  // tslint:disable-next-line:max-line-length
-  open(type: any, data?: any, options: { hideOnBackdropClick?: boolean, containerType: any } = {containerType: ModalContainerComponent}): Promise<any> {
+  open(type: any, data?: any, options: Options = this.options): Promise<any> {
     if (!this.viewContainerRef) {
       return Promise.reject('No view container');
     }
-    const body = document.querySelector('body');
-    body.classList.add('noscroll');
-    const container = <ComponentRef<ModalContainer>> this.container(options.containerType);
+    this.body.classList.add('noscroll');
+    const container = <ComponentRef<ModalContainer>> this.createContainer(options.containerType);
     const injector = ReflectiveInjector.resolveAndCreate([ModalContext], container.instance.container.injector);
     const context = injector.get(ModalContext);
     context.data = data;
@@ -39,8 +40,8 @@ export class ModalService {
     return context.promise(container, this.viewContainerRef);
   }
 
-  container(containerType: any): ComponentRef<any> {
+  private createContainer (containerType: any): ComponentRef<any> {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(containerType);
-    return this.viewContainerRef.createComponent(componentFactory);
+    return this.viewContainerRef.createComponent(componentFactory, this.viewContainerRef.length);
   }
 }

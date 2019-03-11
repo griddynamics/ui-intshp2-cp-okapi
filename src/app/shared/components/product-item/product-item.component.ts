@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { KillswitchService, CartService, ProductsService } from 'src/app/core/services';
+import { KillswitchService, CartService, ProductsService, ModalService } from 'src/app/core/services';
 import { Router } from '@angular/router';
-import { ModalService } from '../../../core/services/modal.service';
-import { PopUpComponent } from '../../modal/pop-up/pop-up.component';
-
 import { ISwatch } from '../../interfaces/product';
+import { ShoppingCartComponent } from 'src/app/shared/components';
+
 
 @Component({
   selector: 'app-product-item',
@@ -100,7 +99,7 @@ export class ProductItemComponent implements OnInit {
     event.stopPropagation();
 
     if (this.product.addedToCart) {
-      this.modalService.open(PopUpComponent);
+      this.modalService.open(ShoppingCartComponent);
       return;
     }
     this.router.navigate(['/products', this.product.id]);

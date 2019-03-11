@@ -1,8 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { IProduct, ICartProduct, ProductSize } from 'src/app/shared/interfaces/product';
-import { PopUpComponent } from 'src/app/shared/modal/pop-up/pop-up.component';
-import { ModalService } from 'src/app/core/services/modal.service';
-import { KillswitchService, ProductsService, CartService } from '../../../core/services';
+import { KillswitchService, ProductsService, CartService, ModalService } from '../../../core/services';
+import { ShoppingCartComponent } from 'src/app/shared/components';
 
 @Component({
   selector: 'app-product-order',
@@ -23,7 +22,7 @@ export class ProductOrderComponent implements OnChanges, OnInit {
     price: 0,
     defaultPrice: 0,
     swatch: '',
-    amount: 0,
+    amountInStock: 0,
   };
 
   public wishListEnabled;
@@ -37,11 +36,11 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
-    const { id, name, price, amount } = this.product;
+    const { id, name, price, amountInStock } = this.product;
     this.productConfiguration.id = id;
     this.productConfiguration.name = name;
     this.productConfiguration.defaultPrice = price;
-    this.productConfiguration.amount = amount;
+    this.productConfiguration.amountInStock = amountInStock;
 
     const cartProducts = this.cartService.getCartProducts();
 
@@ -73,14 +72,14 @@ export class ProductOrderComponent implements OnChanges, OnInit {
 
   public openInCart(): void {
     if (this.product.addedToCart) {
-      this.modalService.open(PopUpComponent);
+      this.modalService.open(ShoppingCartComponent);
       return;
     }
   }
 
   public toggleCart(): void {
-    const { id, name, quantity, swatch, size, defaultPrice, amount } = this.productConfiguration;
-    this.cartService.toggleCart(this.product, { id, name, quantity, swatch, size, defaultPrice, amount });
+    const { id, name, quantity, swatch, size, defaultPrice, amountInStock } = this.productConfiguration;
+    this.cartService.toggleCart(this.product, { id, name, quantity, swatch, size, defaultPrice, amountInStock });
   }
 
   get isDisabledAddToCartBtn() {
@@ -93,7 +92,7 @@ export class ProductOrderComponent implements OnChanges, OnInit {
 
   public increaseQuantity(): void {
     const { quantity } = this.productConfiguration;
-    const { amount: onStockAmount } = this.product;
+    const { amountInStock: onStockAmount } = this.product;
 
     if (quantity === onStockAmount) {
       return;
