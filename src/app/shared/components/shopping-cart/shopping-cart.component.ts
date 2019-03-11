@@ -41,10 +41,11 @@ export class ShoppingCartComponent implements OnInit {
       }
     }
 
-  private delete(index) {
+  private delete(index, product) {
       this.total -= this.cartProducts[index].defaultPrice * this.cartProducts[index].quantity;
       this.cartProducts.splice(index, 1);
       localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
+      this.cartService.remove(product);
     }
 
   private getTotalPrice () {
