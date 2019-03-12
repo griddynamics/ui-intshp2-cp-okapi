@@ -17,16 +17,26 @@ module.exports = {
 }
 
 function addSubscription(req, res) {
-    if (!subscriptions.has(req.body.email) || !req.body.email.match(EMAIL_PATTERN)) {
-        return res.status(400).send();
+    if (subscriptions.has(req.body.email)) {
+        return res.status(409).json({error: 'Already exists'});
+    } 
+    
+    if(!req.body.email || !req.body.email.match(EMAIL_PATTERN)) {
+        _isValidEmail();
     }
     subscriptions.add(req.body.email);
     res.status(201).send();
 }
 
 function deleteSubscription(req, res) {
-    if (!subscriptions.has(req.body.email)) return res.status(404).send();
-    subscriptions.delete(req.body.email);
+    const { email } = req.params;
+    if(!email || !email.match(EMAIL_PATTERN)) {
+        _isValidEmail();
+    }
+
+    if (!subscriptions.has(email)) return res.status(404).json({error: 'Email not found'});
+
+    subscriptions.delete(email);
     res.status(202).send();
 }
 
@@ -148,4 +158,8 @@ function _cleanUpProductProperties(product) {
   });
 
   return productClone;
+}
+
+function _isValidEmail() {
+    return res.status(400).json({error: 'Not valid Email'});
 }
