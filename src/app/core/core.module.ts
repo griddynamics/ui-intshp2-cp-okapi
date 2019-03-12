@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 import { HeaderComponent, HeaderContactsComponent, HeaderNavComponent, FooterComponent } from './components';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HeaderComponent, HeaderContactsComponent, HeaderNavComponent, FooterCom
   imports: [
     CommonModule,
     SharedModule,
+    BrowserAnimationsModule,
     SharedModule.forRoot(),
   ],
 })
