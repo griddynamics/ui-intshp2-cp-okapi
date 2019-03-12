@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { KillswitchService, ProductsService, ModalService } from 'src/app/core/services';
+import { KillswitchService, ProductsService, ModalService, CartService } from 'src/app/core/services';
 import { ISwatch } from '../../interfaces/product';
 import { ShoppingCartComponent } from 'src/app/shared/components/shopping-cart/shopping-cart.component';
 
@@ -22,6 +22,7 @@ export class ProductItemComponent implements OnInit {
   constructor(
     private killswitchService: KillswitchService,
     private router: Router,
+    private cartService: CartService,
     private productsService: ProductsService,
     private modalService: ModalService
   ) { }
