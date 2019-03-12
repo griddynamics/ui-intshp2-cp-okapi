@@ -29,7 +29,7 @@ export class JoinUsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dataService.create(`/api/subscriptions`, this.submitForm.value).subscribe();
+    this.dataService.create('api/subscriptions', this.submitForm.value).subscribe();
     this.cookieService.set('user_email', this.submitForm.value.email, null, '/');
     this.edited = false;
     this.registered = true;
