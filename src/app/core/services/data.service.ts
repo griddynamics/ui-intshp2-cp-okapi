@@ -47,6 +47,7 @@ export class DataService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    this.spinner.hide();
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
@@ -70,7 +71,7 @@ export class DataService {
       ...options
     }).pipe(
       tap(() => spinner && this.spinner.hide()),
-      catchError(this.handleError)
+      catchError(this.handleError.bind(this))
     );
   }
 }
