@@ -22,7 +22,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PageNotFoundComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     CoreModule,
     SharedModule,
