@@ -28,10 +28,10 @@ export enum ProductAvailabilityState {
 }
 
 export enum ProductSize {
-  S = 'S',
-  M = 'M',
-  L = 'L',
-  XL = 'XL'
+  S = 's',
+  M = 'm',
+  L = 'l',
+  XL = 'xl'
 }
 
 export interface IFilter {
