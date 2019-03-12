@@ -29,7 +29,6 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     if (error instanceof HttpErrorResponse) {
       // Server error
       errorMessage = errorService.getServerErrorMessage(error);
-      // stackTrace = errorService.getServerErrorStackTrace(error);
       if (error.status !== 404) {
         notifier.showError(message);
       }

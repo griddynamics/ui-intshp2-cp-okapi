@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -19,15 +19,6 @@ export class AppComponent {
         this.isEnvironmentRoute = true;
       }
     });
-  }
-
-  throwError() {
-    // a = 10
-    throw new Error('My Pretty Error');
-  }
-
-  throwHttpError() {
-    this.http.get('wrongUrlHere').subscribe();
   }
 
   onActivate(event) {

@@ -1,5 +1,3 @@
-<button (click)="throwError()">client error</button>
-<button (click)="throwHttpError()">server error</button>
 <app-header *ngIf="!isEnvironmentRoute"></app-header>
 <router-outlet (activate)="onActivate($event)"></router-outlet>
 <app-footer *ngIf="!isEnvironmentRoute"></app-footer>
