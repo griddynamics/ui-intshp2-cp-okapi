@@ -15,21 +15,8 @@ export class CartService {
 
   constructor() {
     const cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
-    this.cartProducts = cartProducts ? cartProducts : this.cartProducts;
+    this.cartProducts = cartProducts ? cartProducts.filter(product => !!product) : this.cartProducts;
     this.publish();
-  }
-
-  public addToCart(product: IProduct, cartProduct: ICartProduct): void {
-    product.addedToCart = true;
-    this.cartProducts.push(cartProduct);
-    this.updateCart();
-  }
-
-  public removeFromCart(product: IProduct, cartProduct: ICartProduct): void {
-    product.addedToCart = false;
-    const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
-    this.cartProducts.splice(indexOfCurrId, 1);
-    this.updateCart();
   }
 
   remove(cartProduct: ICartProduct) {
@@ -40,6 +27,8 @@ export class CartService {
   }
 
   public toggleCart(product: IProduct, cartProduct: ICartProduct): void {
+    if (!product)  { return; }
+
     if (!product.addedToCart) {
       this.addToCart(product, cartProduct);
       return;
@@ -57,7 +46,19 @@ export class CartService {
 
   public getCartProducts(): ICartProduct[] {
     return this.cartProducts;
+  }
 
+  private addToCart(product: IProduct, cartProduct: ICartProduct): void {
+    product.addedToCart = true;
+    this.cartProducts.push(cartProduct);
+    this.updateCart();
+  }
+
+  private removeFromCart(product: IProduct, cartProduct: ICartProduct): void {
+    product.addedToCart = false;
+    const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
+    this.cartProducts.splice(indexOfCurrId, 1);
+    this.updateCart();
   }
 
   private updateCart(): void {
