@@ -123,12 +123,14 @@ function getProducts(req, res) {
 }
 
 function getProductById(req, res) {
-    const product = JSON.parse(JSON.stringify(productsMOCK.find((({ id }) => id === req.params.id))));
+    let product = productsMOCK.find((({ id }) => id === req.params.id));
 
     if (!product) {
         notFound(req, res);
         return;
     };
+    
+    product = JSON.parse(JSON.stringify(product));
 
     product.relatedProducts = productsMOCK.filter(item => product.relatedProducts.some(id => id === item.id));
 
