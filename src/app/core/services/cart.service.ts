@@ -11,6 +11,7 @@ export class CartService {
   private cartProducts: ICartProduct[] = [];
 
   private cartAmountSource = new BehaviorSubject<number>(0);
+  private productInCart = new BehaviorSubject<Boolean>(false);
 
   constructor() {
     const cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
@@ -35,6 +36,7 @@ export class CartService {
     const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
     this.cartProducts.splice(indexOfCurrId, 1);
     this.updateCart();
+    this.productInCart.next(false);
   }
 
   public toggleCart(product: IProduct, cartProduct: ICartProduct): void {
@@ -47,6 +49,10 @@ export class CartService {
 
   public getCartAmount(): Observable<number> {
     return this.cartAmountSource.asObservable();
+  }
+
+  public checkCart(): Observable<Boolean> {
+    return this.productInCart.asObservable();
   }
 
   public getCartProducts(): ICartProduct[] {
