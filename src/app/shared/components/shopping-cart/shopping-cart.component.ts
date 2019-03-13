@@ -20,7 +20,6 @@ export class ShoppingCartComponent implements OnInit {
       return;
     }
     this.cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
-    console.log(this.cartProducts);
     this.getTotalPrice();
   }
 

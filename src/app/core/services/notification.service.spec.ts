@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
 describe('NotificationService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [ HttpClientModule, HttpClientTestingModule, MatSnackBarModule ],
