@@ -11,6 +11,7 @@
             *ngIf="edited"
             formControlName="email"
             placeholder="type your email here"
+            type="email"
           />
           <span *ngIf="!isValidEmail(submitForm)">
             Please enter a valid email

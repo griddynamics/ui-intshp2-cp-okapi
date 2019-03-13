@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ICartProduct } from '../../interfaces/product';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ModalContext } from '../modal-window/modal-context';
@@ -13,8 +13,7 @@ export class ShoppingCartComponent implements OnInit {
   cartProducts: ICartProduct[] = [];
   total = 0;
   constructor(public context: ModalContext,
-    private cartService: CartService,
-  ) { }
+    private cartService: CartService) { }
 
   ngOnInit() {
     if (!this.cartProducts) {
