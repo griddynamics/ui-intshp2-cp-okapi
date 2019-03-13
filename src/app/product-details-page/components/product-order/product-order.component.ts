@@ -36,6 +36,12 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
+    this.cartService.checkCart().subscribe((addedToCart) => {
+      const cartsProduct = JSON.parse(localStorage.getItem('cartProduct'));
+      if (cartsProduct  && !cartsProduct .some(el => el.id === this.product.id)) {
+        this.product.addedToCart = addedToCart;
+      }
+    });
     this.onChooseSize(ProductSize[Object.keys(ProductSize)[0]], 0);
     const { id, name, price, amountInStock } = this.product;
     this.productConfiguration.id = id;

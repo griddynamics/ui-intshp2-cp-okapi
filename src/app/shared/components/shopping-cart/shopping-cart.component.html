@@ -5,16 +5,16 @@
   <i class="fas fa-times" (click)="context.resolve()"></i>
 </div>
 <div *ngIf="!cartProducts?.length" class="empty-cart">
-  <img class = "pic-empty-cart" src="../../../../assets/empty-bag2.gif" alt="girl" width="100%">
+  <img class="pic-empty-cart" src="../../../../assets/empty-bag2.gif" alt="girl" width="100%">
   <div class="empty-cart-title">Your cart is empty</div>
    <div class="empty-cart-subtitle" (click)="context.resolve()">Please continue shopping</div> 
 </div>
 <div class="block">
   <div *ngFor="let product of cartProducts; let i = index">
     <hr>
-    <div class='item-for-cart'>
+    <div class="item-for-cart">
       <div>
-        <img class='pic-for-cart' src="{{product.swatch.imgSrc}}">
+        <img class="pic-for-cart" src="{{product.swatch.imgSrc}}">
       </div>
       <div class="main-info">
         <div class="price">{{product.defaultPrice * product.quantity | currency:'USD'}}</div>

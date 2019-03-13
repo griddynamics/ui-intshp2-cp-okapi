@@ -14,14 +14,13 @@ export class ShoppingCartComponent implements OnInit {
   total = 0;
   constructor(public context: ModalContext,
     private cartService: CartService,
-    private element: ElementRef) { }
+  ) { }
 
   ngOnInit() {
     if (!this.cartProducts) {
       return;
     }
     this.cartProducts = JSON.parse(localStorage.getItem('cartProduct'));
-    console.log(this.cartProducts);
     this.getTotalPrice();
   }
 
