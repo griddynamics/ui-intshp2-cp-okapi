@@ -100,7 +100,12 @@ export class ProductOrderComponent implements OnChanges, OnInit {
     this.productsService.toggleWishListProduct(this.product);
   }
 
+  detectChangesInOrder() {
+    this.product.addedToCart = false;
+  }
+
   public increaseQuantity(): void {
+    this.detectChangesInOrder();
     const { quantity } = this.productConfiguration;
     const { amountInStock: onStockAmount } = this.product;
 
@@ -113,6 +118,7 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   public decreaseQuantity(): void {
+    this.detectChangesInOrder();
     if (this.productConfiguration.quantity > 1) {
       this.productConfiguration.quantity--;
       this.productConfiguration.price -= this.product.price;
@@ -120,11 +126,13 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   public onChooseSize(size: ProductSize, i: number): void {
-    this.productConfiguration.size = size;
+    this.detectChangesInOrder();
+    this.productConfiguration.size = ProductSize[size.toUpperCase()];
     this.selected = i;
   }
 
   public onChooseColor(swatch: string, i: number): void {
+    this.detectChangesInOrder();
     this.productConfiguration.swatch = swatch;
     this.selectedSwatch = i;
     this.swatchSelect.emit(swatch);

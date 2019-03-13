@@ -19,6 +19,28 @@ export class CartService {
     this.publish();
   }
 
+  public addToCart(product: IProduct, cartProduct: ICartProduct): void {
+    if (this.cartProducts.some(el => el.id === cartProduct.id)) {
+      const indexOfCurrItem = this.cartProducts.findIndex(el => el.swatch === cartProduct.swatch && el.size === cartProduct.size);
+      if (indexOfCurrItem !== -1) {
+        this.cartProducts[indexOfCurrItem].quantity = cartProduct.quantity;
+        product.addedToCart = true;
+        this.updateCart();
+        return;
+      }
+    }
+    product.addedToCart = true;
+    this.cartProducts.push(cartProduct);
+    this.updateCart();
+  }
+
+  public removeFromCart(product: IProduct, cartProduct: ICartProduct): void {
+    product.addedToCart = false;
+    const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
+    this.cartProducts.splice(indexOfCurrId, 1);
+    this.updateCart();
+  }
+
   remove(cartProduct: ICartProduct) {
     const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
     this.cartProducts.splice(indexOfCurrId, 1);
