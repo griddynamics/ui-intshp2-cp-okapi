@@ -1,14 +1,15 @@
-import { Component,
-        ViewChild,
-        ElementRef,
-        OnDestroy,
-        ChangeDetectorRef,
-        Input,
-        Output,
-        EventEmitter,
-        AfterContentChecked,
-        AfterViewInit,
-        OnInit} from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+  ChangeDetectorRef,
+  Input,
+  Output,
+  EventEmitter,
+  AfterContentChecked,
+  AfterViewInit
+} from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -17,19 +18,19 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss']
 })
-export class GridComponent implements OnDestroy, AfterContentChecked, OnInit, AfterViewInit {
+export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewInit {
   @ViewChild('wrapper') wrapper: ElementRef;
   @Output() loadMore = new EventEmitter();
   @Input() showLoadMore;
 
-  private itemStep = 1;
+  private itemStep = 3;
   private wrapperWidth: number;
   private onResize: Subscription;
 
   constructor(private cdRef: ChangeDetectorRef) { }
 
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.onResize = fromEvent(window, 'resize').pipe(
       debounceTime(300)
     ).subscribe(e => {
@@ -38,11 +39,6 @@ export class GridComponent implements OnDestroy, AfterContentChecked, OnInit, Af
   }
 
   ngAfterContentChecked(): void {
-    this.countItems();
-    this.cdRef.detectChanges();
-  }
-
-  ngAfterViewInit(): void {
     this.countItems();
     this.cdRef.detectChanges();
   }

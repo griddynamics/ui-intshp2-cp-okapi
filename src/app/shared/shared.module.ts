@@ -6,19 +6,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { ProductItemComponent } from './components/product-item/product-item.component';
-import { ProductItemShortComponent } from './components/product-item/product-item-short/product-item-short.component';
-import { CarouselItemComponent } from './components/carousel/carousel-item/carousel-item.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
-import { JoinUsComponent } from './components/join-us/join-us.component';
-import { AdvertisingAreaComponent } from './components/advertising-area/advertising-area.component';
-import { HeadingComponent } from './components/heading/heading.component';
-import { LoadMoreComponent } from './components/load-more/load-more.component';
+import {
+  ProductItemComponent,
+  ProductItemShortComponent,
+  CarouselItemComponent,
+  CarouselComponent,
+  JoinUsComponent,
+  AdvertisingAreaComponent,
+  HeadingComponent,
+  LoadMoreComponent,
+  LazyLoadComponent,
+  GridComponent,
+  ImgPlaceholderComponent,
+  SwipeIconComponent,
+  ShoppingCartComponent,
+  ModalWindowComponent
+} from './components';
+
 import { SafePipe } from './pipes/safe.pipe';
-import { LazyLoadComponent } from './components/lazy-load/lazy-load.component';
-import { GridComponent } from './components/grid/grid.component';
-import { ImgPlaceholderComponent } from '../shared/components/img-placeholder/img-placeholder.component';
-import { SwipeIconComponent } from './components/swipe-icon/swipe-icon.component';
+import { ModalHolderDirective } from './directives/modal-holder.directive';
+
 
 const MODULES = [
   CommonModule,
@@ -26,42 +33,39 @@ const MODULES = [
   FormsModule,
   NgbModule,
   RouterModule,
-  ReactiveFormsModule,
+  ReactiveFormsModule
+];
+
+const DECLARATIONS = [
+  CarouselItemComponent,
+  CarouselComponent,
+  AdvertisingAreaComponent,
+  SafePipe,
+  JoinUsComponent,
+  ProductItemComponent,
+  ProductItemShortComponent,
+  HeadingComponent,
+  LoadMoreComponent,
+  LazyLoadComponent,
+  GridComponent,
+  ImgPlaceholderComponent,
+  SwipeIconComponent,
+  ModalHolderDirective,
+  ShoppingCartComponent,
+  ModalWindowComponent,
 ];
 
 @NgModule({
   declarations: [
-    CarouselItemComponent,
-    CarouselComponent,
-    AdvertisingAreaComponent,
-    SafePipe,
-    JoinUsComponent,
-    ProductItemComponent,
-    ProductItemShortComponent,
-    HeadingComponent,
-    LoadMoreComponent,
-    LazyLoadComponent,
-    GridComponent,
-    ImgPlaceholderComponent,
-    SwipeIconComponent,
+    ...DECLARATIONS,
   ],
+
   imports: [...MODULES],
   exports: [
     ...MODULES,
-    CarouselItemComponent,
-    CarouselComponent,
-    AdvertisingAreaComponent,
-    SafePipe,
-    JoinUsComponent,
-    ProductItemComponent,
-    ProductItemShortComponent,
-    HeadingComponent,
-    LoadMoreComponent,
-    LazyLoadComponent,
-    GridComponent,
-    ImgPlaceholderComponent,
-    SwipeIconComponent,
+    ...DECLARATIONS,
   ],
+  entryComponents: [ModalWindowComponent, ShoppingCartComponent],
 })
 export class SharedModule {
   static forRoot() {
@@ -69,4 +73,4 @@ export class SharedModule {
       NgbModule.forRoot()
     ];
   }
- }
+}

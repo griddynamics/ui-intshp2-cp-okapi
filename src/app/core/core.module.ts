@@ -1,16 +1,12 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { CommonModule } from '@angular/common';
+
 import { SharedModule } from '../shared/shared.module';
 
-import { throwIfAlreadyLoaded } from './guard/module-import-guard';
-import { LoaderService } from './services/loader.service';
+import { throwIfAlreadyLoaded } from './module-import-guard';
 
-import { HeaderComponent } from './components/header/header.component';
-import { HeaderContactsComponent } from './components/header/header-contacts/header-contacts.component';
-import { HeaderNavComponent } from './components/header/header-nav/header-nav.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent, HeaderContactsComponent, HeaderNavComponent, FooterComponent } from './components';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,6 +26,7 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     CommonModule,
     SharedModule,
+    BrowserAnimationsModule,
     SharedModule.forRoot(),
   ],
 })

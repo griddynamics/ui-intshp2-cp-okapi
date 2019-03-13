@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+
+import { SpinnerService } from './spinner.service';
 
 import { environment } from '../../../environments/environment';
 
@@ -16,13 +16,13 @@ export class DataService {
     'Content-Type': 'application/json'
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private spinner: SpinnerService) { }
 
   public create(path: string, options?): Observable<any> {
     return this.sendRequest('post', path, options);
   }
 
-  public delete(path: string, options?: RequestOptions): Observable<any> {
+  public delete(path: string, options?): Observable<any> {
     return this.sendRequest('delete', path, options);
   }
 
@@ -34,11 +34,11 @@ export class DataService {
     this.headers.delete(key);
   }
 
-  public get(path: string, options?: any): Observable<any> {
-    return this.sendRequest('get', path, options);
+  public get(path: string, options?: any, spinner?: boolean): Observable<any> {
+    return this.sendRequest('get', path, options, spinner);
   }
 
-  public update(path: string, options?: RequestOptions): Observable<any> {
+  public update(path: string, options?): Observable<any> {
     return this.sendRequest('put', path, options);
   }
 
@@ -47,6 +47,7 @@ export class DataService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    this.spinner.hide();
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {
@@ -58,14 +59,19 @@ export class DataService {
       'Something bad happened; please try again later.');
   }
 
-  private sendRequest(method: string, path: string, options?: RequestOptions): Observable<any> {
+  private sendRequest(method: string, path: string, options?, spinner: boolean = true): Observable<any> {
     if (!this.http[method]) {
       throw new Error('Method does\'nt supported in HTTPClient');
     }
-
+    if (spinner) {
+      this.spinner.show();
+    }
     return this.http[method](this.getUrl(path), {
       headers: this.headers,
       ...options
-    }).pipe(catchError(this.handleError));
+    }).pipe(
+      tap(() => spinner && this.spinner.hide()),
+      catchError(this.handleError.bind(this))
+    );
   }
 }

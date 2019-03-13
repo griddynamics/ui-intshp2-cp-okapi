@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { IProduct, ICartProduct } from 'src/app/shared/interfaces/product';
-
+import { IProduct, ICartProduct } from '../../shared/interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +26,12 @@ export class CartService {
 
   public removeFromCart(product: IProduct, cartProduct: ICartProduct): void {
     product.addedToCart = false;
+    const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
+    this.cartProducts.splice(indexOfCurrId, 1);
+    this.updateCart();
+  }
+
+  remove(cartProduct: ICartProduct) {
     const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
     this.cartProducts.splice(indexOfCurrId, 1);
     this.updateCart();

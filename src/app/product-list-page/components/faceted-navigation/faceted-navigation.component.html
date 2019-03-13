@@ -1,0 +1,9 @@
+<i class="fas fa-filter sidebar-open-arrow" (click)="openNav()"></i>
+<aside class="all-products-filter" [ngClass]="{'show': isShowed, 'hide': !isShowed}">
+  <a class="closebtn" (click)="closeNav()">&times;</a>
+  <div *ngFor="let filter of filters" [ngSwitch]="filter.type">
+    <app-radio-filter *ngSwitchCase="'radio'" [filter]="filter" (filterChange)="onFilterChange($event)" [defaultParams]="getDefaultParams(filter)"></app-radio-filter>
+    <app-price-range-filter *ngSwitchCase="'range'" [filter]="filter" (filterChange)="onFilterChange($event)" [defaultParams]="getDefaultParams(filter)"></app-price-range-filter>
+    <app-checkbox-filter *ngSwitchCase="'checkbox'" [filter]="filter" (filterChange)="onFilterChange($event)" [defaultParams]="getDefaultParams(filter)"></app-checkbox-filter>
+  </div>
+</aside>

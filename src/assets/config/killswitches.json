@@ -1,4 +1,5 @@
 {
   "wishListEnabled": true,
-  "slideshowTransitionEnabled": false
+  "slideshowTransitionEnabled": false,
+  "loadMoreScrollEnabled": false
 }

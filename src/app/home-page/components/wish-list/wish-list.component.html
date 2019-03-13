@@ -1,4 +1,4 @@
-<app-heading id="wish-list" [alertText]="'wish'" [headingText]="'list'"></app-heading>
+<app-heading *ngIf="ids.length" id="wish-list" [alertText]="'wish'" [headingText]="'list'"></app-heading>
 
 <app-grid [showLoadMore]="showLoadMore" (loadMore)="onLoadMore($event)">
   <div class="product" *ngFor="let product of products; let i = index">

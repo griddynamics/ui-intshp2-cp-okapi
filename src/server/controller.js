@@ -63,9 +63,8 @@ function getFilters(req, res) {
 
 function getProducts(req, res) {
     const productsArrCopy = JSON.parse(JSON.stringify(productsMOCK));
-    const total = productsArrCopy.length;
     const responseProducts = {
-        total,
+        total: productsArrCopy.length,
         products: productsArrCopy
     }
 
@@ -95,11 +94,9 @@ function getProducts(req, res) {
         }
     }
 
-    if (query.categories) {
-        const categoriesArr = query.categories.split(',');
-        cleanedProducts = cleanedProducts.filter(el => {
-            return categoriesArr.some(category => category === el.category)
-        })
+    if (query.category) {
+        const categoriesArr = query.category.split(',');
+        cleanedProducts = cleanedProducts.filter(el => categoriesArr.some(category => category === el.category))
     }
 
     if (query.gender) {
@@ -112,8 +109,13 @@ function getProducts(req, res) {
     }
 
     if (query.brand) {
-        cleanedProducts = cleanedProducts.filter(el => el.brand === query.brand);
+        const brandsArr = query.brand.split(',');
+        cleanedProducts = cleanedProducts.filter(el => brandsArr.some(brand => brand === el.brand));
     }
+
+    const total = cleanedProducts.length;
+    responseProducts.total = total
+
 
     cleanedProducts = cleanedProducts.slice(+query.start || 0, +query.end || cleanedProducts.length);
     responseProducts.products = cleanedProducts
@@ -121,12 +123,14 @@ function getProducts(req, res) {
 }
 
 function getProductById(req, res) {
-    const product = JSON.parse(JSON.stringify(productsMOCK.find((({ id }) => id === req.params.id))));
+    let product = productsMOCK.find((({ id }) => id === req.params.id));
 
     if (!product) {
         notFound(req, res);
         return;
     };
+    
+    product = JSON.parse(JSON.stringify(product));
 
     product.relatedProducts = productsMOCK.filter(item => product.relatedProducts.some(id => id === item.id));
 

@@ -1,6 +1,7 @@
-import { SafePipe } from './safe.pipe';
 import { TestBed } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
+
+import { SafePipe } from './safe.pipe';
 
 describe('Pipe: SafePipe', () => {
   const htmlSnippet = '<h1>text</h1><script>alert("abs")</script>';

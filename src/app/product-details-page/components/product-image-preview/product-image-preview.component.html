@@ -1,0 +1,9 @@
+<div class="img-big-container">
+  <app-zoom [ngClass]="{'background-default-image': !imageSrc}" [zsrc]="imageSrc"></app-zoom>
+</div>
+<div class="img-small-container">
+  <div [ngClass]="{'img-render': swatch !== ''}" *ngFor="let swatch of swatchesToArray; let i = index" (click)="setSelectedImg(swatch, i)">
+    <div [ngClass]="{'background-toggle': i === selectedImg}"></div>
+    <img src="{{swatch}}">
+  </div>
+</div>

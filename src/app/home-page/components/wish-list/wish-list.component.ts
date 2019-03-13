@@ -1,9 +1,9 @@
 import { Component, Input, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import { IProduct } from 'src/app/shared/interfaces/product';
-import { environment } from 'src/environments/environment';
-import { Subscription, Observable } from 'rxjs';
-import { ProductsService } from 'src/app/core/services/products.service';
+import { IProduct } from '../../../shared/interfaces/product';
+
+import { ProductsService } from '../../../core/services';
 
 @Component({
   selector: 'app-wish-list',
@@ -12,60 +12,46 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 export class WishListComponent implements OnInit, OnDestroy {
   @ViewChild('wrapper') wrapper: ElementRef;
-  @Input() products: IProduct[] = [];
-  public wishListIds;
-  public subscription: Subscription;
-
+  @Input() ids: string[] = [];
+  public subscriptions: Subscription[] = [];
   public visibleWishItems = 3;
-  private startFrom = 0;
-  private loadTo = 9;
-  constructor(
-    private productsService: ProductsService
-  ) { }
+  public products: IProduct[] = [];
+
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.getWishListIds();
-
-    if (!this.products.length) {
-      return;
+    if (this.ids.length) {
+      this.subscriptions.push(
+        this.productsService.getProducts(`ids=${this.ids.join(',')}`).subscribe(({ products }) => this.products = products)
+      );
     }
-    this.getProducts();
+
+    this.subscriptions.push(this.productsService.wishListProductSource.subscribe(product => this.updateProducts(product)));
+  }
+
+  updateProducts(product) {
+    if (product.addedToWishList) {
+      return this.products.push(product);
+    }
+
+    const index = this.products.findIndex(({ id }) => id === product.id);
+    this.products.splice(index, 1);
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.subscriptions.length) {
+      this.subscriptions.forEach(el => {
+        el.unsubscribe();
+      });
     }
-  }
-
-  public getWishListIds() {
-    const wishListIds = localStorage.getItem('wishlist');
-    this.wishListIds = wishListIds ? JSON.parse(wishListIds) : [];
   }
 
   get showLoadMore(): Boolean {
     if (!this.visibleWishItems) { return false; }
-    return this.visibleWishItems < this.products.length;
-  }
-
-  private getProducts(): void {
-    const query = this.wishListIds.join(',');
-
-    this.subscription = this.productsService.getProducts(`ids=${query}`).subscribe(data => {
-      this.products = data.products;
-    });
+    return this.visibleWishItems < this.ids.length;
   }
 
   onLoadMore(loadAmount: number): void {
-    this.startFrom = this.loadTo;
-    this.loadTo = this.loadTo + loadAmount;
-
-    this.loadProducts(this.startFrom, this.loadTo).subscribe(({ products }) => {
-      this.products = this.products.concat(products);
-    });
-  }
-
-  private loadProducts(from: number, to: number): Observable<any> {
-    return this.productsService.getProducts(`start=${from}&end=${to}`);
+    this.visibleWishItems += loadAmount;
   }
 }
