@@ -85,8 +85,8 @@ export class ProductOrderComponent implements OnChanges, OnInit {
   }
 
   public toggleCart(): void {
-    const { id, name, quantity, swatch, size, defaultPrice, amountInStock } = this.productConfiguration;
-    this.cartService.toggleCart(this.product, { id, name, quantity, swatch, size, defaultPrice, amountInStock });
+    const { id, name, quantity, swatch, size, defaultPrice, price, amountInStock } = this.productConfiguration;
+    this.cartService.toggleCart(this.product, { id, name, quantity, swatch, size, defaultPrice, price, amountInStock });
   }
 
   get isDisabledAddToCartBtn() {
