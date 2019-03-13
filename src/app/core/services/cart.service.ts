@@ -70,19 +70,6 @@ export class CartService {
     return this.cartProducts;
   }
 
-  private addToCart(product: IProduct, cartProduct: ICartProduct): void {
-    product.addedToCart = true;
-    this.cartProducts.push(cartProduct);
-    this.updateCart();
-  }
-
-  private removeFromCart(product: IProduct, cartProduct: ICartProduct): void {
-    product.addedToCart = false;
-    const indexOfCurrId = this.cartProducts.findIndex(el => el.id === cartProduct.id);
-    this.cartProducts.splice(indexOfCurrId, 1);
-    this.updateCart();
-  }
-
   private updateCart(): void {
     localStorage.setItem('cartProduct', JSON.stringify(this.cartProducts));
     this.publish();

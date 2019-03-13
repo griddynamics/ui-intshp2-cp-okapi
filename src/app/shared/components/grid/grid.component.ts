@@ -31,7 +31,10 @@ export class GridComponent implements OnDestroy, AfterContentChecked {
   }
 
   ngOnDestroy(): void {
-    this.onResize.unsubscribe();
+    if (this.onResize) {
+      this.onResize.unsubscribe();
+    }
+
   }
 
   public onLoadMore(): void {
