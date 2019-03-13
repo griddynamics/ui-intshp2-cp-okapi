@@ -19,6 +19,15 @@ export class CartService {
   }
 
   public addToCart(product: IProduct, cartProduct: ICartProduct): void {
+    if (this.cartProducts.some(el => el.id === cartProduct.id)) {
+      const indexOfCurrItem = this.cartProducts.findIndex(el => el.swatch === cartProduct.swatch && el.size === cartProduct.size);
+      if (indexOfCurrItem !== -1) {
+        this.cartProducts[indexOfCurrItem].quantity = cartProduct.quantity;
+        product.addedToCart = true;
+        this.updateCart();
+        return;
+      }
+    }
     product.addedToCart = true;
     this.cartProducts.push(cartProduct);
     this.updateCart();
