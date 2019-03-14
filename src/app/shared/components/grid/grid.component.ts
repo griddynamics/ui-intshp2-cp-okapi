@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss'],
 })
-export class GridComponent implements OnDestroy, AfterContentChecked {
+export class GridComponent implements OnDestroy, AfterContentChecked, AfterViewInit {
   @ViewChild('wrapper') wrapper: ElementRef;
   @Input() wrapperClassName?: string;
   @Output() loadMore = new EventEmitter();
@@ -29,12 +29,7 @@ export class GridComponent implements OnDestroy, AfterContentChecked {
   constructor(private cdRef: ChangeDetectorRef) { }
 
   ngAfterViewInit(): void {
-    this.resizeEvent = fromEvent(window, 'resize').pipe(
-      debounceTime(100)
-    ).subscribe(this.countItems.bind(this));
-    this.countItems();
     this.gridWrapperShort = document.querySelector('app-product-item-short');
-    this.cdRef.detectChanges();
   }
 
   ngAfterContentChecked(): void {
@@ -45,7 +40,6 @@ export class GridComponent implements OnDestroy, AfterContentChecked {
     if (this.onResize) {
       this.onResize.unsubscribe();
     }
-
   }
 
   public onLoadMore(): void {
