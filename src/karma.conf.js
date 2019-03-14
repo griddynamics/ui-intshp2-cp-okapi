@@ -22,8 +22,14 @@ module.exports = function (config) {
       thresholds: {
         statements: 60,
         lines: 60,
-        branches: 60,
+        branches: 50,
         functions: 60
+      }
+    },
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
       }
     },
     reporters: ['progress', 'kjhtml'],
@@ -31,7 +37,10 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadless'],
+    browsers: ['ChromeHeadlessNoSandbox'],
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 3,
+    browserNoActivityTimeout: 60000,
     singleRun: true,
   });
 };

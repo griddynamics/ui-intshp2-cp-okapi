@@ -9,7 +9,6 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-
 @include laptop {
   .product-grid-wrapper {
     grid-template-columns: 1fr 1fr;
@@ -20,7 +19,12 @@
   .product-grid-wrapper {
     grid-template-columns: 1fr 1fr;
   }
+
+  .product-grid-wrapper-short {
+    grid-template-columns: 1fr!important;
+  }
 }
+
 @include mobile {
   .product-grid-wrapper {
     grid-template-columns: 1fr;

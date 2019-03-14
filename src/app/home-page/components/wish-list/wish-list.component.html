@@ -1,7 +1,7 @@
 <app-heading *ngIf="ids.length" id="wish-list" [alertText]="'wish'" [headingText]="'list'"></app-heading>
 
-<app-grid [showLoadMore]="showLoadMore" (loadMore)="onLoadMore($event)">
-  <div class="product" *ngFor="let product of products; let i = index">
-    <app-product-item-short *ngIf="i<visibleWishItems" [product]="product"></app-product-item-short>
-  </div>
-</app-grid>
+<app-grid [showLoadMore]="showLoadMore" (loadMore)="onLoadMore($event)" [wrapperClassName]="'product-grid-wrapper-short'">
+    <div class="product" *ngFor="let product of products; let i = index">
+      <app-product-item-short *ngIf="i<visibleWishItems" [product]="product"></app-product-item-short>
+    </div>
+ ̰</app-grid>
