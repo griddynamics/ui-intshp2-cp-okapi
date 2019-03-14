@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
 import { IProduct } from '../../../shared/interfaces/product';
 
@@ -10,18 +10,16 @@ import { ProductsService } from 'src/app/core/services';
   styleUrls: ['./recently-viewed.component.scss']
 })
 export class RecentlyViewedComponent implements OnInit, OnDestroy {
+  @Input() ids: string[] = [];
   public products: IProduct[] = [];
   public subscription;
-  public recentlyViewedIds: string[] = [];
 
   constructor(
     private productsService: ProductsService
   ) { }
 
   ngOnInit() {
-    this.getWishListIds();
-
-    if (!this.recentlyViewedIds.length) {
+    if (!this.ids.length) {
       return;
     }
 
@@ -34,13 +32,8 @@ export class RecentlyViewedComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getWishListIds () {
-    const recentlyViewedIds = localStorage.getItem('recentlyViewedIds');
-    this.recentlyViewedIds = recentlyViewedIds ? JSON.parse(recentlyViewedIds) : [];
-  }
-
   private getProducts(): void {
-    const query = this.recentlyViewedIds.join(',');
+    const query = this.ids.join(',');
 
     this.subscription = this.productsService.getProducts(`ids=${query}`).subscribe(data => {
       this.products = data.products;

@@ -172,6 +172,10 @@ hr {
   color: $primary-color;
 }
 
+.to-wish-list {
+  padding-bottom: 5px;
+}
+
 .to-wish-list::before {
   font-weight: 400;
   content: "\f004";

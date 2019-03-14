@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule, APP_INITIALIZER, ErrorHandler } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
@@ -10,6 +10,11 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { KillswitchService } from './core/services';
+import { GlobalErrorHandlerService } from './core/services/global-error-handler.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ServerErrorInterceptor } from './core/services/server-error.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,22 +22,25 @@ import { KillswitchService } from './core/services';
     PageNotFoundComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   providers: [
     KillswitchService,
     {
-        provide: APP_INITIALIZER,
-        useFactory: (killswitchService: KillswitchService) =>
-          () => killswitchService.loadConfig(),
-        multi: true,
-        deps: [KillswitchService]
-    }
+      provide: APP_INITIALIZER,
+      useFactory: (killswitchService: KillswitchService) =>
+        () => killswitchService.loadConfig(),
+      multi: true,
+      deps: [KillswitchService]
+    },
+    { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
 
-export class AppModule {  }
+export class AppModule { }
