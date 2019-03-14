@@ -18,10 +18,14 @@ import {
   LazyLoadComponent,
   GridComponent,
   ImgPlaceholderComponent,
-  SwipeIconComponent
+  SwipeIconComponent,
+  ShoppingCartComponent,
+  ModalWindowComponent
 } from './components';
 
 import { SafePipe } from './pipes/safe.pipe';
+import { ModalHolderDirective } from './directives/modal-holder.directive';
+
 
 const MODULES = [
   CommonModule,
@@ -29,7 +33,7 @@ const MODULES = [
   FormsModule,
   NgbModule,
   RouterModule,
-  ReactiveFormsModule,
+  ReactiveFormsModule
 ];
 
 const DECLARATIONS = [
@@ -46,17 +50,22 @@ const DECLARATIONS = [
   GridComponent,
   ImgPlaceholderComponent,
   SwipeIconComponent,
+  ModalHolderDirective,
+  ShoppingCartComponent,
+  ModalWindowComponent,
 ];
 
 @NgModule({
   declarations: [
-    ...DECLARATIONS
+    ...DECLARATIONS,
   ],
+
   imports: [...MODULES],
   exports: [
     ...MODULES,
     ...DECLARATIONS,
   ],
+  entryComponents: [ModalWindowComponent, ShoppingCartComponent],
 })
 export class SharedModule {
   static forRoot() {

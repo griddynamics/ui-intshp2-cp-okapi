@@ -3,6 +3,22 @@
 @import "./scss/variables";
 @import "./scss/fonts";
 @import "./scss/reset";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.error {
+  background-color: red;
+  color: white;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 0;
+}
+
+.error button {
+  background-color:orangered;
+  color: white;
+  outline: none;
+}
 
 .loading-screen-wrapper {
   z-index: 100000;

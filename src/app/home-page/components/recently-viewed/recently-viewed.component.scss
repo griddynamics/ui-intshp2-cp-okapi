@@ -1,0 +1,24 @@
+@import "../../../../scss/mixins";
+
+app-carousel-item {
+  display: block;
+  width: 33.333%;
+  flex-shrink: 0;
+}
+
+@include laptop {
+  app-carousel-item {
+    width: 50%;
+  }
+}
+
+@include tablet {
+  app-carousel-item {
+    width: 100%;
+  }
+}
+@include mobile {
+  app-carousel-item {
+    width: 100%;
+  }
+}

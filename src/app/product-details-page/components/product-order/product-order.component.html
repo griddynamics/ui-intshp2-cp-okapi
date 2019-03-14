@@ -15,7 +15,7 @@
         <button class="button-minus" (click)="decreaseQuantity()">-</button>
       </div>
     </div>
-    <div class="colors">
+    <div *ngIf="product.swatches.length" class="colors">
       <p class="text">Choose Color</p>
       <div class="swatch" *ngFor="let swatch of product.swatches let i = index">
         <div (click)="onChooseColor(swatch, i)" [ngClass]="{'selectedSwatch': i === selectedSwatch}" class="color" [style.background-color]="swatch.color"></div>

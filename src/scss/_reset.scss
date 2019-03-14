@@ -8,6 +8,8 @@
 body {
   background: $bg-color;
   font-family: $main-font-regular;
+  margin: 0; 
+  height: 100%;
 }
 
 a {
@@ -21,4 +23,8 @@ button, div {
 
 li {
   list-style: none;
+}
+
+.noscroll {
+  overflow: hidden;
 }
