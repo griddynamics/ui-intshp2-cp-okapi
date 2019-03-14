@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { KillswitchService } from './core/services';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 import { GlobalErrorHandlerService } from './core/services/global-error-handler.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServerErrorInterceptor } from './core/services/server-error.interceptor';
@@ -25,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     MatSnackBarModule,
     BrowserAnimationsModule
   ],
