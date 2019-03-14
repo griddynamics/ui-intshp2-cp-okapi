@@ -1,10 +1,3 @@
-FROM node:8
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-CMD [ "node", "src/server/app.js" ]
-
 ## use the latest docker image for NGINX
 FROM nginx:latest
 ## Remove default NGINX web files
