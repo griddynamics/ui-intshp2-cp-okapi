@@ -13,8 +13,8 @@
   <div *ngFor="let product of cartProducts; let i = index">
     <hr>
     <div class="item-for-cart">
-      <div>
-        <img class="pic-for-cart" src="{{product.swatch.imgSrc}}">
+          <div class="pic-for-cart"  [ngClass]="{'background-default-image': !product.swatch.imgSrc}">
+              <img *ngIf="product.swatch.imgSrc" class="pic-for-cart" src="{{product.swatch.imgSrc}}">
       </div>
       <div class="main-info">
         <div class="price">{{product.defaultPrice * product.quantity | currency:'USD'}}</div>
