@@ -75,12 +75,18 @@ i, .minus, .plus {
 .pic-for-cart {
   width: 100px;
   height: 100px;
-  margin-right: 50px;
-  margin-left: 40px;
 }
+
+.background-default-image {
+  background-image: url('../../../../assets/img/default.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+ }
 
 .item-for-cart {
   display: flex;
+  margin-left: 50px;
     i {
       opacity: 0;
       transition: opacity 0.5s;
