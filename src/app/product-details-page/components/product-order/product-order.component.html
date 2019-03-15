@@ -2,7 +2,7 @@
     <hr>
     <div class="chose-container-wrapper">
       <div class="chose-container-sizes">
-        <p class="title">Choos Size</p>
+        <p class="title">Choose Size</p>
         <div *ngFor="let size of product.sizes; let i = index">
           <button (click)="onChooseSize(size, i)" [ngClass]="{'selectedSize': i === selected}">{{size}}</button>
           <span *ngIf="i !== product.sizes.length-1">-</span>
