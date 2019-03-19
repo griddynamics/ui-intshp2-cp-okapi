@@ -1,0 +1,45 @@
+<div cdkDrag class="chat-controller">
+
+  <ng-template #startedChat>
+    <div class="chat-controller-header">
+      <button (click)="minimizeToggle()" class="minimize-icon"><i class="far fa-window-minimize"></i></button>
+      <h5 cdkDragHandle>Chat Control Center</h5>
+    </div>
+  </ng-template>
+  <div class="chat-controller-header" *ngIf="!isChatController; else startedChat">
+    <button (click)="returnToController()" class="back-icon"><i class="fas fa-arrow-circle-left"></i></button>
+    <h5 *ngIf="!isJoinChat" cdkDragHandle>Start New Chat</h5>
+    <h5 *ngIf="isJoinChat" cdkDragHandle>Join Existing Chat</h5>
+  </div>
+
+  <ng-template #chatController>
+    <div *ngIf="!isMinimized" class="chat-controller-content">
+      <h6>Active chats</h6>
+      <div *ngFor="let chat of chats" class="chat">
+        <div class="status" [ngClass]="{'online': isOnline, 'offline': isOffline}"></div>
+        <input type="radio"  id="radio-{{chat.name}}" [checked]="chat.name === checked">
+        <label for="radio-{{chat.name}}">{{chat.name}}</label>
+      </div>
+      <button (click)="startChat()" class="btn btn-start-chat">Start New Chat</button>
+      <button (click)="joinChat()" class="btn btn-join-chat">Join Existing Chat</button>
+    </div>
+  </ng-template>
+
+  <div *ngIf="!isChatController; else chatController" class="chat-controller-content">
+    <form *ngIf="!isJoinChat" action="/action_page.php">
+      <label>Chat Title:</label>
+      <input type="text" name="title" placeholder="Enter chat title">
+      <label>Your name in the chat:</label>
+      <input type="text" name="name" placeholder="Enter your name in chat">
+      <input class="btn btn-enter-chat" type="submit" value="Start">
+    </form>
+
+    <form *ngIf="isJoinChat" action="/action_page.php">
+      <label>Join Code</label>
+      <input type="text" name="title" placeholder="Enter join code">
+      <label>Your name in the chat:</label>
+      <input type="text" name="name" placeholder="Enter your name in chat">
+      <input class="btn btn-enter-chat" type="submit" value="Join">
+    </form>
+  </div>
+</div>

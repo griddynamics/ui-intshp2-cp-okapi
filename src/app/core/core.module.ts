@@ -7,6 +7,8 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 
 import { HeaderComponent, HeaderContactsComponent, HeaderNavComponent, FooterComponent } from './components';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChatControllerComponent } from './components/chat-controller/chat-controller.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     HeaderContactsComponent,
     HeaderNavComponent,
+    ChatControllerComponent,
   ],
 
   exports: [
@@ -21,12 +24,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     HeaderContactsComponent,
     HeaderNavComponent,
+    ChatControllerComponent
   ],
 
   imports: [
     CommonModule,
     SharedModule,
     BrowserAnimationsModule,
+    DragDropModule,
     SharedModule.forRoot(),
   ],
 })

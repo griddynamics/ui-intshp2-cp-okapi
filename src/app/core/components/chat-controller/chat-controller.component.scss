@@ -1,0 +1,111 @@
+@import '../../../../scss/mixins';
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+
+.chat-controller {
+  border: 1px solid $primary-color;
+  width: 300px;
+  position: fixed;
+  right: 300px;
+  bottom: 0;
+}
+
+.chat-controller-header {
+  display: flex;
+  align-items: baseline;
+  background: $primary-color;
+
+  .minimize-icon, .back-icon {
+    background: $primary-color;
+    cursor: pointer;
+
+    .far, .fas {
+      margin-left: 10px;
+    }
+  }
+  h5 {
+    margin: 0 auto;
+
+    &:hover {
+      cursor: grab;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+
+h6 {
+  padding-top: 10px;
+}
+
+.chat-controller-content {
+  max-height: 100vh;
+  background: #fff;
+  padding-left: 20px;
+}
+.chat {
+  display: flex;
+  align-items: center;
+
+  input[type="radio"] {
+    display: none;
+  }
+}
+
+.status {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: grey;
+  margin-right: 10px;
+}
+
+.online {
+  background: green;
+}
+
+.offline {
+  background: red;
+}
+
+.btn {
+  border: 1px solid $primary-color;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 90%;
+  padding: 10px 0;
+  margin: 10px 0;
+
+  &:hover {
+    background: $primary-color;
+    color: white;
+  }
+}
+
+form {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+
+  input[type="text"] {
+    border: 1px solid grey;
+    outline: none;
+    width: 80%;
+    margin-top: 10px;
+  }
+
+  label {
+    margin-top: 20px;
+  }
+
+  .btn-enter-chat {
+    margin-top: 30px;
+    width: 40%;
+    margin-left: 50%;
+  }
+}

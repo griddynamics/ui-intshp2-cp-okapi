@@ -25,6 +25,7 @@ import {
 
 import { SafePipe } from './pipes/safe.pipe';
 import { ModalHolderDirective } from './directives/modal-holder.directive';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 const MODULES = [
@@ -58,12 +59,14 @@ const DECLARATIONS = [
 @NgModule({
   declarations: [
     ...DECLARATIONS,
+    ChatComponent,
   ],
 
   imports: [...MODULES],
   exports: [
     ...MODULES,
     ...DECLARATIONS,
+    ChatComponent
   ],
   entryComponents: [ModalWindowComponent, ShoppingCartComponent],
 })

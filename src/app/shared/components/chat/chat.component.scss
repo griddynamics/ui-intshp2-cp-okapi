@@ -1,0 +1,151 @@
+@import '../../../../scss/variables';
+@import '../../../../scss/fonts';
+@import '../../../../scss/reset';
+@import '../../../../scss/mixins';
+
+.chat-container {
+  border: 1px solid $primary-color;
+  width: 300px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  background: $primary-color;
+}
+
+.minimize-icon, .user-icon, .settings-icon {
+  background: $primary-color;
+  cursor: pointer;
+}
+
+.minimize-icon {
+
+  .far {
+    margin-left: 10px;
+  }
+}
+
+.chat-button {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 20%;
+  justify-content: space-around;
+}
+
+.chat-content {
+  background: #fff;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.settings {
+  justify-content: flex-start;
+
+  h5 {
+    margin: 0 auto;
+  }
+}
+
+.back-icon {
+  background: $primary-color;
+  cursor: pointer;
+
+  .fas {
+    margin-left: 10px;
+  }
+}
+
+.chat-content {
+  display: flex;
+  flex-direction: column;
+
+  input[type="text"] {
+    border: 1px solid grey;
+    outline: none;
+    width: 90%;
+    margin-top: 10px;
+    padding: 5px;
+  }
+
+  label {
+    margin-top: 20px;
+  }
+
+  .btn-new-title-chat {
+    margin-top: 30px;
+    width: 40%;
+  }
+
+  h6 {
+    font-weight: bold;
+    margin-top: 20px;
+  }
+}
+
+.btn {
+  border: 1px solid $primary-color;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 90%;
+  padding: 10px 0;
+  margin: 10px 0;
+
+  &:hover {
+    background: $primary-color;
+    color: white;
+  }
+}
+
+.participant {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+
+  .btn-remove-user {
+    width: 50%;
+    margin-right: 10%;
+  }
+}
+
+.show-users {
+  display: block;
+  background: #ffffff;
+  z-index: 2;
+  position: relative;
+}
+
+.hide-users {
+  display: none;
+}
+
+.user-status {
+  padding-left: 20px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.status {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: grey;
+  margin-right: 10px;
+}
+
+.online {
+  background: green;
+}
+
+.offline {
+  background: red;
+}
