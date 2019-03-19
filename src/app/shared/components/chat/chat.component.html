@@ -1,0 +1,42 @@
+<div class="chat-container">
+  <div *ngIf="!isChatSettings; else chatSettingsContainer">
+    <div class="chat-header">
+      <button (click)="minimizeToggle()" class="minimize-icon"><i class="far fa-window-minimize"></i></button>
+      <h5 chat-title>Chat-title</h5>
+      <div class="chat-button">
+        <button (click)="toggleUsersList()" class="user-icon"><i class="fas fa-users-cog"></i></button>
+        <button (click)="chatSettings()" class="settings-icon"><i class="fas fa-cog"></i></button>
+      </div>
+    </div>
+    <div [ngClass]="{'show-users': isUsersShowed, 'hide-users': !isUsersShowed}">
+      <div class="user-status" *ngFor="let user of users">
+        <div class="status" [ngClass]="{'online': isOnline, 'offline': isOffline}"></div>
+        <h6>{{user.name}}</h6>
+      </div>
+    </div>
+    <div class="chat-content" *ngIf="!isMinimized">
+
+    </div>
+  </div>
+</div>
+
+<ng-template #chatSettingsContainer>
+  <div class="chat-header settings">
+    <button (click)="returnToChat()" class="back-icon"><i class="fas fa-arrow-circle-left"></i></button>
+    <h5 chat-title>Settings: Chat-title</h5>
+  </div>
+  <div class="chat-content" *ngIf="!isMinimized">
+    <label>Change Chat Title:</label>
+    <input type="text" placeholder="enter new chat title">
+    <input class="btn btn-new-title-chat" type="submit" value="Set New Title">
+    <h6>Manage chat participants</h6>
+    <div class="chat-participants" *ngFor="let user of users">
+      <div class="participant">
+        <h6>{{user.name}}</h6>
+        <button class="btn btn-remove-user">remove from chat</button>
+      </div>
+    </div>
+    <button class="btn btn-remove-chat">Finish This Chat</button>
+  </div>
+</ng-template>
+

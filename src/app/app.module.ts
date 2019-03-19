@@ -29,7 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     MatSnackBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     KillswitchService,
