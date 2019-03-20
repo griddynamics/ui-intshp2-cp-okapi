@@ -26,7 +26,8 @@ import {
 import { SafePipe } from './pipes/safe.pipe';
 import { ModalHolderDirective } from './directives/modal-holder.directive';
 import { ChatComponent } from './components/chat/chat.component';
-
+import { ContainerComponent } from './container/container.component';
+import { InnerComponent } from './inner/inner.component';
 
 const MODULES = [
   CommonModule,
@@ -60,6 +61,8 @@ const DECLARATIONS = [
   declarations: [
     ...DECLARATIONS,
     ChatComponent,
+    ContainerComponent,
+    InnerComponent,
   ],
 
   imports: [...MODULES],
