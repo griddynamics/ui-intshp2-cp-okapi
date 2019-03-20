@@ -1,6 +1,6 @@
-<div class="chat-container">
+<div cdkDrag class="chat-container">
   <div *ngIf="!isChatSettings; else chatSettingsContainer">
-    <div class="chat-header">
+    <div cdkDragHandle class="chat-header">
       <button (click)="minimizeToggle()" class="minimize-icon"><i class="far fa-window-minimize"></i></button>
       <h5 chat-title>Chat-title</h5>
       <div class="chat-button">

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalContext } from '../modal-window/modal-context';
+
 
 @Component({
   selector: 'app-chat',
@@ -20,7 +22,7 @@ export class ChatComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(public context: ModalContext) { }
 
   ngOnInit() {
   }
