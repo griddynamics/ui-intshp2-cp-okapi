@@ -1,7 +1,10 @@
-<div cdkDrag class="chat-controller">
+<div (click)="minimizeToggle()" class="chat-controller-header default-icon" *ngIf="isMinimized">
+    <h5>Chats (2)</h5>
+</div>
+<div *ngIf="!isMinimized" cdkDrag class="chat-controller" #chat>
 
   <ng-template #startedChat>
-    <div class="chat-controller-header">
+    <div *ngIf="!isMinimized" class="chat-controller-header">
       <button (click)="minimizeToggle()" class="minimize-icon"><i class="far fa-window-minimize"></i></button>
       <h5 cdkDragHandle>Chat Control Center</h5>
     </div>

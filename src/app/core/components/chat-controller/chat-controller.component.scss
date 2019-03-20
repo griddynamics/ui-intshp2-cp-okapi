@@ -7,7 +7,7 @@
   border: 1px solid $primary-color;
   width: 300px;
   position: fixed;
-  right: 300px;
+  right: 0;
   bottom: 0;
 }
 
@@ -15,6 +15,30 @@
   display: flex;
   align-items: baseline;
   background: $primary-color;
+
+  &.default-icon {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 10px 20px;
+    margin: 10px;
+
+    h5 {
+
+      &:hover {
+        cursor: pointer;
+        color: white;
+      }
+
+      &:active {
+        cursor: pointer;
+      }
+    }
+  }
 
   .minimize-icon, .back-icon {
     background: $primary-color;
@@ -97,6 +121,7 @@ form {
     outline: none;
     width: 80%;
     margin-top: 10px;
+    padding: 5px;
   }
 
   label {

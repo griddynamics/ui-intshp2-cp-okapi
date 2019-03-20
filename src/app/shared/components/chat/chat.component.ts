@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalContext } from '../modal-window/modal-context';
 
-
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -9,7 +8,7 @@ import { ModalContext } from '../modal-window/modal-context';
 })
 export class ChatComponent implements OnInit {
 
-  isMinimized = false;
+  isMinimized = true;
   isChatSettings = false;
   isUsersShowed = false;
 
