@@ -26,8 +26,7 @@ import {
 import { SafePipe } from './pipes/safe.pipe';
 import { ModalHolderDirective } from './directives/modal-holder.directive';
 import { ChatComponent } from './components/chat/chat.component';
-import { ContainerComponent } from './container/container.component';
-import { InnerComponent } from './inner/inner.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const MODULES = [
   CommonModule,
@@ -61,17 +60,15 @@ const DECLARATIONS = [
   declarations: [
     ...DECLARATIONS,
     ChatComponent,
-    ContainerComponent,
-    InnerComponent,
   ],
 
-  imports: [...MODULES],
+  imports: [...MODULES, DragDropModule],
   exports: [
     ...MODULES,
     ...DECLARATIONS,
     ChatComponent
   ],
-  entryComponents: [ModalWindowComponent, ShoppingCartComponent],
+  entryComponents: [ModalWindowComponent, ShoppingCartComponent, ChatComponent],
 })
 export class SharedModule {
   static forRoot() {

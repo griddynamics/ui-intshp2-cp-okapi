@@ -1,5 +1,5 @@
 :host{
-    position: fixed;
+    // position: fixed;
     display:flex;
     align-items: center;
     justify-content: center;
@@ -11,7 +11,7 @@
   }
 
   .backdrop{
-    background-color:rgba(0,0,0,0.6);
+    // background-color:rgba(0,0,0,0.6);
     position:absolute;
     opacity:1;
     top:0;

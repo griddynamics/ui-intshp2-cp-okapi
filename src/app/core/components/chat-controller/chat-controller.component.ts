@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalService } from '../../services';
+import { ChatComponent } from 'src/app/shared/components/chat/chat.component';
 
 @Component({
   selector: 'app-chat-controller',
@@ -19,10 +21,16 @@ export class ChatControllerComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(
+    private modalService: ModalService
+  ) { }
 
   ngOnInit() {
   }
+
+  openChat() {
+    this.modalService.open(ChatComponent);
+ }
 
   minimizeToggle() {
     this.isMinimized = !this.isMinimized;

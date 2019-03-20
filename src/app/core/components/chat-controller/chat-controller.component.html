@@ -20,7 +20,7 @@
         <input type="radio"  id="radio-{{chat.name}}" [checked]="chat.name === checked">
         <label for="radio-{{chat.name}}">{{chat.name}}</label>
       </div>
-      <button (click)="startChat()" class="btn btn-start-chat">Start New Chat</button>
+      <button class="btn btn-start-chat" (click)="openChat()">Start New Chat</button>
       <button (click)="joinChat()" class="btn btn-join-chat">Join Existing Chat</button>
     </div>
   </ng-template>
