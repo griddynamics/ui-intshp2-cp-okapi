@@ -36,9 +36,6 @@ export class ChatControllerComponent implements OnDestroy, AfterViewInit {
     localStorage.setItem('azaz', 'azaza');
   }
 
- 
-
-
   openChat() {
     this.modalService.open(ChatComponent);
  }
