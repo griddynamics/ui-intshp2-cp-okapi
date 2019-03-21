@@ -26,9 +26,6 @@ export class ChatComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    if (!this.chat) {
-      return;
-    }
   }
  sendMes(roomID) {
    this.chatService.sendMessage(roomID);
