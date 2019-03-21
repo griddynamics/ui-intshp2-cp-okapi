@@ -1,11 +1,11 @@
 <div (click)="minimizeToggle()" class="chat-header default-icon" *ngIf="isMinimized">
-    <h5 (click)="sendMes(sss123)">Chat Title: 14</h5>
+    <h5>Chat Title: 14</h5>
 </div>
 <div *ngIf="!isMinimized" cdkDrag class="chat-container">
   <div *ngIf="!isChatSettings; else chatSettingsContainer">
     <div cdkDragHandle class="chat-header">
       <button (click)="minimizeToggle()" class="minimize-icon"><i class="far fa-window-minimize"></i></button>
-      <h5 cdkDragHandle>Chat-title</h5>
+      <h5 cdkDragHandle>{{chat.chatName}}</h5>
       <div class="chat-button">
         <button (click)="toggleUsersList()" class="user-icon"><i class="fas fa-users-cog"></i></button>
         <button (click)="chatSettings()" class="settings-icon"><i class="fas fa-cog"></i></button>
@@ -17,8 +17,9 @@
         <h6>{{user.name}}</h6>
       </div>
     </div>
-    <div class="chat-content" *ngIf="!isMinimized">
-
+    <div class="chat-content chat-messages" *ngIf="!isMinimized">
+        <input [id]="chat.chatName" type="text" placeholder="Type something here">
+        <button class="btn btn-send-message">Send</button>
     </div>
   </div>
 </div>

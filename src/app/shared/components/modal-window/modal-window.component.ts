@@ -1,7 +1,8 @@
-import { Component, HostBinding, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, HostBinding, ViewChild, ViewContainerRef, OnInit } from '@angular/core';
 import { animate, style, transition, trigger, animateChild, query } from '@angular/animations';
 import { ModalContainer } from '../../interfaces';
 import { ModalContext } from './modal-context';
+import { ChatService } from 'src/app/core/services/chat.service';
 export { ModalContext } from './modal-context';
 
 @Component({

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalContext } from '../modal-window/modal-context';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from 'src/app/core/services/chat.service';
 
 @Component({
@@ -8,10 +7,10 @@ import { ChatService } from 'src/app/core/services/chat.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-
   isMinimized = false;
   isChatSettings = false;
   isUsersShowed = false;
+  @Input() chat = {};
 
   users = [
     {
@@ -22,10 +21,14 @@ export class ChatComponent implements OnInit {
     },
   ];
 
-  constructor(public context: ModalContext,
-    private chatService: ChatService) { }
+  constructor(
+    private chatService: ChatService
+    ) { }
 
   ngOnInit() {
+    if (!this.chat) {
+      return;
+    }
   }
  sendMes(roomID) {
    this.chatService.sendMessage(roomID);

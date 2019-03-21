@@ -83,10 +83,11 @@ io.sockets.on('connection', function (socket) {
   })
 
   // socket
-  socket.on('addchat', function () {
-    console.log('rooms', rooms)
-    rooms.push('room' + (rooms.length + 1))
-    socket.join('room' + (rooms.length + 1))
+  socket.on('addChat', function (chatName, userName, chatId) {
+    console.log('rooms pre', rooms)
+    rooms.push({chatName, userName, chatId});
+    socket.join(chatName);
+    console.log('rooms post', rooms)
     io.sockets.emit('updaterooms', rooms, socket.room)
   })
 

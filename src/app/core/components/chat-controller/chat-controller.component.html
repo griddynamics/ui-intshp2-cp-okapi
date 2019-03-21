@@ -23,7 +23,7 @@
         <input type="radio"  id="radio-{{chat.name}}" [checked]="chat.name === checked">
         <label for="radio-{{chat.name}}">{{chat.name}}</label>
       </div>
-      <button class="btn btn-start-chat" (click)="openChat()" id="add-chat">Start New Chat</button>
+      <button class="btn btn-start-chat" (click)="startChat()" id="add-chat">Start New Chat</button>
       <button (click)="joinChat()" class="btn btn-join-chat">Join Existing Chat</button>
     </div>
   </ng-template>
@@ -31,10 +31,10 @@
   <div *ngIf="!isChatController; else chatController" class="chat-controller-content">
     <form *ngIf="!isJoinChat" action="/action_page.php">
       <label>Chat Title:</label>
-      <input type="text" name="title" placeholder="Enter chat title">
+      <input #chatName type="text" name="title" placeholder="Enter chat title">
       <label>Your name in the chat:</label>
-      <input type="text" name="name" placeholder="Enter your name in chat">
-      <input class="btn btn-enter-chat" type="submit" value="Start">
+      <input #userName type="text" name="name" placeholder="Enter your name in chat">
+      <input (click)="openChat(chatName.value, userName.value)" class="btn btn-enter-chat" type="submit" value="Start">
     </form>
 
     <form *ngIf="isJoinChat" action="/action_page.php">
@@ -47,11 +47,4 @@
   </div>
 </div>
 
-<!-- <div
-style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;"
->
-<b>ROOMS</b>
-<button id="add-chat">Add chat</button>
-<div id="rooms"></div>
-</div>
-<div class="chat-windows"></div> -->
+  <app-chat *ngFor="let chat of arr" [chat]="chat"></app-chat>
