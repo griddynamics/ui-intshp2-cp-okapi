@@ -1,6 +1,9 @@
 <app-header *ngIf="!isEnvironmentRoute"></app-header>
 <router-outlet (activate)="onActivate($event)"></router-outlet>
 <app-footer *ngIf="!isEnvironmentRoute"></app-footer>
-<div appModalHolder></div>
+
+  <div appModalHolder></div>
+
+
 <!-- <app-chat></app-chat> -->
 <app-chat-controller></app-chat-controller>

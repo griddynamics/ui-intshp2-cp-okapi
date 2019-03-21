@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ModalService } from '../../services';
 import { ChatComponent } from 'src/app/shared/components/chat/chat.component';
 
@@ -7,10 +7,12 @@ import { ChatComponent } from 'src/app/shared/components/chat/chat.component';
   templateUrl: './chat-controller.component.html',
   styleUrls: ['./chat-controller.component.scss']
 })
-export class ChatControllerComponent implements OnInit {
-  isMinimized = false;
+export class ChatControllerComponent implements OnDestroy, AfterViewInit {
+  @ViewChild('chat') chat;
+  isMinimized = true;
   isChatController = true;
   isJoinChat = false;
+  pos = '';
 
   chats = [
     {
@@ -22,10 +24,16 @@ export class ChatControllerComponent implements OnInit {
   ];
 
   constructor(
+    private el: ElementRef,
     private modalService: ModalService
   ) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+
+  }
+
+  ngOnDestroy() {
+    localStorage.setItem('azaz', 'azaza');
   }
 
   openChat() {
@@ -39,14 +47,16 @@ export class ChatControllerComponent implements OnInit {
   startChat() {
     this.isChatController = false;
     this.isJoinChat = false;
+    this.modalService.open(ChatComponent);
   }
 
   returnToController() {
     this.isChatController = true;
   }
 
-  joinChat() {
-    this.isJoinChat = true;
-    this.isChatController = false;
-  }
+  // joinChat(room) {
+  //   this.isJoinChat = true;
+  //   this.isChatController = false;
+  //   socket.emit('joinRoom', room);
+  // }
 }
