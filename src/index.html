@@ -12,6 +12,92 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#1976d2">
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script>
+  var socket = io.connect("http://localhost:3000");
+
+  // on connection to server, ask for user's name with an anonymous callback
+  socket.on("connect", function() {
+    // call the server-side function 'adduser' and send one parameter (value of prompt)
+    socket.emit("adduser", prompt("What's your name?"));
+  });
+
+  // listener, whenever the server emits 'updatechat', this updates the chat body
+  socket.on("updatechat", function(username, data, room) {
+		console.log('room should updchat', username, data, ".conversation-" + room);
+    $(".conversation-" + room).append("<b>" + username + ":</b> " + data + "<br>");
+  });
+
+  // listener, whenever the server emits 'updaterooms', this updates the room the client is in
+  socket.on("updaterooms", function(rooms, current_room) {
+    $("#rooms").empty();
+    $.each(rooms, function(key, value) {
+      if (value == current_room) {
+        $("#rooms").append("<div>" + value + "</div>");
+      } else {
+        $("#rooms").append(
+          '<div><a href="#" onclick="joinRoom(\'' +
+            value +
+            "')\">" +
+            value +
+            "</a></div>"
+        );
+        // $('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+      }
+    });
+  });
+
+  socket.on("appendchat", function(room) {
+    console.log("appendchat should appen shit plz suka", room);
+    $(".chat-windows").append(
+      '<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">Chat '+ room +'<div class="conversation-'+ room +'"></div><input id="' +
+        room +
+        '"style="width:200px;" /><input type="button" class="datasend" value="send" onclick="sendMessage(\''+
+        room +
+        '\')"/></div>'
+    );
+  });
+
+  // function joinRoom(room) {
+  //   socket.emit("joinRoom", room);
+  // }
+
+  function sendMessage(roomId) {
+    var message = $("#" + roomId).val();
+    $("#" + roomId).val("");
+    // tell server to execute 'sendchat' and send along one parameter
+    socket.emit("sendchat", message, roomId);
+    console.log("sendchat message", message, roomId);
+  }
+
+  // on load of page
+  // $(function() {
+  //   // when the client clicks SEND
+  //   // $(".datasend").click(function() {
+  //   //   var message = $("#data").val();
+  //   //   $(".data").val("");
+  //   //   // tell server to execute 'sendchat' and send along one parameter
+  //   //   socket.emit("sendchat", message, room);
+  //   //   console.log("sendchat message", message, room);
+  //   // });
+
+  //   // when the client hits ENTER on their keyboard
+  //   $(".data").keypress(function(e) {
+  //     if (e.which == 13) {
+  //       $(this).blur();
+  //       $(".datasend")
+  //         .focus()
+  //         .click();
+  //     }
+  //   });
+
+  //   $("#add-chat").click(function() {
+  //     console.log('grid dynamo')
+  //     socket.emit("addchat");
+  //   });
+  // });
+</script>
 </head>
 
 <body>
@@ -22,5 +108,4 @@
   </app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
-
 </html>

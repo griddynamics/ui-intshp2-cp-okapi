@@ -36,6 +36,9 @@ export class ChatControllerComponent implements OnDestroy, AfterViewInit {
     localStorage.setItem('azaz', 'azaza');
   }
 
+ 
+
+
   openChat() {
     this.modalService.open(ChatComponent);
  }
@@ -54,8 +57,9 @@ export class ChatControllerComponent implements OnDestroy, AfterViewInit {
     this.isChatController = true;
   }
 
-  joinChat() {
-    this.isJoinChat = true;
-    this.isChatController = false;
-  }
+  // joinChat(room) {
+  //   this.isJoinChat = true;
+  //   this.isChatController = false;
+  //   socket.emit('joinRoom', room);
+  // }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalContext } from '../modal-window/modal-context';
+import { ChatService } from 'src/app/core/services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -8,7 +9,7 @@ import { ModalContext } from '../modal-window/modal-context';
 })
 export class ChatComponent implements OnInit {
 
-  isMinimized = true;
+  isMinimized = false;
   isChatSettings = false;
   isUsersShowed = false;
 
@@ -21,11 +22,14 @@ export class ChatComponent implements OnInit {
     },
   ];
 
-  constructor(public context: ModalContext) { }
+  constructor(public context: ModalContext,
+    private chatService: ChatService) { }
 
   ngOnInit() {
   }
-
+ sendMes(roomID) {
+   this.chatService.sendMessage(roomID);
+ }
 
   minimizeToggle() {
     this.isMinimized = !this.isMinimized;

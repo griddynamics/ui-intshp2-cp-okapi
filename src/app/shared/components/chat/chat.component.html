@@ -1,5 +1,5 @@
 <div (click)="minimizeToggle()" class="chat-header default-icon" *ngIf="isMinimized">
-    <h5>Chat Title: 14</h5>
+    <h5 (click)="sendMes(sss123)">Chat Title: 14</h5>
 </div>
 <div *ngIf="!isMinimized" cdkDrag class="chat-container">
   <div *ngIf="!isChatSettings; else chatSettingsContainer">

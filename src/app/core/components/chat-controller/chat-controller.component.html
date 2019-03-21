@@ -23,7 +23,7 @@
         <input type="radio"  id="radio-{{chat.name}}" [checked]="chat.name === checked">
         <label for="radio-{{chat.name}}">{{chat.name}}</label>
       </div>
-      <button class="btn btn-start-chat" (click)="openChat()">Start New Chat</button>
+      <button class="btn btn-start-chat" (click)="openChat()" id="add-chat">Start New Chat</button>
       <button (click)="joinChat()" class="btn btn-join-chat">Join Existing Chat</button>
     </div>
   </ng-template>
@@ -46,3 +46,12 @@
     </form>
   </div>
 </div>
+
+<!-- <div
+style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;"
+>
+<b>ROOMS</b>
+<button id="add-chat">Add chat</button>
+<div id="rooms"></div>
+</div>
+<div class="chat-windows"></div> -->
