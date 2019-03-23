@@ -1,4 +1,4 @@
-import { Component, OnInit, Input , AfterViewInit} from '@angular/core';
+import { Component, OnInit, Input , AfterViewInit, OnChanges, OnDestroy} from '@angular/core';
 import { ChatService } from 'src/app/core/services/chat.service';
 import * as io from 'socket.io-client';
 
@@ -7,7 +7,7 @@ import * as io from 'socket.io-client';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit, AfterViewInit {
+export class ChatComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   isMinimized = false;
   isChatSettings = false;
   isUsersShowed = false;
@@ -15,7 +15,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @Input() ind;
 
   public messagesArr: string[] = [];
-  // public message;
+  public message;
 
   users = [
     {
@@ -41,21 +41,18 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit () {
-      this.chatService.currentMessObj.subscribe(data => {
-        // this.messagesArr.push(data.data);
-        // console.log(this.messagesArr);
-        // this.message = data.data;
-        console.log(data);
-        this.clearArr();
-      });
+      // this.message = this.chatService.currentMessObj.subscribe(data => {
+      // });
   }
 
-  clearArr() {
-    this.messagesArr = [];
+  ngOnChanges() {
   }
 
- sendMes(roomID, message) {
-   this.messagesArr.push(message);
+  ngOnDestroy() {
+    // this.message.unsubscribe();
+  }
+
+ sendMes(roomID) {
    this.chatService.sendMessage(roomID);
  }
 

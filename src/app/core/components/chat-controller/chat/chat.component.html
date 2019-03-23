@@ -1,13 +1,6 @@
-   <script>
-    //  listener, whenever the server emits 'updatechat', this updates the chat body
-     socket.on("updatechat", function(username, data, room) {
-       	console.log('room should updchat', username, data, ".conversation-" + room);
-         $(".conversation-" + room).append("<b>" + username + ":</b> " + data + "<br>");
-      });
-   </script>
 <div [id]='chat.chatId' class="main-chat-view" [ngStyle]="{'transform': 'translate(' + -ind*15 + 'px, ' + -ind*15 + 'px)'}">
 <div (click)="minimizeToggle()" class="chat-header default-icon" *ngIf="isMinimized">
-    <h5>Chat Title: 14</h5>
+    <h5>{{chat.chatName}}: 14</h5>
 </div>
 <div *ngIf="!isMinimized" cdkDrag class="chat-container">
   <div *ngIf="!isChatSettings; else chatSettingsContainer">
@@ -25,13 +18,10 @@
         <h6>{{user.name}}</h6>
       </div>
     </div>
-    <div class="'conversation-' + chat.ChatId" *ngFor="let message of messagesArr">
-      <p>{{chat.userName}}: {{message}}</p>
-    </div>
-    <div>{{message}}</div>
+    <div [class]="'conversation-' + chat.chatId"></div>
     <div class="chat-content chat-messages" *ngIf="!isMinimized">
         <input [id]="'input-' + chat.chatName" type="text" placeholder="Type something here" #message>
-        <button class="btn btn-send-message" (click)="sendMes(chat.chatName, message.value)">Send</button>
+        <button class="btn btn-send-message" (click)="sendMes(chat.chatName)">Send</button>
     </div>
   </div>
 </div>
@@ -39,10 +29,10 @@
 <ng-template #chatSettingsContainer>
   <div class="chat-header settings">
     <button (click)="returnToChat()" class="back-icon"><i class="fas fa-arrow-circle-left"></i></button>
-    <h5 chat-title>Settings: Chat-title</h5>
+    <h5 chat-title>Settings: {{chat.chatName}}</h5>
   </div>
   <div class="chat-content" *ngIf="!isMinimized">
-    <label>Change Chat Title:</label>
+    <label>Change {{chat.chatName}}:</label>
     <input type="text" placeholder="enter new chat title">
     <input class="btn btn-new-title-chat" type="submit" value="Set New Title">
     <h6>Manage chat participants</h6>

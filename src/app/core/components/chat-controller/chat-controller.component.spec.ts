@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatControllerComponent } from './chat-controller.component';
-import { ChatComponent } from 'src/app/shared/components/chat/chat.component';
+import { ChatComponent } from './chat/chat.component';
 
 describe('ChatControllerComponent', () => {
   let component: ChatControllerComponent;

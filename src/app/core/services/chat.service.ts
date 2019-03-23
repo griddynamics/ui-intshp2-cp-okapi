@@ -25,15 +25,17 @@ export class ChatService {
   sendMessage(roomId) {
     const chatInput = <HTMLInputElement>document.getElementById('input-' + roomId);
     const message = chatInput.value;
-    // $('#input-' + roomId).val('');
+    chatInput.value = '';
     // tell server to execute 'sendchat' and send along one parameter
     this.socket.emit('sendchat', message, roomId);
     this.updateChat();
-    // console.log('sendchat message', message, roomId);
+    console.log('sendchat message', message, roomId);
   }
+
     joinRoom(room) {
     this.socket.emit('joinRoom', room);
   }
+
     addChat(chatName, userName, chatId) {
       this.socket.emit('addChat', chatName, userName, chatId);
     }
@@ -43,8 +45,9 @@ export class ChatService {
         // this.messObj = {username, data, room };
         // console.log(this.messObj);
         this.messObjSource.next({username, data, room });
-
-        // document.querySelector('.conversation-' + room).append('<b>' + username + ':</b> ' + data + '<br>');
+        const message = <HTMLInputElement>document.querySelector('.conversation-' + room);
+        message.append(username + ' : ' + data);
+        this.messObjSource.complete();
       });
     }
 

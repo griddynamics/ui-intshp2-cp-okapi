@@ -74,6 +74,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('joinRoom', function (room) {
     socket.join(room)
     socket.emit('updatechat', 'SERVER', 'you have connected to ' + room)
+    console.log('you have connected to', room)
     // update socket session room title
     socket.broadcast
       .to(room)

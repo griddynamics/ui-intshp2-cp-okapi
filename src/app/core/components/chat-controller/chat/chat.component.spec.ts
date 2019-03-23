@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatComponent } from './chat.component';
-import { ModalContext } from '../modal-window/modal-context';
 
 describe('ChatComponent', () => {
   let component: ChatComponent;
@@ -15,9 +14,6 @@ describe('ChatComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ChatComponent ],
-      providers: [
-        { provide: ModalContext, useValue: fakeModalService },
-      ],
     })
     .compileComponents();
   }));
