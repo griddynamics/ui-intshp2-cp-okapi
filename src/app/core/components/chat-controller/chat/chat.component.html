@@ -1,3 +1,11 @@
+   <script>
+    //  listener, whenever the server emits 'updatechat', this updates the chat body
+     socket.on("updatechat", function(username, data, room) {
+       	console.log('room should updchat', username, data, ".conversation-" + room);
+         $(".conversation-" + room).append("<b>" + username + ":</b> " + data + "<br>");
+      });
+   </script>
+<div [id]='chat.chatId' class="main-chat-view" [ngStyle]="{'transform': 'translate(' + -ind*15 + 'px, ' + -ind*15 + 'px)'}">
 <div (click)="minimizeToggle()" class="chat-header default-icon" *ngIf="isMinimized">
     <h5>Chat Title: 14</h5>
 </div>
@@ -17,9 +25,13 @@
         <h6>{{user.name}}</h6>
       </div>
     </div>
+    <div class="'conversation-' + chat.ChatId" *ngFor="let message of messagesArr">
+      <p>{{chat.userName}}: {{message}}</p>
+    </div>
+    <div>{{message}}</div>
     <div class="chat-content chat-messages" *ngIf="!isMinimized">
-        <input [id]="chat.chatName" type="text" placeholder="Type something here">
-        <button class="btn btn-send-message">Send</button>
+        <input [id]="'input-' + chat.chatName" type="text" placeholder="Type something here" #message>
+        <button class="btn btn-send-message" (click)="sendMes(chat.chatName, message.value)">Send</button>
     </div>
   </div>
 </div>
@@ -43,4 +55,5 @@
     <button class="btn btn-remove-chat">Finish This Chat</button>
   </div>
 </ng-template>
+</div>
 

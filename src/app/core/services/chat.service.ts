@@ -6,20 +6,29 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ChatService {
-  private socket = io.connect('http://localhost:3000');
-   chatsArr = [];
-   chatsSource = new BehaviorSubject([]);
+  public messObjSource = new BehaviorSubject({
+    username: '',
+    data: '',
+    room: ''
+  });
+  public currentMessObj = this.messObjSource.asObservable();
+  public messObj = {};
 
-   getChatsSource() {
-     return this.chatsSource.asObservable();
-   }
+  private socket = io.connect('http://localhost:3000');
+  //  chatsArr = [];
+  //  chatsSource = new BehaviorSubject([]);
+
+  //  getChatsSource() {
+    //  return this.chatsSource.asObservable();
+  //  }
   constructor() { }
   sendMessage(roomId) {
-    const message = document.querySelector('#' + roomId);
-    console.log(message);
-    // $('#' + roomId).val('');
+    const chatInput = <HTMLInputElement>document.getElementById('input-' + roomId);
+    const message = chatInput.value;
+    // $('#input-' + roomId).val('');
     // tell server to execute 'sendchat' and send along one parameter
     this.socket.emit('sendchat', message, roomId);
+    this.updateChat();
     // console.log('sendchat message', message, roomId);
   }
     joinRoom(room) {
@@ -29,10 +38,21 @@ export class ChatService {
       this.socket.emit('addChat', chatName, userName, chatId);
     }
 
-    updateChatArr(item) {
-      // console.log(item);
-      this.chatsArr.push(item);
-      this.chatsSource.next(this.chatsArr);
+    updateChat() {
+      this.socket.on('updatechat', (username, data, room) => {
+        // this.messObj = {username, data, room };
+        // console.log(this.messObj);
+        this.messObjSource.next({username, data, room });
+
+        // document.querySelector('.conversation-' + room).append('<b>' + username + ':</b> ' + data + '<br>');
+      });
     }
+
+    // messArr;
+    // updateChatArr(item) {
+    //   // console.log(item);
+    //   this.chatsArr.push(item);
+    //   this.chatsSource.next(this.chatsArr);
+    // }
 
 }

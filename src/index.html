@@ -24,10 +24,10 @@
   });
 
   // listener, whenever the server emits 'updatechat', this updates the chat body
-  socket.on("updatechat", function(username, data, room) {
-		console.log('room should updchat', username, data, ".conversation-" + room);
-    $(".conversation-" + room).append("<b>" + username + ":</b> " + data + "<br>");
-  });
+  // socket.on("updatechat", function(username, data, room) {
+	// 	console.log('room should updchat', username, data, ".conversation-" + room);
+  //   $(".conversation-" + room).append("<b>" + username + ":</b> " + data + "<br>");
+  // });
 
   // listener, whenever the server emits 'updaterooms', this updates the room the client is in
   socket.on("updaterooms", function(rooms, current_room) {

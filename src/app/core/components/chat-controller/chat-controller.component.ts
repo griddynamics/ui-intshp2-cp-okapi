@@ -1,55 +1,76 @@
-import { Component, OnDestroy, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angular/core';
-import { ModalService } from '../../services';
-import { ChatComponent } from 'src/app/shared/components/chat/chat.component';
+import {
+  Component,
+  OnDestroy,
+  ElementRef,
+  ViewChild,
+  OnInit,
+  OnChanges,
+  AfterViewChecked,
+} from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat-controller',
   templateUrl: './chat-controller.component.html',
-  styleUrls: ['./chat-controller.component.scss']
+  styleUrls: ['./chat-controller.component.scss'],
 })
-export class ChatControllerComponent implements OnDestroy, AfterViewInit, OnInit {
+export class ChatControllerComponent
+  implements OnDestroy, OnInit, OnChanges, AfterViewChecked {
   @ViewChild('chat') chat;
-  isMinimized = true;
-  isChatController = true;
-  isJoinChat = false;
+  isMinimized = false;
+  isChatController = false;
+  isJoinChat = true;
   pos = '';
   arr = [];
+  selectedArr = [];
+  isOpen = true;
 
   chats = [
     {
-      'name': 'Family Chat',
+      name: 'Family Chat',
     },
     {
-      'name': 'Friends Chat',
+      name: 'Friends Chat',
     },
   ];
 
-  constructor(
-    private el: ElementRef,
-    private modalService: ModalService,
-    private chatService: ChatService
-  ) { }
+  constructor(private el: ElementRef, private chatService: ChatService) {}
 
-  ngAfterViewInit() {
-
-  }
+  ngAfterViewChecked() {}
 
   ngOnInit() {
-    this.chatService.getChatsSource().subscribe(data => {
-      this.arr = data;
-    });
+    if (!localStorage.getItem('chats')) {
+      localStorage.setItem('chats', '[]');
+    } else {
+      this.arr = JSON.parse(localStorage.getItem('chats'));
+    }
   }
 
-  ngOnDestroy() {
-    localStorage.setItem('azaz', 'azaza');
+  selectChat(e) {
+    if (!this.selectedArr.includes(e)) {
+      this.selectedArr.push(e);
+    } else {
+      const currItemIndex = this.selectedArr.findIndex(
+        el => e.chatId === el.chatId
+      );
+      this.selectedArr.splice(currItemIndex, 1);
+    }
   }
 
-  openChat(chatName, userName, chatId) {
-    this.chatService.addChat(chatName, userName, chatId);
-    // this.modalService.open(ChatComponent);
-    this.chatService.updateChatArr({chatName, userName, chatId});
- }
+  updateChats() {
+    localStorage.setItem('chats', JSON.stringify(this.arr));
+  }
+
+  ngOnDestroy() {}
+
+  ngOnChanges() {}
+
+  openNewChat(chatName, userName, chatId) {
+    this.arr.push({ chatName, userName, chatId });
+    this.selectedArr.push({ chatName, userName, chatId });
+    // this.selectChat({chatName, userName, chatId});
+    this.updateChats();
+  }
 
   minimizeToggle() {
     this.isMinimized = !this.isMinimized;
@@ -64,9 +85,16 @@ export class ChatControllerComponent implements OnDestroy, AfterViewInit, OnInit
     this.isChatController = true;
   }
 
-  joinChat() {
+  joinChat(chatName, userName, chatId) {
     this.isJoinChat = true;
     this.isChatController = false;
-    // socket.emit('joinRoom', room);
+    console.log(chatId);
+  }
+  joinExsitingChat(chatName, userName, chatId) {
+    if (!chatId) {
+      return;
+    }
+    this.chatService.joinRoom(chatId);
+    this.selectedArr.push({ chatName, userName, chatId });
   }
 }

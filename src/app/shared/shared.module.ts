@@ -25,7 +25,6 @@ import {
 
 import { SafePipe } from './pipes/safe.pipe';
 import { ModalHolderDirective } from './directives/modal-holder.directive';
-import { ChatComponent } from './components/chat/chat.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const MODULES = [
@@ -59,16 +58,14 @@ const DECLARATIONS = [
 @NgModule({
   declarations: [
     ...DECLARATIONS,
-    ChatComponent,
   ],
 
   imports: [...MODULES, DragDropModule],
   exports: [
     ...MODULES,
     ...DECLARATIONS,
-    ChatComponent
   ],
-  entryComponents: [ModalWindowComponent, ShoppingCartComponent, ChatComponent],
+  entryComponents: [ModalWindowComponent, ShoppingCartComponent],
 })
 export class SharedModule {
   static forRoot() {

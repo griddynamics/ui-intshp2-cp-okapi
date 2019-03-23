@@ -67,7 +67,7 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('sendchat', function (message, room) {
     // we tell the client to execute 'updatechat' with 2 parameters
-    console.log('sendchat dtaa', message, room)
+    console.log('sendchat data', message, room)
     io.sockets.in(room).emit('updatechat', socket.username, message, room)
   })
 

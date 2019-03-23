@@ -36,6 +36,8 @@
     "@angular/router": "^7.2.0",
     "@angular/service-worker": "^7.2.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
+    "@types/jquery": "^3.3.29",
+    "@types/socket.io-client": "^1.4.32",
     "body-parser": "^1.15.2",
     "bootstrap": "^4.2.1",
     "core-js": "^2.6.2",
@@ -44,6 +46,7 @@
     "intersection-observer": "^0.5.1",
     "rxjs": "~6.3.3",
     "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
