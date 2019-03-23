@@ -9,6 +9,7 @@ import { HeaderComponent, HeaderContactsComponent, HeaderNavComponent, FooterCom
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatControllerComponent } from './components/chat-controller/chat-controller.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ChatComponent } from './components/chat-controller/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     HeaderContactsComponent,
     HeaderNavComponent,
     ChatControllerComponent,
+    ChatComponent
   ],
 
   exports: [
@@ -24,7 +26,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     FooterComponent,
     HeaderContactsComponent,
     HeaderNavComponent,
-    ChatControllerComponent
+    ChatControllerComponent,
+    ChatComponent
   ],
 
   imports: [

@@ -20,14 +20,14 @@
   // on connection to server, ask for user's name with an anonymous callback
   socket.on("connect", function() {
     // call the server-side function 'adduser' and send one parameter (value of prompt)
-    socket.emit("adduser", prompt("What's your name?"));
+    socket.emit("adduser", 'chel');
   });
 
   // listener, whenever the server emits 'updatechat', this updates the chat body
-  socket.on("updatechat", function(username, data, room) {
-		console.log('room should updchat', username, data, ".conversation-" + room);
-    $(".conversation-" + room).append("<b>" + username + ":</b> " + data + "<br>");
-  });
+  // socket.on("updatechat", function(username, data, room) {
+	// 	console.log('room should updchat', username, data, ".conversation-" + room);
+  //   $(".conversation-" + room).append("<b>" + username + ":</b> " + data + "<br>");
+  // });
 
   // listener, whenever the server emits 'updaterooms', this updates the room the client is in
   socket.on("updaterooms", function(rooms, current_room) {
@@ -63,13 +63,13 @@
   //   socket.emit("joinRoom", room);
   // }
 
-  function sendMessage(roomId) {
-    var message = $("#" + roomId).val();
-    $("#" + roomId).val("");
-    // tell server to execute 'sendchat' and send along one parameter
-    socket.emit("sendchat", message, roomId);
-    console.log("sendchat message", message, roomId);
-  }
+  // function sendMessage(roomId) {
+    // var message = $("#" + roomId).val();
+    // $("#" + roomId).val("");
+    // // tell server to execute 'sendchat' and send along one parameter
+    // socket.emit("sendchat", message, roomId);
+    // console.log("sendchat message", message, roomId);
+  // }
 
   // on load of page
   // $(function() {

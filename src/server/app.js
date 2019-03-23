@@ -67,13 +67,14 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('sendchat', function (message, room) {
     // we tell the client to execute 'updatechat' with 2 parameters
-    console.log('sendchat dtaa', message, room)
+    console.log('sendchat data', message, room)
     io.sockets.in(room).emit('updatechat', socket.username, message, room)
   })
 
   socket.on('joinRoom', function (room) {
     socket.join(room)
     socket.emit('updatechat', 'SERVER', 'you have connected to ' + room)
+    console.log('you have connected to', room)
     // update socket session room title
     socket.broadcast
       .to(room)
@@ -83,10 +84,11 @@ io.sockets.on('connection', function (socket) {
   })
 
   // socket
-  socket.on('addchat', function () {
-    console.log('rooms', rooms)
-    rooms.push('room' + (rooms.length + 1))
-    socket.join('room' + (rooms.length + 1))
+  socket.on('addChat', function (chatName, userName, chatId) {
+    console.log('rooms pre', rooms)
+    rooms.push({chatName, userName, chatId});
+    socket.join(chatName);
+    console.log('rooms post', rooms)
     io.sockets.emit('updaterooms', rooms, socket.room)
   })
 

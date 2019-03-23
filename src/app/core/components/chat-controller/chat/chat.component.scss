@@ -1,11 +1,13 @@
-@import '../../../../scss/variables';
-@import '../../../../scss/fonts';
-@import '../../../../scss/reset';
-@import '../../../../scss/mixins';
+@import '../../../../../scss/variables';
+@import '../../../../../scss/fonts';
+@import '../../../../../scss/reset';
+@import '../../../../../scss/mixins';
 
 .chat-container {
   border: 1px solid $primary-color;
   min-width: 300px;
+  min-height: 400px;
+  background: #fff;
   position: fixed;
   // right: 300px;
   bottom: 0;
@@ -18,6 +20,7 @@
   background: $primary-color;
   
   &.default-icon {
+    width: max-content;
     position: fixed;
     bottom: 0;
     border-top-left-radius: 20px;
@@ -119,6 +122,13 @@
     font-weight: bold;
     margin-top: 20px;
   }
+
+  .btn-send-message {
+    width: 20%;
+    align-self: flex-end;
+    margin-right: 10%;
+    padding: 5px 0;
+  }
 }
 
 .btn {
@@ -182,4 +192,10 @@
 
 .offline {
   background: red;
+}
+
+.main-chat-view {
+  position: fixed;
+  bottom: 0;
+  right: 600px;
 }

@@ -1,16 +1,26 @@
-<div (click)="minimizeToggle()" class="chat-controller-header default-icon" *ngIf="isMinimized">
-    <h5>Chats (2)</h5>
+<div
+  (click)="minimizeToggle()"
+  class="chat-controller-header default-icon"
+  *ngIf="isMinimized"
+>
+  <h5>Chats (2)</h5>
 </div>
 <div *ngIf="!isMinimized" cdkDrag class="chat-controller" #chat>
-
   <ng-template #startedChat>
     <div *ngIf="!isMinimized" class="chat-controller-header">
-      <button (click)="minimizeToggle()" class="minimize-icon"><i class="far fa-window-minimize"></i></button>
+      <button (click)="minimizeToggle()" class="minimize-icon">
+        <i class="far fa-window-minimize"></i>
+      </button>
       <h5 cdkDragHandle>Chat Control Center</h5>
     </div>
   </ng-template>
-  <div class="chat-controller-header" *ngIf="!isChatController; else startedChat">
-    <button (click)="returnToController()" class="back-icon"><i class="fas fa-arrow-circle-left"></i></button>
+  <div
+    class="chat-controller-header"
+    *ngIf="!isChatController; else startedChat"
+  >
+    <button (click)="returnToController()" class="back-icon">
+      <i class="fas fa-arrow-circle-left"></i>
+    </button>
     <h5 *ngIf="!isJoinChat" cdkDragHandle>Start New Chat</h5>
     <h5 *ngIf="isJoinChat" cdkDragHandle>Join Existing Chat</h5>
   </div>
@@ -18,40 +28,61 @@
   <ng-template #chatController>
     <div *ngIf="!isMinimized" class="chat-controller-content">
       <h6>Active chats</h6>
-      <div *ngFor="let chat of chats" class="chat">
-        <div class="status" [ngClass]="{'online': isOnline, 'offline': isOffline}"></div>
-        <input type="radio"  id="radio-{{chat.name}}" [checked]="chat.name === checked">
-        <label for="radio-{{chat.name}}">{{chat.name}}</label>
+      <div *ngIf="arr.length">
+        <div *ngFor="let chat of arr">
+          <div (click)="selectChat(chat)">
+            <div
+              class="status"
+              [ngClass]="{ online: isOnline, offline: isOffline }"
+            ></div>
+            <span>{{ chat.chatName }}</span>
+          </div>
+        </div>
       </div>
-      <button class="btn btn-start-chat" (click)="openChat()" id="add-chat">Start New Chat</button>
-      <button (click)="joinChat()" class="btn btn-join-chat">Join Existing Chat</button>
+      <button class="btn btn-start-chat" (click)="startChat()" id="add-chat">
+        Start New Chat
+      </button>
+      <button (click)="joinChat()" class="btn btn-join-chat">
+        Join Existing Chat
+      </button>
     </div>
   </ng-template>
 
-  <div *ngIf="!isChatController; else chatController" class="chat-controller-content">
+  <div
+    *ngIf="!isChatController; else chatController"
+    class="chat-controller-content"
+  >
     <form *ngIf="!isJoinChat" action="/action_page.php">
       <label>Chat Title:</label>
-      <input type="text" name="title" placeholder="Enter chat title">
+      <input
+        #chatName
+        type="text"
+        name="title"
+        placeholder="Enter chat title"
+      />
       <label>Your name in the chat:</label>
-      <input type="text" name="name" placeholder="Enter your name in chat">
-      <input class="btn btn-enter-chat" type="submit" value="Start">
+      <input
+        #userName
+        type="text"
+        name="name"
+        placeholder="Enter your name in chat"
+      />
+      <input
+        (click)="openNewChat(chatName.value, userName.value, chatName.value)"
+        class="btn btn-enter-chat"
+        type="submit"
+        value="Start"
+      />
     </form>
 
     <form *ngIf="isJoinChat" action="/action_page.php">
       <label>Join Code</label>
-      <input type="text" name="title" placeholder="Enter join code">
+      <input type="text" name="title" placeholder="Enter join code" #room/>
       <label>Your name in the chat:</label>
-      <input type="text" name="name" placeholder="Enter your name in chat">
-      <input class="btn btn-enter-chat" type="submit" value="Join">
+      <input type="text" name="name" placeholder="Enter your name in chat" #userNameInChat/>
+      <button class="btn btn-enter-chat" type="submit" (click)="joinExsitingChat(room.value, userNameInChat.value,room.value)">Join</button>
     </form>
   </div>
 </div>
-
-<!-- <div
-style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;"
->
-<b>ROOMS</b>
-<button id="add-chat">Add chat</button>
-<div id="rooms"></div>
-</div>
-<div class="chat-windows"></div> -->
+<!-- <app-chat *ngFor="let chat of arr" [chat]="chat"></app-chat> -->
+<app-chat *ngFor="let chat of selectedArr; let ind=index" [ind]='ind' [chat]="chat"></app-chat>

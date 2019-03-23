@@ -26,7 +26,7 @@ export class ModalService {
     if (!this.viewContainerRef) {
       return Promise.reject('No view container');
     }
-    this.body.classList.add('noscroll');
+    // this.body.classList.add('noscroll');
     const container = <ComponentRef<ModalContainer>> this.createContainer(options.containerType);
     const injector = ReflectiveInjector.resolveAndCreate([ModalContext], container.instance.container.injector);
     const context = injector.get(ModalContext);
