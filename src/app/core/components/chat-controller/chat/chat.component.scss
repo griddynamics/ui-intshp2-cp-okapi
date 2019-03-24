@@ -10,7 +10,8 @@
   background: #fff;
   position: fixed;
   // right: 300px;
-  bottom: 0;
+  bottom: 0;  
+  z-index: 10;
 }
 
 .chat-header {
