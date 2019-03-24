@@ -12,6 +12,7 @@ export class ChatComponent implements OnInit {
   isUsersShowed = false;
   @Input() chat = {};
   @Input() ind;
+  @Input() color;
 
   public messagesArr: string[] = [];
   public message;
@@ -30,7 +31,12 @@ export class ChatComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.chatService.updateChat();
+    const userColor = this.chatService.generateRandomColor();
+    this.color = userColor;
+    console.log(userColor);
+    if (!this.chat || !this.ind || (this.chat && !this.ind) || (!this.chat && this.ind) ) {
+      this.chatService.updateChat();
+    }
   }
 
  sendMes(roomID) {

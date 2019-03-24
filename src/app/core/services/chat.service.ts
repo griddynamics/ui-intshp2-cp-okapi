@@ -7,6 +7,8 @@ import * as io from 'socket.io-client';
 export class ChatService {
   private socket = io.connect('http://localhost:3000');
   constructor() { }
+  public color;
+  public password;
 
   sendMessage(roomId) {
     const chatInput = <HTMLInputElement>document.getElementById('input-' + roomId);
@@ -23,18 +25,32 @@ export class ChatService {
 
     addChat(chatName, userName, chatId) {
       this.socket.emit('addChat', chatName, userName, chatId);
+      this.generateRandomPassword();
     }
 
     updateChat() {
       this.socket.on('updatechat', (username, data, room) => {
         const message = <HTMLInputElement>document.querySelector('.conversation-' + room);
         const div = document.createElement('div');
-        div.className = 'message';
+        div.className = 'message-' + username;
         const date = new Date();
-        const time = date.toLocaleString('en-GB', { timeZone: 'UTC' });
+        const time = date.toLocaleString('en-GB', { timeZone: 'Europe/Kiev' });
         div.innerHTML = username + ' : ' + data + ' : ' + time;
         message.append(div);
       });
+    }
+
+    generateRandomColor() {
+      this.color = '#' + Math.random().toString(16).slice(2, 8);
+      // this.color = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' +
+      //   (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+      return this.color;
+    }
+
+    generateRandomPassword() {
+      this.password = ('' + Math.random()).substring(2, 9);
+      console.log(this.password);
+      return this.password;
     }
 
     addUser(username) {
