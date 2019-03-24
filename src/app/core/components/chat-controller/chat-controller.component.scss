@@ -9,6 +9,7 @@
   position: fixed;
   right: 0;
   bottom: 0;
+  z-index: 10;
 }
 
 .chat-controller-header {
@@ -77,6 +78,11 @@ h6 {
   input[type="radio"] {
     display: none;
   }
+}
+
+.chat-link {
+  display: flex;
+  align-items: center;
 }
 
 .status {

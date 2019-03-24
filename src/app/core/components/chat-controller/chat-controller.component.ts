@@ -44,6 +44,7 @@ export class ChatControllerComponent
     } else {
       this.arr = JSON.parse(localStorage.getItem('chats'));
     }
+    // this.chatService.addUser();
   }
 
   selectChat(e) {
@@ -68,7 +69,6 @@ export class ChatControllerComponent
   openNewChat(chatName, userName, chatId) {
     this.arr.push({ chatName, userName, chatId });
     this.selectedArr.push({ chatName, userName, chatId });
-    // this.selectChat({chatName, userName, chatId});
     this.updateChats();
   }
 
@@ -85,10 +85,9 @@ export class ChatControllerComponent
     this.isChatController = true;
   }
 
-  joinChat(chatName, userName, chatId) {
+  joinChat() {
     this.isJoinChat = true;
     this.isChatController = false;
-    console.log(chatId);
   }
   joinExsitingChat(chatName, userName, chatId) {
     if (!chatId) {
@@ -96,5 +95,6 @@ export class ChatControllerComponent
     }
     this.chatService.joinRoom(chatId);
     this.selectedArr.push({ chatName, userName, chatId });
+    this.chatService.addUser(userName);
   }
 }

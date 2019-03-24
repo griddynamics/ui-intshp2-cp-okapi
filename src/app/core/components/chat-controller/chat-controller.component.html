@@ -3,7 +3,7 @@
   class="chat-controller-header default-icon"
   *ngIf="isMinimized"
 >
-  <h5>Chats (2)</h5>
+  <h5>Chats ({{arr.length}})</h5>
 </div>
 <div *ngIf="!isMinimized" cdkDrag class="chat-controller" #chat>
   <ng-template #startedChat>
@@ -30,7 +30,7 @@
       <h6>Active chats</h6>
       <div *ngIf="arr.length">
         <div *ngFor="let chat of arr">
-          <div (click)="selectChat(chat)">
+          <div class="chat-link" (click)="selectChat(chat)">
             <div
               class="status"
               [ngClass]="{ online: isOnline, offline: isOffline }"
