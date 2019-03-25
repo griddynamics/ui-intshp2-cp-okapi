@@ -8,7 +8,6 @@ import {
   AfterViewChecked,
 } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-chat-controller',
