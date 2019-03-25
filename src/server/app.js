@@ -98,6 +98,7 @@ io.sockets.on('connection', function (socket) {
 
   // socket
   socket.on('addChat', function (chatName, userName, chatId, pass) {
+    socket.userName = userName;
     console.log('rooms pre', rooms)
     rooms.push({chatName, userName, chatId, pass});
     socket.join(chatId);

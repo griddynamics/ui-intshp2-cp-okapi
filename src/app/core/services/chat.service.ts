@@ -34,7 +34,7 @@ export class ChatService {
     this.socket.emit('joinRoom', userName, password);
   }
 
-
+  
 
     addChat(chatName, userName, chatId, pass) {
       this.socket.emit('addChat', chatName, userName, chatId, pass);
