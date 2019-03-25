@@ -80,9 +80,9 @@
       <input type="text" name="title" placeholder="Enter join code" #room/>
       <label>Your name in the chat:</label>
       <input type="text" name="name" placeholder="Enter your name in chat" #userNameInChat/>
-      <button class="btn btn-enter-chat" type="submit" (click)="joinExsitingChat(room.value, userNameInChat.value, room.value)">Join</button>
+      <button class="btn btn-enter-chat" type="submit" (click)="joinExsitingChat(userNameInChat.value, room.value)">Join</button>
     </form>
   </div>
 </div>
 <!-- <app-chat *ngFor="let chat of arr" [chat]="chat"></app-chat> -->
-<app-chat *ngFor="let chat of selectedArr; let ind=index" [ind]="ind" [chat]="chat" [color]="color"></app-chat>
+<app-chat *ngFor="let chat of selectedArr; let ind=index" [ind]="ind" [chat]="chat" [color]="color" [pass]="password"></app-chat>

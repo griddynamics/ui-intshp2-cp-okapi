@@ -10,42 +10,56 @@ export class ChatService {
   public color;
   public password;
   public currentUserName = '';
+  public classNameCopy = '';
 
-  sendMessage(roomId) {
-    const chatInput = <HTMLInputElement>document.getElementById('input-' + roomId);
-    const message = chatInput.value;
-    chatInput.value = '';
-    // tell server to execute 'sendchat' and send along one parameter
-    this.socket.emit('sendchat', message, roomId);
+  sendMessage(roomId, technicalMessage?) {
+    let message;
+    if (!technicalMessage) {
+      const chatInput = <HTMLInputElement>document.getElementById('input-' + roomId);
+      message = chatInput.value;
+      chatInput.value = '';
+      // tell server to execute 'sendchat' and send along one parameter
+      this.socket.emit('sendchat', message, roomId);
+    } else {
+      message = technicalMessage;
+      this.socket.emit('sendchat', message, roomId);
+
+    }
     console.log('sendchat message', message, roomId);
   }
 
-    joinRoom(room) {
-    this.socket.emit('joinRoom', room);
+    joinRoom(userName, password) {
+      // this.socket.emit('sendchat', 'amamam');
+      // this.sendMessage(, 'sssdasdasdasdasda');
+    this.socket.emit('joinRoom', userName, password);
   }
 
-    addChat(chatName, userName, chatId) {
-      this.socket.emit('addChat', chatName, userName, chatId);
-      this.generateRandomPassword();
-    }
 
+
+    addChat(chatName, userName, chatId, pass) {
+      this.socket.emit('addChat', chatName, userName, chatId, pass);
+    }
     updateChat() {
-      this.socket.on('updatechat', (username, data, room) => {
+      this.socket.on('updatechat', (userName, data, room) => {
         const message = <HTMLInputElement>document.querySelector('.conversation-' + room);
         const div = document.createElement('div');
-        div.className = 'message-' + username;
+        div.className = 'message-' + userName;
         const date = new Date();
         const time = date.toLocaleString('en-GB', { timeZone: 'Europe/Kiev' });
-        div.innerHTML = username + ' : ' + data + ' : ' + time;
+        div.innerHTML = userName + ' : ' + data + ' : ' + time;
         if (message) {
           message.append(div);
         }
           const currUserDiv = document.querySelectorAll(`message-${this.currentUserName}`);
           const lastEl = currUserDiv[currUserDiv.length - 1];
-          if (div.innerText.includes(this.currentUserName)) {
-            div.style.backgroundColor = this.color;
-          }
-      });
+        });
+      }
+    public changeTextColor(div) {
+      if (div.className === this.classNameCopy) {
+        div.style.backgroundColor = 'red';
+      } else {
+        div.style.backgroundColor = 'green';
+      }
     }
 
     generateRandomColor() {
@@ -55,13 +69,35 @@ export class ChatService {
       return this.color;
     }
 
-    generateRandomPassword() {
-      this.password = ('' + Math.random()).substring(2, 9);
-      console.log(this.password);
-      return this.password;
+    generateRandomPassword(length) {
+      let text = '';
+      const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      for (let i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+
+  return text;
     }
+    // createPasswordMessage(room) {
+    //   const password = this.generateRandomPassword();
+    //   const message = document.querySelector('.conversation-' + room);
+    //   const div = document.createElement('div');
+    //   div.innerHTML = `You just started new chat. To let other users join this chat, please share with them join code:${password}`;
+
+    //   if (message) {
+    //     message.append(div);
+    //   }
+    // }
 
     addUser(username) {
       this.socket.emit('adduser', username);
     }
-}
+
+    updateSelectedArr(selectedArr) {
+      this.socket.on('updateSelectedArr', (chatName, userName, chatId) => {
+        if (!selectedArr.find(el => el.chatName === chatName)) {
+          selectedArr.push({ chatName, userName, chatId });
+        }
+      });
+    }
+  }

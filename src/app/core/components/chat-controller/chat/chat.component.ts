@@ -13,6 +13,9 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @Input() chat = {};
   @Input() ind;
   @Input() color;
+  @Input() pass;
+  // @Input() somebodyJoined;
+
 
   public messagesArr: string[] = [];
   public message;
@@ -31,15 +34,24 @@ export class ChatComponent implements OnInit, AfterViewInit {
     ) {}
 
   ngOnInit() {
+    if (!this.pass) {
+      return;
+    }
+    console.log(this.pass);
+    // if (!this.somebodyJoined) {
+    //   return;
+    // }
+    // console.log(this.somebodyJoined)
   }
 
   ngAfterViewInit() {
     const userColor = this.chatService.generateRandomColor();
     this.color = userColor;
-    console.log(userColor);
-    if (!this.chat || !this.ind || (this.chat && !this.ind) || (!this.chat && this.ind) ) {
-      this.chatService.updateChat();
-    }
+    // console.log(userColor);
+    // if (!this.chat || !this.ind || (this.chat && !this.ind) || (!this.chat && this.ind) ) {
+    //   this.chatService.updateChat();
+    //   // this.chatService.sendMessage()
+    // }
   }
 
  sendMes(roomID) {

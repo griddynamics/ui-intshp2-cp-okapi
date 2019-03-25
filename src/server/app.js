@@ -27,30 +27,30 @@ server.listen(config.PORT, () => {
 })
 
 // usernames which are currently connected to the chat
-var usernames = {}
+var userNames = {}
 
 // rooms which are currently available in chat
 var rooms = ['room1', 'room2', 'room3']
 
 io.sockets.on('connection', function (socket) {
-  // when the client emits 'adduser', this listens and executes
-  socket.on('adduser', function (username) {
-    // store the username in the socket session for this client
-    socket.username = username
-    // store the room name in the socket session for this client
-    socket.room = 'room1'
-    // add the client's username to the global list
-    usernames[username] = username
-    // send client to room 1
-    socket.join('room1')
-    // echo to client they've connected
-    socket.emit('updatechat', 'SERVER', 'you have connected to room1')
-    // echo to room 1 that a person has connected to their room
-    socket.broadcast
-      .to(socket.room)
-      .emit('updatechat', 'SERVER', username + ' has connected to this room')
-    socket.emit('updaterooms', rooms, 'room1')
-  })
+  // // when the client emits 'adduser', this listens and executes
+  // socket.on('adduser', function (userName) {
+  //   // store the username in the socket session for this client
+  //   socket.userName = userName
+  //   // store the room name in the socket session for this client
+  //   socket.room = 'room1'
+  //   // add the client's username to the global list
+  //   userNames[userName] = userName
+  //   // send client to room 1
+  //   socket.join('room1')
+  //   // echo to client they've connected
+  //   socket.emit('updatechat', 'SERVER', 'you have connected to room1')
+  //   // echo to room 1 that a person has connected to their room
+  //   socket.broadcast
+  //     .to(socket.room)
+  //     .emit('updatechat', 'SERVER', userName + ' has connected to this room')
+  //   socket.emit('updaterooms', rooms, 'room1')
+  // })
 
   // when the client emits 'sendchat', this listens and executes
 
@@ -68,41 +68,55 @@ io.sockets.on('connection', function (socket) {
   socket.on('sendchat', function (message, room) {
     // we tell the client to execute 'updatechat' with 2 parameters
     console.log('sendchat data', message, room)
-    io.sockets.in(room).emit('updatechat', socket.username, message, room)
+    io.sockets.in(room).emit('updatechat', socket.userName, message, room);
   })
 
-  socket.on('joinRoom', function (room) {
-    socket.join(room)
-    socket.emit('updatechat', 'SERVER', 'you have connected to ' + room)
-    console.log('you have connected to', room)
+  socket.on('joinRoom', function (userName, password) {
+    let roomObj = rooms.find(el => el.pass === password);
+    let room;
+    socket.userName = userName;
+    if (roomObj){
+      room = roomObj.chatId;
+      console.log('Johnny , i"m joining');
+      socket.join(room);
+    } else {
+      console.log('there is no room with such secret code');
+      return null;
+    }
+    // socket.join(room)
+    io.sockets.in(room).emit('updatechat', 'SERVER', userName + ' connected to this room', room);
+    // socket.emit('updatechat', 'SERVER', 'you have connected to ' + room, room);
+    console.log('you have connected to', room);
     // update socket session room title
-    socket.broadcast
-      .to(room)
-      .emit('updatechat', 'SERVER', socket.username + ' has joined this room')
-    socket.emit('updaterooms', rooms, room)
-    socket.emit('appendchat', room)
+    // socket.broadcast
+    //   .to(room)
+    //   .emit('updatechat', 'SERVER', socket.userName + ' has joined this room')
+    // socket.emit('updaterooms', rooms, room)
+    // socket.emit('appendchat', room)
+    socket.emit('updateSelectedArr', roomObj.chatName, userName, roomObj.chatId);
   })
 
   // socket
-  socket.on('addChat', function (chatName, userName, chatId) {
+  socket.on('addChat', function (chatName, userName, chatId, pass) {
     console.log('rooms pre', rooms)
-    rooms.push({chatName, userName, chatId});
-    socket.join(chatName);
-    console.log('rooms post', rooms)
-    io.sockets.emit('updaterooms', rooms, socket.room)
+    rooms.push({chatName, userName, chatId, pass});
+    socket.join(chatId);
+    console.log('rooms post', rooms);
+    // socket.emit('joinRoom', userName, pass);
+    // io.sockets.emit('updaterooms', rooms, socket.room)
   })
 
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
     // remove the username from global usernames list
-    delete usernames[socket.username]
+    delete userNames[socket.userName]
     // update list of users in chat, client-side
-    io.sockets.emit('updateusers', usernames)
+    io.sockets.emit('updateusers', userNames)
     // echo globally that this client has left
     socket.broadcast.emit(
       'updatechat',
       'SERVER',
-      socket.username + ' has disconnected'
+      socket.userName + ' has disconnected'
     )
     socket.leave(socket.room)
   })
