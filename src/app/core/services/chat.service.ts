@@ -9,6 +9,7 @@ export class ChatService {
   constructor() { }
   public color;
   public password;
+  public currentUserName = '';
 
   sendMessage(roomId) {
     const chatInput = <HTMLInputElement>document.getElementById('input-' + roomId);
@@ -36,7 +37,14 @@ export class ChatService {
         const date = new Date();
         const time = date.toLocaleString('en-GB', { timeZone: 'Europe/Kiev' });
         div.innerHTML = username + ' : ' + data + ' : ' + time;
-        message.append(div);
+        if (message) {
+          message.append(div);
+        }
+          const currUserDiv = document.querySelectorAll(`message-${this.currentUserName}`);
+          const lastEl = currUserDiv[currUserDiv.length - 1];
+          if (div.innerText.includes(this.currentUserName)) {
+            div.style.backgroundColor = this.color;
+          }
       });
     }
 
