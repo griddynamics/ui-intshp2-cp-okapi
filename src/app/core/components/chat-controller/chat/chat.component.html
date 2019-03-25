@@ -18,7 +18,10 @@
         <h6>{{user.name}}</h6>
       </div>
     </div>
-    <div [class]="'conversation-' + chat.chatId"></div>
+    <div [class]="'conversation-' + chat.chatId">
+      <div *ngIf="pass">You just started new chat. To let other users join this chat, please share with them join code: {{pass}}</div>
+      <!-- <div *ngIf="somebodyJoined">{{somebodyJoined}}Your name in the chat</div> -->
+    </div>
     <div class="chat-content chat-messages" *ngIf="!isMinimized">
         <input [id]="'input-' + chat.chatName" type="text" placeholder="Type something here" #message autofocus>
         <button class="btn btn-send-message" (click)="sendMes(chat.chatName)">Send</button>

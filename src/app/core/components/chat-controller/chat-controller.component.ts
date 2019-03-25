@@ -19,11 +19,13 @@ export class ChatControllerComponent
   @ViewChild('chat') chat;
   isMinimized = false;
   isChatController = false;
-  isJoinChat = true;
+  isJoinChat = false;
   pos = '';
   arr = [];
   selectedArr = [];
   isOpen = true;
+  public password;
+  // public somebodyJoined;
 
   chats = [
     {
@@ -45,6 +47,12 @@ export class ChatControllerComponent
       this.arr = JSON.parse(localStorage.getItem('chats'));
     }
     // this.chatService.addUser();
+
+  this.chatService.updateChat();
+
+
+      // this.chatService.sendMessage()
+
   }
 
   selectChat(e) {
@@ -67,9 +75,12 @@ export class ChatControllerComponent
   ngOnChanges() {}
 
   openNewChat(chatName, userName, chatId) {
-    this.arr.push({ chatName, userName, chatId });
-    this.selectedArr.push({ chatName, userName, chatId });
-    this.chatService.addChat(chatName, userName, chatId);
+    this.password = this.chatService.generateRandomPassword(8);
+    // console.log(pass)
+    this.arr.push({ chatName, userName, chatId});
+    this.selectedArr.push({ chatName, userName, chatId});
+    console.log(this.selectedArr, 'selected start');
+    this.chatService.addChat(chatName, userName, chatId, this.password);
   }
 
   minimizeToggle() {
@@ -89,12 +100,13 @@ export class ChatControllerComponent
     this.isJoinChat = true;
     this.isChatController = false;
   }
-  joinExsitingChat(chatName, userName, chatId) {
-    if (!chatId) {
-      return;
-    }
-    this.chatService.joinRoom(chatId);
-    this.selectedArr.push({ chatName, userName, chatId });
-    this.chatService.addUser(userName);
+  joinExsitingChat(userName, password) {
+      this.chatService.joinRoom(userName, password);
+      this.chatService.addUser(userName);
+      this.chatService.updateSelectedArr(this.selectedArr);
+      console.log(this.selectedArr, 'join');
   }
+
+
+
 }
