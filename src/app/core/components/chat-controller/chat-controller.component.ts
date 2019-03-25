@@ -69,7 +69,7 @@ export class ChatControllerComponent
   openNewChat(chatName, userName, chatId) {
     this.arr.push({ chatName, userName, chatId });
     this.selectedArr.push({ chatName, userName, chatId });
-    this.updateChats();
+    this.chatService.addChat(chatName, userName, chatId);
   }
 
   minimizeToggle() {

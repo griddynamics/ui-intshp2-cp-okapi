@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ChatService } from 'src/app/core/services/chat.service';
 
 @Component({
@@ -6,12 +6,13 @@ import { ChatService } from 'src/app/core/services/chat.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit {
   isMinimized = false;
   isChatSettings = false;
   isUsersShowed = false;
   @Input() chat = {};
   @Input() ind;
+  @Input() color;
 
   public messagesArr: string[] = [];
   public message;
@@ -30,7 +31,15 @@ export class ChatComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.chatService.updateChat();
+  }
+
+  ngAfterViewInit() {
+    const userColor = this.chatService.generateRandomColor();
+    this.color = userColor;
+    console.log(userColor);
+    if (!this.chat || !this.ind || (this.chat && !this.ind) || (!this.chat && this.ind) ) {
+      this.chatService.updateChat();
+    }
   }
 
  sendMes(roomID) {
