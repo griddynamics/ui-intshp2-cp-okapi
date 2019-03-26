@@ -32,10 +32,10 @@
 <ng-template #chatSettingsContainer>
   <div class="chat-header settings">
     <button (click)="returnToChat()" class="back-icon"><i class="fas fa-arrow-circle-left"></i></button>
-    <h5 chat-title>Settings: {{chatNamee}}</h5>
+    <h5 chat-title>Settings: {{chat.chatName}}</h5>
   </div>
   <div class="chat-content" *ngIf="!isMinimized">
-    <label>Change {{chatNamee}}:</label>
+    <label>Change {{chat.chatName}}:</label>
     <input type="text" placeholder="enter new chat title" #newChatName>
     <input (click)="onEditChatName(chat.chatName, newChatName.value)" class="btn btn-new-title-chat" type="submit" value="Set New Title">
     <!-- <input (click)="editChatName(chat.chatName, newChatName.value)" class="btn btn-new-title-chat" type="submit" value="Set New Title"> -->

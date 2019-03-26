@@ -76,14 +76,13 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   editChatName(newChatName) {
-    // this.chat.chatName = newChatName;
-    this.chatNamee = newChatName;
+    this.chat.chatName = newChatName;
+    // this.chatNamee = newChatName;
   }
 
   onEditChatName(chatName, newChatName) {
-    console.log(this.chatNamee)
-    this.updateChatName.emit({chatName,newChatName});
     this.editChatName(newChatName);
+    this.updateChatName.emit({chatName,newChatName});
   }
 
 }
