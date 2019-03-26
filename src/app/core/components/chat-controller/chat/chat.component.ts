@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/core/services/chat.service';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-chat',
@@ -10,10 +11,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
   isMinimized = false;
   isChatSettings = false;
   isUsersShowed = false;
-  @Input() chat = {};
+  @Input() chat;
   @Input() ind;
   @Input() color;
   @Input() pass;
+  private socket = io.connect('http://localhost:3000');
   // @Input() somebodyJoined;
 
 
@@ -37,21 +39,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
     if (!this.pass) {
       return;
     }
-    console.log(this.pass);
-    // if (!this.somebodyJoined) {
-    //   return;
-    // }
-    // console.log(this.somebodyJoined)
   }
 
   ngAfterViewInit() {
     const userColor = this.chatService.generateRandomColor();
     this.color = userColor;
-    // console.log(userColor);
-    // if (!this.chat || !this.ind || (this.chat && !this.ind) || (!this.chat && this.ind) ) {
-    //   this.chatService.updateChat();
-    //   // this.chatService.sendMessage()
-    // }
   }
 
  sendMes(roomID) {
@@ -74,4 +66,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.isUsersShowed = !this.isUsersShowed;
   }
 
+  editChatName(value) {
+    this.chat.chatName = value;
+  }
 }

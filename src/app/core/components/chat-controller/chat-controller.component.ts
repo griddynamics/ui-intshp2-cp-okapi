@@ -47,7 +47,7 @@ export class ChatControllerComponent
       this.arr = JSON.parse(localStorage.getItem('chats'));
     }
     // this.chatService.addUser();
-
+  this.chatService.updateListArr(this.arr);
   this.chatService.updateChat();
 
 
@@ -75,12 +75,13 @@ export class ChatControllerComponent
   ngOnChanges() {}
 
   openNewChat(chatName, userName, chatId) {
+    const messageColor = this.chatService.generateRandomColor();
     this.password = this.chatService.generateRandomPassword(8);
     // console.log(pass)
     this.arr.push({ chatName, userName, chatId});
     this.selectedArr.push({ chatName, userName, chatId});
     console.log(this.selectedArr, 'selected start');
-    this.chatService.addChat(chatName, userName, chatId, this.password);
+    this.chatService.addChat(chatName, userName, chatId, this.password, messageColor);
   }
 
   minimizeToggle() {
@@ -107,6 +108,7 @@ export class ChatControllerComponent
       console.log(this.selectedArr, 'join');
   }
 
-
-
+  changeChatTitle() {
+    // this.arr =this.chatService.updateListArr();
+  }
 }

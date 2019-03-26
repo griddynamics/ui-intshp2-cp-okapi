@@ -30,7 +30,7 @@ server.listen(config.PORT, () => {
 var userNames = {}
 
 // rooms which are currently available in chat
-var rooms = ['room1', 'room2', 'room3']
+var rooms = [];
 
 io.sockets.on('connection', function (socket) {
   // // when the client emits 'adduser', this listens and executes
@@ -67,26 +67,30 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('sendchat', function (message, room) {
     // we tell the client to execute 'updatechat' with 2 parameters
-    console.log('sendchat data', message, room)
-    io.sockets.in(room).emit('updatechat', socket.userName, message, room);
+    // console.log('sendchat data', message, room)
+    io.sockets.in(room).emit('updatechat', socket.userName, message, room, socket.messageColor);
   })
 
-  socket.on('joinRoom', function (userName, password) {
+  socket.on('joinRoom', function (userName, password, messageColor) {
     let roomObj = rooms.find(el => el.pass === password);
+    let indexOfCurrRoom = rooms.findIndex(el => el.pass === password);
+    rooms[indexOfCurrRoom].users.push(userName);
+    console.log('!!!!!!!', rooms[indexOfCurrRoom].users);
     let room;
     socket.userName = userName;
+    socket.messageColor = messageColor;
     if (roomObj){
       room = roomObj.chatId;
-      console.log('Johnny , i"m joining');
+      // console.log('Johnny , i"m joining');
       socket.join(room);
     } else {
-      console.log('there is no room with such secret code');
+      // console.log('there is no room with such secret code');
       return null;
     }
     // socket.join(room)
     io.sockets.in(room).emit('updatechat', 'SERVER', userName + ' connected to this room', room);
     // socket.emit('updatechat', 'SERVER', 'you have connected to ' + room, room);
-    console.log('you have connected to', room);
+    // console.log('you have connected to', room);
     // update socket session room title
     // socket.broadcast
     //   .to(room)
@@ -95,14 +99,23 @@ io.sockets.on('connection', function (socket) {
     // socket.emit('appendchat', room)
     socket.emit('updateSelectedArr', roomObj.chatName, userName, roomObj.chatId);
   })
-
+  
+  socket.on('updateChatName', (chatName, newChatName) => {
+    const foundChat = rooms.find(el => el.chatName === chatName);
+    foundChat.chatName = newChatName;
+    socket.emit('updateListArr', rooms);
+  }
+  );
   // socket
-  socket.on('addChat', function (chatName, userName, chatId, pass) {
+  socket.on('addChat', function (chatName, userName, chatId, pass, messageColor) {
     socket.userName = userName;
-    console.log('rooms pre', rooms)
-    rooms.push({chatName, userName, chatId, pass});
+    socket.messageColor = messageColor;
+    // console.log('rooms pre', rooms);
+    const users = [userName];
+    rooms.push({chatName, userName, chatId, pass, messageColor, users});
+    console.log(rooms);
     socket.join(chatId);
-    console.log('rooms post', rooms);
+    // console.log('rooms post', rooms);
     // socket.emit('joinRoom', userName, pass);
     // io.sockets.emit('updaterooms', rooms, socket.room)
   })

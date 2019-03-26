@@ -19,7 +19,7 @@
       </div>
     </div>
     <div [class]="'conversation-' + chat.chatId">
-      <div *ngIf="pass">You just started new chat. To let other users join this chat, please share with them join code: {{pass}}</div>
+      <div class= "message" *ngIf="pass">You just started new chat. To let other users join this chat, please share with them join code: {{pass}}</div>
       <!-- <div *ngIf="somebodyJoined">{{somebodyJoined}}Your name in the chat</div> -->
     </div>
     <div class="chat-content chat-messages" *ngIf="!isMinimized">
@@ -36,8 +36,8 @@
   </div>
   <div class="chat-content" *ngIf="!isMinimized">
     <label>Change {{chat.chatName}}:</label>
-    <input type="text" placeholder="enter new chat title">
-    <input class="btn btn-new-title-chat" type="submit" value="Set New Title">
+    <input type="text" placeholder="enter new chat title" #newChatName>
+    <input (click)="editChatName(newChatName.value)" class="btn btn-new-title-chat" type="submit" value="Set New Title">
     <h6>Manage chat participants</h6>
     <div class="chat-participants" *ngFor="let user of users">
       <div class="participant">
