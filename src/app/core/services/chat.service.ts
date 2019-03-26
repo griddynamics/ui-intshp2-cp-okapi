@@ -31,19 +31,21 @@ export class ChatService {
     joinRoom(userName, password) {
       // this.socket.emit('sendchat', 'amamam');
       // this.sendMessage(, 'sssdasdasdasdasda');
-    this.socket.emit('joinRoom', userName, password);
+      const messageColor = this.generateRandomColor();
+    this.socket.emit('joinRoom', userName, password, messageColor);
   }
 
 
 
-    addChat(chatName, userName, chatId, pass) {
-      this.socket.emit('addChat', chatName, userName, chatId, pass);
+    addChat(chatName, userName, chatId, pass, messageColor) {
+      this.socket.emit('addChat', chatName, userName, chatId, pass, messageColor);
     }
     updateChat() {
-      this.socket.on('updatechat', (userName, data, room) => {
+      this.socket.on('updatechat', (userName, data, room, messageColor, usersArr) => {
         const message = <HTMLInputElement>document.querySelector('.conversation-' + room);
         const div = document.createElement('div');
-        div.className = 'message-' + userName;
+        div.style.color = messageColor;
+        div.className = 'message message-' + userName;
         const date = new Date();
         const time = date.toLocaleString('en-GB', { timeZone: 'Europe/Kiev' });
         div.innerHTML = userName + ' : ' + data + ' : ' + time;
@@ -54,13 +56,13 @@ export class ChatService {
           const lastEl = currUserDiv[currUserDiv.length - 1];
         });
       }
-    public changeTextColor(div) {
-      if (div.className === this.classNameCopy) {
-        div.style.backgroundColor = 'red';
-      } else {
-        div.style.backgroundColor = 'green';
-      }
-    }
+    // public changeTextColor(div) {
+    //   if (div.className === this.classNameCopy) {
+    //     div.style.backgroundColor = 'red';
+    //   } else {
+    //     div.style.backgroundColor = 'green';
+    //   }
+    // }
 
     generateRandomColor() {
       this.color = '#' + Math.random().toString(16).slice(2, 8);
@@ -100,4 +102,17 @@ export class ChatService {
         }
       });
     }
+
+    updateListArr(listArr) {
+      this.socket.on('updateListArr', (rooms) => {
+      console.log('updated rooms', rooms);
+      listArr = [...rooms];
+      });
+    }
+    // updateChatName(arr) {
+    //   this.socket.on('updateChatName', (chatName, newChatName) => {
+    //   const foundChat = arr.find(el => el.chatName === chatName);
+    //   foundChat.chatName = newChatName;
+    // });
   }
+

@@ -56,3 +56,11 @@
     box-shadow: 0 0 0 .4em $primary-color, 0 0 0 3.6em transparent;
   }
 }
+
+.message {
+  margin: 20px;
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 14px;
+}
