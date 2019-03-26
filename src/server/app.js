@@ -103,6 +103,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('updateChatName', (chatName, newChatName) => {
     const foundChat = rooms.find(el => el.chatName === chatName);
     foundChat.chatName = newChatName;
+    console.log(rooms)
     socket.emit('updateListArr', rooms);
   }
   );

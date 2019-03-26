@@ -103,16 +103,17 @@ export class ChatService {
       });
     }
 
-    updateListArr(listArr) {
-      this.socket.on('updateListArr', (rooms) => {
-      console.log('updated rooms', rooms);
-      listArr = [...rooms];
-      });
-    }
-    // updateChatName(arr) {
-    //   this.socket.on('updateChatName', (chatName, newChatName) => {
-    //   const foundChat = arr.find(el => el.chatName === chatName);
-    //   foundChat.chatName = newChatName;
+    // updateListArr() {  
+    // let result;  
+    // this.socket.on('updateListArr', (rooms) => {
+    //   console.log('updated rooms', rooms);
+    //   console.log([...rooms]);
+    //   result = [...rooms];
     // });
-  }
+    // return result;
+    // }
 
+    updateChatName(chatName, newChatName) {
+      this.socket.emit('updateChatName',chatName, newChatName);
+  }
+}

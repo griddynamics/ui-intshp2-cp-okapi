@@ -85,4 +85,11 @@
   </div>
 </div>
 <!-- <app-chat *ngFor="let chat of arr" [chat]="chat"></app-chat> -->
-<app-chat *ngFor="let chat of selectedArr; let ind=index" [ind]="ind" [chat]="chat" [color]="color" [pass]="password"></app-chat>
+<app-chat *ngFor="let chat of selectedArr; let ind=index" 
+  [ind]="ind" 
+  [chat]="chat" 
+  [color]="color" 
+  [pass]="password"
+  (updateChatName)="onEditChatName($event)"
+  [chatArr]="arr">
+</app-chat>
