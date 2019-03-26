@@ -8,6 +8,7 @@ import {
   AfterViewChecked,
 } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-chat-controller',
@@ -16,6 +17,7 @@ import { ChatService } from '../../services/chat.service';
 })
 export class ChatControllerComponent
   implements OnDestroy, OnInit, OnChanges, AfterViewChecked {
+  private socket = io.connect('http://localhost:3000');
   @ViewChild('chat') chat;
   isMinimized = false;
   isChatController = false;
@@ -47,8 +49,11 @@ export class ChatControllerComponent
       this.arr = JSON.parse(localStorage.getItem('chats'));
     }
     // this.chatService.addUser();
-  this.chatService.updateListArr(this.arr);
   this.chatService.updateChat();
+
+  this.socket.on('updateListArr', (rooms) => {
+    this.arr = rooms;
+  });
 
 
       // this.chatService.sendMessage()
@@ -72,7 +77,9 @@ export class ChatControllerComponent
 
   ngOnDestroy() {}
 
-  ngOnChanges() {}
+  ngOnChanges() {
+
+  }
 
   openNewChat(chatName, userName, chatId) {
     const messageColor = this.chatService.generateRandomColor();
@@ -80,7 +87,7 @@ export class ChatControllerComponent
     // console.log(pass)
     this.arr.push({ chatName, userName, chatId});
     this.selectedArr.push({ chatName, userName, chatId});
-    console.log(this.selectedArr, 'selected start');
+    // console.log(this.selectedArr, 'selected start');
     this.chatService.addChat(chatName, userName, chatId, this.password, messageColor);
   }
 
@@ -108,7 +115,12 @@ export class ChatControllerComponent
       console.log(this.selectedArr, 'join');
   }
 
-  changeChatTitle() {
-    // this.arr =this.chatService.updateListArr();
+  onEditChatName(event){
+    this.chatService.updateChatName(event.chatName, event.newChatName);
+    // this.chatService.updateListArr();
+
+    // console.log(this.arr)
+
+    // console.log(event);
   }
 }

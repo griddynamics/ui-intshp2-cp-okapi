@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { ChatService } from 'src/app/core/services/chat.service';
 import * as io from 'socket.io-client';
 
@@ -15,12 +15,15 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @Input() ind;
   @Input() color;
   @Input() pass;
+  public chatNamee;
   private socket = io.connect('http://localhost:3000');
-  // @Input() somebodyJoined;
 
 
   public messagesArr: string[] = [];
   public message;
+  public roomArr;
+  @Output() updateChatName = new EventEmitter();
+  @Input() chatArr = [];
 
   users = [
     {
@@ -39,7 +42,13 @@ export class ChatComponent implements OnInit, AfterViewInit {
     if (!this.pass) {
       return;
     }
-  }
+    if (!this.chat) {
+      return;
+    }
+    this.chatNamee = this.chat.chatName; 
+
+  
+    }
 
   ngAfterViewInit() {
     const userColor = this.chatService.generateRandomColor();
@@ -66,7 +75,15 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.isUsersShowed = !this.isUsersShowed;
   }
 
-  editChatName(value) {
-    this.chat.chatName = value;
+  editChatName(newChatName) {
+    // this.chat.chatName = newChatName;
+    this.chatNamee = newChatName;
   }
+
+  onEditChatName(chatName, newChatName) {
+    console.log(this.chatNamee)
+    this.updateChatName.emit({chatName,newChatName});
+    this.editChatName(newChatName);
+  }
+
 }
