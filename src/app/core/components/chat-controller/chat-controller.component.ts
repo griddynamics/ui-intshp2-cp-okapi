@@ -50,8 +50,9 @@ export class ChatControllerComponent
     }
     // this.chatService.addUser();
   this.chatService.updateChat();
-
+  this.chatService.updateSelectedArr(this.selectedArr);
   this.socket.on('updateListArr', (rooms) => {
+    console.log('list array update');
     this.arr = rooms;
   });
 
@@ -115,7 +116,7 @@ export class ChatControllerComponent
       console.log(this.selectedArr, 'join');
   }
 
-  onEditChatName(event){
+  onEditChatName(event) {
     this.chatService.updateChatName(event.chatName, event.newChatName);
     // this.chatService.updateListArr();
 

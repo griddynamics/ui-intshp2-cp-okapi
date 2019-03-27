@@ -45,9 +45,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
     if (!this.chat) {
       return;
     }
-    this.chatNamee = this.chat.chatName; 
+    this.chatNamee = this.chat.chatName;
 
-  
     }
 
   ngAfterViewInit() {
@@ -82,7 +81,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   onEditChatName(chatName, newChatName) {
     this.editChatName(newChatName);
-    this.updateChatName.emit({chatName,newChatName});
+    this.updateChatName.emit({chatName, newChatName});
   }
 
 }

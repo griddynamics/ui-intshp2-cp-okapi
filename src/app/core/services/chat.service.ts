@@ -42,6 +42,7 @@ export class ChatService {
     }
     updateChat() {
       this.socket.on('updatechat', (userName, data, room, messageColor, usersArr) => {
+        console.log('FE reacted to upd chat emit');
         const message = <HTMLInputElement>document.querySelector('.conversation-' + room);
         const div = document.createElement('div');
         div.style.color = messageColor;
@@ -97,14 +98,15 @@ export class ChatService {
 
     updateSelectedArr(selectedArr) {
       this.socket.on('updateSelectedArr', (chatName, userName, chatId) => {
+        console.log('FE reacted to UPD selected arr');
         if (!selectedArr.find(el => el.chatName === chatName)) {
           selectedArr.push({ chatName, userName, chatId });
         }
       });
     }
 
-    // updateListArr() {  
-    // let result;  
+    // updateListArr() {
+    // let result;
     // this.socket.on('updateListArr', (rooms) => {
     //   console.log('updated rooms', rooms);
     //   console.log([...rooms]);
@@ -114,6 +116,6 @@ export class ChatService {
     // }
 
     updateChatName(chatName, newChatName) {
-      this.socket.emit('updateChatName',chatName, newChatName);
+      this.socket.emit('updateChatName', chatName, newChatName);
   }
 }

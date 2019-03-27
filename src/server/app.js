@@ -97,20 +97,21 @@ io.sockets.on('connection', function (socket) {
     //   .emit('updatechat', 'SERVER', socket.userName + ' has joined this room')
     // socket.emit('updaterooms', rooms, room)
     // socket.emit('appendchat', room)
-    socket.emit('updateSelectedArr', roomObj.chatName, userName, roomObj.chatId);
+    io.sockets.in(room).emit('updateSelectedArr', roomObj.chatName, userName, roomObj.chatId);
   })
   
   socket.on('updateChatName', (chatName, newChatName) => {
     const foundChat = rooms.find(el => el.chatName === chatName);
     foundChat.chatName = newChatName;
+    foundChat.chatId = newChatName;
     console.log(rooms)
-    socket.emit('updateListArr', rooms);
+    io.sockets.emit('updateListArr', rooms);
   }
   );
   // socket
   socket.on('addChat', function (chatName, userName, chatId, pass, messageColor) {
-    socket.userName = userName;
-    socket.messageColor = messageColor;
+    // socket.userName = userName;
+    // socket.messageColor = messageColor;
     // console.log('rooms pre', rooms);
     const users = [userName];
     rooms.push({chatName, userName, chatId, pass, messageColor, users});
