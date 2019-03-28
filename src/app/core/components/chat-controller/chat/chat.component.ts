@@ -15,7 +15,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @Input() ind;
   @Input() color;
   @Input() pass;
-  public chatNamee;
   private socket = io.connect('http://localhost:3000');
 
 
@@ -45,7 +44,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     if (!this.chat) {
       return;
     }
-    this.chatNamee = this.chat.chatName;
 
     }
 
@@ -76,7 +74,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   editChatName(newChatName) {
     this.chat.chatName = newChatName;
-    // this.chatNamee = newChatName;
   }
 
   onEditChatName(chatName, newChatName) {

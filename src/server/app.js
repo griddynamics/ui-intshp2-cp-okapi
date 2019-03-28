@@ -68,13 +68,17 @@ io.sockets.on('connection', function (socket) {
   socket.on('sendchat', function (message, room) {
     // we tell the client to execute 'updatechat' with 2 parameters
     // console.log('sendchat data', message, room)
+    console.log('sendchat is called with roomname', room);
     io.sockets.in(room).emit('updatechat', socket.userName, message, room, socket.messageColor);
   })
 
   socket.on('joinRoom', function (userName, password, messageColor) {
     let roomObj = rooms.find(el => el.pass === password);
+
     let indexOfCurrRoom = rooms.findIndex(el => el.pass === password);
+    if(indexOfCurrRoom){
     rooms[indexOfCurrRoom].users.push(userName);
+    }
     console.log('!!!!!!!', rooms[indexOfCurrRoom].users);
     let room;
     socket.userName = userName;
@@ -106,11 +110,19 @@ io.sockets.on('connection', function (socket) {
     foundChat.chatId = newChatName;
     console.log(rooms)
     io.sockets.emit('updateListArr', rooms);
+    console.log('chatName on emit', chatName)
+    io.sockets.emit('updateChatNameInSelectedArr', chatName, newChatName);
+    socket.join(newChatName);
   }
   );
+
+  socket.on('rejoinRoom', (room) => {
+    socket.join(room);
+  });
+
   // socket
   socket.on('addChat', function (chatName, userName, chatId, pass, messageColor) {
-    // socket.userName = userName;
+    socket.userName = userName;
     // socket.messageColor = messageColor;
     // console.log('rooms pre', rooms);
     const users = [userName];

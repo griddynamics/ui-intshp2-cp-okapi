@@ -6,6 +6,7 @@ import {
   OnInit,
   OnChanges,
   AfterViewChecked,
+  AfterViewInit,
 } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import * as io from 'socket.io-client';
@@ -15,8 +16,7 @@ import * as io from 'socket.io-client';
   templateUrl: './chat-controller.component.html',
   styleUrls: ['./chat-controller.component.scss'],
 })
-export class ChatControllerComponent
-  implements OnDestroy, OnInit, OnChanges, AfterViewChecked {
+export class ChatControllerComponent implements OnDestroy, OnInit, OnChanges, AfterViewChecked, AfterViewInit, OnChanges {
   private socket = io.connect('http://localhost:3000');
   @ViewChild('chat') chat;
   isMinimized = false;
@@ -40,6 +40,15 @@ export class ChatControllerComponent
 
   constructor(private el: ElementRef, private chatService: ChatService) {}
 
+  ngAfterViewInit() {
+    // console.log('AVI');
+    // this.chatService.updateChat();
+  }
+
+  ngOnChanges() {
+    // console.log('changes');
+  }
+
   ngAfterViewChecked() {}
 
   ngOnInit() {
@@ -51,10 +60,12 @@ export class ChatControllerComponent
     // this.chatService.addUser();
   this.chatService.updateChat();
   this.chatService.updateSelectedArr(this.selectedArr);
+  this.chatService.updateChatNameInSelectedArr(this.selectedArr);
   this.socket.on('updateListArr', (rooms) => {
     console.log('list array update');
     this.arr = rooms;
   });
+
 
 
       // this.chatService.sendMessage()
@@ -77,10 +88,6 @@ export class ChatControllerComponent
   }
 
   ngOnDestroy() {}
-
-  ngOnChanges() {
-
-  }
 
   openNewChat(chatName, userName, chatId) {
     const messageColor = this.chatService.generateRandomColor();
