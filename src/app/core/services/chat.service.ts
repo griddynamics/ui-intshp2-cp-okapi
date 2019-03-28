@@ -41,7 +41,9 @@ export class ChatService {
       this.socket.emit('addChat', chatName, userName, chatId, pass, messageColor);
     }
     updateChat() {
+      console.log('hmmm');
       this.socket.on('updatechat', (userName, data, room, messageColor, usersArr) => {
+        console.log('FE reacted to upd chat emit');
         const message = <HTMLInputElement>document.querySelector('.conversation-' + room);
         const div = document.createElement('div');
         div.style.color = messageColor;
@@ -54,7 +56,8 @@ export class ChatService {
         }
           const currUserDiv = document.querySelectorAll(`message-${this.currentUserName}`);
           const lastEl = currUserDiv[currUserDiv.length - 1];
-        });
+      });
+
       }
     // public changeTextColor(div) {
     //   if (div.className === this.classNameCopy) {
@@ -97,14 +100,34 @@ export class ChatService {
 
     updateSelectedArr(selectedArr) {
       this.socket.on('updateSelectedArr', (chatName, userName, chatId) => {
+        console.log('FE reacted to UPD selected arr');
         if (!selectedArr.find(el => el.chatName === chatName)) {
           selectedArr.push({ chatName, userName, chatId });
         }
       });
     }
 
-    // updateListArr() {  
-    // let result;  
+    updateChatNameInSelectedArr(selectedArr) {
+      this.socket.on('updateChatNameInSelectedArr', (chatName, newChatName) => {
+        console.log('FE reacted to UPD chat name in selected arr');
+        console.log(selectedArr, !selectedArr, 'yaharaarrrrr');
+        console.log(chatName, 'yaharaarrrrr');
+        if (!selectedArr || !selectedArr.find(el => el.chatName === chatName)) {
+          console.log('ti debil');
+          return null; }
+        // if (!selectedArr.find(el => el.chatName === chatName)) {
+        //   selectedArr.push({ chatName, userName, chatId });
+        // }
+        console.log('old sel array');
+        const chat = selectedArr.find(el => el.chatName === chatName);
+        chat.chatName = newChatName;
+        console.log('ashould be new sel array');
+        this.socket.emit('rejoinRoom', newChatName);
+      });
+    }
+
+    // updateListArr() {
+    // let result;
     // this.socket.on('updateListArr', (rooms) => {
     //   console.log('updated rooms', rooms);
     //   console.log([...rooms]);
@@ -114,6 +137,6 @@ export class ChatService {
     // }
 
     updateChatName(chatName, newChatName) {
-      this.socket.emit('updateChatName',chatName, newChatName);
+      this.socket.emit('updateChatName', chatName, newChatName);
   }
 }

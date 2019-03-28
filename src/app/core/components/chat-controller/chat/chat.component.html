@@ -1,4 +1,4 @@
-<div [id]='chat.chatId' class="main-chat-view" [ngStyle]="{'transform': 'translate(' + -ind*15 + 'px, ' + -ind*15 + 'px)'}">
+<div [id]='chat.chatName' class="main-chat-view" [ngStyle]="{'transform': 'translate(' + -ind*15 + 'px, ' + -ind*15 + 'px)'}">
 <div (click)="minimizeToggle()" class="chat-header default-icon" *ngIf="isMinimized">
     <h5>{{chat.chatName}}: 14</h5>
 </div>
@@ -18,7 +18,7 @@
         <h6>{{user.name}}</h6>
       </div>
     </div>
-    <div [class]="'conversation-' + chat.chatId">
+    <div [class]="'conversation-' + chat.chatName">
       <div class= "message" *ngIf="pass">You just started new chat. To let other users join this chat, please share with them join code: {{pass}}</div>
       <!-- <div *ngIf="somebodyJoined">{{somebodyJoined}}Your name in the chat</div> -->
     </div>
